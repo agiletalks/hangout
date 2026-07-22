@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangout 數位課程與講義門戶 Portal</title>
+    <link rel="stylesheet" href="./product-framework/css/style.css">
+    <style>
+        .portal-hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, rgba(56, 189, 248, 0.1) 0%, rgba(11, 15, 25, 0) 100%);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 40px;
+        }
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        .course-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .course-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 12px 30px rgba(56, 189, 248, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="portal-hero">
+        <div class="container">
+            <span class="badge badge-blue" style="font-size: 0.9rem; padding: 6px 14px;">Hangout 講義門戶</span>
+            <h1 style="font-size: 2.8rem; margin: 16px 0;">數位實戰課程與互動講義庫</h1>
+            <p style="font-size: 1.15rem; max-width: 700px; margin: 0 auto; color: var(--text-muted);">
+                針對每一門課程打造專屬的 HTML 互動講義與實作手冊。學員能在聽講過程中即時完成畫布、紀錄筆記，並匯出完整的學習報告。
+            </p>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="portal-grid">
+            <!-- 產品思維課程 -->
+            <div class="course-card">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <span class="badge badge-emerald">4 小時實戰課</span>
+                        <span style="font-size: 0.85rem; color: var(--accent-amber);">🔒 加密防護</span>
+                    </div>
+                    <h2 style="font-size: 1.5rem; color: var(--text-main); margin-bottom: 12px;">
+                        產品工作術：建立數位團隊的產品思維
+                    </h2>
+                    <p style="font-size: 0.95rem; line-height: 1.6;">
+                        透過 GOAL Framework (Ground, Objectives, Assumptions, Learn)，建立從方向、需求逆向推導、關鍵假設拆解到學習閉環的完整產品思維。
+                    </p>
+                </div>
+                <div style="margin-top: 24px;">
+                    <a href="./product-framework/index.html" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                        🚀 進入課程網頁 (Enter Course)
+                    </a>
+                </div>
+            </div>
+
+            <!-- 未來課程擴充佔位 -->
+            <div class="course-card" style="opacity: 0.6; border-style: dashed;">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <span class="badge" style="background: rgba(148, 163, 184, 0.2); color: var(--text-muted);">規劃中</span>
+                    </div>
+                    <h2 style="font-size: 1.5rem; color: var(--text-muted); margin-bottom: 12px;">
+                        未來的全新實戰課程
+                    </h2>
+                    <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-muted);">
+                        後續課程素材只要直接在此存放全新資料夾即可擴充上線。
+                    </p>
+                </div>
+                <div style="margin-top: 24px;">
+                    <button class="btn btn-secondary" disabled style="width: 100%; justify-content: center; cursor: not-allowed;">
+                        ⏳ 敬請期待
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

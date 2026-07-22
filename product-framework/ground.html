@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模組一｜Ground 產品工作的全貌</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/print.css">
+</head>
+<body>
+    <header id="global-header" class="app-header"></header>
+
+    <main class="container">
+        <div class="card" style="border-left: 4px solid var(--accent-blue);">
+            <span class="badge badge-blue">模組一｜Ground (35 分鐘)</span>
+            <h1 style="margin: 12px 0;">產品工作的全貌與常見斷點</h1>
+            <p>建立共同產品視角：產品工作不是單一部門或單一流程，而是方向、協作、執行與成果之間的持續閉環。</p>
+        </div>
+
+        <!-- 模組重點 -->
+        <div class="card">
+            <div class="card-header">
+                <h3>🎯 核心觀念與共同地圖</h3>
+                <span class="badge badge-blue">Teaching Highlights</span>
+            </div>
+            <ul id="ground-teaching-points" style="padding-left: 20px; line-height: 1.8; color: var(--text-main);"></ul>
+        </div>
+
+        <!-- 4 個面向與解方 -->
+        <div class="card">
+            <div class="card-header">
+                <h3>🗺️ 產品工作的四個面向與斷點解方</h3>
+                <span class="badge badge-blue">4 Dimensions</span>
+            </div>
+            <div id="dimensions-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;"></div>
+        </div>
+
+        <!-- 簡化產品生命週期 -->
+        <div class="card">
+            <div class="card-header">
+                <h3>🔄 簡化產品生命週期與持續降噪</h3>
+                <span class="badge badge-emerald">Life Cycle</span>
+            </div>
+            <p style="margin-bottom: 16px;">每一個階段的核心目的，都是在降低不同的不確定性風險：</p>
+            <div id="life-cycle-stepper" style="display: flex; gap: 8px; flex-wrap: wrap;"></div>
+        </div>
+
+        <!-- 跨職能角色的判斷價值表 -->
+        <div class="card">
+            <div class="card-header">
+                <h3>👥 跨職能角色的判斷價值 (Role Values)</h3>
+                <span class="badge badge-amber">跨職能協作</span>
+            </div>
+            <p style="margin-bottom: 12px;">跨職能協作的核心價值，是讓重要的專業判斷提早發生：</p>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--border-color); color: var(--accent-blue);">
+                            <th style="padding: 10px;">角色 (Role)</th>
+                            <th style="padding: 10px;">提供的主要判斷價值 (Core Judgment)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="roles-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 斷點診斷實作畫布 -->
+        <div class="card" style="border: 2px solid var(--accent-blue);">
+            <div class="card-header">
+                <h3>🛠️ 實作畫布：快速斷點診斷</h3>
+                <span class="badge badge-emerald">互動練習</span>
+            </div>
+            <p>請檢視您的專案「<span id="display-project-name" style="color: var(--accent-blue); font-weight: bold;">目前專案</span>」，您認為團隊在推進該需求時，最關鍵的斷點發生在哪個面向？</p>
+            
+            <div class="form-group" style="margin-top: 16px;">
+                <label class="form-label">選擇最主要的斷點面向：</label>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px;">
+                    <button type="button" class="btn btn-secondary breakpoint-btn" data-val="Direction">Direction (方向)</button>
+                    <button type="button" class="btn btn-secondary breakpoint-btn" data-val="Collaboration">Collaboration (協作)</button>
+                    <button type="button" class="btn btn-secondary breakpoint-btn" data-val="Execution">Execution (執行)</button>
+                    <button type="button" class="btn btn-secondary breakpoint-btn" data-val="Outcome">Outcome (成果)</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="breakpoint-reason">完成診斷描述句：</label>
+                <textarea id="breakpoint-reason" class="form-control" placeholder="我們認為最重要的斷點是 [選擇的面向]，因為 [在此說明原因與造成的影響]..."></textarea>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <a href="./index.html" class="btn btn-secondary">◀ 上一頁：開場</a>
+            <a href="./objectives.html" class="btn btn-primary">前往 模組二｜Objectives 成果導向目標 ➔</a>
+        </div>
+    </main>
+
+    <script src="./js/crypto.js"></script>
+    <script src="./data/course-payload.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AppComponents.initPage('ground', (payload) => {
+                const gData = payload.ground;
+
+                // Render Teaching Points
+                document.getElementById('ground-teaching-points').innerHTML = 
+                    gData.teachingPoints.map(tp => `<li style="margin-bottom: 6px;">${tp}</li>`).join('');
+
+                // Render Dimensions Grid
+                const dimGrid = document.getElementById('dimensions-grid');
+                dimGrid.innerHTML = gData.dimensions.map((dim, idx) => `
+                    <div class="card" style="background: var(--bg-input); margin: 0;">
+                        <h4 style="color: var(--accent-blue);">${dim.name}</h4>
+                        <p style="font-size: 0.9rem; font-weight: 600; color: var(--text-main); margin: 4px 0;">${dim.keyQuestion}</p>
+                        <p style="font-size: 0.85rem; color: var(--accent-rose); margin-bottom: 6px;">❌ 斷點：${dim.breakpoint}</p>
+                        <p style="font-size: 0.85rem; color: var(--accent-emerald);">💡 解方：${dim.cure}</p>
+                    </div>
+                `).join('');
+
+                // Render Life Cycle Stepper
+                const lcStepper = document.getElementById('life-cycle-stepper');
+                lcStepper.innerHTML = gData.lifeCycle.map((lc, idx) => `
+                    <div style="background: rgba(56, 189, 248, 0.1); border: 1px solid var(--accent-blue); padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: var(--accent-blue);">
+                        ${lc}
+                    </div>
+                `).join('');
+
+                // Render Roles Table
+                const rolesTable = document.getElementById('roles-table-body');
+                rolesTable.innerHTML = gData.rolesTable.map(r => `
+                    <tr style="border-bottom: 1px solid var(--border-color);">
+                        <td style="padding: 10px; font-weight: 600; color: var(--accent-blue);">${r.role}</td>
+                        <td style="padding: 10px; color: var(--text-main);">${r.value}</td>
+                    </tr>
+                `).join('');
+
+                // Interactive Workbench
+                const state = AppStorage.loadState();
+                document.getElementById('display-project-name').textContent = state.userProjectName || '您的產品專案';
+                
+                const breakpointBtns = document.querySelectorAll('.breakpoint-btn');
+                const reasonInput = document.getElementById('breakpoint-reason');
+
+                let currentSelected = state.groundData.selectedBreakpoint || 'Collaboration';
+                reasonInput.value = state.groundData.breakpointReason || '';
+
+                function updateBtnStyles() {
+                    breakpointBtns.forEach(btn => {
+                        if (btn.dataset.val === currentSelected) {
+                            btn.classList.remove('btn-secondary');
+                            btn.classList.add('btn-primary');
+                        } else {
+                            btn.classList.remove('btn-primary');
+                            btn.classList.add('btn-secondary');
+                        }
+                    });
+                }
+                updateBtnStyles();
+
+                breakpointBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        currentSelected = btn.dataset.val;
+                        updateBtnStyles();
+                        saveGroundData();
+                    });
+                });
+
+                let saveTimeout;
+                reasonInput.addEventListener('input', () => {
+                    clearTimeout(saveTimeout);
+                    saveTimeout = setTimeout(saveGroundData, 500);
+                });
+
+                function saveGroundData() {
+                    const s = AppStorage.loadState();
+                    s.groundData = {
+                        selectedBreakpoint: currentSelected,
+                        breakpointReason: reasonInput.value.trim()
+                    };
+                    AppStorage.saveState(s);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

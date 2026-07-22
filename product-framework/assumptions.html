@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模組三｜Assumptions 驗證關鍵假設</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/print.css">
+</head>
+<body>
+    <header id="global-header" class="app-header"></header>
+
+    <main class="container">
+        <div class="card" style="border-left: 4px solid var(--accent-amber);">
+            <span class="badge badge-amber">模組三｜Assumptions (65 分鐘)</span>
+            <h1 style="margin: 12px 0;">建立實驗思維，驗證關鍵假設</h1>
+            <p>從「討論解法好不好」轉向「辨識我們正在假設什麼」，找出高影響、高不確定性的假設優先驗證。</p>
+        </div>
+
+        <!-- 模組重點 -->
+        <div class="card">
+            <div class="card-header">
+                <h3>🎯 核心觀念：實驗思維與驗證優先順序</h3>
+                <span class="badge badge-amber">Teaching Highlights</span>
+            </div>
+            <ul id="ass-teaching-points" style="padding-left: 20px; line-height: 1.8; color: var(--text-main);"></ul>
+        </div>
+
+        <!-- 4 類風險假設拆解說明 -->
+        <div class="card">
+            <div class="card-header">
+                <h3>🔍 四類產品風險假設拆解 (Risk Deconstruction)</h3>
+                <span class="badge badge-amber">假設分類</span>
+            </div>
+            <p>請拆解專案「<strong id="display-project-name" style="color: var(--accent-blue);">專案需求</strong>」背後尚未被證明的假設：</p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
+                <div class="form-group">
+                    <label class="form-label" style="color: var(--accent-blue);">1. Value Assumption (價值假設)</label>
+                    <input type="text" id="val-assumption" class="form-control" placeholder="使用者真的有這個痛點？真的需要或願意使用嗎？">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" style="color: var(--accent-indigo);">2. Usability Assumption (易用性假設)</label>
+                    <input type="text" id="usa-assumption" class="form-control" placeholder="使用者能在不需引導下看懂並順利操作嗎？">
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="form-group">
+                    <label class="form-label" style="color: var(--accent-amber);">3. Feasibility Assumption (可行性假設)</label>
+                    <input type="text" id="fea-assumption" class="form-control" placeholder="現有技術架構、資料庫與 API 能在預算內支援嗎？">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" style="color: var(--accent-rose);">4. Viability Assumption (存續性/商務假設)</label>
+                    <input type="text" id="via-assumption" class="form-control" placeholder="商務、營運、法遵與風控商業模式能成立嗎？">
+                </div>
+            </div>
+        </div>
+
+        <!-- 低成本驗證工具箱 -->
+        <div class="card">
+            <div class="card-header">
+                <h3>🧰 6 種低成本驗證工具箱 (Validation Toolkit)</h3>
+                <span class="badge badge-emerald">實驗工具</span>
+            </div>
+            <div id="validation-methods-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;"></div>
+        </div>
+
+        <!-- 2x2 矩陣與優先級選擇 -->
+        <div class="card" style="border: 2px solid var(--accent-amber);">
+            <div class="card-header">
+                <h3>🎯 2x2 假設優先級矩陣與實驗設計卡</h3>
+                <span class="badge badge-emerald">核心實作畫布</span>
+            </div>
+
+            <div class="matrix-container">
+                <div></div>
+                <div class="matrix-header">低不確定性 (Low)</div>
+                <div class="matrix-header">高不確定性 (High)</div>
+
+                <div class="matrix-axis-y">高影響力 (High)</div>
+                <div class="matrix-cell">
+                    <span class="matrix-cell-title">持續確認</span>
+                </div>
+                <div class="matrix-cell priority">
+                    <span class="matrix-cell-title" style="color: var(--accent-amber); font-weight: 800;">🔥 優先驗證區 (Priority)</span>
+                    <p style="font-size: 0.8rem;">如果這個假設錯了，影響極大且目前缺乏證據！</p>
+                </div>
+
+                <div class="matrix-axis-y">低影響力 (Low)</div>
+                <div class="matrix-cell">
+                    <span class="matrix-cell-title">延後處理</span>
+                </div>
+                <div class="matrix-cell">
+                    <span class="matrix-cell-title">暫不投入</span>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="form-label" for="selected-key-assumption">Step 1: 選定最值得優先驗證的關鍵假設 (Key Assumption)：</label>
+                <input type="text" id="selected-key-assumption" class="form-control" placeholder="例如：客戶在消費前是否有主動查詢優惠的習慣...">
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="form-group">
+                    <label class="form-label" for="validation-method">Step 2: 選擇最低成本的驗證方式：</label>
+                    <select id="validation-method" class="form-control">
+                        <option value="Prototype">Prototype (原型測試)</option>
+                        <option value="MVP">MVP (最小可行產品)</option>
+                        <option value="Spike">Spike (技術探針概念驗證)</option>
+                        <option value="人工試行">人工試行 (Wizard of Oz)</option>
+                        <option value="訪談／測試">深度訪談 / 觀察測試</option>
+                        <option value="數據分析">數據分析 (探索現有數據)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="threshold-input">Step 3: 設定獲得支持的「判斷標準與門檻」：</label>
+                    <input type="text" id="threshold-input" class="form-control" placeholder="例如：10 位受測者中有 8 位能在 5 秒內完成查詢">
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <a href="./objectives.html" class="btn btn-secondary">◀ 上一頁：模組二 Objectives</a>
+            <a href="./learn.html" class="btn btn-primary">前往 模組四｜Learn 產品學習循環 ➔</a>
+        </div>
+    </main>
+
+    <script src="./js/crypto.js"></script>
+    <script src="./data/course-payload.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AppComponents.initPage('assumptions', (payload) => {
+                const aData = payload.assumptions;
+
+                // Render Teaching Points
+                document.getElementById('ass-teaching-points').innerHTML = 
+                    aData.teachingPoints.map(tp => `<li style="margin-bottom: 6px;">${tp}</li>`).join('');
+
+                // Render Validation Toolkit Grid
+                const vmGrid = document.getElementById('validation-methods-grid');
+                vmGrid.innerHTML = aData.validationMethods.map(vm => `
+                    <div style="background: rgba(251, 191, 36, 0.08); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px;">
+                        <strong style="color: var(--accent-amber); font-size: 0.9rem;">${vm.name}</strong>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; margin-bottom: 0;">${vm.fit}</p>
+                    </div>
+                `).join('');
+
+                // Interactive Workbench
+                const state = AppStorage.loadState();
+                document.getElementById('display-project-name').textContent = state.userProjectName || '您的產品專案';
+
+                const valInput = document.getElementById('val-assumption');
+                const usaInput = document.getElementById('usa-assumption');
+                const feaInput = document.getElementById('fea-assumption');
+                const viaInput = document.getElementById('via-assumption');
+                const keyInput = document.getElementById('selected-key-assumption');
+                const methodSelect = document.getElementById('validation-method');
+                const thresholdInput = document.getElementById('threshold-input');
+
+                const data = state.assumptionsData || {};
+                valInput.value = data.valueAssumptions || '';
+                usaInput.value = data.usabilityAssumptions || '';
+                feaInput.value = data.feasibilityAssumptions || '';
+                viaInput.value = data.viabilityAssumptions || '';
+                keyInput.value = data.selectedKeyAssumption || '';
+                methodSelect.value = data.validationMethod || 'Prototype';
+                thresholdInput.value = data.threshold || '';
+
+                let saveTimeout;
+                [valInput, usaInput, feaInput, viaInput, keyInput, methodSelect, thresholdInput].forEach(elem => {
+                    elem.addEventListener('input', () => {
+                        clearTimeout(saveTimeout);
+                        saveTimeout = setTimeout(saveAssumptionsData, 500);
+                    });
+                });
+
+                function saveAssumptionsData() {
+                    const s = AppStorage.loadState();
+                    s.assumptionsData = {
+                        valueAssumptions: valInput.value.trim(),
+                        usabilityAssumptions: usaInput.value.trim(),
+                        feasibilityAssumptions: feaInput.value.trim(),
+                        viabilityAssumptions: viaInput.value.trim(),
+                        selectedKeyAssumption: keyInput.value.trim(),
+                        validationMethod: methodSelect.value,
+                        threshold: thresholdInput.value.trim()
+                    };
+                    AppStorage.saveState(s);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

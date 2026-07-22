@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOAL 產品思維｜學習成果與實作手冊匯出</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/print.css">
+</head>
+<body>
+    <header id="global-header" class="app-header no-print"></header>
+
+    <main class="container">
+        <!-- 頂端匯出操作列 -->
+        <div class="card no-print" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(129, 140, 248, 0.15)); border: 1px solid var(--accent-blue);">
+            <div class="card-header" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+                <div>
+                    <h2>🎓 恭喜完成 GOAL 產品思維實戰課程！</h2>
+                    <p style="margin-bottom: 0;">以下為您在課堂中即時記錄的完整產品大綱、實作卡片與個人筆記彙整報告。</p>
+                </div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button id="btn-print-pdf" class="btn btn-primary">🖨️ 列印 / 另存 PDF</button>
+                    <button id="btn-copy-md" class="btn btn-secondary">📝 複製 Markdown</button>
+                    <button id="btn-export-json" class="btn btn-outline">💾 下載 JSON</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 可列印成果手冊內容 -->
+        <div id="printable-report">
+            <div class="card" style="text-align: center; padding: 36px 20px;">
+                <h1 style="color: var(--accent-blue); font-size: 2rem;">產品思維 (GOAL Framework) 學習與實作手冊</h1>
+                <p style="font-size: 1.1rem; color: var(--text-main); margin-top: 8px;">
+                    專案名稱：<strong id="report-project-name" style="color: var(--accent-emerald);">未填寫</strong>
+                </p>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">
+                    產出時間：<span id="report-timestamp">--</span>
+                </p>
+            </div>
+
+            <!-- 模組一成果 -->
+            <div class="card">
+                <h2>1. Ground 產品工作全貌與斷點診斷</h2>
+                <p><strong>選定主要斷點面向：</strong> <span id="out-ground-bp" class="badge badge-amber">--</span></p>
+                <div style="margin-top: 10px; padding: 14px; background: var(--bg-input); border-radius: 8px;">
+                    <strong>診斷原因與影響：</strong>
+                    <p id="out-ground-reason" style="margin-top: 6px; color: var(--text-main);">未填寫</p>
+                </div>
+            </div>
+
+            <!-- 模組二成果 -->
+            <div class="card">
+                <h2>2. Objectives 成果導向產品目標卡</h2>
+                <p><strong>Business Objective:</strong> <span id="out-obj-biz" class="badge badge-blue">--</span></p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0;">
+                    <div style="padding: 10px; background: var(--bg-input); border-radius: 6px;">
+                        <strong>目標使用者：</strong> <span id="out-obj-user">--</span>
+                    </div>
+                    <div style="padding: 10px; background: var(--bg-input); border-radius: 6px;">
+                        <strong>關鍵情境：</strong> <span id="out-obj-context">--</span>
+                    </div>
+                    <div style="padding: 10px; background: var(--bg-input); border-radius: 6px;">
+                        <strong>現狀行為：</strong> <span id="out-obj-cur">--</span>
+                    </div>
+                    <div style="padding: 10px; background: var(--bg-input); border-radius: 6px;">
+                        <strong>期望行為：</strong> <span id="out-obj-des">--</span>
+                    </div>
+                </div>
+                <blockquote style="padding: 14px; background: rgba(56, 189, 248, 0.08); border-left: 4px solid var(--accent-blue); border-radius: 4px;">
+                    <strong>改寫後產品目標描述：</strong>
+                    <p id="out-obj-sentence" style="font-weight: 600; color: var(--text-main); margin-top: 4px;">未填寫</p>
+                </blockquote>
+            </div>
+
+            <!-- 模組三成果 -->
+            <div class="card">
+                <h2>3. Assumptions 關鍵假設與實驗驗證卡</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;">
+                    <div style="padding: 10px; background: var(--bg-input); border-radius: 6px;">
+                        <strong>Value 假設：</strong> <span id="out-ass-val">--</span>
+                    </div>
+                    <div style="padding: 10px; background: var(--bg-input); border-radius: 6px;">
+                        <strong>Usability 假設：</strong> <span id="out-ass-usa">--</span>
+                    </div>
+                    <div style="padding: 10px; background: var(--bg-input); border-radius: 6px;">
+                        <strong>Feasibility 假設：</strong> <span id="out-ass-fea">--</span>
+                    </div>
+                    <div style="padding: 10px; background: var(--bg-input); border-radius: 6px;">
+                        <strong>Viability 假設：</strong> <span id="out-ass-via">--</span>
+                    </div>
+                </div>
+                <div style="padding: 14px; background: rgba(251, 191, 36, 0.08); border: 1px solid var(--accent-amber); border-radius: 8px;">
+                    <p><strong>🔥 最優先關鍵假設：</strong> <span id="out-ass-key" style="font-weight: bold; color: var(--accent-amber);">--</span></p>
+                    <p style="margin-top: 6px;"><strong>驗證方式：</strong> <span id="out-ass-method">--</span></p>
+                    <p style="margin-top: 4px;"><strong>判斷標準門檻：</strong> <span id="out-ass-threshold">--</span></p>
+                </div>
+            </div>
+
+            <!-- 模組四成果 -->
+            <div class="card">
+                <h2>4. Learn 學習閉環與個人 2 週行動承諾</h2>
+                <p><strong>下一步產品決策：</strong> <span id="out-learn-dec" class="badge badge-emerald">--</span></p>
+                <div style="margin-top: 10px; padding: 14px; background: var(--bg-input); border-radius: 8px;">
+                    <strong>數據與漏斗洞察：</strong>
+                    <p id="out-learn-funnel" style="margin-top: 4px;">未填寫</p>
+                </div>
+                <blockquote style="margin-top: 14px; padding: 14px; background: rgba(52, 211, 153, 0.08); border-left: 4px solid var(--accent-emerald); border-radius: 4px;">
+                    <strong>未來看見的行動承諾：</strong>
+                    <p id="out-learn-action" style="font-weight: 600; color: var(--text-main); margin-top: 4px;">未填寫</p>
+                </blockquote>
+            </div>
+
+            <!-- 全局隨手筆記 -->
+            <div class="card">
+                <h2>📝 課堂隨手筆記彙整</h2>
+                <div id="out-notes-box" style="white-space: pre-wrap; font-family: inherit; background: var(--bg-input); padding: 16px; border-radius: 8px; color: var(--text-main);">
+                    尚未寫入任何筆記。
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="./js/crypto.js"></script>
+    <script src="./data/course-payload.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AppComponents.initPage('learn', (payload) => {
+                const s = AppStorage.loadState();
+
+                document.getElementById('report-project-name').textContent = s.userProjectName || '未指定專案名稱';
+                document.getElementById('report-timestamp').textContent = s.lastSavedAt ? new Date(s.lastSavedAt).toLocaleString('zh-TW') : new Date().toLocaleString('zh-TW');
+
+                // Ground
+                document.getElementById('out-ground-bp').textContent = s.groundData.selectedBreakpoint || '未填寫';
+                document.getElementById('out-ground-reason').textContent = s.groundData.breakpointReason || '未填寫';
+
+                // Objectives
+                document.getElementById('out-obj-biz').textContent = s.objectivesData.businessObjective || '未填寫';
+                document.getElementById('out-obj-user').textContent = s.objectivesData.targetUser || '未填寫';
+                document.getElementById('out-obj-context').textContent = s.objectivesData.context || '未填寫';
+                document.getElementById('out-obj-cur').textContent = s.objectivesData.currentBehavior || '未填寫';
+                document.getElementById('out-obj-des').textContent = s.objectivesData.desiredBehavior || '未填寫';
+                document.getElementById('out-obj-sentence').textContent = s.objectivesData.productObjective || '未填寫';
+
+                // Assumptions
+                document.getElementById('out-ass-val').textContent = s.assumptionsData.valueAssumptions || '未填寫';
+                document.getElementById('out-ass-usa').textContent = s.assumptionsData.usabilityAssumptions || '未填寫';
+                document.getElementById('out-ass-fea').textContent = s.assumptionsData.feasibilityAssumptions || '未填寫';
+                document.getElementById('out-ass-via').textContent = s.assumptionsData.viabilityAssumptions || '未填寫';
+                document.getElementById('out-ass-key').textContent = s.assumptionsData.selectedKeyAssumption || '未填寫';
+                document.getElementById('out-ass-method').textContent = s.assumptionsData.validationMethod || '未填寫';
+                document.getElementById('out-ass-threshold').textContent = s.assumptionsData.threshold || '未填寫';
+
+                // Learn
+                document.getElementById('out-learn-dec').textContent = s.learnData.decision || '未填寫';
+                document.getElementById('out-learn-funnel').textContent = s.learnData.funnelAnalysis || '未填寫';
+                document.getElementById('out-learn-action').textContent = s.learnData.nextAction || '未填寫';
+
+                // Notes
+                const notesArr = [];
+                if (s.notes.global) notesArr.push(`【全域筆記】\n${s.notes.global}`);
+                if (s.notes.ground) notesArr.push(`【Ground 模組筆記】\n${s.notes.ground}`);
+                if (s.notes.objectives) notesArr.push(`【Objectives 模組筆記】\n${s.notes.objectives}`);
+                if (s.notes.assumptions) notesArr.push(`【Assumptions 模組筆記】\n${s.notes.assumptions}`);
+                if (s.notes.learn) notesArr.push(`【Learn 模組筆記】\n${s.notes.learn}`);
+
+                document.getElementById('out-notes-box').textContent = notesArr.length > 0 ? notesArr.join('\n\n') : '尚未留下筆記紀錄。';
+
+                // Action buttons
+                document.getElementById('btn-print-pdf').addEventListener('click', () => window.print());
+                document.getElementById('btn-copy-md').addEventListener('click', () => AppStorage.exportMarkdown());
+                document.getElementById('btn-export-json').addEventListener('click', () => AppStorage.exportJSON());
+            });
+        });
+    </script>
+</body>
+</html>

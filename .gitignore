@@ -1,0 +1,15 @@
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Temporary files
+*.tmp
+*.log
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# Git temporary files
+.git/

@@ -1,0 +1,279 @@
+/* Component-specific Styles for GOAL Courseware */
+
+/* Passcode Lock Overlay Modal */
+.passcode-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(7, 10, 18, 0.95);
+    backdrop-filter: blur(16px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.passcode-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.passcode-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    display: inline-block;
+}
+
+.passcode-title {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+    color: var(--text-main);
+}
+
+.passcode-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+}
+
+.passcode-error {
+    color: var(--accent-rose);
+    font-size: 0.85rem;
+    margin-top: 8px;
+    display: none;
+}
+
+/* Floating Notebook Drawer */
+.floating-note-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 200;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+    color: #0b0f19;
+    font-weight: 700;
+    padding: 14px 22px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    transition: transform 0.2s ease;
+}
+
+.floating-note-btn:hover {
+    transform: scale(1.05);
+}
+
+.note-drawer {
+    position: fixed;
+    top: 0; right: -420px;
+    width: 400px; height: 100vh;
+    background: var(--bg-card);
+    border-left: 1px solid var(--border-color);
+    z-index: 300;
+    padding: 24px;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.note-drawer.open {
+    right: 0;
+}
+
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.drawer-close {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.drawer-close:hover { color: var(--text-main); }
+
+.drawer-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.drawer-textarea {
+    flex: 1;
+    width: 100%;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-main);
+    padding: 14px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    resize: none;
+}
+
+/* Toast Notifications */
+.app-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 999;
+    background: rgba(30, 41, 59, 0.9);
+    border: 1px solid var(--accent-emerald);
+    color: var(--accent-emerald);
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.app-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Quiz Option Cards */
+.quiz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.quiz-card {
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    padding: 16px 20px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.quiz-card:hover {
+    border-color: var(--accent-blue);
+    background: var(--bg-card-hover);
+}
+
+.quiz-card.correct {
+    border-color: var(--accent-emerald);
+    background: rgba(52, 211, 153, 0.1);
+}
+
+.quiz-card.incorrect {
+    border-color: var(--accent-rose);
+    background: rgba(244, 63, 94, 0.1);
+}
+
+/* 2x2 Matrix Component */
+.matrix-container {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    grid-template-rows: 40px 180px 180px;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.matrix-header {
+    text-align: center;
+    font-weight: 700;
+    color: var(--accent-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.matrix-axis-y {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    text-align: center;
+    font-weight: 700;
+    color: var(--accent-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.matrix-cell {
+    background: var(--bg-input);
+    border: 1px dashed var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.matrix-cell.priority {
+    border-style: solid;
+    border-color: var(--accent-amber);
+    background: rgba(251, 191, 36, 0.05);
+}
+
+.matrix-cell-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* Funnel Visualizer */
+.funnel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.funnel-step {
+    background: var(--bg-input);
+    border-radius: var(--radius-md);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid var(--accent-blue);
+    position: relative;
+    overflow: hidden;
+}
+
+.funnel-bar {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    background: rgba(56, 189, 248, 0.15);
+    z-index: 1;
+}
+
+.funnel-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}

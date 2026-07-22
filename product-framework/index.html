@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>產品工作術：建立數位團隊的產品思維｜GOAL Framework</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/print.css">
+</head>
+<body>
+    <header id="global-header" class="app-header"></header>
+
+    <main class="container">
+        <div class="card" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95)); border-left: 4px solid var(--accent-blue);">
+            <span class="badge badge-blue">課程開場｜15 分鐘</span>
+            <h1 id="course-title" style="margin: 12px 0;">產品工作術：建立數位團隊的產品思維</h1>
+            <p id="course-subtitle" style="font-size: 1.1rem; color: #cbd5e1; font-weight: 500;">
+                4 小時精準轉型：從交付導向 (Output) 到成果導向 (Outcome)
+            </p>
+        </div>
+
+        <!-- 教學核心重點 -->
+        <div class="card">
+            <div class="card-header">
+                <h3>🎯 開場教學重點與思維轉換</h3>
+                <span class="badge badge-emerald">Core Principles</span>
+            </div>
+            <ul id="teaching-points-list" style="padding-left: 20px; line-height: 1.8; color: var(--text-main);">
+                <li>載入中...</li>
+            </ul>
+        </div>
+
+        <!-- 學員專案設定卡 -->
+        <div class="card" style="border: 2px solid var(--accent-blue);">
+            <div class="card-header">
+                <h3>📌 本課堂實作痛點與專案設定</h3>
+                <span class="badge badge-emerald">實作連結</span>
+            </div>
+            <p>請輸入您目前團隊正在進行或即將規劃的一項真實產品需求/專案名稱。此名稱將自動帶入後續四個模組的實作畫布中：</p>
+            <div class="form-group" style="margin-top: 16px;">
+                <label class="form-label" for="user-project-input">您的專案需求名稱 (例如：信用卡優惠推薦優化、AI 線上申辦助手)：</label>
+                <input type="text" id="user-project-input" class="form-control" placeholder="請輸入您的產品需求名稱...">
+            </div>
+        </div>
+
+        <!-- 核心案例卡 -->
+        <div class="card">
+            <div class="card-header">
+                <h3 id="case-title">💡 核心案例：這個產品成功了嗎？</h3>
+                <span class="badge badge-amber">思考討論</span>
+            </div>
+            <div id="case-study-box">
+                <p id="case-context">載入案例情境...</p>
+                <p id="case-result" style="color: var(--accent-amber);">載入結果數據...</p>
+                <h4 id="case-question" style="color: var(--accent-rose); margin-top: 12px;">這個產品專案算成功了嗎？</h4>
+            </div>
+
+            <h4 style="margin-top: 24px; margin-bottom: 12px;">請點擊比較兩種判斷標準：</h4>
+            <div id="comparison-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <!-- JS Dynamic Render -->
+            </div>
+
+            <blockquote id="golden-quote" style="margin-top: 20px; padding: 16px; background: rgba(56, 189, 248, 0.08); border-left: 4px solid var(--accent-blue); border-radius: 4px; font-weight: 600; color: var(--accent-blue);">
+                「Output 告訴我們建立了什麼；Outcome 告訴我們發生了什麼改變。」
+            </blockquote>
+        </div>
+
+        <div class="footer-nav">
+            <div></div>
+            <a href="./ground.html" class="btn btn-primary">
+                前往 模組一｜Ground 產品工作的全貌 ➔
+            </a>
+        </div>
+    </main>
+
+    <!-- 加密與組件腳本 -->
+    <script src="./js/crypto.js"></script>
+    <script src="./data/course-payload.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AppComponents.initPage('intro', (payload) => {
+                const introData = payload.intro;
+
+                // Render Teaching Points
+                const tpList = document.getElementById('teaching-points-list');
+                tpList.innerHTML = introData.teachingPoints.map(tp => `<li style="margin-bottom: 6px;">${tp}</li>`).join('');
+
+                // Render Case Study
+                document.getElementById('case-title').textContent = '💡 ' + introData.caseStudy.title;
+                document.getElementById('case-context').innerHTML = '<strong>情境：</strong>' + introData.caseStudy.context;
+                document.getElementById('case-result').innerHTML = '<strong>現狀：</strong>' + introData.caseStudy.result;
+                document.getElementById('case-question').textContent = '❓ ' + introData.caseStudy.question;
+
+                // Render Comparison Cards
+                const compGrid = document.getElementById('comparison-grid');
+                compGrid.innerHTML = introData.comparisonTable.map((col, idx) => `
+                    <div class="card" style="background: rgba(15, 23, 42, 0.6); margin-bottom: 0;">
+                        <h4 style="color: ${idx === 0 ? 'var(--accent-rose)' : 'var(--accent-emerald)'};">
+                            ${col.type} <span style="font-size: 0.8rem; font-weight: normal;">(${col.focus})</span>
+                        </h4>
+                        <ul style="padding-left: 20px; margin-top: 8px; color: var(--text-muted); line-height: 1.6;">
+                            ${col.items.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                `).join('');
+
+                document.getElementById('golden-quote').textContent = '💬 ' + introData.goldenQuote;
+
+                // Load and sync project input
+                const state = AppStorage.loadState();
+                const projectInput = document.getElementById('user-project-input');
+                projectInput.value = state.userProjectName || '';
+
+                let saveTimeout;
+                projectInput.addEventListener('input', () => {
+                    clearTimeout(saveTimeout);
+                    saveTimeout = setTimeout(() => {
+                        AppStorage.updateState({ userProjectName: projectInput.value.trim() });
+                    }, 500);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
