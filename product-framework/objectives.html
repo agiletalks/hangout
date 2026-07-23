@@ -3,233 +3,475 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>模組二｜Objectives 建立成果導向目標</title>
+    <title>模組二｜Objectives 成果導向目標</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/components.css">
     <link rel="stylesheet" href="./css/print.css">
+    <style>
+        /* Target Hierarchy Pyramid style on Slide 2 */
+        .pyramid-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            width: 100%;
+        }
+        .pyramid-level {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 10px 16px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+        }
+        .pyramid-level:hover {
+            transform: scale(1.01);
+            border-color: var(--accent-blue);
+            box-shadow: 0 4px 10px rgba(0, 130, 64, 0.04);
+        }
+        .pyramid-level-title {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--accent-indigo);
+            margin-bottom: 2px;
+        }
+        .pyramid-level-q {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+        .pyramid-level-ex {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+        }
+
+        /* Loop diagram cards on Slide 3 */
+        .loop-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 8px 10px;
+            width: 195px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            z-index: 5;
+            box-sizing: border-box;
+        }
+        .loop-card-title {
+            font-size: 0.82rem;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        .loop-card-desc {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        /* Quiz grid for Slide 1 */
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .quiz-card {
+            background: #FAFCF9;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+        }
+        .quiz-card-text {
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .quiz-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .quiz-btn {
+            flex: 1;
+            padding: 6px;
+            font-size: 0.78rem;
+            font-weight: bold;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background: #FFFFFF;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .quiz-btn:hover {
+            border-color: var(--accent-blue);
+            background: var(--bg-card-hover);
+        }
+        .quiz-btn.selected-correct {
+            background: rgba(46, 204, 113, 0.1) !important;
+            border-color: #2ECC71 !important;
+            color: #27AE60 !important;
+        }
+        .quiz-btn.selected-wrong {
+            background: rgba(231, 76, 60, 0.1) !important;
+            border-color: #E74C3C !important;
+            color: #C0392B !important;
+        }
+        
+        /* Objectives card hover */
+        .obj-card-hover {
+            box-sizing: border-box;
+        }
+        .obj-card-hover:hover {
+            border-color: var(--accent-blue) !important;
+            background: rgba(129, 140, 248, 0.08) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+        }
+    </style>
 </head>
 <body>
     <header id="global-header" class="app-header"></header>
 
-    <main class="container">
-        <div class="card" style="border-left: 4px solid var(--accent-indigo);">
-            <span class="badge badge-blue">模組二｜Objectives (65 分鐘)</span>
-            <h1 style="margin: 12px 0;">建立成果導向的產品目標</h1>
-            <p>從「交付功能需求」往回拆解，找出真正希望改變的使用者行為與商務成果。</p>
-        </div>
+    <div class="slide-deck">
+        <div class="slides-wrapper">
+            
+            <!-- 投影片 1：Connection - Output vs Outcome 辨識測驗 -->
+            <div class="slide-item" id="slide-objectives-quiz" data-timer="5">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 12px;">
+                        <span class="badge badge-blue">模組二｜Objectives</span>
+                        <span class="badge badge-amber">快速小測驗</span>
+                    </div>
 
-        <!-- 模組重點 -->
-        <div class="card">
-            <div class="card-header">
-                <h3>🎯 核心觀念：功能是解法，目標描述改變</h3>
-                <span class="badge badge-indigo">Teaching Highlights</span>
-            </div>
-            <ul id="obj-teaching-points" style="padding-left: 20px; line-height: 1.8; color: var(--text-main);"></ul>
-        </div>
+                    <h2 style="color: var(--accent-blue); margin-bottom: 4px; font-size: 1.35rem;">
+                        🎮 練習一：快速辨識 Output 與 Outcome
+                    </h2>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">
+                        請點擊判斷以下指標是屬於 <strong>Output (交付功能/活動)</strong> 還是 <strong>Outcome (使用者行為/商務改變)</strong>：
+                    </p>
 
-        <!-- 四層目標金字塔 -->
-        <div class="card">
-            <div class="card-header">
-                <h3>🏛️ 四層目標關係金字塔 (Target Hierarchy)</h3>
-                <span class="badge badge-indigo">四層目標</span>
-            </div>
-            <div id="four-levels-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;"></div>
-        </div>
-
-        <!-- 七大 Business Objectives -->
-        <div class="card">
-            <div class="card-header">
-                <h3>🎯 七大 Business Objectives 分類面板</h3>
-                <span class="badge badge-blue">商務成果</span>
-            </div>
-            <p style="margin-bottom: 12px;">選擇一個主要的商務目標，避免所有目標都重要：</p>
-            <div id="seven-objectives-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;"></div>
-        </div>
-
-        <!-- 練習一：Output vs Outcome 辨識測驗卡 -->
-        <div class="card">
-            <div class="card-header">
-                <h3>🎮 練習一：快速辨識 Output 與 Outcome</h3>
-                <span class="badge badge-amber">小測驗</span>
-            </div>
-            <p>請點擊判斷以下各項敘述是屬於 Output（交付功能）還是 Outcome（行為/商務成果）：</p>
-            <div id="quiz-container" class="quiz-grid"></div>
-        </div>
-
-        <!-- 需求逆向推導工作台 -->
-        <div class="card" style="border: 2px solid var(--accent-indigo);">
-            <div class="card-header">
-                <h3>🛠️ 需求逆向推導與產品目標卡生成器</h3>
-                <span class="badge badge-emerald">核心實作畫布</span>
-            </div>
-            <p>針對您的需求「<strong id="display-project-name" style="color: var(--accent-blue);">專案需求</strong>」，請完成逆向推導：</p>
-
-            <div class="form-group" style="margin-top: 16px;">
-                <label class="form-label">Step 1: 選擇主要支持的 7 大 Business Objective：</label>
-                <select id="biz-obj-select" class="form-control">
-                    <option value="Acquisition">Acquisition (取得新客戶)</option>
-                    <option value="Activation">Activation (促成首次成功使用)</option>
-                    <option value="Engagement" selected>Engagement (增加使用與互動)</option>
-                    <option value="Retention">Retention (提高持續使用與留存)</option>
-                    <option value="Revenue">Revenue (增加收入或交易價值)</option>
-                    <option value="Efficiency">Efficiency (降低成本與作業負擔)</option>
-                    <option value="Risk／Trust">Risk／Trust (降低風險並提高信任)</option>
-                </select>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                <div class="form-group">
-                    <label class="form-label">Step 2: 目標使用者 (Who)</label>
-                    <input type="text" id="target-user" class="form-control" placeholder="例如：持有多張信用卡的客戶">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Step 3: 關鍵情境 (When/Where)</label>
-                    <input type="text" id="key-context" class="form-control" placeholder="例如：準備消費刷卡前">
+                    <div id="quiz-container" class="quiz-grid">
+                        <!-- 由 JS 動態渲染 -->
+                    </div>
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                <div class="form-group">
-                    <label class="form-label">Step 4: 目前行為或現狀痛點 (From)</label>
-                    <input type="text" id="current-behavior" class="form-control" placeholder="例如：隨機拿卡或致電客服詢問優惠">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Step 5: 期望產生的行為改變 (To)</label>
-                    <input type="text" id="desired-behavior" class="form-control" placeholder="例如：消費前查詢推薦並使用最佳優惠">
+            <!-- 投影片 2：Concept 1 - 四層目標關係金字塔 -->
+            <div class="slide-item" id="slide-objectives-pyramid">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 10px;">
+                        <span class="badge badge-blue">核心概念</span>
+                        <span class="badge badge-emerald">Target Hierarchy</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 4px; font-size: 1.4rem;">
+                        🏛️ 四層目標關係金字塔 (Target Hierarchy)
+                    </h2>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px;">
+                        功能是實現價值的解法。在設定目標時，我們必須理解功能交付與商務成果的層級關係：
+                    </p>
+
+                    <!-- Target Pyramid Layout -->
+                    <div class="pyramid-container" id="pyramid-container">
+                        <!-- Level 1 (Business Objective) -->
+                        <div class="pyramid-level" style="width: 60%; background: rgba(0, 130, 64, 0.08); border-color: rgba(0, 130, 64, 0.3);">
+                            <div class="pyramid-level-title" style="color: var(--accent-indigo);">1. Business Objectives (商務成果)</div>
+                            <div class="pyramid-level-q" id="lvl-q-0">載入中...</div>
+                            <div class="pyramid-level-ex" id="lvl-ex-0">載入中...</div>
+                        </div>
+                        
+                        <!-- Level 2 (Product Objective) -->
+                        <div class="pyramid-level" style="width: 73%; background: rgba(0, 130, 64, 0.05); border-color: rgba(0, 130, 64, 0.2);">
+                            <div class="pyramid-level-title" style="color: var(--accent-indigo);">2. Product Objectives (產品成果)</div>
+                            <div class="pyramid-level-q" id="lvl-q-1">載入中...</div>
+                            <div class="pyramid-level-ex" id="lvl-ex-1">載入中...</div>
+                        </div>
+
+                        <!-- Level 3 (User Outcome) -->
+                        <div class="pyramid-level" style="width: 86%; background: rgba(0, 130, 64, 0.03); border-color: rgba(0, 130, 64, 0.15);">
+                            <div class="pyramid-level-title" style="color: var(--accent-indigo);">3. User Outcomes (使用者成果)</div>
+                            <div class="pyramid-level-q" id="lvl-q-2">載入中...</div>
+                            <div class="pyramid-level-ex" id="lvl-ex-2">載入中...</div>
+                        </div>
+
+                        <!-- Level 4 (Output) -->
+                        <div class="pyramid-level" style="width: 98%; background: var(--bg-main);">
+                            <div class="pyramid-level-title" style="color: var(--text-muted);">4. Outputs (功能規格交付)</div>
+                            <div class="pyramid-level-q" id="lvl-q-3">載入中...</div>
+                            <div class="pyramid-level-ex" id="lvl-ex-3">載入中...</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- 自動合成結果卡 -->
-            <div class="card" style="background: rgba(129, 140, 248, 0.08); border: 1px solid var(--accent-indigo); margin-top: 16px;">
-                <h4 style="color: var(--accent-indigo); margin-bottom: 8px;">✨ 自動合成成果導向「產品目標描述句」：</h4>
-                <blockquote id="generated-goal-sentence" style="font-size: 1.05rem; font-weight: 600; color: var(--text-main); line-height: 1.7;">
-                    請在上方填寫推導欄位...
-                </blockquote>
+            <!-- 投影片 3：Concept 2 - 七大 Business Objectives 分類面板 -->
+            <div class="slide-item" id="slide-objectives-seven">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 8px;">
+                        <span class="badge badge-blue">商務成果</span>
+                        <span class="badge badge-emerald">Business Objectives</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 4px; font-size: 1.35rem;">
+                        🎯 七大 Business Objectives 分類面板
+                    </h2>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px;">
+                        產品目標必須明確支持以下七大商務成果之一，避免陷入「所有目標都同等重要」的資源分散困境：
+                    </p>
+
+                    <div id="seven-objectives-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 8px;">
+                        <!-- 由 JS 動態渲染 -->
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="footer-nav">
-            <a href="./ground.html" class="btn btn-secondary">◀ 上一頁：模組一 Ground</a>
-            <a href="./assumptions.html" class="btn btn-primary">前往 模組三｜Assumptions 驗證關鍵假設 ➔</a>
-        </div>
-    </main>
+            <!-- 投影片 4：Concrete Practice - 需求逆向推導工作台 -->
+            <div class="slide-item" id="slide-objectives-practice" data-timer="10">
+                <div class="slide-content" style="overflow-y: auto;">
+                    <div class="card-header" style="margin-bottom: 8px;">
+                        <span class="badge badge-amber">實作畫布</span>
+                        <span class="badge badge-emerald">Concrete Practice</span>
+                    </div>
 
+                    <h2 style="color: var(--accent-blue); margin-bottom: 4px; font-size: 1.35rem;">
+                        🛠️ 需求逆向推導與產品目標卡生成器
+                    </h2>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">
+                        針對您的功能需求「<span class="dynamic-project-name" style="color: var(--accent-indigo); font-weight: bold;">產品需求</span>」，請完成逆向目標推導，自動合成成果導向目標：
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px;">
+                        <div class="form-group" style="margin-bottom: 4px;">
+                            <label class="form-label" style="font-size: 0.82rem; margin-bottom: 4px;">Step 1: 選擇主要支持的 7 大 Business Objective：</label>
+                            <select id="biz-obj-select" class="form-control" style="font-size: 0.85rem; padding: 6px 10px;">
+                                <option value="Acquisition">Acquisition (取得新客戶)</option>
+                                <option value="Activation">Activation (促成首次成功使用)</option>
+                                <option value="Engagement" selected>Engagement (增加使用與互動)</option>
+                                <option value="Retention">Retention (提高持續使用與留存)</option>
+                                <option value="Revenue">Revenue (增加收入或交易價值)</option>
+                                <option value="Efficiency">Efficiency (降低成本與作業負擔)</option>
+                                <option value="Risk／Trust">Risk／Trust (降低風險並提高信任)</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 4px;">
+                            <label class="form-label" style="font-size: 0.82rem; margin-bottom: 4px;">Step 2: 目標使用者 (Who)</label>
+                            <input type="text" id="target-user" class="form-control" placeholder="例如：持有多張信用卡且重視回饋的客戶" style="font-size: 0.85rem; padding: 6px 10px;">
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px;">
+                        <div class="form-group" style="margin-bottom: 4px;">
+                            <label class="form-label" style="font-size: 0.82rem; margin-bottom: 4px;">Step 3: 關鍵情境 (When/Where)</label>
+                            <input type="text" id="key-context" class="form-control" placeholder="例如：在刷卡消費前考慮要用哪張卡時" style="font-size: 0.85rem; padding: 6px 10px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 4px;">
+                            <label class="form-label" style="font-size: 0.82rem; margin-bottom: 4px;">Step 4: 目前行為或現狀痛點 (From)</label>
+                            <input type="text" id="current-behavior" class="form-control" placeholder="例如：打電話詢問客服，或隨機抽一張卡刷" style="font-size: 0.85rem; padding: 6px 10px;">
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label class="form-label" style="font-size: 0.82rem; margin-bottom: 4px;">Step 5: 期望產生的使用者行為改變 (To)</label>
+                        <input type="text" id="desired-behavior" class="form-control" placeholder="例如：主動點開推薦專區，並點擊使用最佳卡片優惠" style="font-size: 0.85rem; padding: 6px 10px;">
+                    </div>
+
+                    <!-- 自動合成結果卡 -->
+                    <div style="background: rgba(0, 130, 64, 0.04); border: 1px solid var(--accent-blue); padding: 12px 14px; border-radius: var(--radius-md);">
+                        <h4 style="color: var(--accent-indigo); margin-bottom: 4px; font-size: 0.88rem; font-weight: 700;">✨ 自動合成成果導向「產品目標描述句」：</h4>
+                        <blockquote id="generated-goal-sentence" style="font-size: 0.9rem; font-weight: 700; color: var(--text-main); line-height: 1.5; margin: 0; padding-left: 10px; border-left: 3px solid var(--accent-blue);">
+                            請填寫上方推導欄位...
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片 5：Conclusion - 模組總結與收束 -->
+            <div class="slide-item" id="slide-objectives-conclusion">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 16px;">
+                        <span class="badge badge-emerald">本章總結</span>
+                        <span class="badge badge-blue">Conclusion</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 16px; font-size: 1.4rem;">
+                        🏁 Objectives 成果目標模組結語
+                    </h2>
+
+                    <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; margin-bottom: 20px; align-items: start;">
+                        <div>
+                            <h3 style="color: var(--accent-indigo); margin-bottom: 10px; font-size: 1.1rem;">🎯 模組學習重點</h3>
+                            <ul id="obj-teaching-points" style="padding-left: 20px; line-height: 1.8; color: var(--text-main); font-size: 0.9rem;">
+                                <!-- 由 JS 動態渲染 -->
+                            </ul>
+                        </div>
+                        <blockquote style="padding: 24px; background: rgba(0, 130, 64, 0.04); border-left: 4px solid var(--accent-blue); border-radius: var(--radius-md); font-weight: 600; color: var(--accent-indigo); font-size: 1.05rem; line-height: 1.6; display: flex; align-items: center; justify-content: center; height: 100%; box-sizing: border-box; margin: 0;">
+                            「功能是解法，目標描述改變。唯有釐清我們希望創造什麼行為改變，開發才有了靈魂。」
+                        </blockquote>
+                    </div>
+
+                    <div class="footer-nav" style="margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 16px;">
+                        <div></div>
+                        <a href="./assumptions.html" class="btn btn-primary next-module-btn" style="padding: 10px 20px; font-size: 0.9rem;">
+                            前往 模組三｜Assumptions 驗證關鍵假設 ➔
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 加密與組件腳本 -->
     <script src="./js/crypto.js"></script>
     <script src="./data/course-payload.js"></script>
     <script src="./js/storage.js"></script>
+    <script src="./js/slider.js"></script>
     <script src="./js/components.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             AppComponents.initPage('objectives', (payload) => {
                 const oData = payload.objectives;
 
-                // Render Teaching Points
+                // Render Teaching Points in Slide 5
                 document.getElementById('obj-teaching-points').innerHTML = 
                     oData.teachingPoints.map(tp => `<li style="margin-bottom: 6px;">${tp}</li>`).join('');
 
-                // Render Four Levels
-                const flGrid = document.getElementById('four-levels-grid');
-                flGrid.innerHTML = oData.fourLevels.map((fl, idx) => `
-                    <div class="card" style="background: var(--bg-input); margin: 0;">
-                        <h4 style="color: var(--accent-indigo);">${fl.level}</h4>
-                        <p style="font-size: 0.85rem; font-weight: 600; color: var(--text-main); margin: 4px 0;">${fl.question}</p>
-                        <p style="font-size: 0.8rem; color: var(--text-muted);">範例：${fl.example}</p>
-                    </div>
-                `).join('');
-
-                // Render Seven Objectives
-                const soGrid = document.getElementById('seven-objectives-grid');
-                soGrid.innerHTML = oData.sevenObjectives.map(so => `
-                    <div style="background: rgba(129, 140, 248, 0.08); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px;">
-                        <strong style="color: var(--accent-indigo); font-size: 0.9rem;">${so.name}</strong>
-                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; margin-bottom: 0;">${so.desc}</p>
-                    </div>
-                `).join('');
-
-                // Quiz items setup
-                const quizContainer = document.getElementById('quiz-container');
-                const quizData = oData.quiz;
-
-                quizContainer.innerHTML = quizData.map((q, idx) => `
-                    <div class="quiz-card" id="quiz-card-${idx}">
-                        <div style="font-weight: 600;">${q.text}</div>
-                        <div style="display: flex; gap: 6px;">
-                            <button class="btn btn-secondary quiz-btn" data-idx="${idx}" data-choice="Output" style="padding: 4px 10px; font-size: 0.8rem;">Output</button>
-                            <button class="btn btn-secondary quiz-btn" data-idx="${idx}" data-choice="Outcome" style="padding: 4px 10px; font-size: 0.8rem;">Outcome</button>
-                        </div>
-                    </div>
-                `).join('');
-
-                document.querySelectorAll('.quiz-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const idx = btn.dataset.idx;
-                        const choice = btn.dataset.choice;
-                        const targetCard = document.getElementById(`quiz-card-${idx}`);
-                        const answer = quizData[idx].answer;
-
-                        if (choice === answer) {
-                            targetCard.className = 'quiz-card correct';
-                        } else {
-                            targetCard.className = 'quiz-card incorrect';
-                        }
-                    });
+                // Render Target Hierarchy in Slide 2
+                oData.fourLevels.forEach((fl, idx) => {
+                    const qEl = document.getElementById(`lvl-q-${idx}`);
+                    const exEl = document.getElementById(`lvl-ex-${idx}`);
+                    if (qEl && exEl) {
+                        qEl.textContent = `❓ 核心提問：${fl.question}`;
+                        exEl.textContent = `範例：${fl.example}`;
+                    }
                 });
 
-                // Objective Workbench
+                // Sync project name to dynamic elements
                 const state = AppStorage.loadState();
-                document.getElementById('display-project-name').textContent = state.userProjectName || '您的產品專案';
-
-                const bizSelect = document.getElementById('biz-obj-select');
-                const targetUserInput = document.getElementById('target-user');
-                const contextInput = document.getElementById('key-context');
-                const currentBehaviorInput = document.getElementById('current-behavior');
-                const desiredBehaviorInput = document.getElementById('desired-behavior');
-                const goalSentence = document.getElementById('generated-goal-sentence');
-
-                const objData = state.objectivesData || {};
-                bizSelect.value = objData.businessObjective || 'Engagement';
-                targetUserInput.value = objData.targetUser || '';
-                contextInput.value = objData.context || '';
-                currentBehaviorInput.value = objData.currentBehavior || '';
-                desiredBehaviorInput.value = objData.desiredBehavior || '';
-
-                function updateGoalSentence() {
-                    const u = targetUserInput.value.trim() || '【目標使用者】';
-                    const c = contextInput.value.trim() || '【關鍵情境】';
-                    const cur = currentBehaviorInput.value.trim() || '【現狀行為】';
-                    const des = desiredBehaviorInput.value.trim() || '【期望行為】';
-                    const biz = bizSelect.value;
-
-                    const sentence = `我們希望協助 ${u}，在 ${c} 中，從 ${cur} 改變為 ${des}，進而支持組織的 ${biz} 商務目標。`;
-                    goalSentence.textContent = sentence;
-
-                    saveObjectivesData(sentence);
-                }
-
-                let saveTimeout;
-                [bizSelect, targetUserInput, contextInput, currentBehaviorInput, desiredBehaviorInput].forEach(elem => {
-                    elem.addEventListener('input', () => {
-                        clearTimeout(saveTimeout);
-                        saveTimeout = setTimeout(updateGoalSentence, 400);
-                    });
+                const projectDisplayElements = document.querySelectorAll('.dynamic-project-name');
+                projectDisplayElements.forEach(el => {
+                    el.textContent = state.userProjectName || '您的產品功能需求';
                 });
 
-                function saveObjectivesData(sentence) {
-                    const s = AppStorage.loadState();
-                    s.objectivesData = {
-                        businessObjective: bizSelect.value,
-                        targetUser: targetUserInput.value.trim(),
-                        context: contextInput.value.trim(),
-                        currentBehavior: currentBehaviorInput.value.trim(),
-                        desiredBehavior: desiredBehaviorInput.value.trim(),
-                        productObjective: sentence
-                    };
-                    AppStorage.saveState(s);
-                }
+                // Quiz Setup (Slide 1)
+                initQuiz(oData.quiz);
 
-                updateGoalSentence();
+                // Render Seven Objectives in Slide 3
+                const soGrid = document.getElementById('seven-objectives-grid');
+                const objIcons = {
+                    'Acquisition': '📈',
+                    'Activation': '⚡',
+                    'Engagement': '❤️',
+                    'Retention': '🔄',
+                    'Revenue': '💰',
+                    'Efficiency': '⚙️',
+                    'Risk／Trust': '🛡️'
+                };
+                soGrid.innerHTML = oData.sevenObjectives.map(so => `
+                    <div style="background: rgba(129, 140, 248, 0.04); border: 1px solid var(--border-color); padding: 12px; border-radius: var(--radius-md); transition: all 0.2s ease;" class="obj-card-hover">
+                        <div style="font-size: 1.5rem; margin-bottom: 6px;">${objIcons[so.name] || '🎯'}</div>
+                        <strong style="color: var(--accent-indigo); font-size: 0.88rem;">${so.name}</strong>
+                        <p style="font-size: 0.76rem; color: var(--text-muted); margin-top: 4px; margin-bottom: 0; line-height: 1.35;">${so.desc}</p>
+                    </div>
+                `).join('');
+
+                // Practice Workbench Setup (Slide 4)
+                initWorkbench(state);
+
+                // Initialize the slider engine
+                AppSlider.init('.slides-wrapper');
             });
         });
+
+        // Quiz Logic
+        function initQuiz(quizItems) {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = quizItems.map((item, idx) => `
+                <div class="quiz-card" id="quiz-card-${idx}">
+                    <div class="quiz-card-text">${item.statement}</div>
+                    <div class="quiz-actions">
+                        <button class="quiz-btn" onclick="checkQuiz(${idx}, 'Output', '${item.answer}')">Output (交付)</button>
+                        <button class="quiz-btn" onclick="checkQuiz(${idx}, 'Outcome', '${item.answer}')">Outcome (成果)</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        window.checkQuiz = function(idx, choice, answer) {
+            const card = document.getElementById(`quiz-card-${idx}`);
+            const buttons = card.querySelectorAll('.quiz-btn');
+            
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                const btnType = btn.textContent.includes('Output') ? 'Output' : 'Outcome';
+                if (btnType === answer) {
+                    btn.classList.add('selected-correct');
+                } else if (btnType === choice && choice !== answer) {
+                    btn.classList.add('selected-wrong');
+                }
+            });
+        };
+
+        // Workbench Logic
+        function initWorkbench(state) {
+            const bizSelect = document.getElementById('biz-obj-select');
+            const targetUser = document.getElementById('target-user');
+            const keyContext = document.getElementById('key-context');
+            const currentBehavior = document.getElementById('current-behavior');
+            const desiredBehavior = document.getElementById('desired-behavior');
+            const resultBox = document.getElementById('generated-goal-sentence');
+
+            // Load saved data if exists
+            const savedData = state.objectivesData || {};
+            bizSelect.value = savedData.bizObjective || 'Engagement';
+            targetUser.value = savedData.targetUser || '';
+            keyContext.value = savedData.keyContext || '';
+            currentBehavior.value = savedData.currentBehavior || '';
+            desiredBehavior.value = savedData.desiredBehavior || '';
+
+            // Listen to inputs
+            [bizSelect, targetUser, keyContext, currentBehavior, desiredBehavior].forEach(input => {
+                input.addEventListener('input', () => {
+                    updateSentence();
+                    saveDataDebounced();
+                });
+            });
+
+            // Trigger initial sentence render
+            updateSentence();
+
+            function updateSentence() {
+                const who = targetUser.value.trim() || '【目標使用者】';
+                const when = keyContext.value.trim() || '【關鍵情境】';
+                const from = currentBehavior.value.trim() || '【目前行為/痛點】';
+                const to = desiredBehavior.value.trim() || '【期望行為改變】';
+                const biz = bizSelect.options[bizSelect.selectedIndex].text;
+
+                resultBox.innerHTML = `為了讓 <span style="color: var(--accent-blue);">${who}</span> 在 <span style="color: var(--accent-blue);">${when}</span> 下，能夠從 <span style="color: var(--accent-rose);">${from}</span> 轉變為 <span style="color: var(--accent-emerald);">${to}</span>，藉此支持本行 <span style="color: var(--accent-indigo);">${biz}</span> 的商務成果。`;
+            }
+
+            let saveTimeout;
+            function saveDataDebounced() {
+                clearTimeout(saveTimeout);
+                saveTimeout = setTimeout(() => {
+                    AppStorage.updateState({
+                        objectivesData: {
+                            bizObjective: bizSelect.value,
+                            targetUser: targetUser.value.trim(),
+                            keyContext: keyContext.value.trim(),
+                            currentBehavior: currentBehavior.value.trim(),
+                            desiredBehavior: desiredBehavior.value.trim()
+                        }
+                    });
+                }, 500);
+            }
+        }
     </script>
 </body>
 </html>

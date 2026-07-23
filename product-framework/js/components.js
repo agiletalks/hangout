@@ -14,37 +14,86 @@ const AppComponents = (function () {
 
         const modules = [
             { key: 'intro', label: '開場', path: './index.html', percent: 0 },
-            { key: 'ground', label: '1. Ground 全貌', path: './ground.html', percent: 25 },
-            { key: 'objectives', label: '2. Objectives 目標', path: './objectives.html', percent: 50 },
-            { key: 'assumptions', label: '3. Assumptions 假設', path: './assumptions.html', percent: 75 },
-            { key: 'learn', label: '4. Learn 閉環', path: './learn.html', percent: 100 }
+            { key: 'ground', label: '1. Ground 產品全貌', path: './ground.html', percent: 25 },
+            { key: 'objectives', label: '2. Objectives 成果目標', path: './objectives.html', percent: 50 },
+            { key: 'assumptions', label: '3. Assumptions 驗證假設', path: './assumptions.html', percent: 75 },
+            { key: 'learn', label: '4. Learn 產品閉環', path: './learn.html', percent: 100 }
         ];
 
         const activeModule = modules.find(m => m.key === currentModuleKey) || modules[0];
 
         header.innerHTML = `
-            <div class="header-inner">
-                <div class="brand-title">
-                    <span>GOAL Product Mindset</span>
-                    <span class="brand-badge">4H 實戰講義</span>
+            <div class="header-inner" style="height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px;">
+                <div class="brand-title" style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-weight: 700; color: var(--accent-blue); font-size: 1.15rem; letter-spacing: -0.01em;">GOAL Product Mindset</span>
+                    <span class="brand-badge" style="background: var(--accent-blue); color: #FFF; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 12px; margin-left: 6px;">互動講義</span>
                 </div>
-                <nav class="nav-tabs">
-                    ${modules.map(m => `
-                        <a href="${m.path}" class="tab-item ${m.key === currentModuleKey ? 'active' : ''}">
-                            ${m.label}
-                        </a>
-                    `).join('')}
-                </nav>
-                <div class="header-actions">
-                    <a href="./export.html" class="btn btn-primary" style="padding: 6px 14px; font-size: 0.85rem;">
-                        📊 學習成果與 PDF 匯出
-                    </a>
-                </div>
+                <button class="hamburger-btn" aria-label="打開目錄" style="background: transparent; border: none; font-size: 1.6rem; color: var(--accent-blue); cursor: pointer; padding: 6px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); transition: background 0.2s;">
+                    ☰
+                </button>
             </div>
-            <div class="progress-bar-wrap">
-                <div class="progress-bar-fill" style="width: ${activeModule.percent}%;"></div>
+            <div class="progress-bar-wrap" style="height: 3px; background: rgba(0,0,0,0.05); width: 100%;">
+                <div class="progress-bar-fill" style="height: 100%; background: var(--accent-blue); transition: width 0.3s ease; width: ${activeModule.percent}%;"></div>
             </div>
         `;
+
+        // Render Menu Drawer Backdrop overlay
+        let menuOverlay = document.getElementById('menu-drawer-overlay');
+        if (!menuOverlay) {
+            menuOverlay = document.createElement('div');
+            menuOverlay.id = 'menu-drawer-overlay';
+            menuOverlay.className = 'menu-overlay-backdrop';
+            menuOverlay.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.25); backdrop-filter: blur(2px); z-index: 1999; display: none;';
+            document.body.appendChild(menuOverlay);
+        }
+
+        // Render Menu Drawer Sidebar
+        let drawer = document.getElementById('menu-drawer');
+        if (!drawer) {
+            drawer = document.createElement('div');
+            drawer.id = 'menu-drawer';
+            drawer.className = 'menu-drawer';
+            document.body.appendChild(drawer);
+        }
+
+        drawer.innerHTML = `
+            <div class="menu-drawer-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color);">
+                <h3 style="color: var(--accent-indigo); font-size: 1.15rem; margin: 0; font-weight: 700;">📚 課程講義目錄</h3>
+                <button class="menu-drawer-close" style="background: transparent; border: none; color: var(--text-muted); font-size: 1.8rem; cursor: pointer; line-height: 1; padding: 4px;">&times;</button>
+            </div>
+            <nav class="menu-nav" style="display: flex; flex-direction: column; gap: 8px;">
+                ${modules.map(m => `
+                    <a href="${m.path}" class="menu-nav-item ${m.key === currentModuleKey ? 'active' : ''}">
+                        <span>${m.label}</span>
+                        ${m.key === currentModuleKey ? '<span style="font-size: 0.95rem;">👉</span>' : ''}
+                    </a>
+                `).join('')}
+                <div style="border-top: 1px dashed var(--border-color); margin-top: 16px; padding-top: 16px;">
+                    <a href="./export.html" class="menu-nav-item" style="background: rgba(0, 130, 64, 0.05); color: var(--accent-blue); display: flex; justify-content: space-between; align-items: center;">
+                        <span>📊 學習成果與 PDF 匯出</span>
+                        <span>➔</span>
+                    </a>
+                </div>
+            </nav>
+        `;
+
+        // Toggle logic
+        const hamburgerBtn = header.querySelector('.hamburger-btn');
+        const closeBtn = drawer.querySelector('.menu-drawer-close');
+
+        function openMenu() {
+            drawer.classList.add('open');
+            menuOverlay.style.display = 'block';
+        }
+
+        function closeMenu() {
+            drawer.classList.remove('open');
+            menuOverlay.style.display = 'none';
+        }
+
+        hamburgerBtn.addEventListener('click', openMenu);
+        closeBtn.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
     }
 
     /**

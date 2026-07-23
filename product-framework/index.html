@@ -7,77 +7,352 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/components.css">
     <link rel="stylesheet" href="./css/print.css">
+    <style>
+        /* Dashboard custom styles for Slide 2 */
+        .pmo-dashboard {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .pmo-widget {
+            background: #FAFCF9;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 18px 12px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+        }
+        .pmo-widget:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 8px 20px rgba(0, 130, 64, 0.05);
+        }
+        .pmo-widget-title {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .pmo-visual-container {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            margin-bottom: 12px;
+        }
+        .pmo-widget-value {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+        .pmo-widget-desc {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-top: 4px;
+        }
+        .pmo-status-bar {
+            display: flex;
+            justify-content: space-between;
+            background: #EDF1EA;
+            border-radius: var(--radius-sm);
+            padding: 8px 16px;
+            font-size: 0.82rem;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <header id="global-header" class="app-header"></header>
 
-    <main class="container">
-        <div class="card" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95)); border-left: 4px solid var(--accent-blue);">
-            <span class="badge badge-blue">課程開場｜15 分鐘</span>
-            <h1 id="course-title" style="margin: 12px 0;">產品工作術：建立數位團隊的產品思維</h1>
-            <p id="course-subtitle" style="font-size: 1.1rem; color: #cbd5e1; font-weight: 500;">
-                4 小時精準轉型：從交付導向 (Output) 到成果導向 (Outcome)
-            </p>
+    <div class="slide-deck">
+        <div class="slides-wrapper">
+            
+            <!-- 投影片 1：歡迎封面與專案設定 -->
+            <div class="slide-item" id="slide-welcome">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 16px;">
+                        <span class="badge badge-blue">課程開場｜15 分鐘</span>
+                        <span class="badge badge-emerald">GOAL Framework</span>
+                    </div>
+                    
+                    <h1 id="course-title" style="margin: 4px 0 12px 0; color: var(--accent-blue); font-size: 1.8rem;">
+                        產品工作術：建立數位團隊的產品思維
+                    </h1>
+                    <p id="course-subtitle" style="font-size: 1rem; color: var(--text-main); font-weight: 500; margin-bottom: 16px;">
+                        思維轉型：從交付導向的專案思維，到成果導向的產品思維
+                    </p>
+
+                    <!-- 學員專案設定卡 -->
+                    <div style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; margin-top: 8px;">
+                        <h3 style="margin-bottom: 6px; color: var(--accent-blue); display: flex; align-items: center; gap: 8px; font-size: 1.1rem;">
+                            <span>📌</span> 本課堂實作功能需求設定
+                        </h3>
+                        <p style="font-size: 0.88rem; margin-bottom: 12px; color: var(--text-muted);">
+                            請在下方輸入您目前團隊正在進行或規劃的一項<strong>【產品功能需求】</strong> (例如：信用卡優惠推薦功能、AI 線上申辦助手、新版登入流程)。後續的所有實作練習將以此功能需求展開拆解：
+                        </p>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" for="user-project-input" style="font-size: 0.85rem; margin-bottom: 6px;">您的產品功能需求名稱 (例如：信用卡優惠推薦功能)：</label>
+                            <input type="text" id="user-project-input" class="form-control" placeholder="請輸入您的產品功能需求..." style="font-size: 0.95rem; padding: 10px 14px;">
+                        </div>
+                    </div>
+
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 24px; text-align: center;">
+                        💡 提示：點擊下方 ▶ 按鈕或鍵盤左右方向鍵 [→] 前往下一頁
+                    </p>
+                </div>
+            </div>
+
+            <!-- 投影片 2：Connection - PMO 摘要戰報 -->
+            <div class="slide-item" id="slide-case-context">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 12px;">
+                        <span class="badge badge-blue">專案報告</span>
+                        <span class="badge badge-emerald">PMO Status Report</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 6px; font-size: 1.4rem;">
+                        💡 專案狀態報告：CUBE-2026-F01 信用卡優惠推薦專區建置案
+                    </h2>
+                    
+                    <div class="pmo-status-bar">
+                        <span>專案狀態：🟢 正常 (On Track / SUCCESSFUL)</span>
+                        <span>專案主責：數位金融產品小組</span>
+                    </div>
+
+                    <div style="font-size: 0.88rem; line-height: 1.6; color: var(--text-main);">
+                        <p style="margin-bottom: 8px;">
+                            <strong>專案摘要描述：</strong>為提升持卡客戶對本行信用卡多樣化優惠的利用率，本專案將複雜的優惠條件整理至獨立專區，並建置客製化提醒與分類搜尋功能。專案已於預算內順利如期交付，通過結案驗收。
+                        </p>
+                    </div>
+
+                    <div class="pmo-dashboard">
+                        <!-- Widget 1: 時程 -->
+                        <div class="pmo-widget">
+                            <div class="pmo-widget-title">⏱️ 時程控制 (Time)</div>
+                            <div class="pmo-visual-container">
+                                <svg width="60" height="60">
+                                    <circle stroke="#EDF1EA" stroke-width="4" fill="transparent" r="26" cx="30" cy="30" />
+                                    <circle stroke="var(--accent-blue)" stroke-width="4" fill="transparent" r="26" cx="30" cy="30" stroke-dasharray="163" stroke-dashoffset="0" style="transform: rotate(-90deg); transform-origin: 30px 30px;" />
+                                </svg>
+                                <div style="position: absolute; top: 0; left: 0; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 800; color: var(--accent-blue);">100%</div>
+                            </div>
+                            <div class="pmo-widget-value">180 / 180 天</div>
+                            <div class="pmo-widget-desc">🟢 進度 100% 如期完工，無任何時程延遲。</div>
+                        </div>
+
+                        <!-- Widget 2: 預算 -->
+                        <div class="pmo-widget">
+                            <div class="pmo-widget-title">💵 預算執行 (Cost)</div>
+                            <div class="pmo-visual-container">
+                                <svg width="60" height="60">
+                                    <circle stroke="#EDF1EA" stroke-width="4" fill="transparent" r="26" cx="30" cy="30" />
+                                    <circle stroke="var(--accent-blue)" stroke-width="4" fill="transparent" r="26" cx="30" cy="30" stroke-dasharray="163" stroke-dashoffset="0" style="transform: rotate(-90deg); transform-origin: 30px 30px;" />
+                                </svg>
+                                <div style="position: absolute; top: 0; left: 0; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 800; color: var(--accent-blue);">100%</div>
+                            </div>
+                            <div class="pmo-widget-value">$5,000,000</div>
+                            <div class="pmo-widget-desc">🟢 費用 100% 控制於原定核決預算內。</div>
+                        </div>
+
+                        <!-- Widget 3: 規格 -->
+                        <div class="pmo-widget">
+                            <div class="pmo-widget-title">📐 規格交付 (Scope)</div>
+                            <div class="pmo-visual-container">
+                                <svg width="60" height="60">
+                                    <circle stroke="#EDF1EA" stroke-width="4" fill="transparent" r="26" cx="30" cy="30" />
+                                    <circle stroke="var(--accent-blue)" stroke-width="4" fill="transparent" r="26" cx="30" cy="30" stroke-dasharray="163" stroke-dashoffset="0" style="transform: rotate(-90deg); transform-origin: 30px 30px;" />
+                                </svg>
+                                <div style="position: absolute; top: 0; left: 0; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 800; color: var(--accent-blue);">12/12</div>
+                            </div>
+                            <div class="pmo-widget-value">12 / 12 項</div>
+                            <div class="pmo-widget-desc">🟢 規格 100% 全數開發完畢，完整交付。</div>
+                        </div>
+
+                        <!-- Widget 4: 品質 -->
+                        <div class="pmo-widget">
+                            <div class="pmo-widget-title">🛡️ 品質驗收 (Quality)</div>
+                            <div class="pmo-visual-container">
+                                <svg width="60" height="60">
+                                    <circle stroke="#EDF1EA" stroke-width="4" fill="transparent" r="26" cx="30" cy="30" />
+                                    <circle stroke="var(--accent-blue)" stroke-width="4" fill="transparent" r="26" cx="30" cy="30" stroke-dasharray="163" stroke-dashoffset="0" style="transform: rotate(-90deg); transform-origin: 30px 30px;" />
+                                </svg>
+                                <div style="position: absolute; top: 0; left: 0; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 800; color: var(--accent-blue);">PASS</div>
+                            </div>
+                            <div class="pmo-widget-value">100% 通過</div>
+                            <div class="pmo-widget-desc">🟢 測試合格、資安合規與風控一次通過。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片 3：Connection - 上線後的真實資訊與反差 -->
+            <div class="slide-item" id="slide-case-reality">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 12px;">
+                        <span class="badge badge-amber">市場反應</span>
+                        <span class="badge badge-rose">營運與用戶表現</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-rose); margin-bottom: 12px; font-size: 1.4rem;">
+                        💥 上線三個月後：真實的產品表現
+                    </h2>
+                    
+                    <div style="line-height: 1.6; font-size: 0.9rem; color: var(--text-main);">
+                        <p style="margin-bottom: 12px;">
+                            推薦專區與各功能上線三個月後，系統運行極為穩定，無任何技術故障。然而，實際營運指標數據卻如下：
+                        </p>
+                        <ul style="padding-left: 20px; margin-bottom: 16px; display: flex; flex-direction: column; gap: 6px; font-size: 0.88rem;">
+                            <li><strong>❌ 使用率極低</strong>：網頁與 App 的信用卡推薦功能，實際使用率<strong>不足 3%</strong>。</li>
+                            <li><strong>❌ 客服負荷增加</strong>：客戶仍頻繁致電客服詢問如何查詢優惠，進線量<strong>上升了 15%</strong>。</li>
+                            <li><strong>❌ 使用者無感</strong>：問卷顯示，高達 <strong>80% 的持卡客戶</strong>反應根本不知道本行推出了這個新專區。</li>
+                            <li><strong>❌ 業務績效未達標</strong>：業務部門因轉化率低落，要求團隊加開推播通知、重做首頁視覺。</li>
+                        </ul>
+                        
+                        <div style="background: #FAFAF9; border: 1px solid var(--border-color); padding: 12px 16px; border-radius: var(--radius-md); margin-top: 8px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                            <h3 style="color: var(--accent-rose); font-size: 1.05rem; margin: 0; font-weight: 700;">❓ 請問：這算是一個成功的案子嗎？</h3>
+                            <button id="reveal-reflection-btn" class="btn btn-primary" style="padding: 6px 14px; font-size: 0.82rem;">🔍 查看結論</button>
+                        </div>
+                        
+                        <!-- 動態出現的結論區 -->
+                        <div id="reflection-box" style="display: none; background: #FFF8F6; border: 1px solid var(--accent-rose); padding: 12px 16px; border-radius: var(--radius-md); margin-top: 10px; animation: slideCardIntro 0.4s ease forwards; font-size: 0.9rem;">
+                            <strong style="color: var(--accent-rose);">💡 結論</strong>：從專案管理的角度看，這是一個成功的<strong>「專案交付」</strong>；但從市場價值的角度看，這卻是一個失敗的<strong>「產品成果」</strong>。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片 4：Concept - 專案思維 vs 產品思維 -->
+            <div class="slide-item" id="slide-concept-definition">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 12px;">
+                        <span class="badge badge-blue">思維焦點</span>
+                        <span class="badge badge-emerald">思維模型對比</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 12px; font-size: 1.4rem;">
+                        🧭 專案思維 (Project Thinking) vs. 產品思維 (Product Thinking)
+                    </h2>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; line-height: 1.6; font-size: 0.9rem;">
+                        <div style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px;">
+                            <h3 style="color: var(--accent-rose); font-size: 1.05rem; margin-bottom: 6px; font-weight: 700;">
+                                專案思維 (Project Thinking)
+                            </h3>
+                            <p style="color: var(--text-muted); font-size: 0.82rem; margin-bottom: 10px;">核心指標：<strong>交付指標 (Output Metrics)</strong></p>
+                            <ul style="padding-left: 20px; color: var(--text-main); font-size: 0.85rem; display: flex; flex-direction: column; gap: 4px;">
+                                <li><strong>關注「做完」</strong>：著重於活動、時程、預算與規格是否符合。</li>
+                                <li><strong>範疇鎖定</strong>：專注於是否按原定需求規格全數產出。</li>
+                                <li><strong>上線即終點</strong>：系統移交營運並通過專案驗收即算完成。</li>
+                            </ul>
+                        </div>
+                        <div style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px;">
+                            <h3 style="color: var(--accent-emerald); font-size: 1.05rem; margin-bottom: 6px; font-weight: 700;">
+                                產品思維 (Product Thinking)
+                            </h3>
+                            <p style="color: var(--text-muted); font-size: 0.82rem; margin-bottom: 10px;">核心指標：<strong>成果指標 (Outcome Metrics)</strong></p>
+                            <ul style="padding-left: 20px; color: var(--text-main); font-size: 0.85rem; display: flex; flex-direction: column; gap: 4px;">
+                                <li><strong>關注「做好」</strong>：著重於使用者行為改變與商務價值。</li>
+                                <li><strong>成果驅動</strong>：專注於使用者痛點是否真正獲得解決。</li>
+                                <li><strong>上線是起點</strong>：數據收集與學習的開端，依回饋持續迭代。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(0, 130, 64, 0.04); border-left: 4px solid var(--accent-blue); padding: 10px 14px; border-radius: 4px; font-size: 0.85rem; margin-top: 14px; color: var(--text-main);">
+                        💡 <strong>兩者關係</strong>：兩者並無孰優孰劣。<strong>交付指標</strong>是基礎保障，確保我們把事情做對；而<strong>成果指標</strong>則是最高指引，引導我們做有價值的事情，確保解決了對的問題。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片 5：Concrete Practice - 因子分類拖拉練習 -->
+            <div class="slide-item" id="slide-practice-drag">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 12px;">
+                        <span class="badge badge-amber">具體實踐</span>
+                        <span class="badge badge-emerald">Concrete Practice</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 4px; font-size: 1.35rem;">
+                        🛠️ 實作練習：區分交付標準與成果標準
+                    </h2>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px;">
+                        請點擊下方卡片，再點擊下方的分類框（或使用滑鼠拖曳卡片），將其歸類至正確的評判指標中：
+                    </p>
+
+                    <div class="sorting-game-container">
+                        <!-- 未分類因子卡片池 -->
+                        <div class="factors-pool" id="factors-pool">
+                            <!-- Cards rendered dynamically -->
+                        </div>
+
+                        <!-- 兩個分類放置區 -->
+                        <div class="buckets-grid">
+                            <div class="bucket-zone" id="bucket-output" data-bucket="output">
+                                <h4>📦 交付指標 (Output)</h4>
+                                <div class="bucket-cards" id="cards-output"></div>
+                            </div>
+                            <div class="bucket-zone" id="bucket-outcome" data-bucket="outcome">
+                                <h4>🚀 成果指標 (Outcome)</h4>
+                                <div class="bucket-cards" id="cards-outcome"></div>
+                            </div>
+                        </div>
+
+                        <!-- 成功完成提示 -->
+                        <div class="game-feedback" id="game-feedback">
+                            🎉 <strong>太棒了！</strong> 您已成功將所有因子正確分類！請點擊下排的 [▶] 按鈕前往下一頁查看開場 takeaway。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片 6：Conclusion - Takeaway & 金句 -->
+            <div class="slide-item" id="slide-takeaway">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 16px;">
+                        <span class="badge badge-emerald">模組總結</span>
+                        <span class="badge badge-blue">Conclusion</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 12px; font-size: 1.4rem;">
+                        🏁 Takeaway：交付不等於成功
+                    </h2>
+
+                    <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; margin-bottom: 16px; align-items: start;">
+                        <div>
+                            <h3 style="color: var(--accent-indigo); margin-bottom: 8px; font-size: 1.05rem;">🎯 本章節收束點</h3>
+                            <ul id="teaching-points-list" style="padding-left: 20px; line-height: 1.7; color: var(--text-main); font-size: 0.9rem;">
+                                <li>載入中...</li>
+                            </ul>
+                        </div>
+                        <blockquote id="golden-quote" style="padding: 20px; background: rgba(0, 130, 64, 0.04); border-left: 4px solid var(--accent-blue); border-radius: var(--radius-md); font-weight: 600; color: var(--accent-indigo); font-size: 1rem; line-height: 1.5; display: flex; align-items: center; justify-content: center; height: 100%; box-sizing: border-box; margin: 0;">
+                            「Output 告訴我們交付了什麼；Outcome 告訴我們交付之後，發生了什麼改變。」
+                        </blockquote>
+                    </div>
+
+                    <div class="footer-nav" style="margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 16px;">
+                        <div></div>
+                        <a href="./ground.html" class="btn btn-primary next-module-btn" style="padding: 10px 20px; font-size: 0.9rem;">
+                            進入 模組一｜Ground 產品工作的全貌 ➔
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
-
-        <!-- 教學核心重點 -->
-        <div class="card">
-            <div class="card-header">
-                <h3>🎯 開場教學重點與思維轉換</h3>
-                <span class="badge badge-emerald">Core Principles</span>
-            </div>
-            <ul id="teaching-points-list" style="padding-left: 20px; line-height: 1.8; color: var(--text-main);">
-                <li>載入中...</li>
-            </ul>
-        </div>
-
-        <!-- 學員專案設定卡 -->
-        <div class="card" style="border: 2px solid var(--accent-blue);">
-            <div class="card-header">
-                <h3>📌 本課堂實作痛點與專案設定</h3>
-                <span class="badge badge-emerald">實作連結</span>
-            </div>
-            <p>請輸入您目前團隊正在進行或即將規劃的一項真實產品需求/專案名稱。此名稱將自動帶入後續四個模組的實作畫布中：</p>
-            <div class="form-group" style="margin-top: 16px;">
-                <label class="form-label" for="user-project-input">您的專案需求名稱 (例如：信用卡優惠推薦優化、AI 線上申辦助手)：</label>
-                <input type="text" id="user-project-input" class="form-control" placeholder="請輸入您的產品需求名稱...">
-            </div>
-        </div>
-
-        <!-- 核心案例卡 -->
-        <div class="card">
-            <div class="card-header">
-                <h3 id="case-title">💡 核心案例：這個產品成功了嗎？</h3>
-                <span class="badge badge-amber">思考討論</span>
-            </div>
-            <div id="case-study-box">
-                <p id="case-context">載入案例情境...</p>
-                <p id="case-result" style="color: var(--accent-amber);">載入結果數據...</p>
-                <h4 id="case-question" style="color: var(--accent-rose); margin-top: 12px;">這個產品專案算成功了嗎？</h4>
-            </div>
-
-            <h4 style="margin-top: 24px; margin-bottom: 12px;">請點擊比較兩種判斷標準：</h4>
-            <div id="comparison-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                <!-- JS Dynamic Render -->
-            </div>
-
-            <blockquote id="golden-quote" style="margin-top: 20px; padding: 16px; background: rgba(56, 189, 248, 0.08); border-left: 4px solid var(--accent-blue); border-radius: 4px; font-weight: 600; color: var(--accent-blue);">
-                「Output 告訴我們建立了什麼；Outcome 告訴我們發生了什麼改變。」
-            </blockquote>
-        </div>
-
-        <div class="footer-nav">
-            <div></div>
-            <a href="./ground.html" class="btn btn-primary">
-                前往 模組一｜Ground 產品工作的全貌 ➔
-            </a>
-        </div>
-    </main>
+    </div>
 
     <!-- 加密與組件腳本 -->
     <script src="./js/crypto.js"></script>
     <script src="./data/course-payload.js"></script>
     <script src="./js/storage.js"></script>
+    <script src="./js/slider.js"></script>
     <script src="./js/components.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -87,25 +362,6 @@
                 // Render Teaching Points
                 const tpList = document.getElementById('teaching-points-list');
                 tpList.innerHTML = introData.teachingPoints.map(tp => `<li style="margin-bottom: 6px;">${tp}</li>`).join('');
-
-                // Render Case Study
-                document.getElementById('case-title').textContent = '💡 ' + introData.caseStudy.title;
-                document.getElementById('case-context').innerHTML = '<strong>情境：</strong>' + introData.caseStudy.context;
-                document.getElementById('case-result').innerHTML = '<strong>現狀：</strong>' + introData.caseStudy.result;
-                document.getElementById('case-question').textContent = '❓ ' + introData.caseStudy.question;
-
-                // Render Comparison Cards
-                const compGrid = document.getElementById('comparison-grid');
-                compGrid.innerHTML = introData.comparisonTable.map((col, idx) => `
-                    <div class="card" style="background: rgba(15, 23, 42, 0.6); margin-bottom: 0;">
-                        <h4 style="color: ${idx === 0 ? 'var(--accent-rose)' : 'var(--accent-emerald)'};">
-                            ${col.type} <span style="font-size: 0.8rem; font-weight: normal;">(${col.focus})</span>
-                        </h4>
-                        <ul style="padding-left: 20px; margin-top: 8px; color: var(--text-muted); line-height: 1.6;">
-                            ${col.items.map(item => `<li>${item}</li>`).join('')}
-                        </ul>
-                    </div>
-                `).join('');
 
                 document.getElementById('golden-quote').textContent = '💬 ' + introData.goldenQuote;
 
@@ -121,8 +377,195 @@
                         AppStorage.updateState({ userProjectName: projectInput.value.trim() });
                     }, 500);
                 });
+
+                // Setup reflection box animated reveal on Slide 3
+                const revealBtn = document.getElementById('reveal-reflection-btn');
+                const reflectionBox = document.getElementById('reflection-box');
+                revealBtn.addEventListener('click', () => {
+                    reflectionBox.style.display = 'block';
+                    revealBtn.style.display = 'none';
+                });
+
+                // Initialize Card Sorting Game
+                initSortingGame();
+
+                // Initialize the slider engine
+                AppSlider.init('.slides-wrapper');
             });
         });
+
+        // Sorting Game Implementation
+        function initSortingGame() {
+            const factors = [
+                { id: 'f1', text: "是否準時上線？", type: "output" },
+                { id: 'f2', text: "是否符合預算？", type: "output" },
+                { id: 'f3', text: "功能是否全部交付？", type: "output" },
+                { id: 'f4', text: "系統是否通過驗收？", type: "output" },
+                { id: 'f5', text: "目標使用者是否真正使用？", type: "outcome" },
+                { id: 'f6', text: "使用者的痛點是否獲得改善？", type: "outcome" },
+                { id: 'f7', text: "客戶行為是否朝期望改變？", type: "outcome" },
+                { id: 'f8', text: "商業成果是否顯現？", type: "outcome" }
+            ];
+
+            const pool = document.getElementById('factors-pool');
+            const bucketOutput = document.getElementById('bucket-output');
+            const bucketOutcome = document.getElementById('bucket-outcome');
+            const outputCardsContainer = document.getElementById('cards-output');
+            const outcomeCardsContainer = document.getElementById('cards-outcome');
+            const feedback = document.getElementById('game-feedback');
+
+            let selectedFactor = null;
+            let currentPlacements = {}; // cardId -> 'output' | 'outcome'
+
+            // Shuffle function
+            function shuffle(array) {
+                return array.sort(() => Math.random() - 0.5);
+            }
+
+            // Render pool
+            function renderPool() {
+                pool.innerHTML = '';
+                shuffle(factors).forEach(f => {
+                    if (!currentPlacements[f.id]) {
+                        const card = document.createElement('div');
+                        card.className = 'factor-card';
+                        card.id = f.id;
+                        card.textContent = f.text;
+                        card.draggable = true;
+                        
+                        // Drag Events
+                        card.addEventListener('dragstart', (e) => {
+                            e.dataTransfer.setData('text/plain', f.id);
+                            card.classList.add('selected');
+                            selectedFactor = f;
+                        });
+                        card.addEventListener('dragend', () => {
+                            card.classList.remove('selected');
+                        });
+
+                        // Click Events
+                        card.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            document.querySelectorAll('.factor-card').forEach(c => c.classList.remove('selected'));
+                            card.classList.add('selected');
+                            selectedFactor = f;
+                        });
+
+                        pool.appendChild(card);
+                    }
+                });
+            }
+
+            // Click Bucket to Place
+            function setupBucketZone(zone, type) {
+                zone.addEventListener('click', () => {
+                    if (selectedFactor) {
+                        placeCard(selectedFactor.id, type);
+                    }
+                });
+
+                // Drag over & drop
+                zone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    zone.classList.add('active-target');
+                });
+                zone.addEventListener('dragleave', () => {
+                    zone.classList.remove('active-target');
+                });
+                zone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    zone.classList.remove('active-target');
+                    const cardId = e.dataTransfer.getData('text/plain');
+                    if (cardId) {
+                        placeCard(cardId, type);
+                    }
+                });
+            }
+
+            setupBucketZone(bucketOutput, 'output');
+            setupBucketZone(bucketOutcome, 'outcome');
+
+            // Move card to target zone
+            function placeCard(cardId, targetZone) {
+                currentPlacements[cardId] = targetZone;
+                selectedFactor = null;
+                renderPool();
+                renderBuckets();
+                validateGame();
+            }
+
+            // Render placed cards
+            function renderBuckets() {
+                outputCardsContainer.innerHTML = '';
+                outcomeCardsContainer.innerHTML = '';
+
+                factors.forEach(f => {
+                    const zone = currentPlacements[f.id];
+                    if (zone) {
+                        const card = document.createElement('div');
+                        card.className = 'factor-card';
+                        card.id = f.id;
+                        card.innerHTML = `
+                            <span>${f.text}</span>
+                            <button class="btn-remove" title="移回候選區">&times;</button>
+                        `;
+
+                        // Remove event
+                        card.querySelector('.btn-remove').addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            delete currentPlacements[f.id];
+                            renderPool();
+                            renderBuckets();
+                            validateGame();
+                        });
+
+                        if (zone === 'output') {
+                            outputCardsContainer.appendChild(card);
+                        } else {
+                            outcomeCardsContainer.appendChild(card);
+                        }
+                    }
+                });
+            }
+
+            // Check if game complete and correct
+            function validateGame() {
+                const placedCount = Object.keys(currentPlacements).length;
+                if (placedCount < factors.length) {
+                    feedback.style.display = 'none';
+                    feedback.className = 'game-feedback';
+                    return;
+                }
+
+                let isAllCorrect = true;
+                factors.forEach(f => {
+                    if (currentPlacements[f.id] !== f.type) {
+                        isAllCorrect = false;
+                    }
+                });
+
+                if (isAllCorrect) {
+                    feedback.className = 'game-feedback success';
+                    feedback.style.display = 'block';
+                } else {
+                    feedback.className = 'game-feedback';
+                    feedback.style.display = 'block';
+                    feedback.innerHTML = '⚠️ <strong>有些指標分類不對喔！</strong> 請點擊卡片旁的 &times; 按鈕將錯誤的指標移回重試。';
+                    feedback.style.color = 'var(--accent-rose)';
+                    feedback.style.background = '#FFF5F5';
+                    feedback.style.border = '1px solid rgba(255, 90, 0, 0.2)';
+                }
+            }
+
+            // Cancel selections when clicking pool or body
+            document.body.addEventListener('click', () => {
+                document.querySelectorAll('.factor-card').forEach(c => c.classList.remove('selected'));
+                selectedFactor = null;
+            });
+
+            renderPool();
+            renderBuckets();
+        }
     </script>
 </body>
 </html>

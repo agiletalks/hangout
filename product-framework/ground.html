@@ -7,183 +7,1019 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/components.css">
     <link rel="stylesheet" href="./css/print.css">
+    <style>
+        /* Sticky Notes Layout for Slide 1 */
+        .pain-point-canvas {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            background: #F8FAF6;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.02);
+            margin-top: 8px;
+        }
+        
+        .sticky-note {
+            position: absolute;
+            width: 140px;
+            min-height: 70px;
+            padding: 8px 10px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            line-height: 1.35;
+            color: #2C3E50;
+            border-radius: 4px;
+            box-shadow: 2px 4px 8px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            user-select: none;
+            transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+            z-index: 10;
+        }
+        
+        .sticky-note:hover {
+            transform: scale(1.08) rotate(0deg) !important;
+            box-shadow: 4px 8px 16px rgba(0,0,0,0.12);
+            z-index: 999 !important;
+        }
+
+        /* Grouping Columns (hidden initially, shown on categorization) */
+        .canvas-bg-columns {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            padding: 16px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .canvas-bg-col {
+            border: 2px dashed rgba(0, 130, 64, 0.15);
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.45);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 12px;
+        }
+        
+        .canvas-bg-col h3 {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--accent-indigo);
+            margin: 0;
+            padding: 6px 14px;
+            background: rgba(0, 130, 64, 0.08);
+            border-radius: 20px;
+        }
+
+        /* Compact cards grid for Role Values in Slide 6 */
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .role-card {
+            background: #FAFCF9;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 10px 12px;
+            transition: all 0.2s ease;
+        }
+        .role-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(0, 130, 64, 0.04);
+        }
+        .role-name {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .role-value {
+            font-size: 0.76rem;
+            color: var(--text-main);
+            line-height: 1.4;
+        }
+
+        /* 4 Dimensions Grid style for Slide 2 */
+        .pmo-grid-2x2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 8px;
+        }
+        .dim-card-2x2 {
+            background: #FAFCF9;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            display: flex;
+            gap: 12px;
+            transition: all 0.2s ease;
+        }
+        .dim-card-2x2:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(0, 130, 64, 0.04);
+        }
+        .dim-card-icon {
+            font-size: 2rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        .dim-card-body h3 {
+            font-size: 1.05rem;
+            color: var(--accent-indigo);
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+        .dim-card-body h4 {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .dim-card-body p {
+            font-size: 0.84rem;
+            color: var(--text-main);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* timeline styles for lifecycle Slide 5 */
+        .timeline-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            position: relative;
+            margin-top: 28px;
+            padding: 10px 0;
+            width: 100%;
+        }
+        .timeline-line {
+            position: absolute;
+            top: 26px;
+            left: 8%;
+            right: 8%;
+            height: 4px;
+            background: #E1E8DE;
+            z-index: 1;
+        }
+        .timeline-step {
+            width: 16%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .timeline-badge {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            border: 4px solid var(--accent-blue);
+            color: var(--accent-blue);
+            font-weight: 800;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 130, 64, 0.08);
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+        .timeline-step:hover .timeline-badge {
+            transform: scale(1.1);
+            background: var(--accent-blue);
+            color: #FFFFFF;
+        }
+        .timeline-step-title {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--accent-indigo);
+            margin-bottom: 6px;
+        }
+        .timeline-step-desc {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            padding: 0 4px;
+        }
+
+        /* Interactive breakpoint buttons in Slide 7 */
+        .breakpoint-select-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .breakpoint-option-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: var(--text-main);
+            transition: all 0.2s ease;
+        }
+        .breakpoint-option-card:hover {
+            border-color: var(--accent-blue);
+            background: var(--bg-card-hover);
+        }
+        .breakpoint-option-card.selected {
+            background: rgba(0, 130, 64, 0.05);
+            border-color: var(--accent-blue);
+            color: var(--accent-indigo);
+            box-shadow: 0 0 0 2px rgba(0, 130, 64, 0.2);
+        }
+
+        /* Loop diagram cards for Slide 5 */
+        .loop-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 8px 10px;
+            width: 195px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            z-index: 5;
+            box-sizing: border-box;
+            transition: box-shadow 0.2s ease;
+        }
+        .loop-card:hover {
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+        }
+        .loop-card-title {
+            font-size: 0.82rem;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        .loop-card-desc {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+    </style>
 </head>
 <body>
     <header id="global-header" class="app-header"></header>
 
-    <main class="container">
-        <div class="card" style="border-left: 4px solid var(--accent-blue);">
-            <span class="badge badge-blue">模組一｜Ground (35 分鐘)</span>
-            <h1 style="margin: 12px 0;">產品工作的全貌與常見斷點</h1>
-            <p>建立共同產品視角：產品工作不是單一部門或單一流程，而是方向、協作、執行與成果之間的持續閉環。</p>
-        </div>
-
-        <!-- 模組重點 -->
-        <div class="card">
-            <div class="card-header">
-                <h3>🎯 核心觀念與共同地圖</h3>
-                <span class="badge badge-blue">Teaching Highlights</span>
-            </div>
-            <ul id="ground-teaching-points" style="padding-left: 20px; line-height: 1.8; color: var(--text-main);"></ul>
-        </div>
-
-        <!-- 4 個面向與解方 -->
-        <div class="card">
-            <div class="card-header">
-                <h3>🗺️ 產品工作的四個面向與斷點解方</h3>
-                <span class="badge badge-blue">4 Dimensions</span>
-            </div>
-            <div id="dimensions-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;"></div>
-        </div>
-
-        <!-- 簡化產品生命週期 -->
-        <div class="card">
-            <div class="card-header">
-                <h3>🔄 簡化產品生命週期與持續降噪</h3>
-                <span class="badge badge-emerald">Life Cycle</span>
-            </div>
-            <p style="margin-bottom: 16px;">每一個階段的核心目的，都是在降低不同的不確定性風險：</p>
-            <div id="life-cycle-stepper" style="display: flex; gap: 8px; flex-wrap: wrap;"></div>
-        </div>
-
-        <!-- 跨職能角色的判斷價值表 -->
-        <div class="card">
-            <div class="card-header">
-                <h3>👥 跨職能角色的判斷價值 (Role Values)</h3>
-                <span class="badge badge-amber">跨職能協作</span>
-            </div>
-            <p style="margin-bottom: 12px;">跨職能協作的核心價值，是讓重要的專業判斷提早發生：</p>
-            <div style="overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                    <thead>
-                        <tr style="border-bottom: 2px solid var(--border-color); color: var(--accent-blue);">
-                            <th style="padding: 10px;">角色 (Role)</th>
-                            <th style="padding: 10px;">提供的主要判斷價值 (Core Judgment)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="roles-table-body"></tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- 斷點診斷實作畫布 -->
-        <div class="card" style="border: 2px solid var(--accent-blue);">
-            <div class="card-header">
-                <h3>🛠️ 實作畫布：快速斷點診斷</h3>
-                <span class="badge badge-emerald">互動練習</span>
-            </div>
-            <p>請檢視您的專案「<span id="display-project-name" style="color: var(--accent-blue); font-weight: bold;">目前專案</span>」，您認為團隊在推進該需求時，最關鍵的斷點發生在哪個面向？</p>
+    <div class="slide-deck">
+        <div class="slides-wrapper">
             
-            <div class="form-group" style="margin-top: 16px;">
-                <label class="form-label">選擇最主要的斷點面向：</label>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px;">
-                    <button type="button" class="btn btn-secondary breakpoint-btn" data-val="Direction">Direction (方向)</button>
-                    <button type="button" class="btn btn-secondary breakpoint-btn" data-val="Collaboration">Collaboration (協作)</button>
-                    <button type="button" class="btn btn-secondary breakpoint-btn" data-val="Execution">Execution (執行)</button>
-                    <button type="button" class="btn btn-secondary breakpoint-btn" data-val="Outcome">Outcome (成果)</button>
+            <!-- 投影片 1：Connection - 痛點連結發散與歸納 -->
+            <div class="slide-item" id="slide-ground-connection">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 8px;">
+                        <span class="badge badge-blue">模組一｜Ground</span>
+                        <span class="badge badge-amber">痛點發散與歸納</span>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <h2 style="color: var(--accent-blue); font-size: 1.3rem; margin: 0;">
+                            🤝 痛點探索：團隊在推進產品時最常遇到什麼問題？
+                        </h2>
+                        <div id="canvas-controls" style="display: flex; gap: 8px;">
+                            <button id="spawn-btn" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.78rem;">➕ 點擊產生痛點</button>
+                            <button id="spawn-all-btn" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.78rem; background: #EDF1EA; border-color: #D1DED0;">⚡ 快速投射所有 (0/24)</button>
+                            <button id="group-btn" class="btn btn-primary" style="padding: 6px 14px; font-size: 0.78rem;" disabled>📂 自動分類歸納</button>
+                        </div>
+                    </div>
+
+                    <div class="pain-point-canvas" id="pain-point-canvas">
+                        <!-- 四大分類背景框，最初隱藏，分類時淡入 -->
+                        <div class="canvas-bg-columns" id="canvas-bg-columns">
+                            <div class="canvas-bg-col" id="bg-col-direction">
+                                <h3>🎯 方向問題</h3>
+                            </div>
+                            <div class="canvas-bg-col" id="bg-col-collaboration">
+                                <h3>👥 協作問題</h3>
+                            </div>
+                            <div class="canvas-bg-col" id="bg-col-execution">
+                                <h3>⚙️ 執行問題</h3>
+                            </div>
+                            <div class="canvas-bg-col" id="bg-col-outcome">
+                                <h3>📈 成果問題</h3>
+                            </div>
+                        </div>
+                        
+                        <!-- 動態產生的便籤池 -->
+                        <div id="sticky-pool" style="position: absolute; top:0; left:0; width:100%; height:100%; pointer-events: none;"></div>
+                    </div>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label class="form-label" for="breakpoint-reason">完成診斷描述句：</label>
-                <textarea id="breakpoint-reason" class="form-control" placeholder="我們認為最重要的斷點是 [選擇的面向]，因為 [在此說明原因與造成的影響]..."></textarea>
+            <!-- 投影片 2：Concept 1 - 四大類的斷點(痛點)說明 -->
+            <div class="slide-item" id="slide-ground-concept2">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 12px;">
+                        <span class="badge badge-rose">反模式</span>
+                        <span class="badge badge-rose">常見斷點</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-rose); margin-bottom: 8px; font-size: 1.4rem;">
+                        ❌ 傳統交付流程中的 4 大核心斷點 (The Breakpoints)
+                    </h2>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px;">
+                        當團隊落入「功能工廠 (Feature Factory)」思維，盲目追求輸出 (Output) 時，將在各個面向產生斷鏈：
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 10px;">
+                        <div style="background: #FFF8F7; border: 1px solid rgba(235, 87, 87, 0.15); border-radius: var(--radius-md); padding: 16px;">
+                            <h3 style="color: var(--accent-rose); font-size: 0.95rem; margin-bottom: 8px; font-weight: 700;">🎯 方向斷點：盲目交付</h3>
+                            <p style="font-size: 0.78rem; line-height: 1.5; color: var(--text-main); margin-bottom: 0;">
+                                只關注老闆交派的規格，缺乏使用者痛點或商業價值分析。團隊全力以赴把功能「做完」，卻發現對指標毫無貢獻。
+                            </p>
+                        </div>
+                        <div style="background: #FFF8F7; border: 1px solid rgba(235, 87, 87, 0.15); border-radius: var(--radius-md); padding: 16px;">
+                            <h3 style="color: var(--accent-rose); font-size: 0.95rem; margin-bottom: 8px; font-weight: 700;">👥 協作斷點：交接壁壘</h3>
+                            <p style="font-size: 0.78rem; line-height: 1.5; color: var(--text-main); margin-bottom: 0;">
+                                瀑布式流水分工。UX 設計完直接轉手開發，上線前才突然把法規/風控拉進來，導致重大缺陷太晚暴露、頻繁返工。
+                            </p>
+                        </div>
+                        <div style="background: #FFF8F7; border: 1px solid rgba(235, 87, 87, 0.15); border-radius: var(--radius-md); padding: 16px;">
+                            <h3 style="color: var(--accent-rose); font-size: 0.95rem; margin-bottom: 8px; font-weight: 700;">⚙️ 執行斷點：時程至上</h3>
+                            <p style="font-size: 0.78rem; line-height: 1.5; color: var(--text-main); margin-bottom: 0;">
+                                時程被一巴掌拍死，只能砍規格、欠技術債。QA 沒有時間做完整驗證，草率發布後 Bug 滿天飛，維護成本倍增。
+                            </p>
+                        </div>
+                        <div style="background: #FFF8F7; border: 1px solid rgba(235, 87, 87, 0.15); border-radius: var(--radius-md); padding: 16px;">
+                            <h3 style="color: var(--accent-rose); font-size: 0.95rem; margin-bottom: 8px; font-weight: 700;">📈 成果斷點：上線即結案</h3>
+                            <p style="font-size: 0.78rem; line-height: 1.5; color: var(--text-main); margin-bottom: 0;">
+                                功能部署成功即算專案獲勝。不上線追蹤、不埋點，沒有人在意使用者到底用不用、痛點改了沒，陷入學習死路。
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="footer-nav">
-            <a href="./index.html" class="btn btn-secondary">◀ 上一頁：開場</a>
-            <a href="./objectives.html" class="btn btn-primary">前往 模組二｜Objectives 成果導向目標 ➔</a>
-        </div>
-    </main>
+            <!-- 投影片 3：Concept 2 - 產品生命週期循環圖 -->
+            <div class="slide-item" id="slide-ground-concept4">
+                <div class="slide-content" style="overflow-y: hidden;">
+                    <div class="card-header" style="margin-bottom: 6px;">
+                        <span class="badge badge-blue">產品生命週期</span>
+                        <span class="badge badge-emerald">Lifecycle Loop</span>
+                    </div>
 
+                    <h2 style="color: var(--accent-blue); margin-bottom: 2px; font-size: 1.35rem; text-align: center;">
+                        🔄 產品生命週期循環圖 (Lifecycle Loop)
+                    </h2>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 10px; text-align: center;">
+                        產品開發並非直線，而是一個持續迭代、學習與價值驗證的閉環循環：
+                    </p>
+
+                    <!-- Circular Diagram Container -->
+                    <div style="position: relative; width: 100%; height: 350px; display: flex; align-items: center; justify-content: center; margin-top: 10px; box-sizing: border-box;">
+                        
+                        <!-- SVG Ring and Guide Lines -->
+                        <svg width="540" height="400" viewBox="0 0 540 400" style="position: absolute; z-index: 1;">
+                            <defs>
+                                <marker id="arrow-red" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#FF4B4B" />
+                                </marker>
+                                <marker id="arrow-orange" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#FF9F2E" />
+                                </marker>
+                                <marker id="arrow-yellow" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F4D03F" />
+                                </marker>
+                                <marker id="arrow-green" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#2ECC71" />
+                                </marker>
+                                <marker id="arrow-blue" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3498DB" />
+                                </marker>
+                            </defs>
+
+                            <!-- Guide Lines (connecting cards to circle) -->
+                            <!-- Red (1) -->
+                            <path d="M 390 50 L 350 50 L 331 109" fill="none" stroke="#FF4B4B" stroke-width="1.5" stroke-dasharray="3 3" />
+                            <circle cx="331" cy="109" r="4" fill="#FF4B4B" />
+
+                            <!-- Orange (2) -->
+                            <path d="M 390 180 L 390 220 L 375 230" fill="none" stroke="#FF9F2E" stroke-width="1.5" stroke-dasharray="3 3" />
+                            <circle cx="375" cy="230" r="4" fill="#FF9F2E" />
+
+                            <!-- Yellow (3) -->
+                            <path d="M 350 310 L 290 310 L 270 310" fill="none" stroke="#F4D03F" stroke-width="1.5" stroke-dasharray="3 3" />
+                            <circle cx="270" cy="310" r="4" fill="#F4D03F" />
+
+                            <!-- Green (4) -->
+                            <path d="M 150 180 L 150 220 L 167 237" fill="none" stroke="#2ECC71" stroke-width="1.5" stroke-dasharray="3 3" />
+                            <circle cx="167" cy="237" r="4" fill="#2ECC71" />
+
+                            <!-- Blue (5) -->
+                            <path d="M 150 50 L 190 50 L 203 113" fill="none" stroke="#3498DB" stroke-width="1.5" stroke-dasharray="3 3" />
+                            <circle cx="203" cy="113" r="4" fill="#3498DB" />
+                            
+                            <!-- 5 Rainbow Arcs -->
+                            <path d="M 277.7 90.3 A 110 110 0 0 1 368.9 151.8" fill="none" stroke="#FF4B4B" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow-red)" />
+                            <path d="M 376.7 173.4 A 110 110 0 0 1 346.4 279.1" fill="none" stroke="#FF9F2E" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow-orange)" />
+                            <path d="M 328.3 293.3 A 110 110 0 0 1 218.4 297.1" fill="none" stroke="#F4D03F" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow-yellow)" />
+                            <path d="M 199.3 284.3 A 110 110 0 0 1 161.7 180.9" fill="none" stroke="#2ECC71" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow-green)" />
+                            <path d="M 168.0 158.8 A 110 110 0 0 1 254.7 91.1" fill="none" stroke="#3498DB" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow-blue)" />
+                        </svg>
+                        
+                        <!-- Center Loop Core Text -->
+                        <div style="position: absolute; z-index: 2; width: 90px; height: 90px; border-radius: 50%; background: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); text-align: center;">
+                            <span style="font-size: 0.76rem; font-weight: bold; color: var(--text-muted); line-height: 1.25;">持續降噪<br>價值驗證</span>
+                        </div>
+
+                        <!-- Outer HTML Label Cards -->
+                        <!-- Step 1 (Red) - Top Right -->
+                        <div style="position: absolute; top: 10px; right: 1%; width: 175px; z-index: 3;">
+                            <div style="display: flex; align-items: flex-start; gap: 8px;">
+                                <span style="font-size: 2.2rem; font-weight: 800; color: #FF4B4B; line-height: 1;">1</span>
+                                <div>
+                                    <h3 style="font-size: 0.92rem; font-weight: 700; margin: 0; color: var(--text-main); display: flex; align-items: center; gap: 4px;">
+                                        理解問題 <span style="font-size: 1rem;">💡</span>
+                                    </h3>
+                                    <p style="font-size: 0.72rem; color: var(--text-muted); margin: 3px 0 0 0; line-height: 1.35;">尋找高價值的用戶痛點與商業機會</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2 (Orange) - Middle Right -->
+                        <div style="position: absolute; top: 155px; right: -2%; width: 175px; z-index: 3;">
+                            <div style="display: flex; align-items: flex-start; gap: 8px;">
+                                <span style="font-size: 2.2rem; font-weight: 800; color: #FF9F2E; line-height: 1;">2</span>
+                                <div>
+                                    <h3 style="font-size: 0.92rem; font-weight: 700; margin: 0; color: var(--text-main); display: flex; align-items: center; gap: 4px;">
+                                        設定目標 <span style="font-size: 1rem;">🎯</span>
+                                    </h3>
+                                    <p style="font-size: 0.72rem; color: var(--text-muted); margin: 3px 0 0 0; line-height: 1.35;">定義可衡量、具備改變的成果指標</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3 (Yellow) - Bottom Center -->
+                        <div style="position: absolute; bottom: -5px; right: 8%; width: 175px; z-index: 3;">
+                            <div style="display: flex; align-items: flex-start; gap: 8px;">
+                                <span style="font-size: 2.2rem; font-weight: 800; color: #F4D03F; line-height: 1;">3</span>
+                                <div>
+                                    <h3 style="font-size: 0.92rem; font-weight: 700; margin: 0; color: var(--text-main); display: flex; align-items: center; gap: 4px;">
+                                        驗證解法 <span style="font-size: 1rem;">⚡</span>
+                                    </h3>
+                                    <p style="font-size: 0.72rem; color: var(--text-muted); margin: 3px 0 0 0; line-height: 1.35;">跨職能共同設計並提前驗證假設</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 4 (Green) - Middle Left -->
+                        <div style="position: absolute; top: 155px; left: -1%; width: 175px; z-index: 3;">
+                            <div style="display: flex; align-items: flex-start; gap: 8px;">
+                                <span style="font-size: 2.2rem; font-weight: 800; color: #2ECC71; line-height: 1;">4</span>
+                                <div>
+                                    <h3 style="font-size: 0.92rem; font-weight: 700; margin: 0; color: var(--text-main); display: flex; align-items: center; gap: 4px;">
+                                        建置交付 <span style="font-size: 1rem;">⚙️</span>
+                                    </h3>
+                                    <p style="font-size: 0.72rem; color: var(--text-muted); margin: 3px 0 0 0; line-height: 1.35;">以敏捷開發與高工程品質如期部署</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 5 (Blue) - Top Left -->
+                        <div style="position: absolute; top: 10px; left: 1%; width: 175px; z-index: 3;">
+                            <div style="display: flex; align-items: flex-start; gap: 8px;">
+                                <span style="font-size: 2.2rem; font-weight: 800; color: #3498DB; line-height: 1;">5</span>
+                                <div>
+                                    <h3 style="font-size: 0.92rem; font-weight: 700; margin: 0; color: var(--text-main); display: flex; align-items: center; gap: 4px;">
+                                        觀察成果 <span style="font-size: 1rem;">📊</span>
+                                    </h3>
+                                    <p style="font-size: 0.72rem; color: var(--text-muted); margin: 3px 0 0 0; line-height: 1.35;">數據監測與用戶反饋，形成學習閉環</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+<div class="slide-item" id="slide-ground-concept5">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 12px;">
+                        <span class="badge badge-blue">核心概念</span>
+                        <span class="badge badge-emerald">跨職能協作</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 8px; font-size: 1.4rem;">
+                        👥 跨職能角色的關鍵判斷價值 (Role Values)
+                    </h2>
+                    <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;">
+                        跨職能協作的價值，不是單純的分工交接，而是讓**關鍵的專業判斷提早發生**，進而降低開發風險：
+                    </p>
+
+                    <div class="roles-grid" id="roles-grid-container">
+                        <!-- 由 JS 動態渲染 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片 7：Concrete Practice 1 - 指認團隊斷點 -->
+            <div class="slide-item" id="slide-ground-practice1" data-timer="5">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 12px;">
+                        <span class="badge badge-amber">實作畫布 1/2</span>
+                        <span class="badge badge-emerald">Concrete Practice</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 8px; font-size: 1.35rem;">
+                        🛠️ 實作畫布：指認你的產品斷點
+                    </h2>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
+                        針對您的產品功能需求「<span class="dynamic-project-name" style="color: var(--accent-indigo); font-weight: bold;">您的產品功能</span>」，您認為在推進該需求時，最關鍵的斷鏈點發生在哪個面向？
+                    </p>
+
+                    <!-- 面向選擇按鈕 -->
+                    <div class="breakpoint-select-grid">
+                        <div class="breakpoint-option-card" data-val="Direction" style="padding: 24px;">🎯 Direction (方向)</div>
+                        <div class="breakpoint-option-card" data-val="Collaboration" style="padding: 24px;">👥 Collaboration (協作)</div>
+                        <div class="breakpoint-option-card" data-val="Execution" style="padding: 24px;">⚙️ Execution (執行)</div>
+                        <div class="breakpoint-option-card" data-val="Outcome" style="padding: 24px;">📈 Outcome (成果)</div>
+                    </div>
+                    
+                    <p style="font-size: 0.82rem; color: var(--text-muted); text-align: center; margin-top: 24px;">
+                        💡 選擇完成後，請點擊下排 [▶] 按鈕前進至下一頁，說明此斷點對您需求的具體原因與影響。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 投影片 8：Concrete Practice 2 - 書寫斷點原因 -->
+            <div class="slide-item" id="slide-ground-practice2" data-timer="5">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 12px;">
+                        <span class="badge badge-amber">實作畫布 2/2</span>
+                        <span class="badge badge-emerald">Concrete Practice</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 8px; font-size: 1.35rem;">
+                        🛠️ 實作畫布：剖析斷點的真實原因
+                    </h2>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">
+                        針對您選擇的斷鏈面向「<span id="selected-bp-label" style="color: var(--accent-rose); font-weight: bold;">未選擇</span>」，在推進功能需求「<span class="dynamic-project-name" style="color: var(--accent-indigo); font-weight: bold;">您的產品功能</span>」時，具體造成了哪些影響？原因是什麼？
+                    </p>
+
+                    <!-- 診斷文字輸入區 -->
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label class="form-label" for="breakpoint-reason" style="font-size: 0.85rem; margin-bottom: 6px; font-weight: 700; color: var(--accent-indigo);">完成您的診斷描述：</label>
+                        <textarea id="breakpoint-reason" class="form-control" placeholder="我們認為最重要的斷點是 [選擇的面向]，因為 [在此說明原因與造成的影響]..." style="font-size: 0.95rem; padding: 12px; height: calc(82vh - 240px); min-height: 120px; resize: none;"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片 9：Conclusion - 模組收束 -->
+            <div class="slide-item" id="slide-ground-conclusion">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 16px;">
+                        <span class="badge badge-emerald">本章總結</span>
+                        <span class="badge badge-blue">Conclusion</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 16px; font-size: 1.4rem;">
+                        🏁 Ground 模組收束：建立產品工作共同地圖
+                    </h2>
+
+                    <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; margin-bottom: 20px; align-items: start;">
+                        <div>
+                            <h3 style="color: var(--accent-indigo); margin-bottom: 10px; font-size: 1.1rem;">🎯 團隊自我檢核問題</h3>
+                            <ul id="ground-teaching-points" style="padding-left: 20px; line-height: 1.8; color: var(--text-main); font-size: 0.9rem;">
+                                <!-- 由 JS 動態渲染 -->
+                            </ul>
+                        </div>
+                        <blockquote style="padding: 24px; background: rgba(0, 130, 64, 0.04); border-left: 4px solid var(--accent-blue); border-radius: var(--radius-md); font-weight: 600; color: var(--accent-indigo); font-size: 1.05rem; line-height: 1.6; display: flex; align-items: center; justify-content: center; height: 100%; box-sizing: border-box; margin: 0;">
+                            「如果我們不知道希望創造什麼成果，我們就無法判斷哪些工作值得做。」
+                        </blockquote>
+                    </div>
+
+                    <div class="footer-nav" style="margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 16px;">
+                        <div></div>
+                        <a href="./objectives.html" class="btn btn-primary next-module-btn" style="padding: 10px 20px; font-size: 0.9rem;">
+                            前往 模組二｜Objectives 成果導向目標 ➔
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 加密與組件腳本 -->
     <script src="./js/crypto.js"></script>
     <script src="./data/course-payload.js"></script>
     <script src="./js/storage.js"></script>
+    <script src="./js/slider.js"></script>
     <script src="./js/components.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             AppComponents.initPage('ground', (payload) => {
                 const gData = payload.ground;
 
-                // Render Teaching Points
+                // Render Teaching Points in Slide 9
                 document.getElementById('ground-teaching-points').innerHTML = 
                     gData.teachingPoints.map(tp => `<li style="margin-bottom: 6px;">${tp}</li>`).join('');
 
-                // Render Dimensions Grid
-                const dimGrid = document.getElementById('dimensions-grid');
-                dimGrid.innerHTML = gData.dimensions.map((dim, idx) => `
-                    <div class="card" style="background: var(--bg-input); margin: 0;">
-                        <h4 style="color: var(--accent-blue);">${dim.name}</h4>
-                        <p style="font-size: 0.9rem; font-weight: 600; color: var(--text-main); margin: 4px 0;">${dim.keyQuestion}</p>
-                        <p style="font-size: 0.85rem; color: var(--accent-rose); margin-bottom: 6px;">❌ 斷點：${dim.breakpoint}</p>
-                        <p style="font-size: 0.85rem; color: var(--accent-emerald);">💡 解方：${dim.cure}</p>
+                // Render Roles Grid in Slide 6
+                const rolesGrid = document.getElementById('roles-grid-container');
+                const roleIcons = {
+                    '商務': '💼',
+                    '產品': '🎯',
+                    'UX／研究': '🔍',
+                    '技術': '⚙️',
+                    '數據': '📈',
+                    '營運／客服': '👥',
+                    '法遵／風控': '🛡️'
+                };
+                rolesGrid.innerHTML = gData.rolesTable.map(r => `
+                    <div class="role-card">
+                        <div class="role-name">
+                            <span>${roleIcons[r.role] || '👥'}</span>
+                            <span>${r.role}</span>
+                        </div>
+                        <div class="role-value">${r.value}</div>
                     </div>
                 `).join('');
 
-                // Render Life Cycle Stepper
-                const lcStepper = document.getElementById('life-cycle-stepper');
-                lcStepper.innerHTML = gData.lifeCycle.map((lc, idx) => `
-                    <div style="background: rgba(56, 189, 248, 0.1); border: 1px solid var(--accent-blue); padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: var(--accent-blue);">
-                        ${lc}
-                    </div>
-                `).join('');
-
-                // Render Roles Table
-                const rolesTable = document.getElementById('roles-table-body');
-                rolesTable.innerHTML = gData.rolesTable.map(r => `
-                    <tr style="border-bottom: 1px solid var(--border-color);">
-                        <td style="padding: 10px; font-weight: 600; color: var(--accent-blue);">${r.role}</td>
-                        <td style="padding: 10px; color: var(--text-main);">${r.value}</td>
-                    </tr>
-                `).join('');
-
-                // Interactive Workbench
+                // Sync project name to dynamic elements
                 const state = AppStorage.loadState();
-                document.getElementById('display-project-name').textContent = state.userProjectName || '您的產品專案';
+                const projectDisplayElements = document.querySelectorAll('.dynamic-project-name');
+                projectDisplayElements.forEach(el => {
+                    el.textContent = state.userProjectName || '您的產品功能需求';
+                });
                 
-                const breakpointBtns = document.querySelectorAll('.breakpoint-btn');
+                // Workbench implementation on Slide 7 & Slide 8
+                const optionCards = document.querySelectorAll('.breakpoint-option-card');
                 const reasonInput = document.getElementById('breakpoint-reason');
+                const bpLabel = document.getElementById('selected-bp-label');
 
                 let currentSelected = state.groundData.selectedBreakpoint || 'Collaboration';
                 reasonInput.value = state.groundData.breakpointReason || '';
+                updateBpLabel(currentSelected);
 
-                function updateBtnStyles() {
-                    breakpointBtns.forEach(btn => {
-                        if (btn.dataset.val === currentSelected) {
-                            btn.classList.remove('btn-secondary');
-                            btn.classList.add('btn-primary');
-                        } else {
-                            btn.classList.remove('btn-primary');
-                            btn.classList.add('btn-secondary');
+                // Set initial active state of cards
+                optionCards.forEach(card => {
+                    if (card.getAttribute('data-val') === currentSelected) {
+                        card.classList.add('selected');
+                    }
+                });
+
+                // Add card click listeners
+                optionCards.forEach(card => {
+                    card.addEventListener('click', () => {
+                        optionCards.forEach(c => c.classList.remove('selected'));
+                        card.classList.add('selected');
+                        currentSelected = card.getAttribute('data-val');
+                        updateBpLabel(currentSelected);
+                        
+                        // Automatically prefix the textarea helper text if empty
+                        const selectedText = card.textContent.trim();
+                        const prefixText = `我們認為最重要的斷點是 ${selectedText}，因為 `;
+                        if (!reasonInput.value.trim() || reasonInput.value.trim().startsWith('我們認為最重要的斷點是')) {
+                            reasonInput.value = prefixText;
                         }
-                    });
-                }
-                updateBtnStyles();
 
-                breakpointBtns.forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        currentSelected = btn.dataset.val;
-                        updateBtnStyles();
-                        saveGroundData();
+                        saveData();
                     });
                 });
 
+                function updateBpLabel(val) {
+                    if (bpLabel) {
+                        const mapper = {
+                            'Direction': '🎯 Direction (方向)',
+                            'Collaboration': '👥 Collaboration (協作)',
+                            'Execution': '⚙️ Execution (執行)',
+                            'Outcome': '📈 Outcome (成果)'
+                        };
+                        bpLabel.textContent = mapper[val] || val;
+                    }
+                }
+
+                // Input debounce for textarea
                 let saveTimeout;
                 reasonInput.addEventListener('input', () => {
                     clearTimeout(saveTimeout);
-                    saveTimeout = setTimeout(saveGroundData, 500);
+                    saveTimeout = setTimeout(() => {
+                        saveData();
+                    }, 500);
                 });
 
-                function saveGroundData() {
-                    const s = AppStorage.loadState();
-                    s.groundData = {
-                        selectedBreakpoint: currentSelected,
-                        breakpointReason: reasonInput.value.trim()
-                    };
-                    AppStorage.saveState(s);
+                function saveData() {
+                    AppStorage.updateState({
+                        groundData: {
+                            selectedBreakpoint: currentSelected,
+                            breakpointReason: reasonInput.value.trim()
+                        }
+                    });
                 }
+
+                // Initialize Slide 1 Sticky Notes Interaction
+                initStickyNotesCanvas();
+
+                // Initialize the slider engine
+                AppSlider.init('.slides-wrapper');
             });
         });
+
+        // Slide 1 Sticky Notes Canvas Game
+        function initStickyNotesCanvas() {
+            const painPoints = [
+                // Direction
+                { text: "老闆說要做，但沒說為什麼要做", cat: "direction", color: "#FFF9C4" },
+                { text: "規格一直在變，不知道最終目標是什麼", cat: "direction", color: "#FFF9C4" },
+                { text: "做出來後才發現這不是客戶想要的", cat: "direction", color: "#FFF9C4" },
+                { text: "只收到工程規格，完全沒有使用者脈絡", cat: "direction", color: "#FFF9C4" },
+                { text: "競爭對手有這個功能，所以我們也要做", cat: "direction", color: "#FFF9C4" },
+                { text: "不知道這個功能做出來能解決什麼指標", cat: "direction", color: "#FFF9C4" },
+                // Collaboration
+                { text: "法遵風控在最後一刻才翻盤說不行", cat: "collaboration", color: "#E1F5FE" },
+                { text: "UX/UI 設計完後，工程師說技術做不出來", cat: "collaboration", color: "#E1F5FE" },
+                { text: "大家都各自做好份內工作，但拼起來很怪", cat: "collaboration", color: "#E1F5FE" },
+                { text: "開發到一半才發現缺漏了必要的 API", cat: "collaboration", color: "#E1F5FE" },
+                { text: "行銷單位不知道產品已經改版上線", cat: "collaboration", color: "#E1F5FE" },
+                { text: "各部門對『成功』的定義完全不一樣", cat: "collaboration", color: "#E1F5FE" },
+                // Execution
+                { text: "開發時程被壓死，只能砍功能或熬夜", cat: "execution", color: "#F3E5F5" },
+                { text: "測試環境與生產環境不一致，上線大塞車", cat: "execution", color: "#F3E5F5" },
+                { text: "需求太多，研發能量不足，全部塞車", cat: "execution", color: "#F3E5F5" },
+                { text: "為了趕上線，欠了太多技術債，以後更難改", cat: "execution", color: "#F3E5F5" },
+                { text: "第三方廠商 API 延遲，導致我們一起延期", cat: "execution", color: "#F3E5F5" },
+                { text: "測試案例不完備，上線後 Bug 滿天飛", cat: "execution", color: "#F3E5F5" },
+                // Outcome
+                { text: "功能上線後，幾乎沒有客戶進來使用", cat: "outcome", color: "#E8F5E9" },
+                { text: "只知道系統活著，不知道有沒有解決痛點", cat: "outcome", color: "#E8F5E9" },
+                { text: "沒有埋點，根本拿不到使用者點擊數據", cat: "outcome", color: "#E8F5E9" },
+                { text: "業務單位一直要新功能，舊功能爛在哪沒人管", cat: "outcome", color: "#E8F5E9" },
+                { text: "功能做完了，但客服電話反而被打爆", cat: "outcome", color: "#E8F5E9" },
+                { text: "產品發布後，完全不知道對商業指標有何貢獻", cat: "outcome", color: "#E8F5E9" }
+            ];
+
+            const canvas = document.getElementById('pain-point-canvas');
+            const pool = document.getElementById('sticky-pool');
+            const bgColumns = document.getElementById('canvas-bg-columns');
+            const spawnBtn = document.getElementById('spawn-btn');
+            const spawnAllBtn = document.getElementById('spawn-all-btn');
+            const groupBtn = document.getElementById('group-btn');
+
+            let spawnedNotes = [];
+            let isGrouped = false;
+
+            // Generate 24 slots to prevent overlapping initially
+            const slots = [];
+            for (let r = 0; r < 4; r++) {
+                for (let c = 0; c < 6; c++) {
+                    slots.push({ r, c });
+                }
+            }
+
+            function shuffle(array) {
+                return array.sort(() => Math.random() - 0.5);
+            }
+
+            const shuffledSlots = shuffle([...slots]);
+
+            // Click canvas background to spawn
+            canvas.addEventListener('click', (e) => {
+                if (e.target === canvas || e.target === pool) {
+                    spawnOne();
+                }
+            });
+
+            spawnBtn.addEventListener('click', spawnOne);
+            spawnAllBtn.addEventListener('click', spawnAll);
+            groupBtn.addEventListener('click', groupNotes);
+
+            function spawnOne() {
+                if (isGrouped || spawnedNotes.length >= painPoints.length) return;
+                
+                const data = painPoints[spawnedNotes.length];
+                const note = createNoteElement(data, spawnedNotes.length);
+                pool.appendChild(note);
+                spawnedNotes.push({ data, element: note });
+                
+                updateControls();
+            }
+
+            function spawnAll() {
+                if (isGrouped) return;
+                spawnBtn.disabled = true;
+                spawnAllBtn.disabled = true;
+
+                let delay = 0;
+                const interval = setInterval(() => {
+                    if (spawnedNotes.length >= painPoints.length) {
+                        clearInterval(interval);
+                        updateControls();
+                        return;
+                    }
+                    spawnOne();
+                }, 40);
+            }
+
+            function createNoteElement(data, idx) {
+                const note = document.createElement('div');
+                note.className = 'sticky-note';
+                note.textContent = data.text;
+                note.style.backgroundColor = data.color;
+                
+                // Get slot grid position
+                const slot = shuffledSlots[idx];
+                const colWidth = 14.5; // %
+                const colGap = 1.6; // %
+                const rowHeight = 20; // %
+                const rowGap = 2.5; // %
+                
+                const leftPercent = 2.5 + slot.c * (colWidth + colGap) + (Math.random() * 1.5 - 0.75);
+                const topPercent = 6 + slot.r * (rowHeight + rowGap) + (Math.random() * 2 - 1);
+                const randomRot = -8 + Math.random() * 16;
+                
+                note.style.left = `${leftPercent}%`;
+                note.style.top = `${topPercent}%`;
+                note.style.width = '14%';
+                note.style.transform = `scale(0.1) rotate(${randomRot}deg)`;
+                note.style.opacity = '0';
+                
+                // Trigger pop-in transition
+                setTimeout(() => {
+                    note.style.transform = `scale(1) rotate(${randomRot}deg)`;
+                    note.style.opacity = '1';
+                }, 10);
+
+                // Make notes draggable on board
+                makeDraggable(note);
+
+                return note;
+            }
+
+            // Dragging Logic
+            let activeDragNote = null;
+            let startX = 0, startY = 0;
+            let noteStartLeft = 0, noteStartTop = 0;
+
+            function makeDraggable(el) {
+                el.style.cursor = 'move';
+                el.style.pointerEvents = 'auto'; // enable pointer interaction
+
+                el.addEventListener('mousedown', startDrag);
+                el.addEventListener('touchstart', startDrag, { passive: false });
+
+                function startDrag(e) {
+                    if (isGrouped) return;
+                    e.preventDefault();
+                    
+                    activeDragNote = el;
+                    el.style.zIndex = '1000';
+                    
+                    const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+                    const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+                    
+                    startX = clientX;
+                    startY = clientY;
+                    
+                    const rect = el.getBoundingClientRect();
+                    const canvasRect = canvas.getBoundingClientRect();
+                    noteStartLeft = rect.left - canvasRect.left;
+                    noteStartTop = rect.top - canvasRect.top;
+                    
+                    document.addEventListener('mousemove', dragMove);
+                    document.addEventListener('mouseup', endDrag);
+                    document.addEventListener('touchmove', dragMove, { passive: false });
+                    document.addEventListener('touchend', endDrag);
+                }
+
+                function dragMove(e) {
+                    if (!activeDragNote || isGrouped) return;
+                    e.preventDefault();
+                    
+                    const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+                    const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+                    
+                    const dx = clientX - startX;
+                    const dy = clientY - startY;
+                    
+                    let newLeft = noteStartLeft + dx;
+                    let newTop = noteStartTop + dy;
+                    
+                    const canvasRect = canvas.getBoundingClientRect();
+                    const noteRect = el.getBoundingClientRect();
+                    
+                    const maxLeft = canvasRect.width - noteRect.width;
+                    const maxTop = canvasRect.height - noteRect.height;
+                    
+                    newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+                    newTop = Math.max(0, Math.min(newTop, maxTop));
+                    
+                    el.style.left = `${newLeft}px`;
+                    el.style.top = `${newTop}px`;
+                }
+
+                function endDrag() {
+                    if (!activeDragNote) return;
+                    activeDragNote.style.zIndex = '100';
+                    
+                    if (isGrouped) {
+                        activeDragNote.style.transform = 'rotate(0deg)';
+                        // Force snap back to neat column position
+                        groupNotes();
+                    } else {
+                        const randomRot = -4 + Math.random() * 8;
+                        activeDragNote.style.transform = `rotate(${randomRot}deg)`;
+                    }
+                    
+                    activeDragNote = null;
+                    document.removeEventListener('mousemove', dragMove);
+                    document.removeEventListener('mouseup', endDrag);
+                    document.removeEventListener('touchmove', dragMove);
+                    document.removeEventListener('touchend', endDrag);
+                }
+            }
+
+            function updateControls() {
+                spawnAllBtn.textContent = `⚡ 快速投射所有 (${spawnedNotes.length}/${painPoints.length})`;
+                
+                if (spawnedNotes.length >= painPoints.length) {
+                    spawnBtn.disabled = true;
+                    spawnAllBtn.disabled = true;
+                }
+
+                if (spawnedNotes.length > 0) {
+                    groupBtn.disabled = false;
+                }
+            }
+
+            function groupNotes() {
+                isGrouped = true;
+
+                // Disable all spawn buttons
+                spawnBtn.disabled = true;
+                spawnAllBtn.disabled = true;
+                groupBtn.disabled = true;
+
+                // Fade-in category background columns
+                bgColumns.style.opacity = '1';
+                
+                // Grouping math
+                const counters = {
+                    direction: 0,
+                    collaboration: 0,
+                    execution: 0,
+                    outcome: 0
+                };
+
+                const catIndexMapper = {
+                    direction: 0,
+                    collaboration: 1,
+                    execution: 2,
+                    outcome: 3
+                };
+
+                const colWidth = 21; // %
+                const colGap = 3; // %
+                const startLeft = 4; // %
+                const cardHeight = 32; // px
+                const startTop = 80; // px
+
+                spawnedNotes.forEach((note) => {
+                    const cat = note.data.cat;
+                    const catIdx = catIndexMapper[cat];
+                    const idxInCol = counters[cat];
+                    counters[cat]++;
+
+                    const targetLeft = startLeft + catIdx * (colWidth + colGap);
+                    const targetTop = startTop + idxInCol * (cardHeight + 3);
+
+                    // Animate to column position
+                    note.element.style.left = `${targetLeft}%`;
+                    note.element.style.top = `${targetTop}px`;
+                    note.element.style.width = `${colWidth}%`;
+                    note.element.style.transform = 'rotate(0deg)';
+                    note.element.style.borderRadius = '6px';
+                    note.element.style.boxShadow = '0 1px 3px rgba(0,0,0,0.05)';
+                    note.element.style.pointerEvents = 'auto'; // allow hover after sorting
+                    note.element.style.minHeight = 'auto';
+                    note.element.style.height = `${cardHeight}px`;
+                    note.element.style.fontSize = '0.62rem';
+                    note.element.style.lineHeight = '1.2';
+                    note.element.style.padding = '2px 3px';
+                });
+            }
+        }
     </script>
 </body>
 </html>
