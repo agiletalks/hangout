@@ -9,6 +9,7 @@
     --accent-indigo: #00602E; /* Cathay Dark Green */
     --accent-emerald: #1B5E20; /* Darker Emerald for success/correct */
     --accent-amber: #D2E300; /* Cathay Gold/Lime (Secondary) */
+    --accent-amber-text: #8A7200; /* Dark gold for text contrast */
     --accent-rose: #FF5A00; /* Cathay Coral Orange (Warning/Highlight) */
     --text-main: #1A2016; /* Soft charcoal dark text */
     --text-muted: #60685C; /* Sage gray secondary text */
@@ -28,6 +29,9 @@
 html, body {
     margin: 0;
     padding: 0;
+}
+
+html.slide-page-active, body.slide-page-active {
     width: 100vw;
     height: 100vh;
     overflow: hidden;

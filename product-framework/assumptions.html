@@ -11,148 +11,218 @@
 <body>
     <header id="global-header" class="app-header"></header>
 
-    <main class="container">
-        <div class="card" style="border-left: 4px solid var(--accent-amber);">
-            <span class="badge badge-amber">模組三｜Assumptions (65 分鐘)</span>
-            <h1 style="margin: 12px 0;">建立實驗思維，驗證關鍵假設</h1>
-            <p>從「討論解法好不好」轉向「辨識我們正在假設什麼」，找出高影響、高不確定性的假設優先驗證。</p>
+    <div class="slide-deck">
+        <div class="slides-wrapper">
+            
+            <!-- 投影片 1: Connection & Intro -->
+            <div class="slide-item" id="slide-assumptions-intro">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 12px;">
+                        <span class="badge badge-amber">模組三｜Assumptions</span>
+                        <span class="badge badge-blue">開場概念</span>
+                    </div>
+                    <h1 style="color: var(--accent-amber-text); margin-bottom: 12px; font-size: 1.8rem;">
+                        建立實驗思維，驗證關鍵假設
+                    </h1>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px;">
+                        從「討論解法好不好」轉向「辨識我們正在假設什麼」，找出高影響、高不確定性的假設優先驗證。
+                    </p>
+                    
+                    <div style="background: rgba(251, 191, 36, 0.04); border: 1px solid var(--border-color); padding: 18px 24px; border-radius: var(--radius-lg); margin-top: 10px;">
+                        <h3 style="color: var(--accent-amber-text); margin-bottom: 10px; font-size: 1.1rem;">🎯 模組學習重點</h3>
+                        <ul id="ass-teaching-points" style="padding-left: 20px; line-height: 1.8; color: var(--text-main); font-size: 0.95rem;">
+                            <!-- 由 JS 動態渲染 -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片 2: Concept 1 - 4大風險 -->
+            <div class="slide-item" id="slide-assumptions-risks">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 12px;">
+                        <span class="badge badge-amber">核心概念</span>
+                        <span class="badge badge-blue">Risk Classification</span>
+                    </div>
+                    <h2 style="color: var(--accent-amber-text); margin-bottom: 8px; font-size: 1.4rem;">
+                        🔍 四類產品風險假設拆解 (Risk Deconstruction)
+                    </h2>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px;">
+                        請嘗試拆解您的專案「<span class="dynamic-project-name" style="color: var(--accent-blue); font-weight: bold;">專案需求</span>」背後尚未被證明的假設：
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 6px;">
+                        <div class="form-group">
+                            <label class="form-label" style="color: var(--accent-blue); font-size: 0.85rem; margin-bottom: 4px;">1. Value Assumption (價值假設)</label>
+                            <input type="text" id="val-assumption" class="form-control" placeholder="使用者真的有這個痛點？真的需要或願意使用這個解法嗎？" style="font-size: 0.85rem; padding: 8px 12px;">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" style="color: var(--accent-indigo); font-size: 0.85rem; margin-bottom: 4px;">2. Usability Assumption (易用性假設)</label>
+                            <input type="text" id="usa-assumption" class="form-control" placeholder="使用者能在不需引導下看懂並順利操作嗎？" style="font-size: 0.85rem; padding: 8px 12px;">
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px;">
+                        <div class="form-group">
+                            <label class="form-label" style="color: var(--accent-amber-text); font-size: 0.85rem; margin-bottom: 4px;">3. Feasibility Assumption (可行性假設)</label>
+                            <input type="text" id="fea-assumption" class="form-control" placeholder="現有技術架構、資料庫與 API 能在預算內支援嗎？" style="font-size: 0.85rem; padding: 8px 12px;">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" style="color: var(--accent-rose); font-size: 0.85rem; margin-bottom: 4px;">4. Viability Assumption (存續性/商務假設)</label>
+                            <input type="text" id="via-assumption" class="form-control" placeholder="商務、營運、法遵與風控商業模式能成立嗎？" style="font-size: 0.85rem; padding: 8px 12px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片 3: Concept 2 - 驗證工具箱 -->
+            <div class="slide-item" id="slide-assumptions-toolkit">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 12px;">
+                        <span class="badge badge-emerald">實驗工具</span>
+                        <span class="badge badge-amber">Validation Toolkit</span>
+                    </div>
+                    <h2 style="color: var(--accent-amber-text); margin-bottom: 8px; font-size: 1.4rem;">
+                        🧰 6 種低成本驗證工具箱 (Validation Toolkit)
+                    </h2>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px;">
+                        選擇最適合用來回答您關鍵假設的最低成本驗證工具：
+                    </p>
+                    
+                    <div id="validation-methods-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px;">
+                        <!-- 由 JS 動態渲染 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片 4: Concrete Practice - 實驗設計工作台 -->
+            <div class="slide-item" id="slide-assumptions-practice">
+                <div class="slide-content" style="overflow-y: auto;">
+                    <div class="card-header" style="margin-bottom: 8px;">
+                        <span class="badge badge-amber">實作畫布</span>
+                        <span class="badge badge-emerald">Concrete Practice</span>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1.1fr; gap: 24px; align-items: start;">
+                        <!-- 左欄：2x2 矩陣 -->
+                        <div>
+                            <h3 style="color: var(--accent-amber-text); font-size: 1rem; margin-bottom: 6px;">🎯 2x2 假設優先級矩陣</h3>
+                            <div class="matrix-container" style="margin: 0; transform: scale(0.9); transform-origin: top left;">
+                                <div></div>
+                                <div class="matrix-header" style="font-size: 0.8rem;">低不確定性</div>
+                                <div class="matrix-header" style="font-size: 0.8rem;">高不確定性</div>
+
+                                <div class="matrix-axis-y" style="font-size: 0.8rem;">高影響力</div>
+                                <div class="matrix-cell" style="font-size: 0.75rem;">持續確認</div>
+                                <div class="matrix-cell priority" style="font-size: 0.75rem;">
+                                    <span style="color: var(--accent-amber-text); font-weight: 800;">🔥 優先驗證區</span>
+                                </div>
+
+                                <div class="matrix-axis-y" style="font-size: 0.8rem;">低影響力</div>
+                                <div class="matrix-cell" style="font-size: 0.75rem;">延後處理</div>
+                                <div class="matrix-cell" style="font-size: 0.75rem;">暫不投入</div>
+                            </div>
+                        </div>
+                        
+                        <!-- 右欄：實作輸入 -->
+                        <div>
+                            <div class="form-group" style="margin-bottom: 10px;">
+                                <label class="form-label" for="selected-key-assumption" style="font-size: 0.82rem; margin-bottom: 4px;">Step 1: 選定最值得優先驗證的關鍵假設 (Key Assumption)：</label>
+                                <input type="text" id="selected-key-assumption" class="form-control" placeholder="例如：客戶在消費前是否有主動查詢優惠的習慣..." style="font-size: 0.82rem; padding: 6px 10px;">
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label class="form-label" for="validation-method" style="font-size: 0.82rem; margin-bottom: 4px;">Step 2: 選擇驗證方式：</label>
+                                    <select id="validation-method" class="form-control" style="font-size: 0.82rem; padding: 6px 10px;">
+                                        <option value="Prototype">Prototype (原型測試)</option>
+                                        <option value="MVP">MVP (最小可行產品)</option>
+                                        <option value="Spike">Spike (技術探針)</option>
+                                        <option value="人工試行">人工試行 (Wizard of Oz)</option>
+                                        <option value="訪談／測試">深度訪談 / 觀察測試</option>
+                                        <option value="數據分析">數據分析 (探索現有數據)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label class="form-label" for="threshold-input" style="font-size: 0.82rem; margin-bottom: 4px;">Step 3: 設定判斷標準與門檻：</label>
+                                    <input type="text" id="threshold-input" class="form-control" placeholder="例如：10位受測者中有8位能順利完成" style="font-size: 0.82rem; padding: 6px 10px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片 5: Conclusion - 模組總結與收束 -->
+            <div class="slide-item" id="slide-assumptions-conclusion">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 16px;">
+                        <span class="badge badge-emerald">本章總結</span>
+                        <span class="badge badge-blue">Conclusion</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-amber-text); margin-bottom: 16px; font-size: 1.4rem;">
+                        🏁 Assumptions 驗證關鍵假設模組結語
+                    </h2>
+
+                    <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; margin-bottom: 20px; align-items: start;">
+                        <div>
+                            <h3 style="color: var(--accent-indigo); margin-bottom: 10px; font-size: 1.1rem;">🎯 模組學習重點</h3>
+                            <ul style="padding-left: 20px; line-height: 1.8; color: var(--text-main); font-size: 0.9rem;">
+                                <li style="margin-bottom: 6px;">需求文件上記筆的內容，本質上都只是「尚未被證明的假設 (Unproven Assumptions)」。</li>
+                                <li style="margin-bottom: 6px;">與其爭辯解法好不好，不如問「我們正在假設什麼？哪一個假設錯了會致命？」</li>
+                                <li>MVP 不是功能削減的劣質品，而是「能以最低合理成本取得關鍵證據的產品形式」。</li>
+                            </ul>
+                        </div>
+                        <blockquote style="padding: 24px; background: rgba(251, 191, 36, 0.04); border-left: 4px solid var(--accent-amber); border-radius: var(--radius-md); font-weight: 600; color: var(--accent-indigo); font-size: 1.05rem; line-height: 1.6; display: flex; align-items: center; justify-content: center; height: 100%; box-sizing: border-box; margin: 0;">
+                            「團隊不需要一開始知道所有答案，但需要知道哪一個問題最值得先回答。驗證關鍵假設能為產品省下巨大的時間與資源浪費。」
+                        </blockquote>
+                    </div>
+
+                    <div class="footer-nav" style="margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 16px;">
+                        <div></div>
+                        <a href="./learn.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem; background: linear-gradient(135deg, var(--accent-amber), var(--accent-indigo)); border: none; color: #0b0f19;">
+                            前往 模組四｜Learn 產品學習循環 ➔
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
+    </div>
 
-        <!-- 模組重點 -->
-        <div class="card">
-            <div class="card-header">
-                <h3>🎯 核心觀念：實驗思維與驗證優先順序</h3>
-                <span class="badge badge-amber">Teaching Highlights</span>
-            </div>
-            <ul id="ass-teaching-points" style="padding-left: 20px; line-height: 1.8; color: var(--text-main);"></ul>
-        </div>
-
-        <!-- 4 類風險假設拆解說明 -->
-        <div class="card">
-            <div class="card-header">
-                <h3>🔍 四類產品風險假設拆解 (Risk Deconstruction)</h3>
-                <span class="badge badge-amber">假設分類</span>
-            </div>
-            <p>請拆解專案「<strong id="display-project-name" style="color: var(--accent-blue);">專案需求</strong>」背後尚未被證明的假設：</p>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
-                <div class="form-group">
-                    <label class="form-label" style="color: var(--accent-blue);">1. Value Assumption (價值假設)</label>
-                    <input type="text" id="val-assumption" class="form-control" placeholder="使用者真的有這個痛點？真的需要或願意使用嗎？">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" style="color: var(--accent-indigo);">2. Usability Assumption (易用性假設)</label>
-                    <input type="text" id="usa-assumption" class="form-control" placeholder="使用者能在不需引導下看懂並順利操作嗎？">
-                </div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                <div class="form-group">
-                    <label class="form-label" style="color: var(--accent-amber);">3. Feasibility Assumption (可行性假設)</label>
-                    <input type="text" id="fea-assumption" class="form-control" placeholder="現有技術架構、資料庫與 API 能在預算內支援嗎？">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" style="color: var(--accent-rose);">4. Viability Assumption (存續性/商務假設)</label>
-                    <input type="text" id="via-assumption" class="form-control" placeholder="商務、營運、法遵與風控商業模式能成立嗎？">
-                </div>
-            </div>
-        </div>
-
-        <!-- 低成本驗證工具箱 -->
-        <div class="card">
-            <div class="card-header">
-                <h3>🧰 6 種低成本驗證工具箱 (Validation Toolkit)</h3>
-                <span class="badge badge-emerald">實驗工具</span>
-            </div>
-            <div id="validation-methods-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;"></div>
-        </div>
-
-        <!-- 2x2 矩陣與優先級選擇 -->
-        <div class="card" style="border: 2px solid var(--accent-amber);">
-            <div class="card-header">
-                <h3>🎯 2x2 假設優先級矩陣與實驗設計卡</h3>
-                <span class="badge badge-emerald">核心實作畫布</span>
-            </div>
-
-            <div class="matrix-container">
-                <div></div>
-                <div class="matrix-header">低不確定性 (Low)</div>
-                <div class="matrix-header">高不確定性 (High)</div>
-
-                <div class="matrix-axis-y">高影響力 (High)</div>
-                <div class="matrix-cell">
-                    <span class="matrix-cell-title">持續確認</span>
-                </div>
-                <div class="matrix-cell priority">
-                    <span class="matrix-cell-title" style="color: var(--accent-amber); font-weight: 800;">🔥 優先驗證區 (Priority)</span>
-                    <p style="font-size: 0.8rem;">如果這個假設錯了，影響極大且目前缺乏證據！</p>
-                </div>
-
-                <div class="matrix-axis-y">低影響力 (Low)</div>
-                <div class="matrix-cell">
-                    <span class="matrix-cell-title">延後處理</span>
-                </div>
-                <div class="matrix-cell">
-                    <span class="matrix-cell-title">暫不投入</span>
-                </div>
-            </div>
-
-            <div class="form-group" style="margin-top: 20px;">
-                <label class="form-label" for="selected-key-assumption">Step 1: 選定最值得優先驗證的關鍵假設 (Key Assumption)：</label>
-                <input type="text" id="selected-key-assumption" class="form-control" placeholder="例如：客戶在消費前是否有主動查詢優惠的習慣...">
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                <div class="form-group">
-                    <label class="form-label" for="validation-method">Step 2: 選擇最低成本的驗證方式：</label>
-                    <select id="validation-method" class="form-control">
-                        <option value="Prototype">Prototype (原型測試)</option>
-                        <option value="MVP">MVP (最小可行產品)</option>
-                        <option value="Spike">Spike (技術探針概念驗證)</option>
-                        <option value="人工試行">人工試行 (Wizard of Oz)</option>
-                        <option value="訪談／測試">深度訪談 / 觀察測試</option>
-                        <option value="數據分析">數據分析 (探索現有數據)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="threshold-input">Step 3: 設定獲得支持的「判斷標準與門檻」：</label>
-                    <input type="text" id="threshold-input" class="form-control" placeholder="例如：10 位受測者中有 8 位能在 5 秒內完成查詢">
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-nav">
-            <a href="./objectives.html" class="btn btn-secondary">◀ 上一頁：模組二 Objectives</a>
-            <a href="./learn.html" class="btn btn-primary">前往 模組四｜Learn 產品學習循環 ➔</a>
-        </div>
-    </main>
-
+    <!-- 加密與組件腳本 -->
     <script src="./js/crypto.js"></script>
     <script src="./data/course-payload.js"></script>
     <script src="./js/storage.js"></script>
+    <script src="./js/slider.js"></script>
     <script src="./js/components.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             AppComponents.initPage('assumptions', (payload) => {
                 const aData = payload.assumptions;
 
-                // Render Teaching Points
+                // Render Teaching Points in Slide 1
                 document.getElementById('ass-teaching-points').innerHTML = 
                     aData.teachingPoints.map(tp => `<li style="margin-bottom: 6px;">${tp}</li>`).join('');
 
-                // Render Validation Toolkit Grid
+                // Render Validation Toolkit Grid in Slide 3
                 const vmGrid = document.getElementById('validation-methods-grid');
                 vmGrid.innerHTML = aData.validationMethods.map(vm => `
-                    <div style="background: rgba(251, 191, 36, 0.08); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px;">
-                        <strong style="color: var(--accent-amber); font-size: 0.9rem;">${vm.name}</strong>
-                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; margin-bottom: 0;">${vm.fit}</p>
+                    <div style="background: rgba(251, 191, 36, 0.04); border: 1px solid var(--border-color); padding: 12px; border-radius: var(--radius-md); transition: all 0.2s ease;">
+                        <strong style="color: var(--accent-amber-text); font-size: 0.88rem;">${vm.name}</strong>
+                        <p style="font-size: 0.76rem; color: var(--text-muted); margin-top: 4px; margin-bottom: 0; line-height: 1.35;">${vm.fit}</p>
                     </div>
                 `).join('');
 
-                // Interactive Workbench
+                // Sync project name to dynamic elements
                 const state = AppStorage.loadState();
-                document.getElementById('display-project-name').textContent = state.userProjectName || '您的產品專案';
+                const projectDisplayElements = document.querySelectorAll('.dynamic-project-name');
+                projectDisplayElements.forEach(el => {
+                    el.textContent = state.userProjectName || '您的產品專案';
+                });
 
+                // Interactive Workbench Setup (Slide 4)
                 const valInput = document.getElementById('val-assumption');
                 const usaInput = document.getElementById('usa-assumption');
                 const feaInput = document.getElementById('fea-assumption');
@@ -191,6 +261,9 @@
                     };
                     AppStorage.saveState(s);
                 }
+
+                // Initialize the slider engine
+                AppSlider.init('.slides-wrapper');
             });
         });
     </script>

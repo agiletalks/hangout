@@ -27,6 +27,10 @@ const AppSlider = (function () {
         slides = wrapper.querySelectorAll('.slide-item');
         if (slides.length === 0) return;
 
+        // Add class to html and body to lock scroll for presentation mode
+        document.documentElement.classList.add('slide-page-active');
+        document.body.classList.add('slide-page-active');
+
         // Force slide-deck CSS layout on parent
         const deck = wrapper.parentElement;
         if (deck) {

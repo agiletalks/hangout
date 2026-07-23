@@ -23,9 +23,10 @@ const AppStorage = (function () {
         },
         objectivesData: {
             businessObjective: 'Engagement',
+            productOutput: '',
             targetUser: '',
-            context: '',
-            currentBehavior: '',
+            userPainPoint: '',
+            productForm: '',
             desiredBehavior: '',
             productObjective: ''
         },
@@ -152,11 +153,12 @@ const AppStorage = (function () {
 
 ## 模組二｜Objectives 成果導向產品目標
 * **選定 Business Objective**：${s.objectivesData.businessObjective || '未填寫'}
-* **目標使用者**：${s.objectivesData.targetUser || '未填寫'}
-* **關鍵情境**：${s.objectivesData.context || '未填寫'}
-* **現狀行為**：${s.objectivesData.currentBehavior || '未填寫'}
-* **期望改變行為**：${s.objectivesData.desiredBehavior || '未填寫'}
-* **改寫後產品目標**：
+* **我們提供 (Output)**：${s.objectivesData.productOutput || '未填寫'}
+* **給 (目標使用者)**：${s.objectivesData.targetUser || '未填寫'}
+* **解決的問題 (痛點)**：${s.objectivesData.userPainPoint || '未填寫'}
+* **方案形態 (載體)**：${s.objectivesData.productForm || '未填寫'}
+* **期望行為改變**：${s.objectivesData.desiredBehavior || '未填寫'}
+* **產品目標與願景聲明 (兩段式)**：
   > ${s.objectivesData.productObjective || '未填寫'}
 
 ---

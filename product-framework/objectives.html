@@ -99,14 +99,15 @@
         }
         .quiz-btn {
             flex: 1;
-            padding: 6px;
-            font-size: 0.78rem;
+            padding: 6px 2px;
+            font-size: 0.72rem;
             font-weight: bold;
             border-radius: var(--radius-sm);
             border: 1px solid var(--border-color);
             background: #FFFFFF;
             cursor: pointer;
             transition: all 0.2s;
+            white-space: nowrap;
         }
         .quiz-btn:hover {
             border-color: var(--accent-blue);
@@ -132,6 +133,70 @@
             background: rgba(129, 140, 248, 0.08) !important;
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Mad Libs style workbench */
+        .madlibs-container {
+            background: rgba(15, 23, 42, 0.2);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            line-height: 2.2;
+            font-size: 1rem;
+            color: var(--text-main);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+        .madlibs-p {
+            margin-bottom: 20px;
+        }
+        .madlibs-p:last-child {
+            margin-bottom: 0;
+        }
+        .inline-fill-input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
+            font-size: 0.95rem;
+            font-weight: 700;
+            font-family: inherit;
+            padding: 2px 6px;
+            text-align: center;
+            transition: all 0.2s ease;
+            max-width: 100%;
+        }
+        .inline-fill-input:focus {
+            outline: none;
+            border-bottom-color: var(--accent-emerald);
+            background: rgba(56, 189, 248, 0.05);
+        }
+        .inline-fill-input::placeholder {
+            color: var(--text-muted);
+            font-weight: normal;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+        .inline-fill-select {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--accent-indigo);
+            color: var(--accent-indigo);
+            font-size: 0.95rem;
+            font-weight: 700;
+            font-family: inherit;
+            padding: 2px 6px;
+            cursor: pointer;
+            text-align-last: center;
+            transition: all 0.2s ease;
+        }
+        .inline-fill-select:focus {
+            outline: none;
+            border-bottom-color: var(--accent-emerald);
+        }
+        .inline-fill-select option {
+            background: var(--bg-card);
+            color: var(--text-main);
         }
     </style>
 </head>
@@ -240,53 +305,44 @@
                     </div>
 
                     <h2 style="color: var(--accent-blue); margin-bottom: 4px; font-size: 1.35rem;">
-                        🛠️ 需求逆向推導與產品目標卡生成器
+                        🛠️ 實作畫布：產品目標填空題
                     </h2>
                     <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">
-                        針對您的功能需求「<span class="dynamic-project-name" style="color: var(--accent-indigo); font-weight: bold;">產品需求</span>」，請完成逆向目標推導，自動合成成果導向目標：
+                        針對您的功能需求「<span class="dynamic-project-name" style="color: var(--accent-indigo); font-weight: bold;">產品需求</span>」，請在下方段落填入您的產品目標要素，自動合成願景與商務成果聲明：
                     </p>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px;">
-                        <div class="form-group" style="margin-bottom: 4px;">
-                            <label class="form-label" style="font-size: 0.82rem; margin-bottom: 4px;">Step 1: 選擇主要支持的 7 大 Business Objective：</label>
-                            <select id="biz-obj-select" class="form-control" style="font-size: 0.85rem; padding: 6px 10px;">
-                                <option value="Acquisition">Acquisition (取得新客戶)</option>
-                                <option value="Activation">Activation (促成首次成功使用)</option>
-                                <option value="Engagement" selected>Engagement (增加使用與互動)</option>
-                                <option value="Retention">Retention (提高持續使用與留存)</option>
-                                <option value="Revenue">Revenue (增加收入或交易價值)</option>
-                                <option value="Efficiency">Efficiency (降低成本與作業負擔)</option>
-                                <option value="Risk／Trust">Risk／Trust (降低風險並提高信任)</option>
-                            </select>
+                    <div class="madlibs-container">
+                        <!-- 第一段：願景與方案聲明 -->
+                        <div class="madlibs-p">
+                            我們提供 <input type="text" id="inline-output" class="inline-fill-input" placeholder="產品功能/服務 (Output)" style="width: 250px;"> 
+                            給 <input type="text" id="inline-user" class="inline-fill-input" placeholder="目標客群 (User)" style="width: 200px;">，
+                            是為了解決他們 <input type="text" id="inline-pain" class="inline-fill-input" placeholder="遇到的痛點/問題" style="width: 320px;"> 的問題。
+                            我們的方案是一個 <input type="text" id="inline-form" class="inline-fill-input" placeholder="產品形態/載體" style="width: 200px;">。
                         </div>
-                        <div class="form-group" style="margin-bottom: 4px;">
-                            <label class="form-label" style="font-size: 0.82rem; margin-bottom: 4px;">Step 2: 目標使用者 (Who)</label>
-                            <input type="text" id="target-user" class="form-control" placeholder="例如：持有多張信用卡且重視回饋的客戶" style="font-size: 0.85rem; padding: 6px 10px;">
+                        
+                        <!-- 第二段：行為與商務成果 -->
+                        <div class="madlibs-p">
+                            我們期望用戶行為變成 <input type="text" id="inline-behavior" class="inline-fill-input" placeholder="期望發生的用戶行為改變" style="width: 340px;">，
+                            如此一來，公司的 
+                            <select id="inline-biz" class="inline-fill-select">
+                                <option value="Ability">Ability (能力)</option>
+                                <option value="Benefit" selected>Benefit (效益)</option>
+                                <option value="Cost">Cost (成本)</option>
+                                <option value="Disruption">Disruption (擾動)</option>
+                                <option value="Efficiency">Efficiency (效率)</option>
+                                <option value="Integrity">Integrity (穩定/完整性)</option>
+                                <option value="Growth">Growth (成長)</option>
+                            </select> 
+                            商務目標就能夠達標。
                         </div>
-                    </div>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px;">
-                        <div class="form-group" style="margin-bottom: 4px;">
-                            <label class="form-label" style="font-size: 0.82rem; margin-bottom: 4px;">Step 3: 關鍵情境 (When/Where)</label>
-                            <input type="text" id="key-context" class="form-control" placeholder="例如：在刷卡消費前考慮要用哪張卡時" style="font-size: 0.85rem; padding: 6px 10px;">
-                        </div>
-                        <div class="form-group" style="margin-bottom: 4px;">
-                            <label class="form-label" style="font-size: 0.82rem; margin-bottom: 4px;">Step 4: 目前行為或現狀痛點 (From)</label>
-                            <input type="text" id="current-behavior" class="form-control" placeholder="例如：打電話詢問客服，或隨機抽一張卡刷" style="font-size: 0.85rem; padding: 6px 10px;">
-                        </div>
-                    </div>
-
-                    <div class="form-group" style="margin-bottom: 10px;">
-                        <label class="form-label" style="font-size: 0.82rem; margin-bottom: 4px;">Step 5: 期望產生的使用者行為改變 (To)</label>
-                        <input type="text" id="desired-behavior" class="form-control" placeholder="例如：主動點開推薦專區，並點擊使用最佳卡片優惠" style="font-size: 0.85rem; padding: 6px 10px;">
                     </div>
 
                     <!-- 自動合成結果卡 -->
-                    <div style="background: rgba(0, 130, 64, 0.04); border: 1px solid var(--accent-blue); padding: 12px 14px; border-radius: var(--radius-md);">
-                        <h4 style="color: var(--accent-indigo); margin-bottom: 4px; font-size: 0.88rem; font-weight: 700;">✨ 自動合成成果導向「產品目標描述句」：</h4>
-                        <blockquote id="generated-goal-sentence" style="font-size: 0.9rem; font-weight: 700; color: var(--text-main); line-height: 1.5; margin: 0; padding-left: 10px; border-left: 3px solid var(--accent-blue);">
-                            請填寫上方推導欄位...
-                        </blockquote>
+                    <div style="background: rgba(0, 130, 64, 0.04); border: 1px solid var(--accent-blue); padding: 12px 14px; border-radius: var(--radius-md); margin-top: 12px;">
+                        <h4 style="color: var(--accent-indigo); margin-bottom: 4px; font-size: 0.88rem; font-weight: 700;">✨ 自動合成成果導向目標 (兩段式)：</h4>
+                        <div id="generated-goal-sentence" style="font-size: 0.88rem; font-weight: 700; color: var(--text-main); line-height: 1.6; margin: 0; padding-left: 10px; border-left: 3px solid var(--accent-blue); white-space: pre-wrap;">
+                            請在上方填寫填空題...
+                        </div>
                     </div>
                 </div>
             </div>
@@ -365,13 +421,13 @@
                 // Render Seven Objectives in Slide 3
                 const soGrid = document.getElementById('seven-objectives-grid');
                 const objIcons = {
-                    'Acquisition': '📈',
-                    'Activation': '⚡',
-                    'Engagement': '❤️',
-                    'Retention': '🔄',
-                    'Revenue': '💰',
-                    'Efficiency': '⚙️',
-                    'Risk／Trust': '🛡️'
+                    'Ability (能力)': '💡',
+                    'Benefit (效益)': '💎',
+                    'Cost (成本)': '📊',
+                    'Disruption (擾動)': '💥',
+                    'Efficiency (效率)': '⚙️',
+                    'Integrity (穩定/完整性)': '🛡️',
+                    'Growth (成長)': '📈'
                 };
                 soGrid.innerHTML = oData.sevenObjectives.map(so => `
                     <div style="background: rgba(129, 140, 248, 0.04); border: 1px solid var(--border-color); padding: 12px; border-radius: var(--radius-md); transition: all 0.2s ease;" class="obj-card-hover">
@@ -394,7 +450,7 @@
             const container = document.getElementById('quiz-container');
             container.innerHTML = quizItems.map((item, idx) => `
                 <div class="quiz-card" id="quiz-card-${idx}">
-                    <div class="quiz-card-text">${item.statement}</div>
+                    <div class="quiz-card-text">${item.text}</div>
                     <div class="quiz-actions">
                         <button class="quiz-btn" onclick="checkQuiz(${idx}, 'Output', '${item.answer}')">Output (交付)</button>
                         <button class="quiz-btn" onclick="checkQuiz(${idx}, 'Outcome', '${item.answer}')">Outcome (成果)</button>
@@ -420,23 +476,28 @@
 
         // Workbench Logic
         function initWorkbench(state) {
-            const bizSelect = document.getElementById('biz-obj-select');
-            const targetUser = document.getElementById('target-user');
-            const keyContext = document.getElementById('key-context');
-            const currentBehavior = document.getElementById('current-behavior');
-            const desiredBehavior = document.getElementById('desired-behavior');
+            const bizSelect = document.getElementById('inline-biz');
+            const productOutput = document.getElementById('inline-output');
+            const targetUser = document.getElementById('inline-user');
+            const userPainPoint = document.getElementById('inline-pain');
+            const productForm = document.getElementById('inline-form');
+            const desiredBehavior = document.getElementById('inline-behavior');
             const resultBox = document.getElementById('generated-goal-sentence');
 
             // Load saved data if exists
             const savedData = state.objectivesData || {};
-            bizSelect.value = savedData.bizObjective || 'Engagement';
+            bizSelect.value = savedData.businessObjective || 'Benefit';
+            if (bizSelect.selectedIndex === -1) {
+                bizSelect.value = 'Benefit'; // Fallback if old option value is not found
+            }
+            productOutput.value = savedData.productOutput || '';
             targetUser.value = savedData.targetUser || '';
-            keyContext.value = savedData.keyContext || '';
-            currentBehavior.value = savedData.currentBehavior || '';
+            userPainPoint.value = savedData.userPainPoint || '';
+            productForm.value = savedData.productForm || '';
             desiredBehavior.value = savedData.desiredBehavior || '';
 
             // Listen to inputs
-            [bizSelect, targetUser, keyContext, currentBehavior, desiredBehavior].forEach(input => {
+            [bizSelect, productOutput, targetUser, userPainPoint, productForm, desiredBehavior].forEach(input => {
                 input.addEventListener('input', () => {
                     updateSentence();
                     saveDataDebounced();
@@ -447,26 +508,42 @@
             updateSentence();
 
             function updateSentence() {
-                const who = targetUser.value.trim() || '【目標使用者】';
-                const when = keyContext.value.trim() || '【關鍵情境】';
-                const from = currentBehavior.value.trim() || '【目前行為/痛點】';
-                const to = desiredBehavior.value.trim() || '【期望行為改變】';
-                const biz = bizSelect.options[bizSelect.selectedIndex].text;
+                const output = productOutput.value.trim() || '【產品功能/服務】';
+                const who = targetUser.value.trim() || '【目標客群】';
+                const pain = userPainPoint.value.trim() || '【遇到的痛點/問題】';
+                const form = productForm.value.trim() || '【產品形態/載體】';
+                const behavior = desiredBehavior.value.trim() || '【期望發生的用戶行為改變】';
+                const biz = bizSelect.selectedIndex !== -1 ? bizSelect.options[bizSelect.selectedIndex].text : '【商務目標】';
 
-                resultBox.innerHTML = `為了讓 <span style="color: var(--accent-blue);">${who}</span> 在 <span style="color: var(--accent-blue);">${when}</span> 下，能夠從 <span style="color: var(--accent-rose);">${from}</span> 轉變為 <span style="color: var(--accent-emerald);">${to}</span>，藉此支持本行 <span style="color: var(--accent-indigo);">${biz}</span> 的商務成果。`;
+                const paragraph1 = `我們提供 <span style="color: var(--accent-blue);">${output}</span> 給 <span style="color: var(--accent-blue);">${who}</span>，是為了解決他們 <span style="color: var(--accent-rose);">${pain}</span> 的問題。我們的方案是一個 <span style="color: var(--accent-blue);">${form}</span>。`;
+                const paragraph2 = `我們期望用戶行為變成 <span style="color: var(--accent-emerald);">${behavior}</span>，如此一來，公司的 <span style="color: var(--accent-indigo);">${biz}</span> 商務目標就能夠達標。`;
+
+                resultBox.innerHTML = `${paragraph1}<br><br>${paragraph2}`;
             }
 
             let saveTimeout;
             function saveDataDebounced() {
                 clearTimeout(saveTimeout);
                 saveTimeout = setTimeout(() => {
+                    const output = productOutput.value.trim();
+                    const who = targetUser.value.trim();
+                    const pain = userPainPoint.value.trim();
+                    const form = productForm.value.trim();
+                    const behavior = desiredBehavior.value.trim();
+                    const bizText = bizSelect.selectedIndex !== -1 ? bizSelect.options[bizSelect.selectedIndex].text : '';
+
+                    const paragraph1 = `我們提供 ${output || '【產品功能】'} 給 ${who || '【目標客群】'}，是為了解決他們 ${pain || '【遇到的痛點】'} 的問題。我們的方案是一個 ${form || '【產品形態】'}。`;
+                    const paragraph2 = `我們期望用戶行為變成 ${behavior || '【期望用戶行為】'}，如此一來，公司的 ${bizText} 商務目標就能夠達標。`;
+
                     AppStorage.updateState({
                         objectivesData: {
-                            bizObjective: bizSelect.value,
-                            targetUser: targetUser.value.trim(),
-                            keyContext: keyContext.value.trim(),
-                            currentBehavior: currentBehavior.value.trim(),
-                            desiredBehavior: desiredBehavior.value.trim()
+                            businessObjective: bizSelect.value,
+                            productOutput: output,
+                            targetUser: who,
+                            userPainPoint: pain,
+                            productForm: form,
+                            desiredBehavior: behavior,
+                            productObjective: `${paragraph1}\n\n${paragraph2}`
                         }
                     });
                 }, 500);

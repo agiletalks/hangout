@@ -84,22 +84,22 @@ const COURSE_DATA = {
       "避免追求『所有目標都重要』，每個需求必須聚焦在一項主要 Business Objective。"
     ],
     fourLevels: [
-      { level: "Business Objective (商務目標)", question: "組織為何要投入資源？支持什麼成果？", example: "提升信用卡年活躍用戶數與刷卡交易額" },
+      { level: "Business Objective (商務目標)", question: "組織為何要投入資源？支持什麼成果？", example: "降低系統故障事件的影響，或提升團隊解決問題的專業技能" },
       { level: "User Outcome (使用者成果)", question: "使用者獲得什麼價值的改變？", example: "準備消費時，能在 3 秒內清楚找到最優惠的刷卡卡片" },
       { level: "Product Objective (產品目標)", question: "產品要促成什麼關鍵行為改變？", example: "提高客戶在消費前進入 App 查詢與領取指定優惠的比例" },
       { level: "Product Output (產品交付物)", question: "團隊交付了什麼功能或元件？", example: "開發優惠推薦專區、個人化 AI 推薦引擎、自動到期提醒" }
     ],
     sevenObjectives: [
-      { name: "Acquisition (取得)", desc: "吸引並取得全新客戶或新用戶。" },
-      { name: "Activation (啟用)", desc: "促成新用戶完成首次成功體驗 (Aha Moment)。" },
-      { name: "Engagement (互動)", desc: "增加既有用戶的使用頻率、停留時間與互動深度。" },
-      { name: "Retention (留存)", desc: "提高用戶長期持續回訪與使用率，降低流失率。" },
-      { name: "Revenue (收益)", desc: "增加客單價、交易轉換率、付費訂閱或整體營收。" },
-      { name: "Efficiency (效率)", desc: "降低內部作業負擔、客服致電率或營運處理成本。" },
-      { name: "Risk／Trust (信任)", desc: "降低風控法遵風險、提升系統資安與用戶信任度。" }
+      { name: "Ability (能力)", desc: "強化人或組織解決問題的專業技能。" },
+      { name: "Benefit (效益)", desc: "在財務或非財務上，為組織與社會帶來的正面成果。" },
+      { name: "Cost (成本)", desc: "以更少的資源，達成相同的產出。" },
+      { name: "Disruption (擾動)", desc: "避免突發事件發生，或是降低事件的影響。" },
+      { name: "Efficiency (效率)", desc: "有效運用資源、最小化浪費以達成目標的能力。" },
+      { name: "Integrity (穩定/完整性)", desc: "確保流程、系統與組織更嚴謹、安全、合規。" },
+      { name: "Growth (成長)", desc: "擴大市場、用戶或使用率的規模。" }
     ],
-    formula: "我們希望協助【目標使用者】，在【關鍵情境】中，從【現狀行為或痛點】，改變為【期望產生的行為】，進而支持【商務目標】。",
-    formulaExample: "我們希望協助【持有多張信用卡的客戶】，在【準備消費刷卡前】，從【隨機刷卡或頻繁致電客服詢問】，改變為【消費前進入 App 主動領取最佳優惠】，進而支持【Engagement 提高信用卡活躍度】。",
+    formula: "第一段：我們提供【產品功能/Output】給【目標客群/User】，是為了解決他們【痛點問題】的問題。我們的方案是一個【產品形態】。\\n第二段：我們期望用戶行為變成【期望用戶行為/Behavior Outcome】，如此一來，公司的【商務目標】商務目標就能夠達標。",
+    formulaExample: "我們提供【自動卡片回饋推薦與優惠到期提醒】給【持有多張信用卡的卡友】，是為了解決他們【消費刷卡前難以快速找出哪張卡回饋最劃算】的問題。我們的方案是一個【App 內的個人化優惠專區】。\\n我們期望用戶行為變成【在實體或線上消費刷卡前，主動點開 App 領取優惠】，如此一來，公司的【Benefit (效益)】商務目標就能夠達標。",
     quiz: [
       { text: "完成線上調額功能線上化", answer: "Output" },
       { text: "降低客戶致電人工客服申請調額的比例 30%", answer: "Outcome" },

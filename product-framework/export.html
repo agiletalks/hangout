@@ -51,25 +51,25 @@
 
             <!-- 模組二成果 -->
             <div class="card">
-                <h2>2. Objectives 成果導向產品目標卡</h2>
+                <h2>2. Objectives 成果導向產品目標</h2>
                 <p><strong>Business Objective:</strong> <span id="out-obj-biz" class="badge badge-blue">--</span></p>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 12px 0;">
                     <div style="padding: 10px; background: var(--bg-input); border-radius: 6px;">
-                        <strong>目標使用者：</strong> <span id="out-obj-user">--</span>
+                        <strong>我們提供 (Output)：</strong> <span id="out-obj-output">--</span>
                     </div>
                     <div style="padding: 10px; background: var(--bg-input); border-radius: 6px;">
-                        <strong>關鍵情境：</strong> <span id="out-obj-context">--</span>
+                        <strong>目標使用者 (User)：</strong> <span id="out-obj-user">--</span>
                     </div>
                     <div style="padding: 10px; background: var(--bg-input); border-radius: 6px;">
-                        <strong>現狀行為：</strong> <span id="out-obj-cur">--</span>
+                        <strong>解決的問題 (Pain)：</strong> <span id="out-obj-pain">--</span>
                     </div>
                     <div style="padding: 10px; background: var(--bg-input); border-radius: 6px;">
-                        <strong>期望行為：</strong> <span id="out-obj-des">--</span>
+                        <strong>方案形態 (Form)：</strong> <span id="out-obj-form">--</span>
                     </div>
                 </div>
-                <blockquote style="padding: 14px; background: rgba(56, 189, 248, 0.08); border-left: 4px solid var(--accent-blue); border-radius: 4px;">
-                    <strong>改寫後產品目標描述：</strong>
-                    <p id="out-obj-sentence" style="font-weight: 600; color: var(--text-main); margin-top: 4px;">未填寫</p>
+                <blockquote style="padding: 14px; background: rgba(129, 140, 248, 0.06); border-left: 4px solid var(--accent-indigo); border-radius: 4px; line-height: 1.6;">
+                    <strong>📋 合成後的產品願景與商務成果 (兩段式)：</strong>
+                    <div id="out-obj-sentence" style="font-weight: 600; color: var(--text-main); margin-top: 4px; white-space: pre-wrap;">未填寫</div>
                 </blockquote>
             </div>
 
@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 <div style="padding: 14px; background: rgba(251, 191, 36, 0.08); border: 1px solid var(--accent-amber); border-radius: 8px;">
-                    <p><strong>🔥 最優先關鍵假設：</strong> <span id="out-ass-key" style="font-weight: bold; color: var(--accent-amber);">--</span></p>
+                    <p><strong>🔥 最優先關鍵假設：</strong> <span id="out-ass-key" style="font-weight: bold; color: var(--accent-amber-text);">--</span></p>
                     <p style="margin-top: 6px;"><strong>驗證方式：</strong> <span id="out-ass-method">--</span></p>
                     <p style="margin-top: 4px;"><strong>判斷標準門檻：</strong> <span id="out-ass-threshold">--</span></p>
                 </div>
@@ -139,10 +139,10 @@
 
                 // Objectives
                 document.getElementById('out-obj-biz').textContent = s.objectivesData.businessObjective || '未填寫';
+                document.getElementById('out-obj-output').textContent = s.objectivesData.productOutput || '未填寫';
                 document.getElementById('out-obj-user').textContent = s.objectivesData.targetUser || '未填寫';
-                document.getElementById('out-obj-context').textContent = s.objectivesData.context || '未填寫';
-                document.getElementById('out-obj-cur').textContent = s.objectivesData.currentBehavior || '未填寫';
-                document.getElementById('out-obj-des').textContent = s.objectivesData.desiredBehavior || '未填寫';
+                document.getElementById('out-obj-pain').textContent = s.objectivesData.userPainPoint || '未填寫';
+                document.getElementById('out-obj-form').textContent = s.objectivesData.productForm || '未填寫';
                 document.getElementById('out-obj-sentence').textContent = s.objectivesData.productObjective || '未填寫';
 
                 // Assumptions
