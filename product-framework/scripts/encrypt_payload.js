@@ -32,55 +32,46 @@ const COURSE_DATA = {
 
   // 模組一：Ground
   ground: {
-    title: "模組一｜Ground：產品工作的全貌與常見斷點",
-    duration: "35 分鐘",
+    title: "模組一｜Ground：建立產品工作的共同座標",
+    duration: "48-51 分鐘",
     teachingPoints: [
-      "產品工作不是單一部門的職責，也不是單向線性流水線，而是一個持續閉環的學習系統。",
-      "團隊常見的困境不是完全缺少某個面向，而是面向與面向之間的『連結斷點』。",
-      "跨職能協作的核心價值，是讓重要的專業判斷『提早發生』，而非後期的驗收把關。"
+      "APOM 看組織系統：組織如何支持產品持續創造價值？",
+      "Product Canvas 看產品全貌：團隊需要共同理解產品的哪些面向？",
+      "Impact Map 看成果因果：哪些人的哪些改變，可能帶來預期成果？"
     ],
-    dimensions: [
-      { 
-        name: "Direction (方向)", 
-        keyQuestion: "我們為什麼做？支持什麼戰略？", 
-        breakpoint: "只收到功能需求清單，團隊不知道背後的商業目的與使用者問題。",
-        cure: "透過 Business Objective 將需求連結至組織戰略。" 
+    apom: {
+      strategy: ["Value", "Business", "Technology", "Operations"],
+      people: ["Organization", "Talent and Skills", "Culture", "Incentives", "Leadership"],
+      structure: ["Governance and Compliance", "Process", "Systems and Technology", "Procurement"],
+      valueCycle: ["Discovery", "Delivery", "Operations"],
+      evidenceBased: "Evidence-Based Approach"
+    },
+    productCanvas: {
+      productName: "CityRide",
+      goal: "幫助通勤者以更低成本、更少轉乘的方式完成日常通勤。",
+      metrics: ["配對成功率", "平均等待時間", "取消率", "每週活躍使用者", "重複使用率"],
+      targetGroup: ["每日跨區通勤者", "願意提供共乘的駕駛", "大眾運輸不便地區的居民"],
+      bigPicture: ["建立通勤路線", "尋找相近路線", "配對乘客與駕駛", "確認上下車地點", "完成付款", "評價共乘體驗"],
+      productDetails: ["路線相似度計算", "身分驗證", "付款與分帳", "臨時取消處理", "安全與隱私規則"]
+    },
+    impactMap: {
+      why: "三個月內，將新學員的課程完成率由 35% 提升至 55%。",
+      who: ["新學員", "課程講師", "學習社群成員", "學習顧問"],
+      how: {
+        "新學員": ["更早開始第一堂課", "每週持續安排學習時間", "遇到困難時主動尋求協助"],
+        "課程講師": ["更快回應問題", "提供較短的學習單元"],
+        "學習社群成員": ["彼此鼓勵維持進度", "分享完成學習的方法"]
       },
-      { 
-        name: "Collaboration (協作)", 
-        keyQuestion: "誰要一起做出關鍵判斷？", 
-        breakpoint: "角色依序單向交接 (瀑布流)，技術與法遵/風控判斷太晚發生導致重工。",
-        cure: "提早邀請跨職能角色共同進行可行性與風險討論。" 
-      },
-      { 
-        name: "Execution (執行)", 
-        keyQuestion: "如何把方向變成低風險行動？", 
-        breakpoint: "需求提出後直接投入大專案開發，缺乏前期小步驗證機制。",
-        cure: "拆解關鍵假設，以低成本實驗/MVP 取代一次性大上線。" 
-      },
-      { 
-        name: "Outcome (成果)", 
-        keyQuestion: "我們如何知道解法有效？", 
-        breakpoint: "功能上線後只看系統主機是否正常升級，無人持續追蹤使用者行為改變。",
-        cure: "建立成果學習循環，根據領先指標決定 Maintain/Improve/Scale/Stop。" 
+      what: {
+        "更早開始第一堂課": ["首週學習提醒", "個人學習進度計畫"],
+        "每週持續安排學習時間": ["個人學習進度計畫"],
+        "遇到困難時主動尋求協助": ["提問與回覆機制"],
+        "更快回應問題": ["提問與回覆機制"],
+        "提供較短的學習單元": ["小單元課程"],
+        "彼此鼓勵維持進度": ["同儕學習小組", "進度提示"],
+        "分享完成學習的方法": ["同儕學習小組"]
       }
-    ],
-    rolesTable: [
-      { role: "商務 (Business)", value: "回答「為何值得投入資源？預期商業回報是什麼？」" },
-      { role: "產品 (Product)", value: "回答「現在最重要的是什麼？優先順序與目標如何取捨？」" },
-      { role: "UX / 研究", value: "回答「使用者真正遇到的痛點與關鍵情境是什麼？」" },
-      { role: "技術 (Engineering)", value: "回答「技術架構是否可行、具備擴充性且維護成本可控？」" },
-      { role: "數據 (Data)", value: "回答「我們如何觀察行為改變？如何設定衡量指標？」" },
-      { role: "營運 / 客服", value: "回答「真實情境下客戶會遇到什麼例外或操作障礙？」" },
-      { role: "法遵 / 風控", value: "回答「有哪些法規、隱私或安全限制需要提早設計防護？」" }
-    ],
-    lifeCycle: ["1. 理解問題 (Problem)", "2. 設定目標 (Objective)", "3. 驗證解法 (Assumption)", "4. 建置交付 (Execution)", "5. 觀察成果 (Learning)"],
-    checkpoints: [
-      "我們是否清楚知道這項需求背後的『為什麼』？",
-      "重要跨職能角色是否在早期共同參與判斷？",
-      "團隊的工作方式是否能支持快速測試與學習？",
-      "功能上線後，我們是否有機制觀察並回應真實成果？"
-    ]
+    }
   },
 
   // 模組二：Objectives

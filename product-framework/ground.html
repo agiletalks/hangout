@@ -3,280 +3,379 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>模組一｜Ground 產品工作的全貌</title>
+    <title>模組一｜Ground 建立產品工作的共同座標</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/components.css">
     <link rel="stylesheet" href="./css/print.css">
     <style>
-        /* Sticky Notes Layout for Slide 1 */
-        .pain-point-canvas {
-            position: relative;
+        /* Cover Slide styling */
+        #slide-ground-cover {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, rgba(129, 140, 248, 0.04) 0%, transparent 75%);
+        }
+        .cover-layout {
+            display: flex;
             width: 100%;
             height: 380px;
-            background: #F8FAF6;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.02);
-            margin-top: 8px;
-        }
-        
-        .sticky-note {
-            position: absolute;
-            width: 140px;
-            min-height: 70px;
-            padding: 8px 10px;
-            font-size: 0.74rem;
-            font-weight: 700;
-            line-height: 1.35;
-            color: #2C3E50;
-            border-radius: 4px;
-            box-shadow: 2px 4px 8px rgba(0,0,0,0.06);
-            display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            user-select: none;
-            transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+            justify-content: space-between;
+            position: relative;
+            padding: 0 16px;
+            box-sizing: border-box;
+        }
+        .cover-left-info {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
             z-index: 10;
         }
-        
-        .sticky-note:hover {
-            transform: scale(1.08) rotate(0deg) !important;
-            box-shadow: 4px 8px 16px rgba(0,0,0,0.12);
-            z-index: 999 !important;
-        }
-
-        /* Grouping Columns (hidden initially, shown on categorization) */
-        .canvas-bg-columns {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            padding: 16px;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .canvas-bg-col {
-            border: 2px dashed rgba(0, 130, 64, 0.15);
-            border-radius: var(--radius-md);
-            background: rgba(255, 255, 255, 0.45);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 12px;
-        }
-        
-        .canvas-bg-col h3 {
-            font-size: 0.85rem;
-            font-weight: 800;
-            color: var(--accent-indigo);
-            margin: 0;
-            padding: 6px 14px;
-            background: rgba(0, 130, 64, 0.08);
-            border-radius: 20px;
-        }
-
-        /* Compact cards grid for Role Values in Slide 6 */
-        .roles-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-top: 10px;
-        }
-        .role-card {
-            background: #FAFCF9;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            padding: 10px 12px;
-            transition: all 0.2s ease;
-        }
-        .role-card:hover {
-            border-color: var(--accent-blue);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 10px rgba(0, 130, 64, 0.04);
-        }
-        .role-name {
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: var(--accent-blue);
-            margin-bottom: 4px;
+        .cover-right-visual {
+            width: 55%;
+            height: 100%;
+            position: relative;
             display: flex;
             align-items: center;
-            gap: 6px;
-        }
-        .role-value {
-            font-size: 0.76rem;
-            color: var(--text-main);
-            line-height: 1.4;
-        }
-
-        /* 4 Dimensions Grid style for Slide 2 */
-        .pmo-grid-2x2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-top: 8px;
-        }
-        .dim-card-2x2 {
-            background: #FAFCF9;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            padding: 16px;
-            display: flex;
-            gap: 12px;
-            transition: all 0.2s ease;
-        }
-        .dim-card-2x2:hover {
-            border-color: var(--accent-blue);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 10px rgba(0, 130, 64, 0.04);
-        }
-        .dim-card-icon {
-            font-size: 2rem;
-            display: flex;
-            align-items: flex-start;
             justify-content: center;
         }
-        .dim-card-body h3 {
-            font-size: 1.05rem;
-            color: var(--accent-indigo);
-            margin-bottom: 4px;
-            font-weight: 700;
+        .cover-product {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+            border-radius: 24px;
+            box-shadow: 0 12px 36px rgba(129, 140, 248, 0.22);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transform: scale(0);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .dim-card-body h4 {
-            font-size: 0.8rem;
+        .active .cover-product {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .cover-product-inner {
+            font-size: 2.8rem;
+            animation: pulse 3s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .cover-view {
+            position: absolute;
+            width: 135px;
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            border-radius: var(--radius-md);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            text-align: center;
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            z-index: 5;
+        }
+        .cover-view-org {
+            top: 25px;
+            left: 20px;
+            transform: translateY(20px);
+            transition-delay: 0.3s;
+            border-top: 4px solid var(--accent-purple);
+        }
+        .cover-view-all {
+            bottom: 25px;
+            left: 50%;
+            transform: translate(-50%, 20px);
+            transition-delay: 0.5s;
+            border-top: 4px solid var(--accent-blue);
+        }
+        .cover-view-goal {
+            top: 25px;
+            right: 20px;
+            transform: translateY(20px);
+            transition-delay: 0.7s;
+            border-top: 4px solid var(--accent-emerald);
+        }
+        .active .cover-view {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+        .active .cover-view-all {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+        .cover-view h3 {
+            font-size: 0.88rem;
+            font-weight: 700;
+            margin: 0 0 3px 0;
+            color: var(--text-main);
+        }
+        .cover-view p {
+            font-size: 0.7rem;
             color: var(--text-muted);
-            margin-bottom: 8px;
+            margin: 0;
+            line-height: 1.35;
+        }
+        .cover-line {
+            position: absolute;
+            stroke: rgba(129, 140, 248, 0.2);
+            stroke-width: 1.5;
+            stroke-dasharray: 4 4;
+            fill: none;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            transition-delay: 0.9s;
+            z-index: 2;
+        }
+        .active .cover-line {
+            opacity: 1;
+        }
+
+        /* Slide 2: Three Frameworks cards */
+        .framework-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(25px);
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+        }
+        .active .framework-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .framework-card:nth-child(1) { transition-delay: 0.1s; }
+        .framework-card:nth-child(2) { transition-delay: 0.2s; }
+        .framework-card:nth-child(3) { transition-delay: 0.3s; }
+        .framework-icon {
+            font-size: 2.2rem;
+            margin-bottom: 4px;
+        }
+        .framework-card h3 {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--accent-indigo);
+            margin: 0;
+        }
+        .framework-card h4 {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin: 0;
             font-weight: 500;
         }
-        .dim-card-body p {
+        .framework-card p {
             font-size: 0.84rem;
             color: var(--text-main);
-            line-height: 1.5;
             margin: 0;
+            line-height: 1.5;
         }
 
-        /* timeline styles for lifecycle Slide 5 */
-        .timeline-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: stretch;
-            position: relative;
-            margin-top: 28px;
-            padding: 10px 0;
-            width: 100%;
+        /* Slide 3: APOM SVG styling */
+        .apom-section {
+            opacity: 0.15;
+            transition: all 0.5s ease;
         }
-        .timeline-line {
-            position: absolute;
-            top: 26px;
-            left: 8%;
-            right: 8%;
-            height: 4px;
-            background: #E1E8DE;
-            z-index: 1;
-        }
-        .timeline-step {
-            width: 16%;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .timeline-badge {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: #FFFFFF;
-            border: 4px solid var(--accent-blue);
-            color: var(--accent-blue);
-            font-weight: 800;
-            font-size: 1.15rem;
+        .apom-label-tag {
+            background: rgba(129, 140, 248, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.82rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 130, 64, 0.08);
-            margin-bottom: 12px;
+            gap: 8px;
             transition: all 0.3s ease;
         }
-        .timeline-step:hover .timeline-badge {
-            transform: scale(1.1);
-            background: var(--accent-blue);
-            color: #FFFFFF;
-        }
-        .timeline-step-title {
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: var(--accent-indigo);
-            margin-bottom: 6px;
-        }
-        .timeline-step-desc {
-            font-size: 0.74rem;
-            color: var(--text-muted);
-            line-height: 1.4;
-            padding: 0 4px;
+        .active .apom-label-tag:hover {
+            border-color: var(--accent-indigo);
+            background: rgba(129, 140, 248, 0.08);
         }
 
-        /* Interactive breakpoint buttons in Slide 7 */
-        .breakpoint-select-grid {
+        /* Slide 4: Product Canvas */
+        .canvas-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 12px;
-            margin-bottom: 14px;
+            margin-top: 8px;
+            height: 290px;
         }
-        .breakpoint-option-card {
-            background: var(--bg-card);
+        .canvas-col {
+            background: #FFFFFF;
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
-            padding: 12px;
-            text-align: center;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.88rem;
-            color: var(--text-main);
-            transition: all 0.2s ease;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            overflow-y: auto;
         }
-        .breakpoint-option-card:hover {
-            border-color: var(--accent-blue);
-            background: var(--bg-card-hover);
-        }
-        .breakpoint-option-card.selected {
-            background: rgba(0, 130, 64, 0.05);
-            border-color: var(--accent-blue);
+        .canvas-col-title {
+            font-size: 0.82rem;
+            font-weight: bold;
             color: var(--accent-indigo);
-            box-shadow: 0 0 0 2px rgba(0, 130, 64, 0.2);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 4px;
+            margin-bottom: 2px;
         }
+        .canvas-sticky {
+            font-size: 0.74rem;
+            padding: 6px 8px;
+            border-radius: 4px;
+            box-shadow: 1px 2px 4px rgba(0,0,0,0.05);
+            font-weight: 600;
+            line-height: 1.35;
+        }
+        .sticky-yellow { background: #FFF9C4; color: #5D4037; }
+        .sticky-blue { background: #E1F5FE; color: #0277BD; }
+        .sticky-green { background: #E8F5E9; color: #2E7D32; }
 
-        /* Loop diagram cards for Slide 5 */
-        .loop-card {
+        /* Slide 5: Impact Map Tree */
+        .imap-tree-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            height: 290px;
+            position: relative;
+            margin-top: 15px;
+            padding: 0 8px;
+            box-sizing: border-box;
+        }
+        .imap-column {
+            width: 23%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 5;
+        }
+        .imap-card {
             background: #FFFFFF;
             border: 1px solid var(--border-color);
             border-radius: var(--radius-sm);
             padding: 8px 10px;
-            width: 195px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
-            z-index: 5;
-            box-sizing: border-box;
-            transition: box-shadow 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            font-size: 0.74rem;
+            line-height: 1.35;
+            position: relative;
+            transition: all 0.3s ease;
         }
-        .loop-card:hover {
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
-        }
-        .loop-card-title {
-            font-size: 0.82rem;
+        .imap-card-title {
+            font-size: 0.68rem;
             font-weight: bold;
-            margin-bottom: 3px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            letter-spacing: 0.05em;
         }
-        .loop-card-desc {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            line-height: 1.3;
+        .imap-card-content {
+            font-weight: 700;
+            color: var(--text-main);
         }
+        .imap-question-mark {
+            position: absolute;
+            background: var(--accent-rose);
+            color: #FFFFFF;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 800;
+            top: -5px;
+            right: -5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Slide 6 & 7: Guides styling */
+        .guide-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+        }
+        .guide-step-num {
+            width: 22px;
+            height: 22px;
+            background: var(--accent-blue);
+            color: #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.78rem;
+            font-weight: 800;
+        }
+        .poster-preview-card {
+            background: #FAFCF9;
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.01);
+            position: relative;
+        }
+        .poster-preview-card h4 {
+            font-size: 0.82rem;
+            margin: 4px 0 0 0;
+            color: var(--accent-indigo);
+            font-weight: 700;
+        }
+
+        /* Slide 8: Table styling */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+        .comparison-table th {
+            background: rgba(129, 140, 248, 0.06);
+            color: var(--accent-indigo);
+            font-weight: 700;
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .comparison-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border-color);
+            background: #FFFFFF;
+            line-height: 1.45;
+            color: var(--text-main);
+        }
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        .comparison-table strong {
+            color: var(--accent-blue);
+        }
+
     </style>
 </head>
 <body>
@@ -285,335 +384,574 @@
     <div class="slide-deck">
         <div class="slides-wrapper">
             
-            <!-- 投影片 1：Connection - 痛點連結發散與歸納 -->
-            <div class="slide-item" id="slide-ground-connection">
-                <div class="slide-content">
-                    <div class="card-header" style="margin-bottom: 8px;">
-                        <span class="badge badge-blue">模組一｜Ground</span>
-                        <span class="badge badge-amber">痛點發散與歸納</span>
-                    </div>
-
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <h2 style="color: var(--accent-blue); font-size: 1.3rem; margin: 0;">
-                            🤝 痛點探索：團隊在推進產品時最常遇到什麼問題？
-                        </h2>
-                        <div id="canvas-controls" style="display: flex; gap: 8px;">
-                            <button id="spawn-btn" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.78rem;">➕ 點擊產生痛點</button>
-                            <button id="spawn-all-btn" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.78rem; background: #EDF1EA; border-color: #D1DED0;">⚡ 快速投射所有 (0/24)</button>
-                            <button id="group-btn" class="btn btn-primary" style="padding: 6px 14px; font-size: 0.78rem;" disabled>📂 自動分類歸納</button>
+            <!-- 投影片 1：模組封面 -->
+            <div class="slide-item" id="slide-ground-cover">
+                <div class="slide-content" style="overflow-y: hidden;">
+                    <div class="cover-layout">
+                        <div class="cover-left-info">
+                            <span class="badge badge-blue" style="width: fit-content;">MODULE 1</span>
+                            <h1 style="font-size: 2.8rem; font-weight: 800; color: var(--accent-indigo); margin: 0; line-height: 1.15;">
+                                G｜Ground
+                            </h1>
+                            <h2 style="font-size: 1.45rem; font-weight: 700; color: var(--accent-blue); margin: 0; line-height: 1.25;">
+                                建立產品工作的共同座標
+                            </h2>
+                            <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 4px; line-height: 1.5;">
+                                不同的框架，幫助我們看見產品工作的不同面向。
+                            </p>
                         </div>
-                    </div>
+                        <div class="cover-right-visual">
+                            <!-- SVG lines back to center -->
+                            <svg width="400" height="380" viewBox="0 0 400 380" style="position: absolute; z-index: 1;">
+                                <!-- Org Net -->
+                                <path d="M 90 90 L 200 190" class="cover-line" />
+                                <!-- Product All -->
+                                <path d="M 200 290 L 200 190" class="cover-line" />
+                                <!-- Goal Path -->
+                                <path d="M 310 90 L 200 190" class="cover-line" />
+                            </svg>
 
-                    <div class="pain-point-canvas" id="pain-point-canvas">
-                        <!-- 四大分類背景框，最初隱藏，分類時淡入 -->
-                        <div class="canvas-bg-columns" id="canvas-bg-columns">
-                            <div class="canvas-bg-col" id="bg-col-direction">
-                                <h3>🎯 方向問題</h3>
+                            <!-- Center product box -->
+                            <div class="cover-product" style="left: 0; top: 0;">
+                                <div class="cover-product-inner">📱</div>
                             </div>
-                            <div class="canvas-bg-col" id="bg-col-collaboration">
-                                <h3>👥 協作問題</h3>
+
+                            <!-- Three viewing angles -->
+                            <div class="cover-view cover-view-org">
+                                <h3>👥 組織網絡</h3>
+                                <p>以結構體制透視運作模式</p>
                             </div>
-                            <div class="canvas-bg-col" id="bg-col-execution">
-                                <h3>⚙️ 執行問題</h3>
+                            <div class="cover-view cover-view-all">
+                                <h3>🎯 產品全貌</h3>
+                                <p>展開視角洞悉產品完整輪廓</p>
                             </div>
-                            <div class="canvas-bg-col" id="bg-col-outcome">
-                                <h3>📈 成果問題</h3>
+                            <div class="cover-view cover-view-goal">
+                                <h3>📈 目標與因果</h3>
+                                <p>尋找行動與成果的邏輯關聯</p>
                             </div>
                         </div>
-                        
-                        <!-- 動態產生的便籤池 -->
-                        <div id="sticky-pool" style="position: absolute; top:0; left:0; width:100%; height:100%; pointer-events: none;"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- 投影片 2：Concept 1 - 四大類的斷點(痛點)說明 -->
-            <div class="slide-item" id="slide-ground-concept2">
+            <!-- 投影片 2：三個框架，三種觀看方式 -->
+            <div class="slide-item" id="slide-ground-three-views">
                 <div class="slide-content">
-                    <div class="card-header" style="margin-bottom: 12px;">
-                        <span class="badge badge-rose">反模式</span>
-                        <span class="badge badge-rose">常見斷點</span>
+                    <div class="card-header" style="margin-bottom: 6px;">
+                        <span class="badge badge-blue">觀看視角</span>
+                        <span class="badge badge-emerald">Three Viewpoints</span>
                     </div>
 
-                    <h2 style="color: var(--accent-rose); margin-bottom: 8px; font-size: 1.4rem;">
-                        ❌ 傳統交付流程中的 4 大核心斷點 (The Breakpoints)
+                    <h2 style="color: var(--accent-blue); margin-bottom: 2px; font-size: 1.35rem;">
+                        🧭 三個框架，三種觀看方式
                     </h2>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px;">
-                        當團隊落入「功能工廠 (Feature Factory)」思維，盲目追求輸出 (Output) 時，將在各個面向產生斷鏈：
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 10px;">
+                        每個框架選擇一個觀看方向，協助團隊整理複雜問題：
                     </p>
 
-                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 10px;">
-                        <div style="background: #FFF8F7; border: 1px solid rgba(235, 87, 87, 0.15); border-radius: var(--radius-md); padding: 16px;">
-                            <h3 style="color: var(--accent-rose); font-size: 0.95rem; margin-bottom: 8px; font-weight: 700;">🎯 方向斷點：盲目交付</h3>
-                            <p style="font-size: 0.78rem; line-height: 1.5; color: var(--text-main); margin-bottom: 0;">
-                                只關注老闆交派的規格，缺乏使用者痛點或商業價值分析。團隊全力以赴把功能「做完」，卻發現對指標毫無貢獻。
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 10px;">
+                        <!-- APOM -->
+                        <div class="framework-card" style="border-top: 4px solid var(--accent-purple);">
+                            <div class="framework-icon">🔄</div>
+                            <h3>APOM</h3>
+                            <h4>看組織系統</h4>
+                            <p style="font-size: 0.78rem; color: var(--text-muted); border-top: 1px dashed var(--border-color); padding-top: 8px; margin-top: 4px;">
+                                組織如何支持產品持續創造價值？檢視策略、人、規則與價值循環。
                             </p>
                         </div>
-                        <div style="background: #FFF8F7; border: 1px solid rgba(235, 87, 87, 0.15); border-radius: var(--radius-md); padding: 16px;">
-                            <h3 style="color: var(--accent-rose); font-size: 0.95rem; margin-bottom: 8px; font-weight: 700;">👥 協作斷點：交接壁壘</h3>
-                            <p style="font-size: 0.78rem; line-height: 1.5; color: var(--text-main); margin-bottom: 0;">
-                                瀑布式流水分工。UX 設計完直接轉手開發，上線前才突然把法規/風控拉進來，導致重大缺陷太晚暴露、頻繁返工。
+                        <!-- Product Canvas -->
+                        <div class="framework-card" style="border-top: 4px solid var(--accent-blue);">
+                            <div class="framework-icon">📋</div>
+                            <h3>Product Canvas</h3>
+                            <h4>看產品全貌</h4>
+                            <p style="font-size: 0.78rem; color: var(--text-muted); border-top: 1px dashed var(--border-color); padding-top: 8px; margin-top: 4px;">
+                                團隊需要共同理解產品的哪些面向？將目標、使用者、細節放在共同視圖。
                             </p>
                         </div>
-                        <div style="background: #FFF8F7; border: 1px solid rgba(235, 87, 87, 0.15); border-radius: var(--radius-md); padding: 16px;">
-                            <h3 style="color: var(--accent-rose); font-size: 0.95rem; margin-bottom: 8px; font-weight: 700;">⚙️ 執行斷點：時程至上</h3>
-                            <p style="font-size: 0.78rem; line-height: 1.5; color: var(--text-main); margin-bottom: 0;">
-                                時程被一巴掌拍死，只能砍規格、欠技術債。QA 沒有時間做完整驗證，草率發布後 Bug 滿天飛，維護成本倍增。
-                            </p>
-                        </div>
-                        <div style="background: #FFF8F7; border: 1px solid rgba(235, 87, 87, 0.15); border-radius: var(--radius-md); padding: 16px;">
-                            <h3 style="color: var(--accent-rose); font-size: 0.95rem; margin-bottom: 8px; font-weight: 700;">📈 成果斷點：上線即結案</h3>
-                            <p style="font-size: 0.78rem; line-height: 1.5; color: var(--text-main); margin-bottom: 0;">
-                                功能部署成功即算專案獲勝。不上線追蹤、不埋點，沒有人在意使用者到底用不用、痛點改了沒，陷入學習死路。
+                        <!-- Impact Map -->
+                        <div class="framework-card" style="border-top: 4px solid var(--accent-emerald);">
+                            <div class="framework-icon">🌳</div>
+                            <h3>Impact Map</h3>
+                            <h4>看成果因果</h4>
+                            <p style="font-size: 0.78rem; color: var(--text-muted); border-top: 1px dashed var(--border-color); padding-top: 8px; margin-top: 4px;">
+                                哪些人的哪些改變可能帶來成果？用樹狀因果鏈連結目標與產出。
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 投影片 3：Concept 2 - 產品生命週期循環圖 -->
-            <div class="slide-item" id="slide-ground-concept4">
+            <!-- 投影片 3：APOM 代表性範例 -->
+            <div class="slide-item" id="slide-ground-apom">
                 <div class="slide-content" style="overflow-y: hidden;">
-                    <div class="card-header" style="margin-bottom: 6px;">
-                        <span class="badge badge-blue">產品生命週期</span>
-                        <span class="badge badge-emerald">Lifecycle Loop</span>
+                    <div class="card-header" style="margin-bottom: 4px;">
+                        <span class="badge badge-purple">看組織系統</span>
+                        <span class="badge badge-emerald">APOM Structure</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 2px; font-size: 1.35rem;">
+                        APOM｜看組織如何運作產品
+                    </h2>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">
+                        APOM 從四個面向檢視，組織是否具備持續經營產品的條件：
+                    </p>
+
+                    <div style="display: flex; gap: 16px; align-items: stretch; height: 300px; margin-top: 6px;">
+                        <!-- SVG 70% width for diagram -->
+                        <div style="width: 70%; background: #FAFCF9; border: 1px solid var(--border-color); border-radius: 12px; display: flex; align-items: center; justify-content: center; position: relative;">
+                            <svg width="100%" height="100%" viewBox="0 0 450 280">
+                                <!-- Background grid borders -->
+                                <line x1="225" y1="20" x2="225" y2="240" stroke="var(--border-color)" stroke-width="2" stroke-dasharray="4 4" />
+                                <line x1="20" y1="130" x2="430" y2="130" stroke="var(--border-color)" stroke-width="2" stroke-dasharray="4 4" />
+
+                                <!-- Strategy Quadrant -->
+                                <g id="apom-strategy" class="apom-section">
+                                    <rect x="25" y="25" width="190" height="95" rx="8" fill="rgba(129, 140, 248, 0.04)" stroke="var(--accent-indigo)" stroke-width="1.5" />
+                                    <text x="35" y="48" font-size="12" font-weight="800" fill="var(--accent-indigo)">Strategy</text>
+                                    <text x="35" y="64" font-size="10" fill="var(--text-muted)">The Why</text>
+                                    <text x="35" y="85" font-size="9" fill="var(--text-main)" font-weight="600">• Value, Business, Tech, Ops</text>
+                                </g>
+
+                                <!-- People Quadrant -->
+                                <g id="apom-people" class="apom-section">
+                                    <rect x="235" y="25" width="190" height="95" rx="8" fill="rgba(129, 140, 248, 0.04)" stroke="var(--accent-purple)" stroke-width="1.5" />
+                                    <text x="245" y="48" font-size="12" font-weight="800" fill="var(--accent-purple)">People</text>
+                                    <text x="245" y="64" font-size="10" fill="var(--text-muted)">The Who & how we interact</text>
+                                    <text x="245" y="85" font-size="9" fill="var(--text-main)" font-weight="600">• Org, Talent, Culture, Incentive</text>
+                                </g>
+
+                                <!-- Structure Quadrant -->
+                                <g id="apom-structure" class="apom-section">
+                                    <rect x="25" y="138" width="190" height="95" rx="8" fill="rgba(129, 140, 248, 0.04)" stroke="var(--accent-blue)" stroke-width="1.5" />
+                                    <text x="35" y="161" font-size="12" font-weight="800" fill="var(--accent-blue)">Structure</text>
+                                    <text x="35" y="177" font-size="10" fill="var(--text-muted)">The Rules & Tools</text>
+                                    <text x="35" y="198" font-size="9" fill="var(--text-main)" font-weight="600">• Governance, Process, Systems</text>
+                                </g>
+
+                                <!-- Value Cycle Quadrant -->
+                                <g id="apom-value" class="apom-section">
+                                    <rect x="235" y="138" width="190" height="95" rx="8" fill="rgba(129, 140, 248, 0.04)" stroke="var(--accent-emerald)" stroke-width="1.5" />
+                                    <text x="245" y="161" font-size="12" font-weight="800" fill="var(--accent-emerald)">Value Cycle</text>
+                                    <text x="245" y="177" font-size="10" fill="var(--text-muted)">Discovery & Delivery Loop</text>
+                                    <text x="245" y="198" font-size="9" fill="var(--text-main)" font-weight="600">• Discovery, Delivery, Operations</text>
+                                </g>
+
+                                <!-- Evidence-Based Base -->
+                                <g id="apom-evidence" class="apom-section">
+                                    <rect x="25" y="242" width="400" height="25" rx="6" fill="var(--accent-indigo)" />
+                                    <text x="225" y="258" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">Evidence-Based Approach</text>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <!-- Right Reference Legend -->
+                        <div style="width: 28%; display: flex; flex-direction: column; justify-content: center; gap: 8px;">
+                            <div class="apom-label-tag" style="border-left: 4px solid var(--accent-indigo);">
+                                <strong>Strategy</strong> 策略方向
+                            </div>
+                            <div class="apom-label-tag" style="border-left: 4px solid var(--accent-purple);">
+                                <strong>People</strong> 人與互動
+                            </div>
+                            <div class="apom-label-tag" style="border-left: 4px solid var(--accent-blue);">
+                                <strong>Structure</strong> 規則工具
+                            </div>
+                            <div class="apom-label-tag" style="border-left: 4px solid var(--accent-emerald);">
+                                <strong>Value Cycle</strong> 價值循環
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片 4：Product Canvas 代表性範例 -->
+            <div class="slide-item" id="slide-ground-canvas">
+                <div class="slide-content" style="overflow-y: hidden;">
+                    <div class="card-header" style="margin-bottom: 4px;">
+                        <span class="badge badge-blue">看產品全貌</span>
+                        <span class="badge badge-emerald">Product Canvas</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 2px; font-size: 1.35rem;">
+                        Product Canvas｜看見產品的完整輪廓
+                    </h2>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px;">
+                        Roman Pichler 畫布範例主題：<strong>CityRide 城市共乘服務</strong>
+                    </p>
+
+                    <!-- Pichler Grid -->
+                    <div class="canvas-grid">
+                        <!-- Top Goal / Metrics -->
+                        <div class="canvas-col" style="grid-column: span 2;">
+                            <div class="canvas-col-title">🎯 Goal & Metrics</div>
+                            <div class="canvas-sticky sticky-yellow canvas-sec-goal">
+                                <strong>Goal:</strong> 幫助通勤者以更低成本、更少轉乘的方式完成日常通勤。
+                            </div>
+                            <div class="canvas-sticky sticky-yellow canvas-sec-goal">
+                                <strong>Metrics:</strong> 配對成功率、等待時間、取消率、每週活躍用戶、重複使用率。
+                            </div>
+                        </div>
+
+                        <!-- Target Group -->
+                        <div class="canvas-col">
+                            <div class="canvas-col-title">👥 Target Group</div>
+                            <div class="canvas-sticky sticky-blue canvas-sec-target">每日跨區通勤者</div>
+                            <div class="canvas-sticky sticky-blue canvas-sec-target">願意提供共乘的駕駛</div>
+                            <div class="canvas-sticky sticky-blue canvas-sec-target">大眾運輸不便地區居民</div>
+                        </div>
+
+                        <!-- Product Name placeholder in layout -->
+                        <div class="canvas-col" style="background: rgba(129, 140, 248, 0.05); align-items: center; justify-content: center; border-style: dashed;">
+                            <span style="font-size: 0.76rem; font-weight: bold; color: var(--accent-indigo);">Product Name</span>
+                            <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--accent-indigo); margin: 4px 0 0 0;">CityRide</h3>
+                        </div>
+
+                        <!-- Big Picture (Span 2 for layout balance) -->
+                        <div class="canvas-col" style="grid-column: span 2;">
+                            <div class="canvas-col-title">🗺️ Big Picture (使用者旅程)</div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                                <div class="canvas-sticky sticky-green canvas-sec-picture">1. 建立及搜尋相近通勤路線</div>
+                                <div class="canvas-sticky sticky-green canvas-sec-picture">2. 乘客與駕駛智慧配對</div>
+                                <div class="canvas-sticky sticky-green canvas-sec-picture">3. 確認上下車地點及導航</div>
+                                <div class="canvas-sticky sticky-green canvas-sec-picture">4. 自動完成付款並評價體驗</div>
+                            </div>
+                        </div>
+
+                        <!-- Product Details -->
+                        <div class="canvas-col" style="grid-column: span 2;">
+                            <div class="canvas-col-title">⚙️ Product Details (功能細節)</div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                                <div class="canvas-sticky sticky-blue canvas-sec-details">路線相似度演算法計算</div>
+                                <div class="canvas-sticky sticky-blue canvas-sec-details">雙向實名身分驗證機制</div>
+                                <div class="canvas-sticky sticky-blue canvas-sec-details">金流分帳及臨時取消扣款規則</div>
+                                <div class="canvas-sticky sticky-blue canvas-sec-details">乘客與駕駛的安全隱私保護</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片 5：Impact Map 代表性範例 -->
+            <div class="slide-item" id="slide-ground-impact">
+                <div class="slide-content" style="overflow-y: hidden;">
+                    <div class="card-header" style="margin-bottom: 4px;">
+                        <span class="badge badge-emerald">看成果因果</span>
+                        <span class="badge badge-emerald">Impact Map</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 2px; font-size: 1.35rem;">
+                        Impact Map｜看見成果與產出的連結
+                    </h2>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px;">
+                        範例主題：<strong>提升線上課程完成率</strong>
+                    </p>
+
+                    <!-- Horizontal Node Tree Map -->
+                    <div class="imap-tree-container">
+                        <!-- SVG background link paths -->
+                        <svg width="100%" height="100%" viewBox="0 0 540 290" style="position: absolute; left:0; top:0; z-index: 1; pointer-events: none;">
+                            <!-- Links from Why to Whos -->
+                            <path d="M 120 135 C 135 135, 135 60, 150 60" fill="none" stroke="rgba(129, 140, 248, 0.2)" stroke-width="1.5" />
+                            <path d="M 120 135 C 135 135, 135 180, 150 180" fill="none" stroke="rgba(129, 140, 248, 0.2)" stroke-width="1.5" />
+                            
+                            <!-- Links from Whos to Hows -->
+                            <path d="M 235 60 C 245 60, 245 40, 255 40" fill="none" stroke="rgba(129, 140, 248, 0.2)" stroke-width="1.5" />
+                            <path d="M 235 60 C 245 60, 245 100, 255 100" fill="none" stroke="rgba(129, 140, 248, 0.2)" stroke-width="1.5" />
+                            <path d="M 235 180 L 255 180" fill="none" stroke="rgba(129, 140, 248, 0.2)" stroke-width="1.5" />
+
+                            <!-- Links from Hows to Whats -->
+                            <path d="M 370 40 L 390 40" fill="none" stroke="rgba(129, 140, 248, 0.2)" stroke-width="1.5" />
+                            <path d="M 370 100 L 390 100" fill="none" stroke="rgba(129, 140, 248, 0.2)" stroke-width="1.5" />
+                            <path d="M 370 180 L 390 180" fill="none" stroke="rgba(129, 140, 248, 0.2)" stroke-width="1.5" />
+                        </svg>
+
+                        <!-- WHY Column -->
+                        <div class="imap-column" style="justify-content: center;">
+                            <div class="imap-card imap-why" style="border-left: 4px solid var(--accent-rose);">
+                                <div class="imap-card-title" style="color: var(--accent-rose);">1. WHY (商務目標)</div>
+                                <div class="imap-card-content" style="font-size: 0.72rem;">三個月內，將新學員的課程完成率由 35% 提升至 55%。</div>
+                            </div>
+                        </div>
+
+                        <!-- WHO Column -->
+                        <div class="imap-column" style="justify-content: space-around; padding: 20px 0;">
+                            <div class="imap-card imap-who" style="border-left: 4px solid var(--accent-indigo);">
+                                <div class="imap-card-title" style="color: var(--accent-indigo);">2. WHO</div>
+                                <div class="imap-card-content">新學員</div>
+                            </div>
+                            <div class="imap-card imap-who" style="border-left: 4px solid var(--accent-purple);">
+                                <div class="imap-card-title" style="color: var(--accent-purple);">2. WHO</div>
+                                <div class="imap-card-content">課程講師</div>
+                            </div>
+                        </div>
+
+                        <!-- HOW Column -->
+                        <div class="imap-column" style="justify-content: space-around;">
+                            <div class="imap-card imap-how" style="border-left: 4px solid var(--accent-blue);">
+                                <div class="imap-card-title" style="color: var(--accent-blue);">3. HOW (行為改變)</div>
+                                <div class="imap-card-content">更早開始第一堂課</div>
+                            </div>
+                            <div class="imap-card imap-how" style="border-left: 4px solid var(--accent-blue);">
+                                <div class="imap-card-title" style="color: var(--accent-blue);">3. HOW (行為改變)</div>
+                                <div class="imap-card-content">每週安排固定學習時間</div>
+                            </div>
+                            <div class="imap-card imap-how" style="border-left: 4px solid var(--accent-blue);">
+                                <div class="imap-card-title" style="color: var(--accent-blue);">3. HOW (行為改變)</div>
+                                <div class="imap-card-content">提供較短的學習單元</div>
+                            </div>
+                        </div>
+
+                        <!-- WHAT Column -->
+                        <div class="imap-column" style="justify-content: space-around;">
+                            <div class="imap-card imap-what" style="border-left: 4px solid var(--accent-emerald);">
+                                <div class="imap-question-mark imap-question">?</div>
+                                <div class="imap-card-title" style="color: var(--accent-emerald);">4. WHAT (產出/功能)</div>
+                                <div class="imap-card-content">首週學習通知與提醒</div>
+                            </div>
+                            <div class="imap-card imap-what" style="border-left: 4px solid var(--accent-emerald);">
+                                <div class="imap-question-mark imap-question">?</div>
+                                <div class="imap-card-title" style="color: var(--accent-emerald);">4. WHAT (產出/功能)</div>
+                                <div class="imap-card-content">個人行事曆同步與進度計畫</div>
+                            </div>
+                            <div class="imap-card imap-what" style="border-left: 4px solid var(--accent-emerald);">
+                                <div class="imap-question-mark imap-question">?</div>
+                                <div class="imap-card-title" style="color: var(--accent-emerald);">4. WHAT (產出/功能)</div>
+                                <div class="imap-card-content">小單元微課程改裝</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片 6：分組研究任務 -->
+            <div class="slide-item" id="slide-ground-group-task">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 8px;">
+                        <span class="badge badge-blue">分組實作</span>
+                        <span class="badge badge-emerald">Group Study</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 2px; font-size: 1.35rem;">
+                        分組研究｜成為一個框架的專家
+                    </h2>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px;">
+                        閱讀下方指定的研究問題與海報任務，完成您的框架海報：
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; align-items: start; margin-top: 10px;">
+                        <!-- Left workflow -->
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <div class="guide-step">
+                                <span class="guide-step-num">1</span>
+                                <span>分組：A組 (APOM) / B組 (Canvas) / C組 (Impact Map)</span>
+                            </div>
+                            <div class="guide-step">
+                                <span class="guide-step-num">2</span>
+                                <span>閱讀框架範例並使用 Prompt 進行深度研究</span>
+                            </div>
+                            <div class="guide-step">
+                                <span class="guide-step-num">3</span>
+                                <span>釐清固定結構與各面向主要關注之不確定性</span>
+                            </div>
+                            <div class="guide-step">
+                                <span class="guide-step-num">4</span>
+                                <span>將核心發現與研究結果寫在便利貼上，填入大型海報中</span>
+                            </div>
+                        </div>
+
+                        <!-- Right Poster Thumbnail previews -->
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <h3 style="font-size: 0.88rem; font-weight: bold; color: var(--text-main); margin: 0;">大型海報印出規格預覽</h3>
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                                <div class="poster-preview-card">
+                                    <span style="font-size: 1.2rem;">🔄</span>
+                                    <h4>APOM 海報</h4>
+                                    <span style="font-size: 0.55rem; color: var(--text-muted);">4 Quadrants</span>
+                                </div>
+                                <div class="poster-preview-card">
+                                    <span style="font-size: 1.2rem;">📋</span>
+                                    <h4>Canvas 海報</h4>
+                                    <span style="font-size: 0.55rem; color: var(--text-muted);">6 Blocks</span>
+                                </div>
+                                <div class="poster-preview-card">
+                                    <span style="font-size: 1.2rem;">🌳</span>
+                                    <h4>Impact Map</h4>
+                                    <span style="font-size: 0.55rem; color: var(--text-muted);">WHY-WHO-HOW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片 7：世界咖啡館 -->
+            <div class="slide-item" id="slide-ground-cafe">
+                <div class="slide-content" style="overflow-y: hidden;">
+                    <div class="card-header" style="margin-bottom: 8px;">
+                        <span class="badge badge-blue">課堂交流</span>
+                        <span class="badge badge-emerald">World Café</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 2px; font-size: 1.35rem;">
+                        世界咖啡館｜交換三種觀看方式
+                    </h2>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px;">
+                        每組保留一位桌長，其餘組員順時針移動至下一桌進行知識交流：
+                    </p>
+
+                    <div style="display: flex; gap: 24px; align-items: center; height: 290px; margin-top: 10px;">
+                        <!-- Left Animated SVG for movement -->
+                        <div style="width: 50%; height: 100%; border: 1px solid var(--border-color); border-radius: 12px; background: #FAFCF9; display: flex; align-items: center; justify-content: center; position: relative;">
+                            <svg width="240" height="240" viewBox="0 0 200 200">
+                                <!-- Dashed paths showing rotation -->
+                                <path id="path-1" d="M 100 30 C 130 30, 160 70, 150 120" fill="none" stroke="var(--accent-purple)" stroke-dasharray="4 4" class="cafe-path" />
+                                <path id="path-2" d="M 150 130 C 130 160, 70 160, 50 130" fill="none" stroke="var(--accent-blue)" stroke-dasharray="4 4" class="cafe-path" />
+                                <path id="path-3" d="M 50 120 C 40 70, 70 30, 100 30" fill="none" stroke="var(--accent-emerald)" stroke-dasharray="4 4" class="cafe-path" />
+
+                                <!-- Table 1 (Top) -->
+                                <g class="cafe-table" transform="translate(100, 30)">
+                                    <circle r="22" fill="#FFFFFF" stroke="var(--accent-purple)" stroke-width="2" />
+                                    <text font-size="8" font-weight="800" text-anchor="middle" y="3" fill="var(--accent-purple)">APOM</text>
+                                </g>
+                                <!-- Table 2 (Bottom Right) -->
+                                <g class="cafe-table" transform="translate(150, 130)">
+                                    <circle r="22" fill="#FFFFFF" stroke="var(--accent-blue)" stroke-width="2" />
+                                    <text font-size="8" font-weight="800" text-anchor="middle" y="3" fill="var(--accent-blue)">Canvas</text>
+                                </g>
+                                <!-- Table 3 (Bottom Left) -->
+                                <g class="cafe-table" transform="translate(50, 130)">
+                                    <circle r="22" fill="#FFFFFF" stroke="var(--accent-emerald)" stroke-width="2" />
+                                    <text font-size="8" font-weight="800" text-anchor="middle" y="3" fill="var(--accent-emerald)">Impact</text>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <!-- Right Instructions -->
+                        <div style="width: 48%; display: flex; flex-direction: column; gap: 10px;">
+                            <div style="background: rgba(129, 140, 248, 0.04); border-left: 4px solid var(--accent-blue); padding: 10px; border-radius: 4px;">
+                                <strong style="font-size: 0.85rem; color: var(--accent-indigo);">桌長任務 (Host)</strong>
+                                <p style="font-size: 0.74rem; color: var(--text-main); margin-top: 4px; line-height: 1.4;">說明框架結構、各面向作用、主要觀看方向及釐清之不確定性。</p>
+                            </div>
+                            <div style="background: rgba(16, 185, 129, 0.04); border-left: 4px solid var(--accent-emerald); padding: 10px; border-radius: 4px;">
+                                <strong style="font-size: 0.85rem; color: var(--accent-emerald);">訪客任務 (Visitor)</strong>
+                                <p style="font-size: 0.74rem; color: var(--text-main); margin-top: 4px; line-height: 1.4;">提問、交流、並在海報上新增一張便利貼，記錄該框架特別關注的問題。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片 8：三種觀看方式比較 -->
+            <div class="slide-item" id="slide-ground-compare">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 2px;">
+                        <span class="badge badge-blue">綜合收斂</span>
+                        <span class="badge badge-emerald">Comparison Grid</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 2px; font-size: 1.35rem;">
+                        同一個產品工作，可以從不同方向理解
+                    </h2>
+
+                    <!-- Comparison Table -->
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 15%;">框架</th>
+                                <th style="width: 32%;">固定結構</th>
+                                <th style="width: 16%;">觀看方向</th>
+                                <th style="width: 22%;">主要問題</th>
+                                <th style="width: 15%;">主要不確定性</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>APOM</strong></td>
+                                <td><strong>Strategy</strong>, <strong>People</strong>, <strong>Structure</strong>, <strong>Value Cycle</strong></td>
+                                <td>組織系統</td>
+                                <td>組織如何支持產品持續創造價值？</td>
+                                <td>運作條件是否齊備</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Product Canvas</strong></td>
+                                <td><strong>Goal</strong>, <strong>Metrics</strong>, <strong>Target Group</strong>, <strong>Big Picture</strong>, <strong>Product Details</strong></td>
+                                <td>產品全貌</td>
+                                <td>團隊需要共同理解產品的哪些面向？</td>
+                                <td>團隊理解是否一致</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Impact Map</strong></td>
+                                <td><strong>WHY</strong>, <strong>WHO</strong>, <strong>HOW</strong>, <strong>WHAT</strong></td>
+                                <td>成果因果</td>
+                                <td>哪些人的哪些改變可能帶來成果？</td>
+                                <td>產出是否促成改變</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 投影片 9：Ground 收尾 -->
+            <div class="slide-item" id="slide-ground-conclusion">
+                <div class="slide-content" style="overflow-y: hidden;">
+                    <div class="card-header" style="margin-bottom: 8px;">
+                        <span class="badge badge-blue">模組收尾</span>
+                        <span class="badge badge-emerald">Module Wrap-up</span>
                     </div>
 
                     <h2 style="color: var(--accent-blue); margin-bottom: 2px; font-size: 1.35rem; text-align: center;">
-                        🔄 產品生命週期循環圖 (Lifecycle Loop)
+                        框架讓不確定性變得可見
                     </h2>
-                    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 10px; text-align: center;">
-                        產品開發並非直線，而是一個持續迭代、學習與價值驗證的閉環循環：
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px; text-align: center;">
+                        框架提供一個固定結構，讓團隊能夠閱讀、討論與檢查複雜問題：
                     </p>
 
-                    <!-- Circular Diagram Container -->
-                    <div style="position: relative; width: 100%; height: 350px; display: flex; align-items: center; justify-content: center; margin-top: 10px; box-sizing: border-box;">
-                        
-                        <!-- SVG Ring and Guide Lines -->
-                        <svg width="540" height="400" viewBox="0 0 540 400" style="position: absolute; z-index: 1;">
-                            <defs>
-                                <marker id="arrow-red" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#FF4B4B" />
-                                </marker>
-                                <marker id="arrow-orange" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#FF9F2E" />
-                                </marker>
-                                <marker id="arrow-yellow" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F4D03F" />
-                                </marker>
-                                <marker id="arrow-green" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#2ECC71" />
-                                </marker>
-                                <marker id="arrow-blue" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3498DB" />
-                                </marker>
-                            </defs>
+                    <div style="display: flex; gap: 24px; align-items: center; justify-content: space-between; height: 260px; margin-top: 10px;">
+                        <!-- Left Framework diagram convergence -->
+                        <div style="width: 50%; height: 100%; border: 1px solid var(--border-color); border-radius: 12px; background: #FAFCF9; display: flex; align-items: center; justify-content: center; position: relative;">
+                            <svg width="220" height="220" viewBox="0 0 200 200">
+                                <!-- Paths merging into center Outcome -->
+                                <path d="M 40 40 Q 100 40, 100 80" fill="none" stroke="var(--accent-purple)" stroke-width="2" stroke-dasharray="3 3" />
+                                <path d="M 160 40 Q 100 40, 100 80" fill="none" stroke="var(--accent-blue)" stroke-width="2" stroke-dasharray="3 3" />
+                                <path d="M 100 160 L 100 120" fill="none" stroke="var(--accent-emerald)" stroke-width="2" stroke-dasharray="3 3" />
 
-                            <!-- Guide Lines (connecting cards to circle) -->
-                            <!-- Red (1) -->
-                            <path d="M 390 50 L 350 50 L 331 109" fill="none" stroke="#FF4B4B" stroke-width="1.5" stroke-dasharray="3 3" />
-                            <circle cx="331" cy="109" r="4" fill="#FF4B4B" />
+                                <!-- Mini APOM Icon (top left) -->
+                                <g transform="translate(40, 40)">
+                                    <circle r="15" fill="#FFFFFF" stroke="var(--accent-purple)" stroke-width="1.5" />
+                                    <text font-size="6" text-anchor="middle" y="2" fill="var(--accent-purple)">APOM</text>
+                                </g>
+                                <!-- Mini Canvas Icon (top right) -->
+                                <g transform="translate(160, 40)">
+                                    <circle r="15" fill="#FFFFFF" stroke="var(--accent-blue)" stroke-width="1.5" />
+                                    <text font-size="6" text-anchor="middle" y="2" fill="var(--accent-blue)">Canvas</text>
+                                </g>
+                                <!-- Mini Impact Icon (bottom center) -->
+                                <g transform="translate(100, 160)">
+                                    <circle r="15" fill="#FFFFFF" stroke="var(--accent-emerald)" stroke-width="1.5" />
+                                    <text font-size="6" text-anchor="middle" y="2" fill="var(--accent-emerald)">Impact</text>
+                                </g>
 
-                            <!-- Orange (2) -->
-                            <path d="M 390 180 L 390 220 L 375 230" fill="none" stroke="#FF9F2E" stroke-width="1.5" stroke-dasharray="3 3" />
-                            <circle cx="375" cy="230" r="4" fill="#FF9F2E" />
-
-                            <!-- Yellow (3) -->
-                            <path d="M 350 310 L 290 310 L 270 310" fill="none" stroke="#F4D03F" stroke-width="1.5" stroke-dasharray="3 3" />
-                            <circle cx="270" cy="310" r="4" fill="#F4D03F" />
-
-                            <!-- Green (4) -->
-                            <path d="M 150 180 L 150 220 L 167 237" fill="none" stroke="#2ECC71" stroke-width="1.5" stroke-dasharray="3 3" />
-                            <circle cx="167" cy="237" r="4" fill="#2ECC71" />
-
-                            <!-- Blue (5) -->
-                            <path d="M 150 50 L 190 50 L 203 113" fill="none" stroke="#3498DB" stroke-width="1.5" stroke-dasharray="3 3" />
-                            <circle cx="203" cy="113" r="4" fill="#3498DB" />
-                            
-                            <!-- 5 Rainbow Arcs -->
-                            <path d="M 277.7 90.3 A 110 110 0 0 1 368.9 151.8" fill="none" stroke="#FF4B4B" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow-red)" />
-                            <path d="M 376.7 173.4 A 110 110 0 0 1 346.4 279.1" fill="none" stroke="#FF9F2E" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow-orange)" />
-                            <path d="M 328.3 293.3 A 110 110 0 0 1 218.4 297.1" fill="none" stroke="#F4D03F" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow-yellow)" />
-                            <path d="M 199.3 284.3 A 110 110 0 0 1 161.7 180.9" fill="none" stroke="#2ECC71" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow-green)" />
-                            <path d="M 168.0 158.8 A 110 110 0 0 1 254.7 91.1" fill="none" stroke="#3498DB" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow-blue)" />
-                        </svg>
-                        
-                        <!-- Center Loop Core Text -->
-                        <div style="position: absolute; z-index: 2; width: 90px; height: 90px; border-radius: 50%; background: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); text-align: center;">
-                            <span style="font-size: 0.76rem; font-weight: bold; color: var(--text-muted); line-height: 1.25;">持續降噪<br>價值驗證</span>
+                                <!-- Central Outcome Target -->
+                                <g transform="translate(100, 100)">
+                                    <circle r="20" fill="var(--accent-blue)" />
+                                    <text font-size="8" font-weight="800" text-anchor="middle" y="3" fill="#FFFFFF">Outcome</text>
+                                </g>
+                            </svg>
                         </div>
 
-                        <!-- Outer HTML Label Cards -->
-                        <!-- Step 1 (Red) - Top Right -->
-                        <div style="position: absolute; top: 10px; right: 1%; width: 175px; z-index: 3;">
-                            <div style="display: flex; align-items: flex-start; gap: 8px;">
-                                <span style="font-size: 2.2rem; font-weight: 800; color: #FF4B4B; line-height: 1;">1</span>
-                                <div>
-                                    <h3 style="font-size: 0.92rem; font-weight: 700; margin: 0; color: var(--text-main); display: flex; align-items: center; gap: 4px;">
-                                        理解問題 <span style="font-size: 1rem;">💡</span>
-                                    </h3>
-                                    <p style="font-size: 0.72rem; color: var(--text-muted); margin: 3px 0 0 0; line-height: 1.35;">尋找高價值的用戶痛點與商業機會</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Step 2 (Orange) - Middle Right -->
-                        <div style="position: absolute; top: 155px; right: -2%; width: 175px; z-index: 3;">
-                            <div style="display: flex; align-items: flex-start; gap: 8px;">
-                                <span style="font-size: 2.2rem; font-weight: 800; color: #FF9F2E; line-height: 1;">2</span>
-                                <div>
-                                    <h3 style="font-size: 0.92rem; font-weight: 700; margin: 0; color: var(--text-main); display: flex; align-items: center; gap: 4px;">
-                                        設定目標 <span style="font-size: 1rem;">🎯</span>
-                                    </h3>
-                                    <p style="font-size: 0.72rem; color: var(--text-muted); margin: 3px 0 0 0; line-height: 1.35;">定義可衡量、具備改變的成果指標</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Step 3 (Yellow) - Bottom Center -->
-                        <div style="position: absolute; bottom: -5px; right: 8%; width: 175px; z-index: 3;">
-                            <div style="display: flex; align-items: flex-start; gap: 8px;">
-                                <span style="font-size: 2.2rem; font-weight: 800; color: #F4D03F; line-height: 1;">3</span>
-                                <div>
-                                    <h3 style="font-size: 0.92rem; font-weight: 700; margin: 0; color: var(--text-main); display: flex; align-items: center; gap: 4px;">
-                                        驗證解法 <span style="font-size: 1rem;">⚡</span>
-                                    </h3>
-                                    <p style="font-size: 0.72rem; color: var(--text-muted); margin: 3px 0 0 0; line-height: 1.35;">跨職能共同設計並提前驗證假設</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Step 4 (Green) - Middle Left -->
-                        <div style="position: absolute; top: 155px; left: -1%; width: 175px; z-index: 3;">
-                            <div style="display: flex; align-items: flex-start; gap: 8px;">
-                                <span style="font-size: 2.2rem; font-weight: 800; color: #2ECC71; line-height: 1;">4</span>
-                                <div>
-                                    <h3 style="font-size: 0.92rem; font-weight: 700; margin: 0; color: var(--text-main); display: flex; align-items: center; gap: 4px;">
-                                        建置交付 <span style="font-size: 1rem;">⚙️</span>
-                                    </h3>
-                                    <p style="font-size: 0.72rem; color: var(--text-muted); margin: 3px 0 0 0; line-height: 1.35;">以敏捷開發與高工程品質如期部署</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Step 5 (Blue) - Top Left -->
-                        <div style="position: absolute; top: 10px; left: 1%; width: 175px; z-index: 3;">
-                            <div style="display: flex; align-items: flex-start; gap: 8px;">
-                                <span style="font-size: 2.2rem; font-weight: 800; color: #3498DB; line-height: 1;">5</span>
-                                <div>
-                                    <h3 style="font-size: 0.92rem; font-weight: 700; margin: 0; color: var(--text-main); display: flex; align-items: center; gap: 4px;">
-                                        觀察成果 <span style="font-size: 1rem;">📊</span>
-                                    </h3>
-                                    <p style="font-size: 0.72rem; color: var(--text-muted); margin: 3px 0 0 0; line-height: 1.35;">數據監測與用戶反饋，形成學習閉環</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            
-<div class="slide-item" id="slide-ground-concept5">
-                <div class="slide-content">
-                    <div class="card-header" style="margin-bottom: 12px;">
-                        <span class="badge badge-blue">核心概念</span>
-                        <span class="badge badge-emerald">跨職能協作</span>
-                    </div>
-
-                    <h2 style="color: var(--accent-blue); margin-bottom: 8px; font-size: 1.4rem;">
-                        👥 跨職能角色的關鍵判斷價值 (Role Values)
-                    </h2>
-                    <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;">
-                        跨職能協作的價值，不是單純的分工交接，而是讓**關鍵的專業判斷提早發生**，進而降低開發風險：
-                    </p>
-
-                    <div class="roles-grid" id="roles-grid-container">
-                        <!-- 由 JS 動態渲染 -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- 投影片 7：Concrete Practice 1 - 指認團隊斷點 -->
-            <div class="slide-item" id="slide-ground-practice1" data-timer="5">
-                <div class="slide-content">
-                    <div class="card-header" style="margin-bottom: 12px;">
-                        <span class="badge badge-amber">實作畫布 1/2</span>
-                        <span class="badge badge-emerald">Concrete Practice</span>
-                    </div>
-
-                    <h2 style="color: var(--accent-blue); margin-bottom: 8px; font-size: 1.35rem;">
-                        🛠️ 實作畫布：指認你的產品斷點
-                    </h2>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
-                        針對您的產品功能需求「<span class="dynamic-project-name" style="color: var(--accent-indigo); font-weight: bold;">您的產品功能</span>」，您認為在推進該需求時，最關鍵的斷鏈點發生在哪個面向？
-                    </p>
-
-                    <!-- 面向選擇按鈕 -->
-                    <div class="breakpoint-select-grid">
-                        <div class="breakpoint-option-card" data-val="Direction" style="padding: 24px;">🎯 Direction (方向)</div>
-                        <div class="breakpoint-option-card" data-val="Collaboration" style="padding: 24px;">👥 Collaboration (協作)</div>
-                        <div class="breakpoint-option-card" data-val="Execution" style="padding: 24px;">⚙️ Execution (執行)</div>
-                        <div class="breakpoint-option-card" data-val="Outcome" style="padding: 24px;">📈 Outcome (成果)</div>
-                    </div>
-                    
-                    <p style="font-size: 0.82rem; color: var(--text-muted); text-align: center; margin-top: 24px;">
-                        💡 選擇完成後，請點擊下排 [▶] 按鈕前進至下一頁，說明此斷點對您需求的具體原因與影響。
-                    </p>
-                </div>
-            </div>
-
-            <!-- 投影片 8：Concrete Practice 2 - 書寫斷點原因 -->
-            <div class="slide-item" id="slide-ground-practice2" data-timer="5">
-                <div class="slide-content">
-                    <div class="card-header" style="margin-bottom: 12px;">
-                        <span class="badge badge-amber">實作畫布 2/2</span>
-                        <span class="badge badge-emerald">Concrete Practice</span>
-                    </div>
-
-                    <h2 style="color: var(--accent-blue); margin-bottom: 8px; font-size: 1.35rem;">
-                        🛠️ 實作畫布：剖析斷點的真實原因
-                    </h2>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">
-                        針對您選擇的斷鏈面向「<span id="selected-bp-label" style="color: var(--accent-rose); font-weight: bold;">未選擇</span>」，在推進功能需求「<span class="dynamic-project-name" style="color: var(--accent-indigo); font-weight: bold;">您的產品功能</span>」時，具體造成了哪些影響？原因是什麼？
-                    </p>
-
-                    <!-- 診斷文字輸入區 -->
-                    <div class="form-group" style="margin-bottom: 0;">
-                        <label class="form-label" for="breakpoint-reason" style="font-size: 0.85rem; margin-bottom: 6px; font-weight: 700; color: var(--accent-indigo);">完成您的診斷描述：</label>
-                        <textarea id="breakpoint-reason" class="form-control" placeholder="我們認為最重要的斷點是 [選擇的面向]，因為 [在此說明原因與造成的影響]..." style="font-size: 0.95rem; padding: 12px; height: calc(82vh - 240px); min-height: 120px; resize: none;"></textarea>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 投影片 9：Conclusion - 模組收束 -->
-            <div class="slide-item" id="slide-ground-conclusion">
-                <div class="slide-content">
-                    <div class="card-header" style="margin-bottom: 16px;">
-                        <span class="badge badge-emerald">本章總結</span>
-                        <span class="badge badge-blue">Conclusion</span>
-                    </div>
-
-                    <h2 style="color: var(--accent-blue); margin-bottom: 16px; font-size: 1.4rem;">
-                        🏁 Ground 模組收束：建立產品工作共同地圖
-                    </h2>
-
-                    <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; margin-bottom: 20px; align-items: start;">
-                        <div>
-                            <h3 style="color: var(--accent-indigo); margin-bottom: 10px; font-size: 1.1rem;">🎯 團隊自我檢核問題</h3>
-                            <ul id="ground-teaching-points" style="padding-left: 20px; line-height: 1.8; color: var(--text-main); font-size: 0.9rem;">
-                                <!-- 由 JS 動態渲染 -->
+                        <!-- Right Convergence text info -->
+                        <div style="width: 48%; display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+                            <ul style="padding-left: 20px; font-size: 0.82rem; line-height: 1.8; color: var(--text-main); margin: 0;">
+                                <li><strong>APOM</strong> 看組織系統是否有持續經營產品之條件。</li>
+                                <li><strong>Product Canvas</strong> 看產品目標、客群與細節全貌。</li>
+                                <li><strong>Impact Map</strong> 看產出如何連結至期望的行為改變。</li>
                             </ul>
+                            <div class="footer-nav" style="border-top: 1px solid var(--border-color); padding-top: 12px; margin-top: 6px;">
+                                <div></div>
+                                <a href="./objectives.html" class="btn btn-primary next-module-btn" style="padding: 8px 16px; font-size: 0.82rem;">
+                                    Next｜O – Objectives ➔
+                                </a>
+                            </div>
                         </div>
-                        <blockquote style="padding: 24px; background: rgba(0, 130, 64, 0.04); border-left: 4px solid var(--accent-blue); border-radius: var(--radius-md); font-weight: 600; color: var(--accent-indigo); font-size: 1.05rem; line-height: 1.6; display: flex; align-items: center; justify-content: center; height: 100%; box-sizing: border-box; margin: 0;">
-                            「如果我們不知道希望創造什麼成果，我們就無法判斷哪些工作值得做。」
-                        </blockquote>
-                    </div>
-
-                    <div class="footer-nav" style="margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 16px;">
-                        <div></div>
-                        <a href="./objectives.html" class="btn btn-primary next-module-btn" style="padding: 10px 20px; font-size: 0.9rem;">
-                            前往 模組二｜Objectives 成果導向目標 ➔
-                        </a>
                     </div>
                 </div>
             </div>
@@ -632,394 +970,168 @@
             AppComponents.initPage('ground', (payload) => {
                 const gData = payload.ground;
 
-                // Render Teaching Points in Slide 9
-                document.getElementById('ground-teaching-points').innerHTML = 
-                    gData.teachingPoints.map(tp => `<li style="margin-bottom: 6px;">${tp}</li>`).join('');
-
-                // Render Roles Grid in Slide 6
-                const rolesGrid = document.getElementById('roles-grid-container');
-                const roleIcons = {
-                    '商務': '💼',
-                    '產品': '🎯',
-                    'UX／研究': '🔍',
-                    '技術': '⚙️',
-                    '數據': '📈',
-                    '營運／客服': '👥',
-                    '法遵／風控': '🛡️'
-                };
-                rolesGrid.innerHTML = gData.rolesTable.map(r => `
-                    <div class="role-card">
-                        <div class="role-name">
-                            <span>${roleIcons[r.role] || '👥'}</span>
-                            <span>${r.role}</span>
-                        </div>
-                        <div class="role-value">${r.value}</div>
-                    </div>
-                `).join('');
-
                 // Sync project name to dynamic elements
                 const state = AppStorage.loadState();
                 const projectDisplayElements = document.querySelectorAll('.dynamic-project-name');
                 projectDisplayElements.forEach(el => {
                     el.textContent = state.userProjectName || '您的產品功能需求';
                 });
-                
-                // Workbench implementation on Slide 7 & Slide 8
-                const optionCards = document.querySelectorAll('.breakpoint-option-card');
-                const reasonInput = document.getElementById('breakpoint-reason');
-                const bpLabel = document.getElementById('selected-bp-label');
 
-                let currentSelected = state.groundData.selectedBreakpoint || 'Collaboration';
-                reasonInput.value = state.groundData.breakpointReason || '';
-                updateBpLabel(currentSelected);
-
-                // Set initial active state of cards
-                optionCards.forEach(card => {
-                    if (card.getAttribute('data-val') === currentSelected) {
-                        card.classList.add('selected');
-                    }
-                });
-
-                // Add card click listeners
-                optionCards.forEach(card => {
-                    card.addEventListener('click', () => {
-                        optionCards.forEach(c => c.classList.remove('selected'));
-                        card.classList.add('selected');
-                        currentSelected = card.getAttribute('data-val');
-                        updateBpLabel(currentSelected);
-                        
-                        // Automatically prefix the textarea helper text if empty
-                        const selectedText = card.textContent.trim();
-                        const prefixText = `我們認為最重要的斷點是 ${selectedText}，因為 `;
-                        if (!reasonInput.value.trim() || reasonInput.value.trim().startsWith('我們認為最重要的斷點是')) {
-                            reasonInput.value = prefixText;
+                // Observe active slides to trigger custom animations
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                            const target = mutation.target;
+                            if (target.classList.contains('active')) {
+                                onSlideActive(target.id);
+                            }
                         }
-
-                        saveData();
                     });
                 });
 
-                function updateBpLabel(val) {
-                    if (bpLabel) {
-                        const mapper = {
-                            'Direction': '🎯 Direction (方向)',
-                            'Collaboration': '👥 Collaboration (協作)',
-                            'Execution': '⚙️ Execution (執行)',
-                            'Outcome': '📈 Outcome (成果)'
-                        };
-                        bpLabel.textContent = mapper[val] || val;
+                document.querySelectorAll('.slide-item').forEach(slide => {
+                    observer.observe(slide, { attributes: true });
+                });
+
+                // Trigger animations for specific active slides
+                function onSlideActive(id) {
+                    if (id === 'slide-ground-apom') {
+                        animateApom();
+                    } else if (id === 'slide-ground-canvas') {
+                        animateProductCanvas();
+                    } else if (id === 'slide-ground-impact') {
+                        animateImpactMap();
+                    } else if (id === 'slide-ground-cafe') {
+                        animateWorldCafe();
                     }
                 }
 
-                // Input debounce for textarea
-                let saveTimeout;
-                reasonInput.addEventListener('input', () => {
-                    clearTimeout(saveTimeout);
-                    saveTimeout = setTimeout(() => {
-                        saveData();
-                    }, 500);
-                });
-
-                function saveData() {
-                    AppStorage.updateState({
-                        groundData: {
-                            selectedBreakpoint: currentSelected,
-                            breakpointReason: reasonInput.value.trim()
-                        }
+                // Animation functions
+                function animateApom() {
+                    const Strategy = document.getElementById('apom-strategy');
+                    const People = document.getElementById('apom-people');
+                    const Structure = document.getElementById('apom-structure');
+                    const ValueCycle = document.getElementById('apom-value');
+                    const Evidence = document.getElementById('apom-evidence');
+                    
+                    const sections = [Strategy, People, Structure, ValueCycle, Evidence];
+                    
+                    // Reset all
+                    sections.forEach(s => { if(s) s.style.opacity = '0.15'; });
+                    
+                    // Sequential fade-in
+                    sections.forEach((s, idx) => {
+                        setTimeout(() => {
+                            if (s) {
+                                s.style.transition = 'opacity 0.6s ease';
+                                s.style.opacity = '1';
+                            }
+                        }, idx * 800);
                     });
                 }
 
-                // Initialize Slide 1 Sticky Notes Interaction
-                initStickyNotesCanvas();
+                function animateProductCanvas() {
+                    const Goal = document.querySelectorAll('.canvas-sec-goal');
+                    const Target = document.querySelectorAll('.canvas-sec-target');
+                    const Picture = document.querySelectorAll('.canvas-sec-picture');
+                    const Details = document.querySelectorAll('.canvas-sec-details');
+                    
+                    const groups = [Goal, Target, Picture, Details];
+                    
+                    // Reset
+                    groups.forEach(g => {
+                        g.forEach(el => {
+                            el.style.opacity = '0';
+                            el.style.transform = 'translateY(10px)';
+                        });
+                    });
+                    
+                    // Fade in
+                    groups.forEach((g, idx) => {
+                        setTimeout(() => {
+                            g.forEach(el => {
+                                el.style.transition = 'all 0.5s ease';
+                                el.style.opacity = '1';
+                                el.style.transform = 'translateY(0)';
+                            });
+                        }, idx * 1000);
+                    });
+                }
+
+                function animateImpactMap() {
+                    const Why = document.querySelectorAll('.imap-why');
+                    const Who = document.querySelectorAll('.imap-who');
+                    const How = document.querySelectorAll('.imap-how');
+                    const What = document.querySelectorAll('.imap-what');
+                    const Question = document.querySelectorAll('.imap-question');
+                    
+                    const groups = [Why, Who, How, What];
+                    
+                    // Reset
+                    groups.forEach(g => {
+                        g.forEach(el => {
+                            el.style.opacity = '0';
+                            el.style.transform = 'scale(0.9)';
+                        });
+                    });
+                    Question.forEach(el => el.style.opacity = '0');
+                    
+                    // Animate
+                    groups.forEach((g, idx) => {
+                        setTimeout(() => {
+                            g.forEach(el => {
+                                el.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                                el.style.opacity = '1';
+                                el.style.transform = 'scale(1)';
+                            });
+                        }, idx * 850);
+                    });
+                    
+                    // Question marks
+                    setTimeout(() => {
+                        Question.forEach(el => {
+                            el.style.transition = 'opacity 0.6s ease';
+                            el.style.opacity = '1';
+                        });
+                    }, groups.length * 850);
+                }
+
+                function animateWorldCafe() {
+                    const Tables = document.querySelectorAll('.cafe-table');
+                    const Paths = document.querySelectorAll('.cafe-path');
+                    
+                    Tables.forEach(t => {
+                        t.style.opacity = '0';
+                        t.style.transform = 'scale(0.8)';
+                    });
+                    Paths.forEach(p => {
+                        p.style.opacity = '0';
+                        p.style.strokeDashoffset = '100';
+                    });
+                    
+                    // Show tables
+                    setTimeout(() => {
+                        Tables.forEach(t => {
+                            t.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                            t.style.opacity = '1';
+                            t.style.transform = 'scale(1)';
+                        });
+                    }, 300);
+                    
+                    // Show paths (animated dashed arrows)
+                    setTimeout(() => {
+                        Paths.forEach(p => {
+                            p.style.transition = 'opacity 0.5s ease, stroke-dashoffset 2s linear';
+                            p.style.opacity = '1';
+                            p.style.strokeDashoffset = '0';
+                        });
+                    }, 1000);
+                }
 
                 // Initialize the slider engine
                 AppSlider.init('.slides-wrapper');
             });
         });
-
-        // Slide 1 Sticky Notes Canvas Game
-        function initStickyNotesCanvas() {
-            const painPoints = [
-                // Direction
-                { text: "老闆說要做，但沒說為什麼要做", cat: "direction", color: "#FFF9C4" },
-                { text: "規格一直在變，不知道最終目標是什麼", cat: "direction", color: "#FFF9C4" },
-                { text: "做出來後才發現這不是客戶想要的", cat: "direction", color: "#FFF9C4" },
-                { text: "只收到工程規格，完全沒有使用者脈絡", cat: "direction", color: "#FFF9C4" },
-                { text: "競爭對手有這個功能，所以我們也要做", cat: "direction", color: "#FFF9C4" },
-                { text: "不知道這個功能做出來能解決什麼指標", cat: "direction", color: "#FFF9C4" },
-                // Collaboration
-                { text: "法遵風控在最後一刻才翻盤說不行", cat: "collaboration", color: "#E1F5FE" },
-                { text: "UX/UI 設計完後，工程師說技術做不出來", cat: "collaboration", color: "#E1F5FE" },
-                { text: "大家都各自做好份內工作，但拼起來很怪", cat: "collaboration", color: "#E1F5FE" },
-                { text: "開發到一半才發現缺漏了必要的 API", cat: "collaboration", color: "#E1F5FE" },
-                { text: "行銷單位不知道產品已經改版上線", cat: "collaboration", color: "#E1F5FE" },
-                { text: "各部門對『成功』的定義完全不一樣", cat: "collaboration", color: "#E1F5FE" },
-                // Execution
-                { text: "開發時程被壓死，只能砍功能或熬夜", cat: "execution", color: "#F3E5F5" },
-                { text: "測試環境與生產環境不一致，上線大塞車", cat: "execution", color: "#F3E5F5" },
-                { text: "需求太多，研發能量不足，全部塞車", cat: "execution", color: "#F3E5F5" },
-                { text: "為了趕上線，欠了太多技術債，以後更難改", cat: "execution", color: "#F3E5F5" },
-                { text: "第三方廠商 API 延遲，導致我們一起延期", cat: "execution", color: "#F3E5F5" },
-                { text: "測試案例不完備，上線後 Bug 滿天飛", cat: "execution", color: "#F3E5F5" },
-                // Outcome
-                { text: "功能上線後，幾乎沒有客戶進來使用", cat: "outcome", color: "#E8F5E9" },
-                { text: "只知道系統活著，不知道有沒有解決痛點", cat: "outcome", color: "#E8F5E9" },
-                { text: "沒有埋點，根本拿不到使用者點擊數據", cat: "outcome", color: "#E8F5E9" },
-                { text: "業務單位一直要新功能，舊功能爛在哪沒人管", cat: "outcome", color: "#E8F5E9" },
-                { text: "功能做完了，但客服電話反而被打爆", cat: "outcome", color: "#E8F5E9" },
-                { text: "產品發布後，完全不知道對商業指標有何貢獻", cat: "outcome", color: "#E8F5E9" }
-            ];
-
-            const canvas = document.getElementById('pain-point-canvas');
-            const pool = document.getElementById('sticky-pool');
-            const bgColumns = document.getElementById('canvas-bg-columns');
-            const spawnBtn = document.getElementById('spawn-btn');
-            const spawnAllBtn = document.getElementById('spawn-all-btn');
-            const groupBtn = document.getElementById('group-btn');
-
-            let spawnedNotes = [];
-            let isGrouped = false;
-
-            // Generate 24 slots to prevent overlapping initially
-            const slots = [];
-            for (let r = 0; r < 4; r++) {
-                for (let c = 0; c < 6; c++) {
-                    slots.push({ r, c });
-                }
-            }
-
-            function shuffle(array) {
-                return array.sort(() => Math.random() - 0.5);
-            }
-
-            const shuffledSlots = shuffle([...slots]);
-
-            // Click canvas background to spawn
-            canvas.addEventListener('click', (e) => {
-                if (e.target === canvas || e.target === pool) {
-                    spawnOne();
-                }
-            });
-
-            spawnBtn.addEventListener('click', spawnOne);
-            spawnAllBtn.addEventListener('click', spawnAll);
-            groupBtn.addEventListener('click', groupNotes);
-
-            function spawnOne() {
-                if (isGrouped || spawnedNotes.length >= painPoints.length) return;
-                
-                const data = painPoints[spawnedNotes.length];
-                const note = createNoteElement(data, spawnedNotes.length);
-                pool.appendChild(note);
-                spawnedNotes.push({ data, element: note });
-                
-                updateControls();
-            }
-
-            function spawnAll() {
-                if (isGrouped) return;
-                spawnBtn.disabled = true;
-                spawnAllBtn.disabled = true;
-
-                let delay = 0;
-                const interval = setInterval(() => {
-                    if (spawnedNotes.length >= painPoints.length) {
-                        clearInterval(interval);
-                        updateControls();
-                        return;
-                    }
-                    spawnOne();
-                }, 40);
-            }
-
-            function createNoteElement(data, idx) {
-                const note = document.createElement('div');
-                note.className = 'sticky-note';
-                note.textContent = data.text;
-                note.style.backgroundColor = data.color;
-                
-                // Get slot grid position
-                const slot = shuffledSlots[idx];
-                const colWidth = 14.5; // %
-                const colGap = 1.6; // %
-                const rowHeight = 20; // %
-                const rowGap = 2.5; // %
-                
-                const leftPercent = 2.5 + slot.c * (colWidth + colGap) + (Math.random() * 1.5 - 0.75);
-                const topPercent = 6 + slot.r * (rowHeight + rowGap) + (Math.random() * 2 - 1);
-                const randomRot = -8 + Math.random() * 16;
-                
-                note.style.left = `${leftPercent}%`;
-                note.style.top = `${topPercent}%`;
-                note.style.width = '14%';
-                note.style.transform = `scale(0.1) rotate(${randomRot}deg)`;
-                note.style.opacity = '0';
-                
-                // Trigger pop-in transition
-                setTimeout(() => {
-                    note.style.transform = `scale(1) rotate(${randomRot}deg)`;
-                    note.style.opacity = '1';
-                }, 10);
-
-                // Make notes draggable on board
-                makeDraggable(note);
-
-                return note;
-            }
-
-            // Dragging Logic
-            let activeDragNote = null;
-            let startX = 0, startY = 0;
-            let noteStartLeft = 0, noteStartTop = 0;
-
-            function makeDraggable(el) {
-                el.style.cursor = 'move';
-                el.style.pointerEvents = 'auto'; // enable pointer interaction
-
-                el.addEventListener('mousedown', startDrag);
-                el.addEventListener('touchstart', startDrag, { passive: false });
-
-                function startDrag(e) {
-                    if (isGrouped) return;
-                    e.preventDefault();
-                    
-                    activeDragNote = el;
-                    el.style.zIndex = '1000';
-                    
-                    const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-                    const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
-                    
-                    startX = clientX;
-                    startY = clientY;
-                    
-                    const rect = el.getBoundingClientRect();
-                    const canvasRect = canvas.getBoundingClientRect();
-                    noteStartLeft = rect.left - canvasRect.left;
-                    noteStartTop = rect.top - canvasRect.top;
-                    
-                    document.addEventListener('mousemove', dragMove);
-                    document.addEventListener('mouseup', endDrag);
-                    document.addEventListener('touchmove', dragMove, { passive: false });
-                    document.addEventListener('touchend', endDrag);
-                }
-
-                function dragMove(e) {
-                    if (!activeDragNote || isGrouped) return;
-                    e.preventDefault();
-                    
-                    const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-                    const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
-                    
-                    const dx = clientX - startX;
-                    const dy = clientY - startY;
-                    
-                    let newLeft = noteStartLeft + dx;
-                    let newTop = noteStartTop + dy;
-                    
-                    const canvasRect = canvas.getBoundingClientRect();
-                    const noteRect = el.getBoundingClientRect();
-                    
-                    const maxLeft = canvasRect.width - noteRect.width;
-                    const maxTop = canvasRect.height - noteRect.height;
-                    
-                    newLeft = Math.max(0, Math.min(newLeft, maxLeft));
-                    newTop = Math.max(0, Math.min(newTop, maxTop));
-                    
-                    el.style.left = `${newLeft}px`;
-                    el.style.top = `${newTop}px`;
-                }
-
-                function endDrag() {
-                    if (!activeDragNote) return;
-                    activeDragNote.style.zIndex = '100';
-                    
-                    if (isGrouped) {
-                        activeDragNote.style.transform = 'rotate(0deg)';
-                        // Force snap back to neat column position
-                        groupNotes();
-                    } else {
-                        const randomRot = -4 + Math.random() * 8;
-                        activeDragNote.style.transform = `rotate(${randomRot}deg)`;
-                    }
-                    
-                    activeDragNote = null;
-                    document.removeEventListener('mousemove', dragMove);
-                    document.removeEventListener('mouseup', endDrag);
-                    document.removeEventListener('touchmove', dragMove);
-                    document.removeEventListener('touchend', endDrag);
-                }
-            }
-
-            function updateControls() {
-                spawnAllBtn.textContent = `⚡ 快速投射所有 (${spawnedNotes.length}/${painPoints.length})`;
-                
-                if (spawnedNotes.length >= painPoints.length) {
-                    spawnBtn.disabled = true;
-                    spawnAllBtn.disabled = true;
-                }
-
-                if (spawnedNotes.length > 0) {
-                    groupBtn.disabled = false;
-                }
-            }
-
-            function groupNotes() {
-                isGrouped = true;
-
-                // Disable all spawn buttons
-                spawnBtn.disabled = true;
-                spawnAllBtn.disabled = true;
-                groupBtn.disabled = true;
-
-                // Fade-in category background columns
-                bgColumns.style.opacity = '1';
-                
-                // Grouping math
-                const counters = {
-                    direction: 0,
-                    collaboration: 0,
-                    execution: 0,
-                    outcome: 0
-                };
-
-                const catIndexMapper = {
-                    direction: 0,
-                    collaboration: 1,
-                    execution: 2,
-                    outcome: 3
-                };
-
-                const colWidth = 21; // %
-                const colGap = 3; // %
-                const startLeft = 4; // %
-                const cardHeight = 32; // px
-                const startTop = 80; // px
-
-                spawnedNotes.forEach((note) => {
-                    const cat = note.data.cat;
-                    const catIdx = catIndexMapper[cat];
-                    const idxInCol = counters[cat];
-                    counters[cat]++;
-
-                    const targetLeft = startLeft + catIdx * (colWidth + colGap);
-                    const targetTop = startTop + idxInCol * (cardHeight + 3);
-
-                    // Animate to column position
-                    note.element.style.left = `${targetLeft}%`;
-                    note.element.style.top = `${targetTop}px`;
-                    note.element.style.width = `${colWidth}%`;
-                    note.element.style.transform = 'rotate(0deg)';
-                    note.element.style.borderRadius = '6px';
-                    note.element.style.boxShadow = '0 1px 3px rgba(0,0,0,0.05)';
-                    note.element.style.pointerEvents = 'auto'; // allow hover after sorting
-                    note.element.style.minHeight = 'auto';
-                    note.element.style.height = `${cardHeight}px`;
-                    note.element.style.fontSize = '0.62rem';
-                    note.element.style.lineHeight = '1.2';
-                    note.element.style.padding = '2px 3px';
-                });
-            }
-        }
     </script>
 </body>
 </html>
