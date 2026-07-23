@@ -311,6 +311,13 @@
                         針對您的功能需求「<span class="dynamic-project-name" style="color: var(--accent-indigo); font-weight: bold;">產品需求</span>」，請在下方段落填入您的產品目標要素：
                     </p>
 
+                    <!-- 範例提示 -->
+                    <div style="background: rgba(56, 189, 248, 0.03); border: 1px dashed rgba(56, 189, 248, 0.2); padding: 8px 12px; border-radius: var(--radius-sm); margin-bottom: 12px; font-size: 0.7rem; line-height: 1.5; color: var(--text-muted);">
+                        <strong style="color: var(--accent-blue);">💡 填寫範例：</strong>
+                        我們提供 <span style="color: var(--accent-blue); font-weight: 600;">自動卡片回饋推薦</span> 給 <span style="color: var(--accent-blue); font-weight: 600;">持有多張信用卡的卡友</span>，是為了解決他們 <span style="color: var(--accent-rose); font-weight: 600;">消費刷卡前難以快速找出哪張卡最划算</span> 的問題。我們的方案是一個 <span style="color: var(--accent-blue); font-weight: 600;">App 內的個人化優惠專區</span>。<br>
+                        我們期望用戶行為變成 <span style="color: var(--accent-emerald); font-weight: 600;">在實體或線上消費刷卡前，主動點開 App 領取優惠</span>，如此一來，公司的 <span style="color: var(--accent-indigo); font-weight: 600;">Benefit (效益)</span> 商務目標就能夠達標。
+                    </div>
+
                     <div class="madlibs-container">
                         <!-- 第一段：願景與方案聲明 -->
                         <div class="madlibs-p">
@@ -331,7 +338,7 @@
 
                     <!-- 參考標的：七大商務目標 -->
                     <div style="margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 12px;">
-                        <h4 style="color: var(--accent-indigo); margin-bottom: 6px; font-size: 0.85rem; font-weight: 700;">💡 參考標的：七大商務目標 (Business Objectives)</h4>
+                        <h4 style="color: var(--accent-indigo); margin-bottom: 6px; font-size: 0.78rem; font-weight: 700;">💡 參考標的：七大商務目標 (Business Objectives)</h4>
                         <div id="practice-objectives-reference" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px;">
                             <!-- Will be rendered dynamically via JS -->
                         </div>
@@ -433,7 +440,7 @@
                 const practiceRefGrid = document.getElementById('practice-objectives-reference');
                 if (practiceRefGrid) {
                     practiceRefGrid.innerHTML = oData.sevenObjectives.map(so => `
-                        <div style="background: rgba(129, 140, 248, 0.02); border: 1px solid var(--border-color); padding: 8px 10px; border-radius: var(--radius-sm); font-size: 0.72rem; line-height: 1.35;">
+                        <div style="background: rgba(129, 140, 248, 0.02); border: 1px solid var(--border-color); padding: 6px 8px; border-radius: var(--radius-sm); font-size: 0.65rem; line-height: 1.35;">
                             <strong style="color: var(--accent-indigo); display: block; margin-bottom: 2px;">${objIcons[so.name] || '🎯'} ${so.name}</strong>
                             <span style="color: var(--text-muted);">${so.desc}</span>
                         </div>
