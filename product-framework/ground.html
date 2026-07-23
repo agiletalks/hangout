@@ -798,49 +798,33 @@
                         每組保留一位桌長，其餘組員順時針移動至下一桌進行知識交流：
                     </p>
 
-                    <div style="display: flex; gap: 24px; align-items: center; min-height: 290px; margin-top: 10px;">
-                        <!-- Left Animated SVG for movement -->
-                        <div style="width: 45%; height: 100%; border: 1px solid var(--border-color); border-radius: 12px; background: #FAFCF9; display: flex; align-items: center; justify-content: center; position: relative; padding: 10px;">
-                            <svg width="220" height="220" viewBox="0 0 200 200">
-                                <!-- Dashed paths showing rotation -->
-                                <path id="path-1" d="M 100 30 C 130 30, 160 70, 150 120" fill="none" stroke="var(--accent-purple)" stroke-dasharray="4 4" class="cafe-path" />
-                                <path id="path-2" d="M 150 130 C 130 160, 70 160, 50 130" fill="none" stroke="var(--accent-blue)" stroke-dasharray="4 4" class="cafe-path" />
-                                <path id="path-3" d="M 50 120 C 40 70, 70 30, 100 30" fill="none" stroke="var(--accent-emerald)" stroke-dasharray="4 4" class="cafe-path" />
-
-                                <!-- Table 1 (Top) -->
-                                <g class="cafe-table" transform="translate(100, 30)">
-                                    <circle r="22" fill="#FFFFFF" stroke="var(--accent-purple)" stroke-width="2" />
-                                    <text font-size="8" font-weight="800" text-anchor="middle" y="3" fill="var(--accent-purple)">APOM</text>
-                                </g>
-                                <!-- Table 2 (Bottom Right) -->
-                                <g class="cafe-table" transform="translate(150, 130)">
-                                    <circle r="22" fill="#FFFFFF" stroke="var(--accent-blue)" stroke-width="2" />
-                                    <text font-size="8" font-weight="800" text-anchor="middle" y="3" fill="var(--accent-blue)">Canvas</text>
-                                </g>
-                                <!-- Table 3 (Bottom Left) -->
-                                <g class="cafe-table" transform="translate(50, 130)">
-                                    <circle r="22" fill="#FFFFFF" stroke="var(--accent-emerald)" stroke-width="2" />
-                                    <text font-size="8" font-weight="800" text-anchor="middle" y="3" fill="var(--accent-emerald)">Impact</text>
-                                </g>
-                            </svg>
+                    <div style="display: flex; gap: 24px; align-items: stretch; min-height: 290px; margin-top: 10px;">
+                        <!-- Left Column: Host Task -->
+                        <div style="width: 50%; background: rgba(129, 140, 248, 0.03); border: 1px solid var(--border-color); border-left: 4px solid var(--accent-blue); padding: 18px; border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: center;">
+                            <strong style="font-size: 0.95rem; color: var(--accent-indigo); display: block; margin-bottom: 6px;">桌長任務 (Host) — 5D 報告框架</strong>
+                            <p style="font-size: 0.78rem; color: var(--text-main); margin-bottom: 8px; line-height: 1.4; font-weight: 500;">
+                                請桌長保留在原桌，對每一輪新加入的訪客以 5D 框架進行快速教學（建議 10-12 分鐘）：
+                            </p>
+                            <ul style="font-size: 0.74rem; color: var(--text-main); padding-left: 16px; margin: 0; line-height: 1.5;">
+                                <li style="margin-bottom: 2px;"><strong>1. Define (定義)</strong>：用一句話說明工具，解決什麼痛點？</li>
+                                <li style="margin-bottom: 2px;"><strong>2. Deconstruct (結構)</strong>：核心組成維度與運作邏輯。</li>
+                                <li style="margin-bottom: 2px;"><strong>3. Demo (案例)</strong>：演示信用卡推薦的實作推導結果。</li>
+                                <li style="margin-bottom: 2px;"><strong>4. Danger (盲點)</strong>：點出初學者最常踩的 3 大坑/誤區。</li>
+                                <li><strong>5. Discuss (問答)</strong>：引導來訪者提問、反饋與共同探討。</li>
+                            </ul>
                         </div>
 
-                        <!-- Right Instructions -->
-                        <div style="width: 53%; display: flex; flex-direction: column; gap: 10px;">
-                            <div style="background: rgba(129, 140, 248, 0.04); border-left: 4px solid var(--accent-blue); padding: 12px; border-radius: var(--radius-sm);">
-                                <strong style="font-size: 0.85rem; color: var(--accent-indigo); display: block; margin-bottom: 4px;">桌長任務 (Host) — 5D 報告提醒</strong>
-                                <ul style="font-size: 0.72rem; color: var(--text-main); padding-left: 14px; margin: 0; line-height: 1.45;">
-                                    <li><strong>1. Define (定義)</strong>：一句話說明工具，解決什麼痛點？</li>
-                                    <li><strong>2. Deconstruct (結構)</strong>：核心結構維度與運作關聯。</li>
-                                    <li><strong>3. Demo (案例)</strong>：演示信用卡推薦的實作推導結果。</li>
-                                    <li><strong>4. Danger (盲點)</strong>：點出初學者最常踩的 3 大坑/誤區。</li>
-                                    <li><strong>5. Discuss (問答)</strong>：邀請來訪者共同提問與交流。</li>
-                                </ul>
-                            </div>
-                            <div style="background: rgba(16, 185, 129, 0.04); border-left: 4px solid var(--accent-emerald); padding: 10px; border-radius: var(--radius-sm);">
-                                <strong style="font-size: 0.85rem; color: var(--accent-emerald); display: block; margin-bottom: 2px;">訪客任務 (Visitor)</strong>
-                                <p style="font-size: 0.74rem; color: var(--text-main); margin: 0; line-height: 1.4;">聆聽簡介、發問交流，並在海報上新增便利貼以記錄該框架特別關注的問題。</p>
-                            </div>
+                        <!-- Right Column: Visitor Task -->
+                        <div style="width: 50%; background: rgba(16, 185, 129, 0.03); border: 1px solid var(--border-color); border-left: 4px solid var(--accent-emerald); padding: 18px; border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: center;">
+                            <strong style="font-size: 0.95rem; color: var(--accent-emerald); display: block; margin-bottom: 6px;">訪客任務 (Visitor)</strong>
+                            <p style="font-size: 0.78rem; color: var(--text-main); margin-bottom: 8px; line-height: 1.4; font-weight: 500;">
+                                桌長以外的成員，請在換桌時間到時，順時針旋轉移至下一桌：
+                            </p>
+                            <ul style="font-size: 0.74rem; color: var(--text-main); padding-left: 16px; margin: 0; line-height: 1.5;">
+                                <li style="margin-bottom: 4px;">專注聆聽其他小組桌長的簡介與實作成果示範。</li>
+                                <li style="margin-bottom: 4px;">針對對方的設計邏輯與痛點連結，進行發問與交流。</li>
+                                <li><strong>新增一張便利貼</strong>，在對方海報上補充記錄本組最關注的議題或回饋。</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
