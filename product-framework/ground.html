@@ -785,7 +785,7 @@
 
             <!-- 投影片 7：世界咖啡館 -->
             <div class="slide-item" id="slide-ground-cafe">
-                <div class="slide-content" style="overflow-y: hidden;">
+                <div class="slide-content" style="overflow-y: auto;">
                     <div class="card-header" style="margin-bottom: 8px;">
                         <span class="badge badge-blue">課堂交流</span>
                         <span class="badge badge-emerald">World Café</span>
@@ -798,10 +798,10 @@
                         每組保留一位桌長，其餘組員順時針移動至下一桌進行知識交流：
                     </p>
 
-                    <div style="display: flex; gap: 24px; align-items: center; height: 290px; margin-top: 10px;">
+                    <div style="display: flex; gap: 24px; align-items: center; min-height: 290px; margin-top: 10px;">
                         <!-- Left Animated SVG for movement -->
-                        <div style="width: 50%; height: 100%; border: 1px solid var(--border-color); border-radius: 12px; background: #FAFCF9; display: flex; align-items: center; justify-content: center; position: relative;">
-                            <svg width="240" height="240" viewBox="0 0 200 200">
+                        <div style="width: 45%; height: 100%; border: 1px solid var(--border-color); border-radius: 12px; background: #FAFCF9; display: flex; align-items: center; justify-content: center; position: relative; padding: 10px;">
+                            <svg width="220" height="220" viewBox="0 0 200 200">
                                 <!-- Dashed paths showing rotation -->
                                 <path id="path-1" d="M 100 30 C 130 30, 160 70, 150 120" fill="none" stroke="var(--accent-purple)" stroke-dasharray="4 4" class="cafe-path" />
                                 <path id="path-2" d="M 150 130 C 130 160, 70 160, 50 130" fill="none" stroke="var(--accent-blue)" stroke-dasharray="4 4" class="cafe-path" />
@@ -826,14 +826,20 @@
                         </div>
 
                         <!-- Right Instructions -->
-                        <div style="width: 48%; display: flex; flex-direction: column; gap: 10px;">
-                            <div style="background: rgba(129, 140, 248, 0.04); border-left: 4px solid var(--accent-blue); padding: 10px; border-radius: 4px;">
-                                <strong style="font-size: 0.85rem; color: var(--accent-indigo);">桌長任務 (Host)</strong>
-                                <p style="font-size: 0.74rem; color: var(--text-main); margin-top: 4px; line-height: 1.4;">說明框架結構、各面向作用、主要觀看方向及釐清之不確定性。</p>
+                        <div style="width: 53%; display: flex; flex-direction: column; gap: 10px;">
+                            <div style="background: rgba(129, 140, 248, 0.04); border-left: 4px solid var(--accent-blue); padding: 12px; border-radius: var(--radius-sm);">
+                                <strong style="font-size: 0.85rem; color: var(--accent-indigo); display: block; margin-bottom: 4px;">桌長任務 (Host) — 5D 報告提醒</strong>
+                                <ul style="font-size: 0.72rem; color: var(--text-main); padding-left: 14px; margin: 0; line-height: 1.45;">
+                                    <li><strong>1. Define (定義)</strong>：一句話說明工具，解決什麼痛點？</li>
+                                    <li><strong>2. Deconstruct (結構)</strong>：核心結構維度與運作關聯。</li>
+                                    <li><strong>3. Demo (案例)</strong>：演示信用卡推薦的實作推導結果。</li>
+                                    <li><strong>4. Danger (盲點)</strong>：點出初學者最常踩的 3 大坑/誤區。</li>
+                                    <li><strong>5. Discuss (問答)</strong>：邀請來訪者共同提問與交流。</li>
+                                </ul>
                             </div>
-                            <div style="background: rgba(16, 185, 129, 0.04); border-left: 4px solid var(--accent-emerald); padding: 10px; border-radius: 4px;">
-                                <strong style="font-size: 0.85rem; color: var(--accent-emerald);">訪客任務 (Visitor)</strong>
-                                <p style="font-size: 0.74rem; color: var(--text-main); margin-top: 4px; line-height: 1.4;">提問、交流、並在海報上新增一張便利貼，記錄該框架特別關注的問題。</p>
+                            <div style="background: rgba(16, 185, 129, 0.04); border-left: 4px solid var(--accent-emerald); padding: 10px; border-radius: var(--radius-sm);">
+                                <strong style="font-size: 0.85rem; color: var(--accent-emerald); display: block; margin-bottom: 2px;">訪客任務 (Visitor)</strong>
+                                <p style="font-size: 0.74rem; color: var(--text-main); margin: 0; line-height: 1.4;">聆聽簡介、發問交流，並在海報上新增便利貼以記錄該框架特別關注的問題。</p>
                             </div>
                         </div>
                     </div>
