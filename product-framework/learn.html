@@ -11,163 +11,253 @@
 <body>
     <header id="global-header" class="app-header"></header>
 
-    <main class="container">
-        <div class="card" style="border-left: 4px solid var(--accent-emerald);">
-            <span class="badge badge-emerald">模組四｜Learn (35 分鐘)</span>
-            <h1 style="margin: 12px 0;">建立產品學習循環與行動轉化</h1>
-            <p>數據的價值不在於產生報表，而在於幫助團隊根據數據與質化回饋做出下一步決策。</p>
-        </div>
-
-        <!-- 模組重點 -->
-        <div class="card">
-            <div class="card-header">
-                <h3>🎯 核心觀念：閉環學習驅動決策</h3>
-                <span class="badge badge-emerald">Teaching Highlights</span>
-            </div>
-            <ul id="learn-teaching-points" style="padding-left: 20px; line-height: 1.8; color: var(--text-main);"></ul>
-        </div>
-
-        <!-- 四層成果衡量指標體系 -->
-        <div class="card">
-            <div class="card-header">
-                <h3>📈 四層成果衡量指標體系 (Four Metric Levels)</h3>
-                <span class="badge badge-blue">指標體系</span>
-            </div>
-            <div id="metric-levels-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;"></div>
-        </div>
-
-        <!-- 數據漏斗模擬器 -->
-        <div class="card">
-            <div class="card-header">
-                <h3>📊 案例模擬：讀取產品成果與漏斗流失</h3>
-                <span class="badge badge-blue">數據與質化對照</span>
-            </div>
-            <p>請觀察以下信用卡優惠推薦功能的真實線上數據與質化回饋：</p>
-
-            <div class="funnel-list">
-                <div class="funnel-step">
-                    <div class="funnel-bar" style="width: 100%;"></div>
-                    <div class="funnel-content">
-                        <span>1. 優惠推薦總曝光 (Impressions)</span>
-                        <strong>50,000 次</strong>
+    <div class="slide-deck">
+        <div class="slides-wrapper">
+            
+            <!-- 投影片 1: Connection & Intro -->
+            <div class="slide-item" id="slide-learn-intro">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 12px;">
+                        <span class="badge badge-emerald">模組四｜Learn</span>
+                        <span class="badge badge-blue">開場概念</span>
                     </div>
-                </div>
-                <div class="funnel-step">
-                    <div class="funnel-bar" style="width: 16%;"></div>
-                    <div class="funnel-content">
-                        <span>2. 點擊推薦卡片 (CTR 16%)</span>
-                        <strong>8,000 次</strong>
-                    </div>
-                </div>
-                <div class="funnel-step">
-                    <div class="funnel-bar" style="width: 9%;"></div>
-                    <div class="funnel-content">
-                        <span>3. 查看優惠詳細說明 (56%)</span>
-                        <strong>4,500 次</strong>
-                    </div>
-                </div>
-                <div class="funnel-step">
-                    <div class="funnel-bar" style="width: 2.4%;"></div>
-                    <div class="funnel-content">
-                        <span>4. 點擊登錄/領取優惠 (26.6%)</span>
-                        <strong>1,200 次</strong>
-                    </div>
-                </div>
-                <div class="funnel-step">
-                    <div class="funnel-bar" style="width: 0.7%;"></div>
-                    <div class="funnel-content">
-                        <span style="color: var(--accent-amber-text);">5. 完成指定刷卡消費 (29.1%)</span>
-                        <strong style="color: var(--accent-amber-text);">350 筆 (最終轉換率 0.7%)</strong>
+                    <h1 style="color: var(--accent-blue); margin-bottom: 12px; font-size: 1.8rem;">
+                        建立產品學習循環與行動轉化
+                    </h1>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px;">
+                        數據的價值不在於產生報表，而在於幫助團隊根據數據與質化回饋做出下一步決策。
+                    </p>
+                    
+                    <div style="background: rgba(0, 130, 64, 0.03); border: 1px solid var(--border-color); padding: 18px 24px; border-radius: var(--radius-lg); margin-top: 10px;">
+                        <h3 style="color: var(--accent-indigo); margin-bottom: 10px; font-size: 1.1rem;">🎯 核心觀念：閉環學習驅動決策</h3>
+                        <ul id="learn-teaching-points" style="padding-left: 20px; line-height: 1.8; color: var(--text-main); font-size: 0.95rem;">
+                            <!-- 由 JS 動態渲染 -->
+                        </ul>
                     </div>
                 </div>
             </div>
 
-            <div style="background: rgba(244, 63, 94, 0.1); border: 1px solid var(--accent-rose); padding: 14px 18px; border-radius: 8px; margin-top: 16px;">
-                <h4 style="color: var(--accent-rose); font-size: 0.95rem;">🗣️ 質化調查回饋與客服數據：</h4>
-                <p id="qualitative-feedback-text" style="font-size: 0.9rem; color: var(--text-main); margin-top: 6px; line-height: 1.6;"></p>
-            </div>
-        </div>
-
-        <!-- 產品學習循環步驟 -->
-        <div class="card">
-            <div class="card-header">
-                <h3>🔄 產品學習循環六步驟 (Learning Loop)</h3>
-                <span class="badge badge-emerald">閉環循環</span>
-            </div>
-            <div id="learning-loop-stepper" style="display: flex; gap: 8px; flex-wrap: wrap;"></div>
-        </div>
-
-        <!-- 決策與個人行動卡實作畫布 -->
-        <div class="card" style="border: 2px solid var(--accent-emerald);">
-            <div class="card-header">
-                <h3>🛠️ 學習閉環與未來 2 週個人行動卡</h3>
-                <span class="badge badge-emerald">核心實作畫布</span>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label" for="funnel-insight-input">Step 1: 漏斗與數據洞察分析（哪裡出現最大流失？為什麼？）</label>
-                <textarea id="funnel-insight-input" class="form-control" placeholder="從數據中可以看到，從查看詳情到登錄/領取優惠出現大量流失 (4,500 -> 1,200)，結合質化發現說明條款太繁瑣..."></textarea>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Step 2: 根據證據，下一步建議採取的產品決策：</label>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px;">
-                    <button type="button" class="btn btn-secondary decision-btn" data-val="Maintain">Maintain (維持)</button>
-                    <button type="button" class="btn btn-secondary decision-btn" data-val="Improve">Improve (改善優化)</button>
-                    <button type="button" class="btn btn-secondary decision-btn" data-val="Scale">Scale (擴大投入)</button>
-                    <button type="button" class="btn btn-secondary decision-btn" data-val="Stop／Pivot">Stop/Pivot (停止轉向)</button>
+            <!-- 投影片 2: Concept 1 - 四層衡量指標 -->
+            <div class="slide-item" id="slide-learn-metrics">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 12px;">
+                        <span class="badge badge-emerald">指標體系</span>
+                        <span class="badge badge-blue">Metric Levels</span>
+                    </div>
+                    <h2 style="color: var(--accent-blue); margin-bottom: 8px; font-size: 1.4rem;">
+                        📈 四層成果衡量指標體系 (Four Metric Levels)
+                    </h2>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">
+                        好的指標體系應該包含從底層「交付了什麼」到最頂層「實現了什麼組織價值」：
+                    </p>
+                    
+                    <div id="metric-levels-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 8px;">
+                        <!-- 由 JS 動態渲染 -->
+                    </div>
                 </div>
             </div>
 
-            <div class="form-group" style="margin-top: 20px;">
-                <label class="form-label" for="next-action-input">Step 3: 寫下您的「未來兩週個人行動承諾 (Action Commitment)」：</label>
-                <textarea id="next-action-input" class="form-control" style="min-height: 110px;" placeholder="未來兩週內，我會選擇專案需求 [專案名稱]，使用 GOAL Framework 重新檢視產品目標與關鍵假設，並執行以下驗證行動..."></textarea>
+            <!-- 投影片 3: Concept 2 - 數據漏斗與案例模擬 -->
+            <div class="slide-item" id="slide-learn-funnel">
+                <div class="slide-content" style="overflow-y: auto;">
+                    <div class="card-header" style="margin-bottom: 12px;">
+                        <span class="badge badge-emerald">案例模擬</span>
+                        <span class="badge badge-blue">Data & Qualitative Analytics</span>
+                    </div>
+                    <h2 style="color: var(--accent-blue); margin-bottom: 6px; font-size: 1.35rem;">
+                        📊 案例模擬：讀取產品成果與漏斗流失
+                    </h2>
+                    
+                    <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; margin-top: 8px; align-items: start;">
+                        <!-- 左側：數據漏斗 -->
+                        <div>
+                            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px;">
+                                請觀察以下信用卡優惠推薦功能的真實線上數據：
+                            </p>
+                            <div class="funnel-list" style="margin-top: 4px;">
+                                <div class="funnel-step" style="margin-bottom: 4px;">
+                                    <div class="funnel-bar" style="width: 100%;"></div>
+                                    <div class="funnel-content" style="padding: 6px 10px;">
+                                        <span style="font-size: 0.78rem;">1. 優惠推薦總曝光 (Impressions)</span>
+                                        <strong style="font-size: 0.78rem;">50,000 次</strong>
+                                    </div>
+                                </div>
+                                <div class="funnel-step" style="margin-bottom: 4px;">
+                                    <div class="funnel-bar" style="width: 16%;"></div>
+                                    <div class="funnel-content" style="padding: 6px 10px;">
+                                        <span style="font-size: 0.78rem;">2. 點擊推薦卡片 (CTR 16%)</span>
+                                        <strong style="font-size: 0.78rem;">8,000 次</strong>
+                                    </div>
+                                </div>
+                                <div class="funnel-step" style="margin-bottom: 4px;">
+                                    <div class="funnel-bar" style="width: 9%;"></div>
+                                    <div class="funnel-content" style="padding: 6px 10px;">
+                                        <span style="font-size: 0.78rem;">3. 查看優惠詳細說明 (56%)</span>
+                                        <strong style="font-size: 0.78rem;">4,500 次</strong>
+                                    </div>
+                                </div>
+                                <div class="funnel-step" style="margin-bottom: 4px;">
+                                    <div class="funnel-bar" style="width: 2.4%;"></div>
+                                    <div class="funnel-content" style="padding: 6px 10px;">
+                                        <span style="font-size: 0.78rem;">4. 點擊登錄/領取優惠 (26.6%)</span>
+                                        <strong style="font-size: 0.78rem;">1,200 次</strong>
+                                    </div>
+                                </div>
+                                <div class="funnel-step" style="margin-bottom: 4px;">
+                                    <div class="funnel-bar" style="width: 0.7%;"></div>
+                                    <div class="funnel-content" style="padding: 6px 10px;">
+                                        <span style="color: var(--accent-amber-text); font-size: 0.78rem; font-weight: bold;">5. 完成指定刷卡消費 (29.1%)</span>
+                                        <strong style="color: var(--accent-amber-text); font-size: 0.78rem; font-weight: bold;">350 筆 (最終轉換率 0.7%)</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 右側：質化回饋 -->
+                        <div style="background: rgba(244, 63, 94, 0.04); border: 1px solid var(--accent-rose); padding: 14px 18px; border-radius: var(--radius-md); margin-top: 10px;">
+                            <h4 style="color: var(--accent-rose); font-size: 0.9rem; margin-bottom: 6px; font-weight: 700;">🗣️ 質化調查回饋與客服數據：</h4>
+                            <p id="qualitative-feedback-text" style="font-size: 0.82rem; color: var(--text-main); line-height: 1.5; margin: 0;"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="footer-nav">
-            <a href="./assumptions.html" class="btn btn-secondary">◀ 上一頁：模組三 Assumptions</a>
-            <a href="./export.html" class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent-emerald), var(--accent-blue)); color: #0b0f19;">
-                🎓 完成課程！前往成果匯出與 PDF 下載 ➔
-            </a>
-        </div>
-    </main>
+            <!-- 投影片 4: Concept 3 - 產品學習循環步驟 -->
+            <div class="slide-item" id="slide-learn-steps">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 12px;">
+                        <span class="badge badge-emerald">閉環循環</span>
+                        <span class="badge badge-blue">Learning Loop Steps</span>
+                    </div>
+                    <h2 style="color: var(--accent-blue); margin-bottom: 8px; font-size: 1.4rem;">
+                        🔄 產品學習循環六步驟 (Learning Loop)
+                    </h2>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 18px;">
+                        一個完整的產品學習循環，應該經歷從指標定義到做出下一步決策的六個環節：
+                    </p>
+                    
+                    <div id="learning-loop-stepper" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 10px;">
+                        <!-- 由 JS 動態渲染 -->
+                    </div>
+                </div>
+            </div>
 
+            <!-- 投影片 5: Concrete Practice - 行動卡實作 -->
+            <div class="slide-item" id="slide-learn-practice">
+                <div class="slide-content" style="overflow-y: auto;">
+                    <div class="card-header" style="margin-bottom: 8px;">
+                        <span class="badge badge-emerald">實作畫布</span>
+                        <span class="badge badge-amber">Concrete Practice</span>
+                    </div>
+                    
+                    <h2 style="color: var(--accent-blue); margin-bottom: 4px; font-size: 1.35rem;">
+                        🛠️ 學習閉環與未來 2 週個人行動卡
+                    </h2>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 6px; align-items: start;">
+                        <!-- 左側：數據洞察與決策 -->
+                        <div>
+                            <div class="form-group" style="margin-bottom: 8px;">
+                                <label class="form-label" for="funnel-insight-input" style="font-size: 0.82rem; margin-bottom: 4px;">Step 1: 漏斗與數據洞察分析（哪裡流失最大？為什麼？）</label>
+                                <textarea id="funnel-insight-input" class="form-control" style="font-size: 0.82rem; min-height: 80px; padding: 6px 10px;" placeholder="從數據中可以看到，從查看詳情到登錄/領取優惠出現大量流失 (4,500 -> 1,200)，結合質化發現說明條款太繁瑣..."></textarea>
+                            </div>
+                            
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label" style="font-size: 0.82rem; margin-bottom: 4px;">Step 2: 根據證據，下一步建議採取的產品決策：</label>
+                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                                    <button type="button" class="btn btn-secondary decision-btn" data-val="Maintain" style="font-size: 0.78rem; padding: 6px;">Maintain (維持)</button>
+                                    <button type="button" class="btn btn-secondary decision-btn" data-val="Improve" style="font-size: 0.78rem; padding: 6px;">Improve (改善優化)</button>
+                                    <button type="button" class="btn btn-secondary decision-btn" data-val="Scale" style="font-size: 0.78rem; padding: 6px;">Scale (擴大投入)</button>
+                                    <button type="button" class="btn btn-secondary decision-btn" data-val="Stop／Pivot" style="font-size: 0.78rem; padding: 6px;">Stop/Pivot (停止轉向)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 右側：行動承諾 -->
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label" for="next-action-input" style="font-size: 0.82rem; margin-bottom: 4px;">Step 3: 寫下您的「未來兩週個人行動承諾 (Action Commitment)」：</label>
+                            <textarea id="next-action-input" class="form-control" style="min-height: 175px; font-size: 0.82rem; padding: 8px 12px; line-height: 1.5;" placeholder="未來兩週內，我會選擇專案需求 [專案名稱]，使用 GOAL Framework 重新檢視產品目標與關鍵假設，並執行以下驗證行動..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片 6: Conclusion - 模組總結與收束 -->
+            <div class="slide-item" id="slide-learn-conclusion">
+                <div class="slide-content">
+                    <div class="card-header" style="margin-bottom: 16px;">
+                        <span class="badge badge-emerald">課程完成</span>
+                        <span class="badge badge-blue">Conclusion</span>
+                    </div>
+
+                    <h2 style="color: var(--accent-blue); margin-bottom: 16px; font-size: 1.4rem;">
+                        🏁 Learn 產品學習循環模組結語
+                    </h2>
+
+                    <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; margin-bottom: 20px; align-items: start;">
+                        <div>
+                            <h3 style="color: var(--accent-indigo); margin-bottom: 10px; font-size: 1.1rem;">🎯 模組學習重點</h3>
+                            <ul style="padding-left: 20px; line-height: 1.8; color: var(--text-main); font-size: 0.9rem;">
+                                <li style="margin-bottom: 6px;">數據指標是溫度計，衡量結果；質化洞察是聽診器，診斷病因。二者結合才能看清全貌。</li>
+                                <li style="margin-bottom: 6px;">學習閉環的核心是根據取得的實證證據，迅速做出「維持、優化、擴大、或停止轉向」的決定。</li>
+                                <li>產品思考從來不是單向的終點，而是一個以「學習-驗證-重塑」為核心的不斷演進的閉環。</li>
+                            </ul>
+                        </div>
+                        <blockquote style="padding: 24px; background: rgba(0, 130, 64, 0.04); border-left: 4px solid var(--accent-emerald); border-radius: var(--radius-md); font-weight: 600; color: var(--accent-indigo); font-size: 1.05rem; line-height: 1.6; display: flex; align-items: center; justify-content: center; height: 100%; box-sizing: border-box; margin: 0;">
+                            「建立閉環產品思維的終點是行動。當團隊學會用數據和實驗來指導日常決定，真正的業務敏捷便隨之而來。」
+                        </blockquote>
+                    </div>
+
+                    <div class="footer-nav" style="margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 16px;">
+                        <div></div>
+                        <a href="./export.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem; background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo)); border: none; color: #FFFFFF;">
+                            🎓 完成課程！前往成果匯出與 PDF 下載 ➔
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 加密與組件腳本 -->
     <script src="./js/crypto.js"></script>
     <script src="./data/course-payload.js"></script>
     <script src="./js/storage.js"></script>
+    <script src="./js/slider.js"></script>
     <script src="./js/components.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             AppComponents.initPage('learn', (payload) => {
                 const lData = payload.learn;
 
-                // Render Teaching Points
+                // Render Teaching Points in Slide 1
                 document.getElementById('learn-teaching-points').innerHTML = 
                     lData.teachingPoints.map(tp => `<li style="margin-bottom: 6px;">${tp}</li>`).join('');
 
-                // Render Metric Levels
+                // Render Metric Levels in Slide 2
                 const mlGrid = document.getElementById('metric-levels-grid');
                 mlGrid.innerHTML = lData.fourMetricLevels.map((ml, idx) => `
-                    <div class="card" style="background: var(--bg-input); margin: 0;">
-                        <h4 style="color: var(--accent-emerald);">${ml.level}</h4>
-                        <p style="font-size: 0.85rem; font-weight: 600; color: var(--text-main); margin: 4px 0;">${ml.focus}</p>
-                        <p style="font-size: 0.8rem; color: var(--text-muted);">範例：${ml.example}</p>
+                    <div style="background: rgba(0, 130, 64, 0.03); border: 1px solid var(--border-color); padding: 12px; border-radius: var(--radius-md); transition: all 0.2s ease;">
+                        <h4 style="color: var(--accent-blue); font-size: 0.88rem; font-weight: 700; margin-bottom: 4px;">${ml.level}</h4>
+                        <p style="font-size: 0.8rem; font-weight: 600; color: var(--text-main); margin-bottom: 4px;">${ml.focus}</p>
+                        <p style="font-size: 0.74rem; color: var(--text-muted); line-height: 1.35; margin: 0;">範例：${ml.example}</p>
                     </div>
                 `).join('');
 
-                // Render Qualitative Feedback
+                // Render Qualitative Feedback in Slide 3
                 document.getElementById('qualitative-feedback-text').textContent = lData.simulatorData.qualitativeFeedback;
 
-                // Render Learning Loop Stepper
+                // Render Learning Loop Stepper in Slide 4
                 const loopStepper = document.getElementById('learning-loop-stepper');
-                loopStepper.innerHTML = lData.learningLoop.map(step => `
-                    <div style="background: rgba(52, 211, 153, 0.1); border: 1px solid var(--accent-emerald); padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: var(--accent-emerald);">
-                        ${step}
+                loopStepper.innerHTML = lData.learningLoop.map((step, idx) => `
+                    <div style="background: rgba(0, 130, 64, 0.03); border: 1px solid var(--border-color); padding: 12px; border-radius: var(--radius-md); transition: all 0.2s ease;">
+                        <span style="display: inline-block; width: 20px; height: 20px; border-radius: 50%; background: var(--accent-blue); color: white; text-align: center; line-height: 20px; font-size: 0.74rem; font-weight: bold; margin-bottom: 6px;">${idx + 1}</span>
+                        <p style="font-size: 0.78rem; font-weight: bold; color: var(--text-main); margin: 0; line-height: 1.35;">${step}</p>
                     </div>
                 `).join('');
 
-                // Interactive Workbench
+                // Interactive Workbench Setup (Slide 5)
                 const state = AppStorage.loadState();
                 const insightInput = document.getElementById('funnel-insight-input');
                 const actionInput = document.getElementById('next-action-input');
@@ -217,6 +307,9 @@
                     };
                     AppStorage.saveState(s);
                 }
+
+                // Initialize the slider engine
+                AppSlider.init('.slides-wrapper');
             });
         });
     </script>
