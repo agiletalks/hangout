@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOAL 產品思維｜完整課程講義下載</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/print.css">
+    <style>
+        .handout-section {
+            margin-bottom: 30px;
+        }
+        .handout-section h2 {
+            border-bottom: 2px solid var(--accent-indigo);
+            padding-bottom: 6px;
+            color: var(--accent-blue);
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+        }
+        .handout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        @media print {
+            .handout-section {
+                page-break-before: always;
+            }
+            .handout-section:first-of-type {
+                page-break-before: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="global-header" class="app-header no-print"></header>
+
+    <main class="container">
+        <!-- 頂端匯出操作列 -->
+        <div class="card no-print" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(129, 140, 248, 0.15)); border: 1px solid var(--accent-blue);">
+            <div class="card-header" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+                <div>
+                    <h2>📥 完整課程講義下載與列印</h2>
+                    <p style="margin-bottom: 0;">此頁面已整合所有模組的投影片講義內容，您可以直接另存為 PDF 或列印紙本講義。</p>
+                </div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button id="btn-print-pdf" class="btn btn-primary">🖨️ 列印 / 另存 PDF</button>
+                    <button id="btn-close" class="btn btn-secondary" onclick="window.close()">❌ 關閉視窗</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 完整講義內容 -->
+        <div id="printable-handout">
+            <div class="card" style="text-align: center; padding: 48px 20px;">
+                <h1 id="handout-course-title" style="color: var(--accent-blue); font-size: 2rem; font-weight: 700;">產品工作術：建立數位團隊的產品思維 (GOAL Framework)</h1>
+                <p id="handout-course-subtitle" style="font-size: 1.2rem; color: var(--text-main); margin-top: 12px; font-weight: 600;">
+                    4 小時精準轉型：從交付導向 (Output) 到成果導向 (Outcome)
+                </p>
+                <div style="border-top: 1px dashed var(--border-color); margin-top: 24px; padding-top: 20px; font-size: 0.85rem; color: var(--text-muted);">
+                    此講義內容已由講師授權 AES 加密解密提供學員複習使用。
+                </div>
+            </div>
+            
+            <div id="handout-modules-container">
+                <!-- 由 JavaScript 動態生成所有模組的講義內容 -->
+            </div>
+        </div>
+    </main>
+
+    <script src="./js/crypto.js"></script>
+    <script src="./data/course-payload.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AppComponents.initPage('intro', (payload) => {
+                // Set main titles
+                document.getElementById('handout-course-title').textContent = payload.courseTitle || 'GOAL Product Framework';
+                document.getElementById('handout-course-subtitle').textContent = payload.subtitle || '';
+
+                const container = document.getElementById('handout-modules-container');
+                let html = '';
+
+                // 1. Intro
+                if (payload.intro) {
+                    const intro = payload.intro;
+                    html += `
+                        <div class="card handout-section">
+                            <h2>📚 ${intro.title} (${intro.duration})</h2>
+                            
+                            <h3>💡 核心學習點</h3>
+                            <ul style="line-height: 1.8; margin-bottom: 20px; font-size: 0.95rem;">
+                                ${intro.teachingPoints.map(p => `<li>${p}</li>`).join('')}
+                            </ul>
+
+                            ${intro.caseStudy ? `
+                                <div style="margin-top: 16px; padding: 16px; background: var(--bg-input); border-radius: 8px; border-left: 4px solid var(--accent-blue);">
+                                    <strong style="font-size: 1.05rem; color: var(--accent-blue); display: block; margin-bottom: 8px;">📝 案例分析：${intro.caseStudy.title}</strong>
+                                    <p style="margin-bottom: 12px; line-height: 1.6;"><strong>背景情境：</strong>${intro.caseStudy.context}</p>
+                                    <p style="margin-bottom: 12px; line-height: 1.6;"><strong>執行結果：</strong>${intro.caseStudy.result}</p>
+                                    <p style="margin-bottom: 0; color: var(--accent-indigo); font-weight: 600;"><strong>💡 思考問題：</strong>${intro.caseStudy.question}</p>
+                                </div>
+                            ` : ''}
+
+                            ${intro.comparisonTable ? `
+                                <h3 style="margin-top: 24px;">📊 專案交付 (Output) vs 商業成果 (Outcome)</h3>
+                                <div class="handout-grid" style="margin-top: 10px;">
+                                    ${intro.comparisonTable.map(t => `
+                                        <div style="padding: 14px; background: var(--bg-input); border-radius: 8px; border: 1px solid var(--border-color);">
+                                            <strong style="color: var(--accent-indigo); display: block; margin-bottom: 8px; font-size: 1rem;">${t.type} (${t.focus})</strong>
+                                            <ul style="padding-left: 20px; line-height: 1.6; font-size: 0.88rem; margin: 0;">
+                                                ${t.items.map(item => `<li>${item}</li>`).join('')}
+                                            </ul>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+
+                            <blockquote style="margin-top: 20px; font-style: italic; font-weight: 600;">
+                                📌 經典名言：${intro.goldenQuote}
+                            </blockquote>
+                        </div>
+                    `;
+                }
+
+                // 2. Ground
+                if (payload.ground) {
+                    const ground = payload.ground;
+                    html += `
+                        <div class="card handout-section">
+                            <h2>📚 ${ground.title} (${ground.duration})</h2>
+                            
+                            <h3>💡 核心學習點</h3>
+                            <ul style="line-height: 1.8; margin-bottom: 20px; font-size: 0.95rem;">
+                                ${ground.teachingPoints.map(p => `<li>${p}</li>`).join('')}
+                            </ul>
+
+                            ${ground.apom ? `
+                                <h3>🎯 APOM 組織評估系統</h3>
+                                <div style="padding: 14px; background: var(--bg-input); border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6;">
+                                    <ul style="margin: 0; padding-left: 20px;">
+                                        <li><strong>Strategy (戰略/價值)</strong>: ${ground.apom.strategy.join(', ')}</li>
+                                        <li><strong>People (人才與文化)</strong>: ${ground.apom.people.join(', ')}</li>
+                                        <li><strong>Structure (結構與流程)</strong>: ${ground.apom.structure.join(', ')}</li>
+                                        <li><strong>Value Cycle (價值生命週期)</strong>: ${ground.apom.valueCycle.join(', ')}</li>
+                                        <li><strong>Approach (實證方法)</strong>: ${ground.apom.evidenceBased}</li>
+                                    </ul>
+                                </div>
+                            ` : ''}
+
+                            ${ground.productCanvas ? `
+                                <h3>🚗 Product Canvas 實戰範例: ${ground.productCanvas.productName}</h3>
+                                <div style="padding: 14px; background: var(--bg-input); border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6;">
+                                    <p><strong>產品願景目標：</strong>${ground.productCanvas.goal}</p>
+                                    <p style="margin-top: 6px;"><strong>關鍵量化指標：</strong>${ground.productCanvas.metrics.join(', ')}</p>
+                                    <p style="margin-top: 6px;"><strong>主要目標客群：</strong>${ground.productCanvas.targetGroup.join(', ')}</p>
+                                    <p style="margin-top: 6px;"><strong>使用者旅程大圖景 (User Journey)：</strong></p>
+                                    <ol style="margin-top: 4px; padding-left: 20px;">
+                                        ${ground.productCanvas.bigPicture.map(x => `<li>${x}</li>`).join('')}
+                                    </ol>
+                                    <p style="margin-top: 6px;"><strong>核心功能細節：</strong>${ground.productCanvas.productDetails.join(', ')}</p>
+                                </div>
+                            ` : ''}
+
+                            ${ground.impactMap ? `
+                                <h3>🗺️ Impact Map 影響地圖範例</h3>
+                                <div style="padding: 16px; background: var(--bg-input); border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6;">
+                                    <p><strong>Why (為何做 / 成果目標)：</strong>${ground.impactMap.why}</p>
+                                    <p style="margin-top: 6px;"><strong>Who (影響誰 / 關鍵角色)：</strong>${ground.impactMap.who.join(', ')}</p>
+                                    <p style="margin-top: 8px; font-weight: bold; color: var(--accent-indigo);">How (如何改變角色行為)：</p>
+                                    <ul style="padding-left: 20px; margin-top: 4px; margin-bottom: 8px;">
+                                        ${Object.keys(ground.impactMap.how).map(actor => `
+                                            <li><strong>${actor}</strong>: ${ground.impactMap.how[actor].join(', ')}</li>
+                                        `).join('')}
+                                    </ul>
+                                    <p style="margin-top: 8px; font-weight: bold; color: var(--accent-indigo);">What (交付何種功能以促成改變)：</p>
+                                    <ul style="padding-left: 20px; margin-top: 4px; margin-bottom: 0;">
+                                        ${Object.keys(ground.impactMap.what).map(change => `
+                                            <li><strong>${change}</strong> ➔ ${ground.impactMap.what[change].join(', ')}</li>
+                                        `).join('')}
+                                    </ul>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                }
+
+                // 3. Objectives
+                if (payload.objectives) {
+                    const obj = payload.objectives;
+                    html += `
+                        <div class="card handout-section">
+                            <h2>📚 ${obj.title} (${obj.duration})</h2>
+                            
+                            <h3>💡 核心學習點</h3>
+                            <ul style="line-height: 1.8; margin-bottom: 20px; font-size: 0.95rem;">
+                                ${obj.teachingPoints.map(p => `<li>${p}</li>`).join('')}
+                            </ul>
+
+                            ${obj.fourLevels ? `
+                                <h3>🎯 產品目標的四個層級 (Four Levels of Objectives)</h3>
+                                <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.88rem; text-align: left;">
+                                    <thead>
+                                        <tr style="border-bottom: 2px solid var(--border-color);">
+                                            <th style="padding: 8px; font-weight: bold;">層級</th>
+                                            <th style="padding: 8px; font-weight: bold;">核心引導問題</th>
+                                            <th style="padding: 8px; font-weight: bold;">具體實作範例</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${obj.fourLevels.map(l => `
+                                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                                <td style="padding: 10px; font-weight: bold; color: var(--accent-blue);">${l.level}</td>
+                                                <td style="padding: 10px;">${l.question}</td>
+                                                <td style="padding: 10px; color: var(--text-muted);">${l.example}</td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            ` : ''}
+
+                            ${obj.sevenObjectives ? `
+                                <h3>💎 七大商務目標 (Business Objectives)</h3>
+                                <div class="handout-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 20px;">
+                                    ${obj.sevenObjectives.map(o => `
+                                        <div style="padding: 10px 12px; background: var(--bg-input); border-radius: 6px; border: 1px solid var(--border-color); font-size: 0.85rem;">
+                                            <strong style="color: var(--accent-indigo); display: block; margin-bottom: 4px;">${o.name}</strong>
+                                            <span style="color: var(--text-muted); line-height: 1.4;">${o.desc}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+
+                            ${obj.formula && obj.formulaExample ? `
+                                <h3>📝 成果導向目標公式與範例</h3>
+                                <div style="padding: 14px; background: var(--bg-input); border-radius: 8px; font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px;">
+                                    <p><strong>公式結構：</strong></p>
+                                    <blockquote style="margin: 6px 0 12px 0;">${obj.formula.replace(/\\n/g, '<br>')}</blockquote>
+                                    <p><strong>實戰填寫範例：</strong></p>
+                                    <blockquote style="margin: 6px 0 0 0; border-left-color: var(--accent-emerald) !important;">${obj.formulaExample.replace(/\\n/g, '<br>')}</blockquote>
+                                </div>
+                            ` : ''}
+
+                            ${obj.quiz ? `
+                                <h3>🧠 觀念挑戰：分辨 Output 還是 Outcome</h3>
+                                <div class="handout-grid" style="gap: 10px; margin-bottom: 20px;">
+                                    ${obj.quiz.map(q => `
+                                        <div style="padding: 10px; background: var(--bg-input); border-radius: 6px; display: flex; justify-content: space-between; align-items: center; font-size: 0.88rem;">
+                                            <span>${q.text}</span>
+                                            <span class="badge ${q.answer === 'Outcome' ? 'badge-emerald' : 'badge-amber'}" style="font-weight: bold; padding: 2px 8px; border-radius: 10px;">${q.answer}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                }
+
+                // 4. Assumptions
+                if (payload.assumptions) {
+                    const ass = payload.assumptions;
+                    html += `
+                        <div class="card handout-section">
+                            <h2>📚 ${ass.title} (${ass.duration})</h2>
+                            
+                            <h3>💡 核心學習點</h3>
+                            <ul style="line-height: 1.8; margin-bottom: 20px; font-size: 0.95rem;">
+                                ${ass.teachingPoints.map(p => `<li>${p}</li>`).join('')}
+                            </ul>
+
+                            ${ass.fourRisks ? `
+                                <h3>⚠️ 產品開發的四大關鍵風險 (Four Risks)</h3>
+                                <div class="handout-grid" style="margin-bottom: 20px;">
+                                    ${ass.fourRisks.map(r => `
+                                        <div style="padding: 14px; background: var(--bg-input); border-radius: 8px; border: 1px solid var(--border-color);">
+                                            <strong style="color: var(--accent-rose); display: block; margin-bottom: 6px; font-size: 1rem;">${r.type}</strong>
+                                            <p style="margin: 0; font-size: 0.88rem; line-height: 1.5; color: var(--text-main);">${r.question}</p>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+
+                            ${ass.matrixGuide ? `
+                                <h3>🎯 2x2 假設評估象限優先級判定</h3>
+                                <div class="handout-grid" style="gap: 12px; margin-bottom: 20px;">
+                                    ${ass.matrixGuide.map(m => `
+                                        <div style="padding: 12px; background: var(--bg-input); border-radius: 8px; border: 1px solid var(--border-color); font-size: 0.88rem;">
+                                            <strong style="color: var(--accent-indigo); display: block; margin-bottom: 4px;">${m.quadrant}</strong>
+                                            <p style="margin: 0; color: var(--text-muted); line-height: 1.45;">${m.action}</p>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+
+                            ${ass.validationMethods ? `
+                                <h3>🛠️ 常用關鍵假設驗證方法</h3>
+                                <div class="handout-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 20px;">
+                                    ${ass.validationMethods.map(v => `
+                                        <div style="padding: 10px 12px; background: var(--bg-input); border-radius: 6px; border: 1px solid var(--border-color); font-size: 0.85rem;">
+                                            <strong style="color: var(--accent-blue); display: block; margin-bottom: 4px;">${v.name}</strong>
+                                            <span style="color: var(--text-muted); line-height: 1.4;">${v.fit}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+
+                            ${ass.experimentFormula ? `
+                                <h3>📝 實驗設計驗證公式</h3>
+                                <div style="padding: 14px; background: var(--bg-input); border-radius: 8px; font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px;">
+                                    <blockquote style="margin: 0;">${ass.experimentFormula}</blockquote>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                }
+
+                // 5. Learn
+                if (payload.learn) {
+                    const learn = payload.learn;
+                    html += `
+                        <div class="card handout-section">
+                            <h2>📚 ${learn.title} (${learn.duration})</h2>
+                            
+                            <h3>💡 核心學習點</h3>
+                            <ul style="line-height: 1.8; margin-bottom: 20px; font-size: 0.95rem;">
+                                ${learn.teachingPoints.map(p => `<li>${p}</li>`).join('')}
+                            </ul>
+
+                            ${learn.fourMetricLevels ? `
+                                <h3>📊 產品指標的四個層級 (Four Metric Levels)</h3>
+                                <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.88rem; text-align: left;">
+                                    <thead>
+                                        <tr style="border-bottom: 2px solid var(--border-color);">
+                                            <th style="padding: 8px; font-weight: bold;">層級</th>
+                                            <th style="padding: 8px; font-weight: bold;">關注焦點</th>
+                                            <th style="padding: 8px; font-weight: bold;">具體評估範例</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${learn.fourMetricLevels.map(l => `
+                                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                                <td style="padding: 10px; font-weight: bold; color: var(--accent-blue);">${l.level}</td>
+                                                <td style="padding: 10px;">${l.focus}</td>
+                                                <td style="padding: 10px; color: var(--text-muted);">${l.example}</td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            ` : ''}
+
+                            ${learn.simulatorData ? `
+                                <h3>📈 數據模擬與學習案例</h3>
+                                <div style="padding: 14px; background: var(--bg-input); border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6;">
+                                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; font-size: 0.85rem;">
+                                        <div style="background: rgba(255,255,255,0.05); padding: 8px; border-radius: 4px; border: 1px solid var(--border-color);"><strong>曝光數 Impressions</strong>: ${learn.simulatorData.impressions}</div>
+                                        <div style="background: rgba(255,255,255,0.05); padding: 8px; border-radius: 4px; border: 1px solid var(--border-color);"><strong>點擊數 Clicks</strong>: ${learn.simulatorData.clicks}</div>
+                                        <div style="background: rgba(255,255,255,0.05); padding: 8px; border-radius: 4px; border: 1px solid var(--border-color);"><strong>產品詳情查看 Details</strong>: ${learn.simulatorData.detailsViewed}</div>
+                                        <div style="background: rgba(255,255,255,0.05); padding: 8px; border-radius: 4px; border: 1px solid var(--border-color);"><strong>註冊數 Enrolled</strong>: ${learn.simulatorData.enrolled}</div>
+                                        <div style="background: rgba(255,255,255,0.05); padding: 8px; border-radius: 4px; border: 1px solid var(--border-color);"><strong>完成交易 Completed</strong>: ${learn.simulatorData.completedTransactions}</div>
+                                        <div style="background: rgba(255,255,255,0.05); padding: 8px; border-radius: 4px; border: 1px solid var(--border-color);"><strong>客服詢問增加 CS Inquiry</strong>: ${learn.simulatorData.csInquiryIncrease}</div>
+                                    </div>
+                                    <p style="margin-bottom: 0;"><strong>質化訪談使用者回饋與洞察：</strong></p>
+                                    <blockquote style="margin: 4px 0 0 0; color: var(--accent-indigo); font-style: italic;">${learn.simulatorData.qualitativeFeedback}</blockquote>
+                                </div>
+                            ` : ''}
+
+                            ${learn.decisionTypes ? `
+                                <h3>🧭 四大後續產品決策方向</h3>
+                                <div class="handout-grid" style="gap: 12px; margin-bottom: 20px;">
+                                    ${learn.decisionTypes.map(d => `
+                                        <div style="padding: 12px; background: var(--bg-input); border-radius: 8px; border: 1px solid var(--border-color); font-size: 0.88rem;">
+                                            <strong style="color: var(--accent-indigo); display: block; margin-bottom: 4px;">${d.name}</strong>
+                                            <p style="margin: 0; color: var(--text-muted); line-height: 1.45;">${d.condition}</p>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+
+                            ${learn.learningLoop ? `
+                                <h3>🔄 產品持續學習與優化循環步驟</h3>
+                                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
+                                    ${learn.learningLoop.map(step => `
+                                        <span class="badge badge-blue" style="font-weight: bold; font-size: 0.85rem; padding: 6px 12px; border-radius: 20px;">${step}</span>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                }
+
+                container.innerHTML = html;
+
+                // Bind print button
+                document.getElementById('btn-print-pdf').addEventListener('click', () => window.print());
+
+                // Auto prompt print dialog after half a second
+                setTimeout(() => {
+                    window.print();
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

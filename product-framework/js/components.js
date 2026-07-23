@@ -77,6 +77,10 @@ const AppComponents = (function () {
                         <span>📥 下載完整講義內容 (Markdown)</span>
                         <span>➔</span>
                     </button>
+                    <a href="./handout.html" target="_blank" class="menu-nav-item" style="background: rgba(56, 189, 248, 0.05); color: var(--accent-indigo); display: flex; justify-content: space-between; align-items: center; text-decoration: none;">
+                        <span>📥 下載完整講義內容 (PDF)</span>
+                        <span>➔</span>
+                    </a>
                 </div>
             </nav>
         `;
