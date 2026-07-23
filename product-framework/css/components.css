@@ -209,8 +209,7 @@
 }
 
 .matrix-axis-y {
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
+    writing-mode: vertical-rl;
     text-align: center;
     font-weight: 700;
     color: var(--accent-blue);

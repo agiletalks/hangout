@@ -91,7 +91,7 @@ const COURSE_DATA = {
     ],
     sevenObjectives: [
       { name: "Ability (能力)", desc: "強化人或組織解決問題的專業技能。" },
-      { name: "Benefit (效益)", desc: "在財務或非財務上，為組織與社會帶來的正面成果。" },
+      { name: "Benefit (效益)", desc: "為組織與社會帶來的正面成果。" },
       { name: "Cost (成本)", desc: "以更少的資源，達成相同的產出。" },
       { name: "Disruption (擾動)", desc: "避免突發事件發生，或是降低事件的影響。" },
       { name: "Efficiency (效率)", desc: "有效運用資源、最小化浪費以達成目標的能力。" },
@@ -115,7 +115,7 @@ const COURSE_DATA = {
     title: "模組三｜Assumptions：建立實驗思維，驗證關鍵假設",
     duration: "65 分鐘",
     teachingPoints: [
-      "需求文件上記筆的內容，本質上都只是「尚未被證明的假設 (Unproven Assumptions)」。",
+      "需求文件上記錄的內容，本質上都只是「尚未被證明的假設 (Unproven Assumptions)」。",
       "與其爭辯解法好不好，不如問「我們正在假設什麼？哪一個假設錯了會致命？」",
       "MVP 不是功能削減的劣質品，而是「能以最低合理成本取得關鍵證據的產品形式」。"
     ],
