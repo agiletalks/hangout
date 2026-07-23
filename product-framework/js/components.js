@@ -68,11 +68,15 @@ const AppComponents = (function () {
                         ${m.key === currentModuleKey ? '<span style="font-size: 0.95rem;">👉</span>' : ''}
                     </a>
                 `).join('')}
-                <div style="border-top: 1px dashed var(--border-color); margin-top: 16px; padding-top: 16px;">
+                <div style="border-top: 1px dashed var(--border-color); margin-top: 16px; padding-top: 16px; display: flex; flex-direction: column; gap: 8px;">
                     <a href="./export.html" class="menu-nav-item" style="background: rgba(0, 130, 64, 0.05); color: var(--accent-blue); display: flex; justify-content: space-between; align-items: center;">
                         <span>📊 學習成果與 PDF 匯出</span>
                         <span>➔</span>
                     </a>
+                    <button id="download-all-slides-btn" class="menu-nav-item" style="width: 100%; border: 1px solid var(--border-color); font-family: inherit; font-size: 0.95rem; font-weight: 600; text-align: left; background: rgba(56, 189, 248, 0.05); color: var(--accent-indigo); display: flex; justify-content: space-between; align-items: center; cursor: pointer; box-sizing: border-box; padding: 12px 16px;">
+                        <span>📥 下載完整講義內容 (Markdown)</span>
+                        <span>➔</span>
+                    </button>
                 </div>
             </nav>
         `;
@@ -94,6 +98,11 @@ const AppComponents = (function () {
         hamburgerBtn.addEventListener('click', openMenu);
         closeBtn.addEventListener('click', closeMenu);
         menuOverlay.addEventListener('click', closeMenu);
+
+        const downloadBtn = drawer.querySelector('#download-all-slides-btn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', downloadAllSlides);
+        }
     }
 
     /**
@@ -237,6 +246,228 @@ const AppComponents = (function () {
 
         btn.addEventListener('click', () => drawer.classList.add('open'));
         document.getElementById('drawer-close-btn').addEventListener('click', () => drawer.classList.remove('open'));
+    }
+
+    /**
+     * Download Markdown Handout of All slides
+     */
+    function downloadAllSlides() {
+        if (!decryptedPayload) {
+            alert('講義尚未解密，請先解密內容。');
+            return;
+        }
+
+        let md = `# ${decryptedPayload.courseTitle || 'GOAL Product Framework'}\n`;
+        md += `## ${decryptedPayload.subtitle || ''}\n\n`;
+        md += `> ${decryptedPayload.passcodeHint || ''}\n\n---\n\n`;
+
+        // 1. Intro
+        if (decryptedPayload.intro) {
+            const intro = decryptedPayload.intro;
+            md += `## 📚 ${intro.title} (${intro.duration})\n\n`;
+            md += `### 💡 核心學習點\n`;
+            intro.teachingPoints.forEach(p => {
+                md += `- ${p}\n`;
+            });
+            md += `\n`;
+            if (intro.caseStudy) {
+                md += `### 📝 核心案例：${intro.caseStudy.title}\n`;
+                md += `**情境背景**:\n${intro.caseStudy.context}\n\n`;
+                md += `**實際結果**:\n${intro.caseStudy.result}\n\n`;
+                md += `**思考問題**:\n> ${intro.caseStudy.question}\n\n`;
+            }
+            if (intro.comparisonTable) {
+                md += `### 📊 交付導向 vs 成果導向\n\n`;
+                intro.comparisonTable.forEach(t => {
+                    md += `#### ${t.type} (${t.focus})\n`;
+                    t.items.forEach(item => {
+                        md += `- ${item}\n`;
+                    });
+                    md += `\n`;
+                });
+            }
+            md += `**📌 經典名言**:\n> *${intro.goldenQuote}*\n\n---\n\n`;
+        }
+
+        // 2. Ground
+        if (decryptedPayload.ground) {
+            const ground = decryptedPayload.ground;
+            md += `## 📚 ${ground.title} (${ground.duration})\n\n`;
+            md += `### 💡 核心學習點\n`;
+            ground.teachingPoints.forEach(p => {
+                md += `- ${p}\n`;
+            });
+            md += `\n`;
+            if (ground.apom) {
+                const ap = ground.apom;
+                md += `### 🎯 APOM 組織評估系統\n`;
+                md += `- **Strategy (戰略/價值)**: ${ap.strategy.join(', ')}\n`;
+                md += `- **People (人才與文化)**: ${ap.people.join(', ')}\n`;
+                md += `- **Structure (結構與流程)**: ${ap.structure.join(', ')}\n`;
+                md += `- **Value Cycle (價值環)**: ${ap.valueCycle.join(', ')}\n`;
+                md += `- **Approach**: ${ap.evidenceBased}\n\n`;
+            }
+            if (ground.productCanvas) {
+                const pc = ground.productCanvas;
+                md += `### 🚗 Product Canvas 實戰範例: ${pc.productName}\n`;
+                md += `- **產品願景與目標**: ${pc.goal}\n`;
+                md += `- **關鍵指標**: ${pc.metrics.join(', ')}\n`;
+                md += `- **目標客群**: ${pc.targetGroup.join(', ')}\n`;
+                md += `- **大圖景 (User Journey)**:\n  ${pc.bigPicture.map((x, i) => `${i+1}. ${x}`).join('\n  ')}\n`;
+                md += `- **產品細節 (Features)**:\n  ${pc.productDetails.map(x => `  - ${x}`).join('\n')}\n\n`;
+            }
+            if (ground.impactMap) {
+                const im = ground.impactMap;
+                md += `### 🗺️ Impact Map 影響地圖範例\n`;
+                md += `- **Why (核心目標)**: ${im.why}\n`;
+                md += `- **Who (影響對象)**: ${im.who.join(', ')}\n`;
+                md += `- **How (行為改變)**:\n`;
+                for (const actor in im.how) {
+                    md += `  - **${actor}**:\n`;
+                    im.how[actor].forEach(h => {
+                        md += `    - ${h}\n`;
+                    });
+                }
+                md += `- **What (具體解法)**:\n`;
+                for (const change in im.what) {
+                    md += `  - **${change}**: ${im.what[change].join(', ')}\n`;
+                }
+                md += `\n`;
+            }
+            md += `---\n\n`;
+        }
+
+        // 3. Objectives
+        if (decryptedPayload.objectives) {
+            const obj = decryptedPayload.objectives;
+            md += `## 📚 ${obj.title} (${obj.duration})\n\n`;
+            md += `### 💡 核心學習點\n`;
+            obj.teachingPoints.forEach(p => {
+                md += `- ${p}\n`;
+            });
+            md += `\n`;
+            if (obj.fourLevels) {
+                md += `### 🎯 產品目標的四個層級\n\n`;
+                md += `| 層級 | 核心問題 | 具體範例 |\n`;
+                md += `| --- | --- | --- |\n`;
+                obj.fourLevels.forEach(l => {
+                    md += `| **${l.level}** | ${l.question} | ${l.example} |\n`;
+                });
+                md += `\n`;
+            }
+            if (obj.sevenObjectives) {
+                md += `### 💎 七大商務目標 (Business Objectives)\n\n`;
+                obj.sevenObjectives.forEach(o => {
+                    md += `- **${o.name}**: ${o.desc}\n`;
+                });
+                md += `\n`;
+            }
+            md += `### 📝 成果導向目標公式與範例\n`;
+            md += `**公式結構**:\n> ${obj.formula ? obj.formula.replace(/\\n/g, '\n> ') : ''}\n\n`;
+            md += `**填寫範例**:\n> ${obj.formulaExample ? obj.formulaExample.replace(/\\n/g, '\n> ') : ''}\n\n`;
+            if (obj.quiz) {
+                md += `### 🧠 觀念挑戰：Output 還是 Outcome？\n\n`;
+                md += `| 題目敘述 | 正確分類 |\n`;
+                md += `| --- | --- |\n`;
+                obj.quiz.forEach(q => {
+                    md += `| ${q.text} | ${q.answer} |\n`;
+                });
+                md += `\n`;
+            }
+            md += `---\n\n`;
+        }
+
+        // 4. Assumptions
+        if (decryptedPayload.assumptions) {
+            const ass = decryptedPayload.assumptions;
+            md += `## 📚 ${ass.title} (${ass.duration})\n\n`;
+            md += `### 💡 核心學習點\n`;
+            ass.teachingPoints.forEach(p => {
+                md += `- ${p}\n`;
+            });
+            md += `\n`;
+            if (ass.fourRisks) {
+                md += `### ⚠️ 產品開發的四大關鍵風險\n\n`;
+                ass.fourRisks.forEach(r => {
+                    md += `- **${r.type}**: ${r.question}\n`;
+                });
+                md += `\n`;
+            }
+            if (ass.matrixGuide) {
+                md += `### 🎯 2x2 假設評估象限指南\n\n`;
+                ass.matrixGuide.forEach(m => {
+                    md += `- **${m.quadrant}**:\n  ${m.action}\n`;
+                });
+                md += `\n`;
+            }
+            if (ass.validationMethods) {
+                md += `### 🛠️ 關鍵假設驗證方法\n\n`;
+                ass.validationMethods.forEach(v => {
+                    md += `- **${v.name}**: ${v.fit}\n`;
+                });
+                md += `\n`;
+            }
+            md += `### 📝 實驗設計公式\n`;
+            md += `> ${ass.experimentFormula || ''}\n\n`;
+            md += `---\n\n`;
+        }
+
+        // 5. Learn
+        if (decryptedPayload.learn) {
+            const learn = decryptedPayload.learn;
+            md += `## 📚 ${learn.title} (${learn.duration})\n\n`;
+            md += `### 💡 核心學習點\n`;
+            learn.teachingPoints.forEach(p => {
+                md += `- ${p}\n`;
+            });
+            md += `\n`;
+            if (learn.fourMetricLevels) {
+                md += `### 📊 產品指標的四個層級\n\n`;
+                md += `| 指標層級 | 關注焦點 | 具體範例 |\n`;
+                md += `| --- | --- | --- |\n`;
+                learn.fourMetricLevels.forEach(m => {
+                    md += `| **${m.level}** | ${m.focus} | ${m.example} |\n`;
+                });
+                md += `\n`;
+            }
+            if (learn.simulatorData) {
+                const sd = learn.simulatorData;
+                md += `### 📈 數據模擬與學習案例\n`;
+                md += `- **曝光數 (Impressions)**: ${sd.impressions}\n`;
+                md += `- **點擊數 (Clicks)**: ${sd.clicks}\n`;
+                md += `- **細節查看數 (Details Viewed)**: ${sd.detailsViewed}\n`;
+                md += `- **註冊數 (Enrolled)**: ${sd.enrolled}\n`;
+                md += `- **完成交易數 (Completed Transactions)**: ${sd.completedTransactions}\n`;
+                md += `- **客服諮詢增長 (CS Inquiry Increase)**: ${sd.csInquiryIncrease}\n`;
+                md += `- **質化訪談反饋**:\n  > ${sd.qualitativeFeedback}\n\n`;
+            }
+            if (learn.decisionTypes) {
+                md += `### 🧭 四大後續產品決策\n\n`;
+                learn.decisionTypes.forEach(d => {
+                    md += `- **${d.name} (決策)**: ${d.condition}\n`;
+                });
+                md += `\n`;
+            }
+            if (learn.learningLoop) {
+                md += `### 🔄 產品學習循環步驟\n\n`;
+                learn.learningLoop.forEach(step => {
+                    md += `- ${step}\n`;
+                });
+                md += `\n`;
+            }
+        }
+
+        downloadMarkdown('GOAL-Framework-All-Slides.md', md);
+    }
+
+    function downloadMarkdown(filename, text) {
+        const element = document.createElement('a');
+        element.setAttribute('href', 'data:text/markdown;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
     }
 
     return {
