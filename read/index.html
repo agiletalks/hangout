@@ -1018,82 +1018,6 @@
             }
         }
 
-        /* 側邊欄工具箱樣式 (置底精簡版) */
-        .sidebar-toolbox {
-            padding: 12px 16px;
-            border-top: 1px solid var(--border-color);
-            background-color: #FAFBFB;
-            margin-top: auto; /* 置底固定 */
-            flex-shrink: 0;
-            box-sizing: border-box;
-            width: 100%;
-        }
-        .toolbox-title {
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-            text-align: center;
-        }
-        /* 側邊欄模式切換鈕 */
-        .mode-toggle-sidebar {
-            display: flex;
-            background: #E5E7EB;
-            padding: 2px;
-            border-radius: var(--radius-sm);
-            margin-bottom: 8px;
-        }
-        .btn-mode-sidebar {
-            flex: 1;
-            padding: 5px;
-            border: none;
-            background: transparent;
-            font-size: 0.75rem;
-            font-weight: 700;
-            border-radius: 6px;
-            cursor: pointer;
-            color: var(--text-muted);
-            transition: var(--transition);
-        }
-        .btn-mode-sidebar.active {
-            background-color: #FFFFFF;
-            color: var(--primary-dark);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
-        
-        .toolbox-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-        }
-        .toolbox-btn-compact {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            padding: 8px;
-            background-color: #FFFFFF;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-sm);
-            font-size: 0.78rem;
-            font-weight: 500;
-            color: var(--text-main);
-            text-decoration: none;
-            cursor: pointer;
-            transition: var(--transition);
-            box-sizing: border-box;
-        }
-        .toolbox-btn-compact:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            background-color: var(--primary-light);
-        }
-        .toolbox-btn-compact svg {
-            color: var(--primary);
-            flex-shrink: 0;
-        }
     </style>
 </head>
 <body>
@@ -1166,7 +1090,45 @@
         </div>
         
         <div class="header-right">
-            <!-- 頂部按鈕已全部整合至側邊欄漢堡選單內 -->
+            <!-- 模式切換 -->
+            <div class="mode-toggle-group">
+                <button class="btn-mode-tab active" id="mode-focus-btn">單頁專注</button>
+                <button class="btn-mode-tab" id="mode-list-btn">全覽瀏覽</button>
+            </div>
+
+            <!-- 評估工具手冊手冊連結 -->
+            <a href="./assess.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline-white" style="text-decoration: none;" title="進入評估工具手冊">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM4 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+                    <path d="M9 3H4v1h5V3zm3 0h-2v1h2V3zm-3 2H4v1h5V5zm3 0h-2v1h2V5zm-3 2H4v1h5V7zm3 0h-2v1h2V7zm-3 2H4v1h5V9zm3 0h-2v1h2V9z"/>
+                </svg>
+                <span>評估工具手冊</span>
+            </a>
+
+            <!-- 線上白板連結 -->
+            <a href="./aigile_board.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline-white" style="text-decoration: none;" title="開啟 Aigile 線上白板">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                </svg>
+                <span>Aigile 線上白板</span>
+            </a>
+
+            <!-- PDF/列印與筆記操作 -->
+            <button class="btn btn-outline-white" id="export-txt-btn" title="匯出純文字筆記">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+                </svg>
+                <span>匯出筆記</span>
+            </button>
+            
+            <button class="btn btn-accent" id="print-pdf-btn" title="列印或另存 PDF">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                    <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5A.5.5 0 0 1 5 8zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+                <span>列印/PDF</span>
+            </button>
         </div>
     </header>
 
@@ -1199,48 +1161,6 @@
             <!-- 投影片風琴摺跳轉清單 -->
             <div class="slides-list" id="slides-list">
                 <!-- 由 JavaScript 動態填入 -->
-            </div>
-
-            <!-- 學習工具箱 (置底固定) -->
-            <div class="sidebar-toolbox">
-                <!-- 模式切換 -->
-                <div class="mode-toggle-sidebar">
-                    <button class="btn-mode-sidebar active" id="mode-focus-btn">單頁專注</button>
-                    <button class="btn-mode-sidebar" id="mode-list-btn">全覽瀏覽</button>
-                </div>
-
-                <div class="toolbox-grid">
-                    <a href="./assess.html" target="_blank" rel="noopener noreferrer" class="toolbox-btn-compact" title="進入評估工具手冊">
-                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM4 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
-                            <path d="M9 3H4v1h5V3zm3 0h-2v1h2V3zm-3 2H4v1h5V5zm3 0h-2v1h2V5zm-3 2H4v1h5V7zm3 0h-2v1h2V7zm-3 2H4v1h5V9zm3 0h-2v1h2V9z"/>
-                        </svg>
-                        <span>評估手冊</span>
-                    </a>
-                    
-                    <a href="./aigile_board.html" target="_blank" rel="noopener noreferrer" class="toolbox-btn-compact" title="開啟 Aigile 線上白板">
-                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                        </svg>
-                        <span>線上白板</span>
-                    </a>
-
-                    <button class="toolbox-btn-compact" id="export-txt-btn" title="匯出純文字筆記">
-                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
-                        </svg>
-                        <span>匯出筆記</span>
-                    </button>
-
-                    <button class="toolbox-btn-compact" id="print-pdf-btn" title="列印或另存 PDF">
-                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
-                            <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5A.5.5 0 0 1 5 8zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-                        </svg>
-                        <span>列印 PDF</span>
-                    </button>
-                </div>
             </div>
         </div>
 
