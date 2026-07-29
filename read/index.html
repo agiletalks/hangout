@@ -1,0 +1,1993 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國泰人壽《溝通引導術》互動講義</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS Styles -->
+    <style>
+        :root {
+            /* 國泰人壽 brand colors */
+            --primary: #009E52; /* 國泰綠 */
+            --primary-dark: #007A3E;
+            --primary-light: rgba(0, 158, 82, 0.08);
+            --primary-glow: rgba(0, 158, 82, 0.15);
+            --accent: #FFD100; /* 大樹金 */
+            --accent-dark: #E6BC00;
+            --bg-app: #F3F7F4;
+            --bg-card: #FFFFFF;
+            --text-main: #1F2937;
+            --text-muted: #6B7280;
+            --border-color: #E5E7EB;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 8px 24px rgba(0, 158, 82, 0.06);
+            --shadow-lg: 0 16px 40px rgba(0, 158, 82, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 全域重設與基底樣式 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-app);
+            color: var(--text-main);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        button, input, textarea {
+            font-family: inherit;
+        }
+
+        /* 捲軸美化 */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 158, 82, 0.2);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* ==================== 網頁頁首 (Header) ==================== */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: #FFFFFF;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+            position: relative;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* 漢堡選單按鈕 */
+        .btn-sidebar-toggle {
+            background: transparent;
+            border: none;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        .btn-sidebar-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* 國泰大樹概念設計標誌 */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: #FFFFFF;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .logo-tree {
+            width: 22px;
+            height: 22px;
+            fill: var(--primary);
+        }
+
+        .header-title-group h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-title-group p {
+            font-size: 0.8rem;
+            opacity: 0.85;
+            margin-top: 2px;
+        }
+
+        .badge-brand {
+            background: var(--accent);
+            color: #1F2937;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* 按鈕基礎 */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: #1F2937;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(255, 209, 0, 0.3);
+        }
+        .btn-accent:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline-white {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .btn-outline-white:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: #FFFFFF;
+        }
+
+        /* 模式切換按鈕組 */
+        .mode-toggle-group {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 4px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            gap: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-mode-tab {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            background: transparent;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-mode-tab.active {
+            background-color: #FFFFFF;
+            color: var(--primary-dark);
+            font-weight: 700;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* ==================== 應用主容器 layout ==================== */
+        .app-container {
+            display: flex;
+            flex: 1;
+            height: calc(100vh - 64px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ==================== 側邊欄大綱 (Sidebar) ==================== */
+        .sidebar {
+            width: 260px;
+            background-color: #FFFFFF;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            z-index: 90;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        /* 電腦版收合狀態 */
+        .sidebar-collapsed .sidebar {
+            width: 0;
+            border-right-width: 0;
+            opacity: 0;
+        }
+
+        .sidebar-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .search-wrapper {
+            position: relative;
+            margin-bottom: 12px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 8px 12px 8px 36px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            transition: var(--transition);
+            background-color: #F9FAFB;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background-color: #FFFFFF;
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            fill: var(--text-muted);
+        }
+
+        /* 學習進度條 */
+        .progress-box {
+            background-color: var(--primary-light);
+            border-radius: var(--radius-sm);
+            padding: 10px 14px;
+            border: 1px solid rgba(0, 158, 82, 0.1);
+        }
+        .progress-title-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+        }
+        .progress-bar-bg {
+            height: 6px;
+            background-color: rgba(0, 158, 82, 0.15);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--primary) 100%);
+            width: 0%;
+            transition: width 0.5s ease-out;
+        }
+
+        /* 投影片導航清單 (風琴摺樣式) */
+        .slides-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0;
+        }
+
+        .category-group {
+            border-bottom: 1px solid var(--border-color);
+        }
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            background-color: #F9FAFB;
+            cursor: pointer;
+            user-select: none;
+            transition: var(--transition);
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--primary-dark);
+            border-left: 3px solid transparent;
+        }
+        .category-header:hover {
+            background-color: #F3F4F6;
+        }
+        .category-header.active {
+            background-color: var(--primary-light);
+            border-left-color: var(--primary);
+        }
+        .category-arrow {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.3s ease;
+            fill: var(--text-muted);
+        }
+        .category-group.collapsed .category-arrow {
+            transform: rotate(-90deg);
+        }
+        .category-items {
+            max-height: 800px;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .category-group.collapsed .category-items {
+            max-height: 0 !important;
+        }
+
+        .slide-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 20px 10px 30px; /* 左側縮排表示層級 */
+            cursor: pointer;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+            user-select: none;
+            background-color: #FFFFFF;
+        }
+        .slide-item:hover {
+            background-color: #F3F4F6;
+        }
+        .slide-item.active {
+            background-color: var(--primary-light);
+            border-left-color: var(--primary);
+        }
+
+        .slide-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .slide-title {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .slide-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 1px;
+        }
+
+        .note-status-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: none;
+        }
+        .slide-item.has-note .note-status-dot {
+            display: inline-block;
+        }
+
+        /* ==================== 網頁主內容區 (Main Content) ==================== */
+        main {
+            flex: 1;
+            height: 100%;
+            overflow-y: auto;
+            position: relative;
+            background-color: var(--bg-app);
+            padding: 24px;
+            transition: var(--transition);
+        }
+
+        /* ==================== 單頁專注模式 (Focus Mode Layout) ==================== */
+        .focus-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+            gap: 24px;
+            height: 100%;
+            align-content: stretch;
+        }
+
+        /* 左欄：投影片顯示卡片 */
+        .slide-display-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .slide-img-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: var(--radius-md);
+            background-color: #111827;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide-main-image {
+            max-width: 100%;
+            max-height: 76vh;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        /* 圖片放大按鈕 */
+        .zoom-overlay-btn {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background-color: rgba(17, 24, 39, 0.7);
+            color: #FFFFFF;
+            border: none;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .zoom-overlay-btn:hover {
+            background-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* 右欄：筆記與操作面板 */
+        .control-panel-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .panel-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 14px;
+        }
+        .panel-slide-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .panel-slide-index {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            background-color: var(--primary-light);
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+        .panel-slide-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.4;
+        }
+
+        /* 筆記區 */
+        .note-area-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .note-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .note-label {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .note-label::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* 自動存檔狀態標籤 */
+        .save-indicator {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: var(--transition);
+            opacity: 0;
+        }
+        .save-indicator.visible {
+            opacity: 1;
+        }
+        .save-indicator-spinner {
+            width: 10px;
+            height: 10px;
+            border: 2px solid var(--primary);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
+        .save-indicator.saving .save-indicator-spinner {
+            display: inline-block;
+        }
+        .save-indicator.saving .save-indicator-dot {
+            display: none;
+        }
+        .save-indicator-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary);
+            border-radius: 50%;
+        }
+
+        .note-textarea {
+            width: 100%;
+            flex: 1;
+            min-height: 180px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            resize: none;
+            transition: var(--transition);
+            background-color: #F9FAFB;
+        }
+        .note-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background-color: #FFFFFF;
+            box-shadow: 0 0 0 4px var(--primary-glow);
+        }
+        .note-textarea::placeholder {
+            color: #9CA3AF;
+            font-size: 0.9rem;
+        }
+
+        /* 導航按鈕區 */
+        .navigation-row {
+            display: flex;
+            gap: 12px;
+        }
+        .navigation-row .btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+        }
+        .btn-prev {
+            background-color: #FFFFFF;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+        .btn-prev:hover:not(:disabled) {
+            background-color: #F3F4F6;
+            border-color: #D1D5DB;
+        }
+        .btn-next {
+            background-color: var(--primary);
+            color: #FFFFFF;
+            box-shadow: 0 4px 14px rgba(0, 158, 82, 0.2);
+        }
+        .btn-next:hover:not(:disabled) {
+            background-color: var(--primary-dark);
+            box-shadow: 0 4px 20px rgba(0, 158, 82, 0.3);
+        }
+        .navigation-row button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* ==================== 全覽模式 (List Mode Layout) ==================== */
+        .list-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-bottom: 60px;
+        }
+
+        .list-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            transition: var(--transition);
+        }
+        .list-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .list-card-image-box {
+            background-color: #111827;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            border-right: 1px solid var(--border-color);
+            position: relative;
+        }
+        .list-card-img {
+            max-width: 100%;
+            max-height: 280px;
+            object-fit: contain;
+            border-radius: var(--radius-sm);
+        }
+
+        .list-card-content-box {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* ==================== 圖片燈箱 (Lightbox) ==================== */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(17, 24, 39, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 85%;
+            object-fit: contain;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .lightbox.active .lightbox-img {
+            transform: scale(1);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        .lightbox-close:hover {
+            background-color: #EF4444;
+            transform: rotate(90deg);
+        }
+
+        /* ==================== 列印專用隱藏容器 ==================== */
+        #print-container {
+            display: none;
+        }
+
+        /* ==================== 動畫與關鍵影格 ==================== */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ==================== 響應式佈局調整 (Media Queries) ==================== */
+        @media (max-width: 1024px) {
+            .focus-layout {
+                grid-template-columns: 1.2fr 1fr;
+                gap: 16px;
+            }
+            .sidebar {
+                width: 240px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                overflow-y: auto;
+            }
+            .app-container {
+                height: auto;
+                overflow: visible;
+            }
+            main {
+                overflow-y: visible;
+                padding: 16px;
+                height: auto;
+            }
+            
+            /* 行動版滑出式抽屜側欄 */
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -280px;
+                width: 280px;
+                height: 100vh;
+                box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+                z-index: 120;
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            
+            /* 行動版收合無動畫重設 */
+            .sidebar-collapsed .sidebar {
+                width: 280px;
+                opacity: 1;
+            }
+            
+            /* 漢堡選單遮罩 */
+            .sidebar-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background-color: rgba(17, 24, 39, 0.5);
+                z-index: 115;
+                display: none;
+            }
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            /* 單頁專注模式改為上下疊放 */
+            .focus-layout {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto;
+                gap: 16px;
+            }
+            .slide-display-card {
+                min-height: 250px;
+                padding: 12px;
+            }
+            .slide-main-image {
+                max-height: 45vh;
+            }
+            .control-panel-card {
+                padding: 16px;
+            }
+            .note-textarea {
+                min-height: 150px;
+            }
+
+            /* 全覽清單卡片改為上下疊放 */
+            .list-card {
+                grid-template-columns: 1fr;
+            }
+            .list-card-image-box {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            header {
+                padding: 12px 16px;
+            }
+            .header-title-group h1 {
+                font-size: 1.1rem;
+            }
+            .header-right {
+                gap: 8px;
+            }
+            .btn {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* AI Prompt Card styles */
+        .ai-prompt-card {
+            background-color: #F8FAFC;
+            border: 1.5px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .ai-prompt-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .ai-prompt-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ai-prompt-body {
+            font-size: 0.85rem;
+            color: #374151;
+            background-color: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 10px;
+            max-height: 120px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            line-height: 1.5;
+            font-family: inherit;
+        }
+        .btn-copy-prompt {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            background-color: var(--primary);
+            color: #FFFFFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+        .btn-copy-prompt:hover {
+            background-color: var(--primary-dark);
+        }
+        .btn-copy-prompt.copied {
+            background-color: #10B981;
+        }
+
+        /* ==================== 🖨️ 列印專用 CSS 樣式 (@media print) ==================== */
+        @media print {
+            body, html {
+                background: #FFFFFF !important;
+                color: #000000 !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+            header, .sidebar, .sidebar-overlay, main, .lightbox {
+                display: none !important;
+            }
+
+            #print-container {
+                display: block !important;
+                background: #FFFFFF !important;
+            }
+
+            /* 列印分頁控制 */
+            .print-page {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: flex-start !important;
+                justify-content: space-between !important;
+                width: 100% !important;
+                height: 100% !important;
+                page-break-after: always !important;
+                box-sizing: border-box !important;
+                padding: 15mm 10mm !important;
+            }
+
+            /* 左側投影片圖片 */
+            .print-image-col {
+                width: 48% !important;
+                text-align: center !important;
+            }
+            .print-slide-img {
+                width: 100% !important;
+                height: auto !important;
+                max-height: 120mm !important;
+                object-fit: contain !important;
+                border: 1px solid #CCCCCC !important;
+                border-radius: 4px !important;
+            }
+
+            /* 右側筆記區 */
+            .print-note-col {
+                width: 48% !important;
+                padding-left: 20px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                box-sizing: border-box !}
+
+            .print-slide-index {
+                font-size: 14pt !important;
+                font-weight: bold !important;
+                color: #009E52 !important;
+                margin-bottom: 4px !important;
+                border-bottom: 2px solid #009E52 !important;
+                padding-bottom: 4px !important;
+            }
+            
+            .print-slide-title {
+                font-size: 12pt !important;
+                font-weight: bold !important;
+                color: #333333 !important;
+                margin-bottom: 16px !important;
+            }
+
+            .print-note-label {
+                font-size: 10pt !important;
+                font-weight: bold !important;
+                color: #666666 !important;
+                margin-bottom: 8px !important;
+            }
+
+            .print-note-content {
+                font-size: 11pt !important;
+                line-height: 1.8 !important;
+                color: #111111 !important;
+                white-space: pre-wrap !important;
+                word-wrap: break-word !important;
+                flex-grow: 1 !important;
+            }
+
+            /* 無筆記時印出引導虛線供手寫 */
+            .print-note-content.empty {
+                color: #999999 !important;
+                border-bottom: 1px dashed #CCCCCC !important;
+                height: 80mm !important;
+                background-image: linear-gradient(to bottom, transparent 95%, #E5E7EB 95%) !important;
+                background-size: 100% 8mm !important;
+                line-height: 8mm !important;
+            }
+        }
+    </style>
+</head>
+<body>
+  <!-- 密碼保護驗證區 -->
+  <div id="password-lock-screen" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #F3F7F4; z-index: 999999; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: sans-serif; opacity: 1; transition: opacity 0.3s ease;">
+      <div style="background-color: #FFFFFF; padding: 40px; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,158,82,0.08); text-align: center; max-width: 400px; width: 90%; border: 1px solid #E5E7EB; box-sizing: border-box;">
+          <div style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background-color: #009E52; border-radius: 50%; margin-bottom: 20px; color: #FFFFFF;">
+              <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16" style="width: 28px; height: 28px;">
+                  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+              </svg>
+          </div>
+          <h2 style="font-size: 1.4rem; color: #1F2937; margin-bottom: 10px; font-weight: 700; margin-top: 0;">國泰人壽 敏捷種子培訓</h2>
+          <p style="font-size: 0.9rem; color: #6B7280; margin-bottom: 24px; margin-top: 0; line-height: 1.5;">本教材受密碼保護，請輸入國泰人壽統一編號以開啟內容</p>
+          <div style="position: relative; margin-bottom: 16px;">
+              <input type="password" id="lock-password-input" placeholder="請輸入 8 碼統一編號" style="width: 100%; padding: 12px 16px; border: 1.5px solid #E5E7EB; border-radius: 8px; font-size: 1rem; outline: none; box-sizing: border-box; text-align: center; letter-spacing: 2px;">
+          </div>
+          <button id="lock-submit-btn" style="width: 100%; padding: 12px; background-color: #009E52; color: #FFFFFF; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 158, 82, 0.2); box-sizing: border-box;">確定送出</button>
+          <p id="lock-error-msg" style="color: #EF4444; font-size: 0.85rem; margin-top: 12px; display: none; font-weight: 500; margin-bottom: 0;">❌ 密碼錯誤，請重新輸入！</p>
+      </div>
+  </div>
+  <script>
+      (function() {
+          const correctHash = "03374707";
+          if (sessionStorage.getItem('read_courseware_authorized') === 'true') {
+              document.write('<style>#password-lock-screen { display: none !important; }</style>');
+              return;
+          }
+          window.addEventListener('DOMContentLoaded', () => {
+              const lockScreen = document.getElementById('password-lock-screen');
+              const passwordInput = document.getElementById('lock-password-input');
+              const submitBtn = document.getElementById('lock-submit-btn');
+              const errorMsg = document.getElementById('lock-error-msg');
+              
+              function verify() {
+                  if (passwordInput.value.trim() === correctHash) {
+                      sessionStorage.setItem('read_courseware_authorized', 'true');
+                      lockScreen.style.opacity = '0';
+                      setTimeout(() => { lockScreen.style.display = 'none'; }, 300);
+                  } else {
+                      errorMsg.style.display = 'block';
+                      passwordInput.value = '';
+                      passwordInput.focus();
+                  }
+              }
+              submitBtn.addEventListener('click', verify);
+              passwordInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') verify(); });
+              passwordInput.focus();
+          });
+      })();
+  </script>
+
+
+    <!-- ==================== Header ==================== -->
+    <header>
+        <div class="header-left">
+            <button class="btn-sidebar-toggle" id="global-sidebar-toggle" title="切換側邊大綱">
+                <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+            </button>
+            <div class="logo-container">
+                <svg class="logo-tree" viewBox="0 0 24 24">
+                    <path d="M12 2C8.68 2 6 4.68 6 8c0 2.22 1.21 4.15 3 5.19V18c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-4.81c1.79-1.04 3-2.97 3-5.19 0-3.32-2.68-6-6-6zm2 15h-4v-1h4v1zm0-2h-4v-1h4v1zm-2-4c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" />
+                </svg>
+            </div>
+            <div class="header-title-group">
+                <h1>溝通引導術 <span class="badge-brand">互動講義</span></h1>
+                <p>國泰人壽 敏捷種子培訓課程 (Percy 老師)</p>
+            </div>
+        </div>
+        
+        <div class="header-right">
+            <!-- 模式切換 -->
+            <div class="mode-toggle-group">
+                <button class="btn-mode-tab active" id="mode-focus-btn">單頁專注</button>
+                <button class="btn-mode-tab" id="mode-list-btn">全覽瀏覽</button>
+            </div>
+
+            <!-- 評估工具手冊手冊連結 -->
+            <a href="./assess.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline-white" style="text-decoration: none;" title="進入評估工具手冊">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM4 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+                    <path d="M9 3H4v1h5V3zm3 0h-2v1h2V3zm-3 2H4v1h5V5zm3 0h-2v1h2V5zm-3 2H4v1h5V7zm3 0h-2v1h2V7zm-3 2H4v1h5V9zm3 0h-2v1h2V9z"/>
+                </svg>
+                <span>評估工具手冊</span>
+            </a>
+
+            <!-- 線上白板連結 -->
+            <a href="./aigile_board.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline-white" style="text-decoration: none;" title="開啟 Aigile 線上白板">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                </svg>
+                <span>Aigile 線上白板</span>
+            </a>
+
+            <!-- PDF/列印與筆記操作 -->
+            <button class="btn btn-outline-white" id="export-txt-btn" title="匯出純文字筆記">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+                </svg>
+                <span>匯出筆記</span>
+            </button>
+            
+            <button class="btn btn-accent" id="print-pdf-btn" title="列印或另存 PDF">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                    <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5A.5.5 0 0 1 5 8zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+                <span>列印/PDF</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ==================== App Main Section ==================== -->
+    <div class="app-container">
+        
+        <!-- 側邊欄大綱 (Sidebar) -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <!-- 搜尋筆記 -->
+                <div class="search-wrapper">
+                    <svg class="search-icon" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                    <input type="text" class="search-input" id="search-box" placeholder="搜尋投影片或個人筆記...">
+                </div>
+
+                <!-- 進度條 -->
+                <div class="progress-box">
+                    <div class="progress-title-row">
+                        <span>學習進度</span>
+                        <span id="progress-percent">0% (0/59)</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投影片風琴摺跳轉清單 -->
+            <div class="slides-list" id="slides-list">
+                <!-- 由 JavaScript 動態填入 -->
+            </div>
+        </div>
+
+        <!-- 遮罩 (手機版專用) -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- 主內容顯示區 -->
+        <main>
+            <!-- 單頁專注模式 (Focus Mode Container) -->
+            <div class="focus-layout" id="focus-view-container">
+                <!-- 左欄：投影片大圖 -->
+                <div class="slide-display-card">
+                    <div class="slide-img-container">
+                        <img src="" alt="講義投影片" class="slide-main-image" id="focus-slide-img">
+                        <button class="zoom-overlay-btn" id="lightbox-trigger">
+                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="even-rule" d="M1.5 15a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 1 0v3h3a.5.5 0 0 1 0 1h-4zm13 0a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h4zm-13-14a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-4zm13 0a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-4z"/>
+                            </svg>
+                            <span>點擊放大</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 右欄：筆記與控制面板 -->
+                <div class="control-panel-card">
+                    <div class="panel-header">
+                        <div class="panel-slide-meta">
+                            <span class="panel-slide-index" id="focus-slide-index">Page 01</span>
+                            <span class="badge-category" id="focus-slide-badge">Intro</span>
+                        </div>
+                        <h2 class="panel-slide-title" id="focus-slide-title">封面 (溝通引導術)</h2>
+                    </div>
+
+                    <!-- AI Prompt 複製區 (第一頁專用) -->
+                    <div id="ai-prompt-container"></div>
+
+                    <!-- 筆記區 -->
+                    <div class="note-area-group">
+                        <div class="note-header">
+                            <label for="focus-note-input" class="note-label">個人學習隨堂筆記</label>
+                            <span class="save-indicator" id="save-status">
+                                <span class="save-indicator-spinner"></span>
+                                <span class="save-indicator-dot"></span>
+                                <span id="save-status-text">已自動存檔</span>
+                            </span>
+                        </div>
+                        <textarea class="note-textarea" id="focus-note-input" placeholder="請在此輸入您的心得、反思、討論重點或練習答案...系統將即時自動存檔。"></textarea>
+                    </div>
+
+                    <!-- 前後切換按鈕 -->
+                    <div class="navigation-row">
+                        <button class="btn btn-prev" id="prev-slide-btn">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="even-rule" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                            </svg>
+                            <span>上一頁 (Prev)</span>
+                        </button>
+                        <button class="btn btn-next" id="next-slide-btn">
+                            <span>下一頁 (Next)</span>
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="even-rule" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 全覽清單模式 (List Mode Container) -->
+            <div class="list-layout" id="list-view-container" style="display: none;">
+                <!-- 由 JavaScript 依據搜尋/切換動態生成 -->
+            </div>
+        </main>
+    </div>
+
+    <!-- ==================== Lightbox 放大視窗 ==================== -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close-btn">&times;</button>
+        <img src="" alt="大圖" class="lightbox-img" id="lightbox-img">
+    </div>
+
+    <!-- ==================== 列印/PDF 專用分頁容器 (隱藏於螢幕，僅在列印時被印出) ==================== -->
+    <div id="print-container">
+        <!-- 由 JavaScript 動態生成每一分頁的左圖右筆記 -->
+    </div>
+
+    <!-- ==================== JavaScript 核心邏輯 ==================== -->
+    <script>
+        const iafPromptText = `角色：你是一位專業的引導（Facilitation）專家與 IAF（國際引導者協會）的資深認證引導師。
+
+請根據 IAF（International Association of Facilitators）的官方網站核心定義與標準，為我整理並撰寫一份詳細的引導指南。
+
+【重要格式要求】
+請將「整份產出內容」包裝成一個完整、排版精美、方便閱讀的 HTML 格式內容（請直接提供 <div> 或完整的 HTML 區塊，不要使用普通 Markdown 文字，以便學員直接嵌入網頁中閱讀）。請在 HTML 中使用 inline CSS 樣式進行設計，使用國泰綠 #009E52 與金黃色 #FFD100 作為主要裝飾色，呈現高質感的企業培訓閱讀視覺。
+
+這份指南必須包含以下五個核心架構：
+1. 什麼是引導（What is Facilitation?）：
+   - 請用 HTML 的標題、段落與強調樣式，撰寫 IAF 官方對引導的定義及核心本質（關注流程而非內容）。
+2. 主要應用場景（Key Application Scenarios）：
+   - 列出引導在企業或團隊中的主要應用場景（如：戰略規劃、共識營、問題解決等），並用 HTML 的列表（<ul>, <li>）與小卡片樣式排版。
+3. 引導的核心價值理念（Core Values and Ethics of Facilitation）：
+   - 說明引導核心價值理念（如：客觀中立、尊重多元等），用帶有左側裝飾條的 HTML 區塊（Border-left）呈現。
+4. 引導者（Facilitator）要做哪些事情：
+   - 說明 Facilitator 在會議「前、中、後」的具體任務，以及 IAF 引導者核心能力。
+5. 引導者（Facilitator）與一般會議主持人（Meeting Chair）有什麼不一樣：
+   - 請使用 HTML 表格（<table>, <th>, <td>）進行詳細對比，表格需有綠色表頭與交錯行底色。`;
+
+        function copyPromptText(elementId) {
+            const textEl = document.getElementById(elementId);
+            if (!textEl) return;
+            const textToCopy = textEl.textContent || textEl.innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const buttons = document.querySelectorAll('.btn-copy-prompt');
+                buttons.forEach(btn => {
+                    const originalText = btn.textContent;
+                    btn.textContent = '已複製提示詞！';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.textContent = '複製 Prompt';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
+            }).catch(err => {
+                console.error('複製失敗:', err);
+                alert('複製失敗，請手動複製文字框內的內容。');
+            });
+        }
+
+        // 59 頁投影片詳細大綱與工具對照資料 (包含 search 用原本完整 title 與簡化之 displayTitle)
+        const slidesData = [
+            { id: 1, file: '投影片1.PNG', title: '封面 (溝通引導術)', displayTitle: '封面', category: 'Intro' },
+            { id: 2, file: '投影片2.PNG', title: '目錄與大綱', displayTitle: '目錄與大綱', category: 'Intro' },
+            { id: 3, file: '投影片3.PNG', title: '心態法則 1：讀了要寫', displayTitle: '讀了要寫', category: 'Intro' },
+            { id: 4, file: '投影片4.PNG', title: '心態法則 2：以動制靜', displayTitle: '以動制靜', category: 'Intro' },
+            { id: 5, file: '投影片5.PNG', title: '心態法則 3：聽完就說', displayTitle: '聽完就說', category: 'Intro' },
+            { id: 6, file: '投影片6.PNG', title: '心態法則 4：截長補短', displayTitle: '截長補短', category: 'Intro' },
+            { id: 7, file: '投影片7.PNG', title: '心態法則 5：以多勝少', displayTitle: '以多勝少', category: 'Intro' },
+            { id: 8, file: '投影片8.PNG', title: '心態法則 6：以圖代文', displayTitle: '以圖代文', category: 'Intro' },
+            { id: 9, file: '投影片9.PNG', title: '心態法則 7：反客為主', displayTitle: '反客為主', category: 'Intro' },
+            { id: 10, file: '投影片10.PNG', title: 'Ready 單元：準備階段概覽', displayTitle: '準備階段概覽', category: 'Ready' },
+            { id: 11, file: '投影片11.PNG', title: '聚焦問句法 (Focused Question Framework)', displayTitle: '聚焦問句法', category: 'Ready' },
+            { id: 12, file: '投影片12.PNG', title: '人數法則：The 2 Pizzas Rule', displayTitle: '人數法則', category: 'Ready' },
+            { id: 13, file: '投影片13.PNG', title: '出席法則：The Sick Rule', displayTitle: '出席法則', category: 'Ready' },
+            { id: 14, file: '投影片14.PNG', title: '會議角色 1：知事人 (The Idea Maximizer)', displayTitle: '知事人', category: 'Ready' },
+            { id: 15, file: '投影片15.PNG', title: '會議角色 2：話事人 (The Decision Maker)', displayTitle: '話事人', category: 'Ready' },
+            { id: 16, file: '投影片16.PNG', title: '會議角色 3：當事人 (The One Involved)', displayTitle: '當事人', category: 'Ready' },
+            { id: 17, file: '投影片17.PNG', title: '會議角色 4：記事人 (The Scribe)', displayTitle: '記事人', category: 'Ready' },
+            { id: 18, file: '投影片18.PNG', title: '會議角色 5：助事人 (The Facilitator)', displayTitle: '助事人', category: 'Ready' },
+            { id: 19, file: '投影片19.PNG', title: 'Engage 單元：參與階段概覽', displayTitle: '參與階段概覽', category: 'Engage' },
+            { id: 20, file: '投影片20.PNG', title: '引導工具 1：輪詢 (Round Robin)', displayTitle: '輪詢', category: 'Engage' },
+            { id: 21, file: '投影片21.PNG', title: '引導工具 2：開單 (Post-It)', displayTitle: '開單', category: 'Engage' },
+            { id: 22, file: '投影片22.PNG', title: '引導工具 3：速配 (Speed Dating)', displayTitle: '速配', category: 'Engage' },
+            { id: 23, file: '投影片23.PNG', title: '引導工具 4：分組 (Breakout Discussions)', displayTitle: '分組', category: 'Engage' },
+            { id: 24, file: '投影片24.PNG', title: '引導工具 5：備忘錄 (Memo)', displayTitle: '備忘錄', category: 'Engage' },
+            { id: 25, file: '投影片25.PNG', title: '引導工具 6：內容導向互動 (Content driven Interaction)', displayTitle: '內容導向互動', category: 'Engage' },
+            { id: 26, file: '投影片26.PNG', title: 'Assess 單元：評估階段概覽', displayTitle: '評估階段概覽', category: 'Assess' },
+            { id: 27, file: '投影片27.PNG', title: '評估工具 1：換一種問法 (Reframe the Question)', displayTitle: '換一種問法', category: 'Assess' },
+            { id: 28, file: '投影片28.PNG', title: '評估工具 2：展開子議題 (Expand Subtopics)', displayTitle: '展開子議題', category: 'Assess' },
+            { id: 29, file: '投影片29.PNG', title: '評估工具 3：給個例子吧 (Give an Example)', displayTitle: '給個例子吧', category: 'Assess' },
+            { id: 30, file: '投影片30.PNG', title: '評估工具 4：標出爭議點 (Highlight the Conflict)', displayTitle: '標出爭議點', category: 'Assess' },
+            { id: 31, file: '投影片31.PNG', title: '評估工具 5：換個角度看 (Shift the Perspective)', displayTitle: '換個角度看', category: 'Assess' },
+            { id: 32, file: '投影片32.PNG', title: '評估工具 6：為何這樣說 (What Makes You Say So?) [⚠️]', displayTitle: '為何這樣說', category: 'Assess' },
+            { id: 33, file: '投影片33.PNG', title: '評估工具 7：回到主議題 (Focus on the Core Topic)', displayTitle: '回到主議題', category: 'Assess' },
+            { id: 34, file: '投影片34.PNG', title: '評估工具 8：連回主題線 (Reconnect the Thread)', displayTitle: '連回主題線', category: 'Assess' },
+            { id: 35, file: '投影片35.PNG', title: '評估工具 9：總歸一句話 (Summarize the Core)', displayTitle: '總歸一句話', category: 'Assess' },
+            { id: 36, file: '投影片36.PNG', title: '評估工具 10：先記下來吧 (Park it for Later)', displayTitle: '先記下來吧', category: 'Assess' },
+            { id: 37, file: '投影片37.PNG', title: '評估工具 11：一格一格說 (Fill in the Blanks)', displayTitle: '一格一格說', category: 'Assess' },
+            { id: 38, file: '投影片38.PNG', title: '評估工具 12：看還少什麼 (Mark the Gap)', displayTitle: '看還少什麼', category: 'Assess' },
+            { id: 39, file: '投影片39.PNG', title: '評估工具 13：拉開比較軸 (Draw Comparison Axes)', displayTitle: '拉開比較軸', category: 'Assess' },
+            { id: 40, file: '投影片40.PNG', title: '評估工具 14：看清楚位置 (Visualize the Spread)', displayTitle: '看清楚位置', category: 'Assess' },
+            { id: 41, file: '投影片41.PNG', title: '評估工具 15：好壞都要看 (Weigh the Pros & Cons)', displayTitle: '好壞都要看', category: 'Assess' },
+            { id: 42, file: '投影片42.PNG', title: '評估工具 16：如果那麼就 (Scenario Analysis)', displayTitle: '如果那麼就', category: 'Assess' },
+            { id: 43, file: '投影片43.PNG', title: '評估工具 17：看見利關人 (Map the Stakeholders)', displayTitle: '利害關係人', category: 'Assess' },
+            { id: 44, file: '投影片44.PNG', title: '評估工具 18：對齊上下層 (Align the Layers)', displayTitle: '對齊上下層', category: 'Assess' },
+            { id: 45, file: '投影片45.PNG', title: '評估工具 19：拉出關係網 (Map the Web)', displayTitle: '拉出關係網', category: 'Assess' },
+            { id: 46, file: '投影片46.PNG', title: '評估工具 20：看得見時序 (See the Timeline)', displayTitle: '看得見時序', category: 'Assess' },
+            { id: 47, file: '投影片47.PNG', title: '評估工具 21：用看板討論 (Discuss with Kanban)', displayTitle: '用看板討論', category: 'Assess' },
+            { id: 48, file: '投影片48.PNG', title: '評估工具 22：畫出因果圖 (Trace the Causes)', displayTitle: '畫出因果圖', category: 'Assess' },
+            { id: 49, file: '投影片49.PNG', title: '評估工具 23：底下有什麼 (What Lies Beneath?)', displayTitle: '底下有什麼', category: 'Assess' },
+            { id: 50, file: '投影片50.PNG', title: '評估工具 24：歸類圈起來 (Group Ideas) [⚠️]', displayTitle: '歸類圈起來', category: 'Assess' },
+            { id: 51, file: '投影片51.PNG', title: 'Decide 單元：決策階段概覽', displayTitle: '決策階段概覽', category: 'Decide' },
+            { id: 52, file: '投影片52.PNG', title: '決策工具 1：手指投票 (Fist to Five)', displayTitle: '手指投票', category: 'Decide' },
+            { id: 53, file: '投影片53.PNG', title: '決策工具 2：用腳投票 (Walk the Line)', displayTitle: '用腳投票', category: 'Decide' },
+            { id: 54, file: '投影片54.PNG', title: '決策工具 3：點點投票 (Dot Voting)', displayTitle: '點點投票', category: 'Decide' },
+            { id: 55, file: '投影片55.PNG', title: '決策工具 4：指指點點 (Point and Vote)', displayTitle: '指指點點', category: 'Decide' },
+            { id: 56, file: '投影片56.PNG', title: '決策工具 5：錢壓下去 (Buy a Feature)', displayTitle: '錢壓下去', category: 'Decide' },
+            { id: 57, file: '投影片57.PNG', title: '決策工具 6：電子投票 (Vote with Phones)', displayTitle: '電子投票', category: 'Decide' },
+            { id: 58, file: '投影片58.PNG', title: '決策工具 7：排出優先序 (Rank the Priorities)', displayTitle: '排出優先序', category: 'Decide' },
+            { id: 59, file: '投影片59.PNG', title: '封底 (聯絡與結尾)', displayTitle: '封底', category: 'Intro' }
+        ];
+
+        // 側邊欄大綱單元階層設定 (開場、心態、Ready、Engage、Assess、Decide、結尾)
+        const groupsConfig = [
+            { id: 'intro', title: '課程開場', range: [1, 2] },
+            { id: 'mindset', title: '心態法則', range: [3, 9] },
+            { id: 'ready', title: 'Ready 準備', range: [10, 18] },
+            { id: 'engage', title: 'Engage 參與', range: [19, 25] },
+            { id: 'assess', title: 'Assess 評估', range: [26, 50] },
+            { id: 'decide', title: 'Decide 決策', range: [51, 58] },
+            { id: 'outro', title: '課程結尾', range: [59, 59] }
+        ];
+
+        // 應用程式狀態管理
+        const state = {
+            currentMode: 'focus', // 'focus' | 'list'
+            currentIndex: 0,      // 0-indexed (對應 id: 1 = index: 0)
+            notes: {},            // 儲存格式: { [slideId]: "筆記內容..." }
+            searchQuery: '',
+            sidebarOpen: false
+        };
+
+        // DOM 元素引用
+        const elements = {
+            slidesList: document.getElementById('slides-list'),
+            searchBox: document.getElementById('search-box'),
+            progressPercent: document.getElementById('progress-percent'),
+            progressFill: document.getElementById('progress-fill'),
+            
+            // 模式按鈕
+            modeFocusBtn: document.getElementById('mode-focus-btn'),
+            modeListBtn: document.getElementById('mode-list-btn'),
+            focusViewContainer: document.getElementById('focus-view-container'),
+            listViewContainer: document.getElementById('list-view-container'),
+            
+            // 單頁專注模式元素
+            focusSlideImg: document.getElementById('focus-slide-img'),
+            focusSlideIndex: document.getElementById('focus-slide-index'),
+            focusSlideBadge: document.getElementById('focus-slide-badge'),
+            focusSlideTitle: document.getElementById('focus-slide-title'),
+            focusNoteInput: document.getElementById('focus-note-input'),
+            saveStatus: document.getElementById('save-status'),
+            saveStatusText: document.getElementById('save-status-text'),
+            prevSlideBtn: document.getElementById('prev-slide-btn'),
+            nextSlideBtn: document.getElementById('next-slide-btn'),
+            
+            // 燈箱與側邊欄控制
+            lightbox: document.getElementById('lightbox'),
+            lightboxImg: document.getElementById('lightbox-img'),
+            lightboxCloseBtn: document.getElementById('lightbox-close-btn'),
+            lightboxTrigger: document.getElementById('lightbox-trigger'),
+            sidebar: document.getElementById('sidebar'),
+            sidebarOverlay: document.getElementById('sidebar-overlay'),
+            sidebarToggleBtn: document.getElementById('global-sidebar-toggle'),
+            
+            // 功能操作
+            exportTxtBtn: document.getElementById('export-txt-btn'),
+            printPdfBtn: document.getElementById('print-pdf-btn'),
+            printContainer: document.getElementById('print-container')
+        };
+
+        // 初始化
+        function init() {
+            loadNotesFromLocalStorage();
+            
+            // 恢復電腦版側邊欄收合狀態
+            const sidebarCollapsedPref = localStorage.getItem('sidebar_collapsed_pref');
+            if (sidebarCollapsedPref === 'true' && window.innerWidth > 768) {
+                const appContainer = document.querySelector('.app-container');
+                if (appContainer) appContainer.classList.add('sidebar-collapsed');
+            }
+            
+            renderSidebarList();
+            updateProgress();
+            showSlide(state.currentIndex);
+            setupEventListeners();
+            
+            // 預先載入鄰近圖片以加速瀏覽體驗
+            preloadImages();
+        }
+
+        // ==================== 資料持久化與同步 ====================
+        function loadNotesFromLocalStorage() {
+            const saved = localStorage.getItem('cathay_facilitation_notes');
+            if (saved) {
+                try {
+                    state.notes = JSON.parse(saved);
+                } catch (e) {
+                    console.error('解析 localStorage 筆記資料失敗:', e);
+                    state.notes = {};
+                }
+            }
+        }
+
+        function saveNotesToLocalStorage() {
+            localStorage.setItem('cathay_facilitation_notes', JSON.stringify(state.notes));
+            updateProgress();
+        }
+
+        // 防抖動機制 (Debounce)
+        let saveTimeout = null;
+        function triggerAutoSave(slideId, content) {
+            // 顯示「儲存中...」
+            elements.saveStatus.className = 'save-indicator visible saving';
+            elements.saveStatusText.textContent = '儲存中...';
+            
+            if (saveTimeout) clearTimeout(saveTimeout);
+            
+            saveTimeout = setTimeout(() => {
+                state.notes[slideId] = content;
+                if (!content.trim()) {
+                    delete state.notes[slideId];
+                }
+                saveNotesToLocalStorage();
+                
+                // 標記側邊欄的該項
+                const sidebarItem = document.querySelector(`.slide-item[data-id="${slideId}"]`);
+                if (sidebarItem) {
+                    if (content.trim()) {
+                        sidebarItem.classList.add('has-note');
+                    } else {
+                        sidebarItem.classList.remove('has-note');
+                    }
+                }
+                
+                // 顯示「已自動存檔」
+                elements.saveStatus.className = 'save-indicator visible';
+                elements.saveStatusText.textContent = '已自動存檔';
+                
+                // 3秒後漸隱
+                setTimeout(() => {
+                    if (!elements.saveStatus.classList.contains('saving')) {
+                        elements.saveStatus.classList.remove('visible');
+                    }
+                }, 2000);
+            }, 600);
+        }
+
+        // ==================== 進度指示更新 ====================
+        function updateProgress() {
+            const total = slidesData.length;
+            const notatedCount = Object.keys(state.notes).filter(key => state.notes[key].trim()).length;
+            const percent = Math.round((notatedCount / total) * 100);
+            
+            elements.progressPercent.textContent = `${percent}% (${notatedCount}/${total} 頁)`;
+            elements.progressFill.style.width = `${percent}%`;
+        }
+
+        // ==================== UI 渲染邏輯 ====================
+
+        // 渲染左側大綱選單 (風琴摺層次結構)
+        function renderSidebarList() {
+            elements.slidesList.innerHTML = '';
+            
+            groupsConfig.forEach(group => {
+                const groupEl = document.createElement('div');
+                groupEl.className = 'category-group collapsed'; // 預設收合
+                groupEl.id = `group-${group.id}`;
+                
+                // 單元標題行
+                const headerEl = document.createElement('div');
+                headerEl.className = 'category-header';
+                headerEl.innerHTML = `
+                    <span class="category-title">${group.title}</span>
+                    <svg class="category-arrow" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                `;
+                
+                // 點擊單元標題展開/收合
+                headerEl.addEventListener('click', () => {
+                    groupEl.classList.toggle('collapsed');
+                });
+                
+                // 子項目容器
+                const itemsContainer = document.createElement('div');
+                itemsContainer.className = 'category-items';
+                
+                // 篩選該單元底下的投影片
+                const groupSlides = slidesData.filter(s => s.id >= group.range[0] && s.id <= group.range[1]);
+                
+                groupSlides.forEach(slide => {
+                    const idx = slidesData.findIndex(s => s.id === slide.id);
+                    const hasNote = state.notes[slide.id] && state.notes[slide.id].trim();
+                    const item = document.createElement('div');
+                    item.className = `slide-item ${idx === state.currentIndex ? 'active' : ''} ${hasNote ? 'has-note' : ''}`;
+                    item.setAttribute('data-id', slide.id);
+                    item.setAttribute('data-index', idx);
+                    
+                    item.innerHTML = `
+                        <div class="slide-info">
+                            <div class="slide-title">${slide.displayTitle}</div>
+                        </div>
+                        <span class="note-status-dot"></span>
+                    `;
+                    
+                    item.addEventListener('click', (e) => {
+                        e.stopPropagation(); // 阻止氣泡事件觸發外層風琴摺的 toggle
+                        state.currentIndex = idx;
+                        
+                        if (state.currentMode === 'list') {
+                            // 全覽模式下：平滑滾動到對應的卡片
+                            const cardEl = document.getElementById(`list-card-${slide.id}`);
+                            if (cardEl) {
+                                cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                            // 更新側邊欄高亮狀態
+                            document.querySelectorAll('.slide-item').forEach((sItem) => {
+                                const sIdx = parseInt(sItem.getAttribute('data-index'), 10);
+                                if (sIdx === idx) {
+                                    sItem.classList.add('active');
+                                } else {
+                                    sItem.classList.remove('active');
+                                }
+                            });
+                            expandActiveGroup();
+                        } else {
+                            // 單頁專注模式下：切換顯示
+                            showSlide(idx);
+                        }
+                        
+                        if (window.innerWidth <= 768) {
+                            closeSidebar();
+                        }
+                    });
+                    
+                    itemsContainer.appendChild(item);
+                });
+                
+                groupEl.appendChild(headerEl);
+                groupEl.appendChild(itemsContainer);
+                elements.slidesList.appendChild(groupEl);
+            });
+        }
+
+        // 自動展開包含當前作用中投影片的單元風琴摺
+        function expandActiveGroup() {
+            const activeSlide = slidesData[state.currentIndex];
+            groupsConfig.forEach(group => {
+                const groupEl = document.getElementById(`group-${group.id}`);
+                if (groupEl) {
+                    const headerEl = groupEl.querySelector('.category-header');
+                    const isActiveGroup = activeSlide.id >= group.range[0] && activeSlide.id <= group.range[1];
+                    
+                    if (isActiveGroup) {
+                        groupEl.classList.remove('collapsed');
+                        if (headerEl) headerEl.classList.add('active');
+                    } else {
+                        if (headerEl) headerEl.classList.remove('active');
+                    }
+                }
+            });
+        }
+
+        // 切換顯示指定投影片 (單頁模式下)
+        function showSlide(index) {
+            if (index < 0 || index >= slidesData.length) return;
+            
+            state.currentIndex = index;
+            const slide = slidesData[index];
+            const imgPath = `./2026 READ/${slide.file}`;
+            
+            // 更新圖片與標題
+            elements.focusSlideImg.src = imgPath;
+            elements.focusSlideIndex.textContent = `Page ${slide.id.toString().padStart(2, '0')}`;
+            elements.focusSlideBadge.textContent = slide.category;
+            elements.focusSlideBadge.className = `badge-category badge-${slide.category.toLowerCase()}`;
+            elements.focusSlideTitle.textContent = slide.title;
+            
+            // 更新筆記欄
+            elements.focusNoteInput.value = state.notes[slide.id] || '';
+            elements.saveStatus.className = 'save-indicator';
+            
+            // 更新 AI Prompt 區
+            const promptContainer = document.getElementById('ai-prompt-container');
+            if (slide.id === 1) {
+                promptContainer.innerHTML = `
+                    <div class="ai-prompt-card">
+                        <div class="ai-prompt-header">
+                            <span class="ai-prompt-title">🤖 課前探索：AI 引導術 Prompt</span>
+                            <button class="btn-copy-prompt" onclick="copyPromptText('focus-ai-prompt')">複製 Prompt</button>
+                        </div>
+                        <div class="ai-prompt-body" id="focus-ai-prompt">${iafPromptText}</div>
+                    </div>
+                `;
+                elements.focusNoteInput.placeholder = "請在此貼上 AI 的產出 HTML 內容，或輸入您的心得與筆記...";
+            } else {
+                promptContainer.innerHTML = '';
+                elements.focusNoteInput.placeholder = "請在此輸入您的心得、反思、討論重點或練習答案...系統將即時自動存檔。";
+            }
+            
+            // 自動展開對應的單元
+            expandActiveGroup();
+            
+            // 標記側邊欄目前選取項
+            document.querySelectorAll('.slide-item').forEach((item) => {
+                const itemIdx = parseInt(item.getAttribute('data-index'), 10);
+                if (itemIdx === index) {
+                    item.classList.add('active');
+                    item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // 控制前/後頁按鈕狀態
+            elements.prevSlideBtn.disabled = index === 0;
+            elements.nextSlideBtn.disabled = index === slidesData.length - 1;
+        }
+
+        // 預先載入前後幾張圖片，以獲得流暢的切換效果
+        function preloadImages() {
+            slidesData.forEach((slide) => {
+                const img = new Image();
+                img.src = `./2026 READ/${slide.file}`;
+            });
+        }
+
+        // ==================== 搜尋過濾功能 ====================
+        function handleSearch(query) {
+            state.searchQuery = query.toLowerCase().trim();
+            
+            if (state.currentMode === 'focus') {
+                groupsConfig.forEach(group => {
+                    const groupEl = document.getElementById(`group-${group.id}`);
+                    if (!groupEl) return;
+                    
+                    let hasVisibleItem = false;
+                    const itemsInGroup = groupEl.querySelectorAll('.slide-item');
+                    
+                    itemsInGroup.forEach(item => {
+                        const idx = parseInt(item.getAttribute('data-index'), 10);
+                        const slide = slidesData[idx];
+                        const noteText = (state.notes[slide.id] || '').toLowerCase();
+                        const matchTitle = slide.title.toLowerCase().includes(state.searchQuery) || slide.displayTitle.toLowerCase().includes(state.searchQuery);
+                        const matchNote = noteText.includes(state.searchQuery);
+                        const matchIndex = slide.id.toString() === state.searchQuery;
+                        
+                        if (matchTitle || matchNote || matchIndex || !state.searchQuery) {
+                            item.style.display = 'flex';
+                            hasVisibleItem = true;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    if (hasVisibleItem) {
+                        groupEl.style.display = 'block';
+                        // 搜尋時自動展開匹配的組別
+                        if (state.searchQuery) {
+                            groupEl.classList.remove('collapsed');
+                        } else {
+                            // 清除搜尋時，恢復作用中單元的展開狀態，其餘收合
+                            const activeSlide = slidesData[state.currentIndex];
+                            const isActiveGroup = activeSlide.id >= group.range[0] && activeSlide.id <= group.range[1];
+                            if (isActiveGroup) {
+                                groupEl.classList.remove('collapsed');
+                            } else {
+                                groupEl.classList.add('collapsed');
+                            }
+                        }
+                    } else {
+                        groupEl.style.display = 'none';
+                    }
+                });
+            } else {
+                renderListView();
+            }
+        }
+
+        // 渲染全覽列表模式
+        function renderListView() {
+            elements.listViewContainer.innerHTML = '';
+            let matchCount = 0;
+            
+            slidesData.forEach((slide, idx) => {
+                const noteText = state.notes[slide.id] || '';
+                const matchTitle = slide.title.toLowerCase().includes(state.searchQuery) || slide.displayTitle.toLowerCase().includes(state.searchQuery);
+                const matchNote = noteText.toLowerCase().includes(state.searchQuery);
+                const matchIndex = slide.id.toString() === state.searchQuery;
+                
+                if (state.searchQuery && !matchTitle && !matchNote && !matchIndex) {
+                    return;
+                }
+                
+                matchCount++;
+                const imgPath = `./2026 READ/${slide.file}`;
+                const card = document.createElement('div');
+                card.className = 'list-card';
+                card.id = `list-card-${slide.id}`;
+                card.innerHTML = `
+                    <div class="list-card-image-box">
+                        <img src="${imgPath}" alt="${slide.title}" class="list-card-img" loading="lazy">
+                    </div>
+                    <div class="list-card-content-box">
+                        <div class="panel-slide-meta">
+                            <span class="panel-slide-index">Page ${slide.id.toString().padStart(2, '0')}</span>
+                            <span class="badge-category badge-${slide.category.toLowerCase()}">${slide.category}</span>
+                        </div>
+                        <h3 class="panel-slide-title">${slide.title}</h3>
+                        
+                        ${slide.id === 1 ? `
+                        <div class="ai-prompt-card" style="margin-top: 12px; margin-bottom: 12px;">
+                            <div class="ai-prompt-header">
+                                <span class="ai-prompt-title">🤖 課前探索：AI 引導術 Prompt</span>
+                                <button class="btn-copy-prompt" onclick="copyPromptText('list-ai-prompt')">複製 Prompt</button>
+                            </div>
+                            <div class="ai-prompt-body" id="list-ai-prompt">${iafPromptText}</div>
+                        </div>
+                        ` : ''}
+                        
+                        <div class="note-area-group">
+                            <div class="note-header">
+                                <label class="note-label">隨堂筆記</label>
+                            </div>
+                            <textarea class="note-textarea list-note-textarea" data-id="${slide.id}" placeholder="${slide.id === 1 ? '請在此貼上 AI 的產出 HTML 內容，或輸入您的心得與筆記...' : '請在此輸入您的心得、筆記或練習答案...'}">${noteText}</textarea>
+                        </div>
+                    </div>
+                `;
+                
+                const textarea = card.querySelector('.list-note-textarea');
+                textarea.addEventListener('input', (e) => {
+                    const content = e.target.value;
+                    state.notes[slide.id] = content;
+                    if (!content.trim()) delete state.notes[slide.id];
+                    saveNotesToLocalStorage();
+                    
+                    const sidebarItem = document.querySelector(`.slide-item[data-id="${slide.id}"]`);
+                    if (sidebarItem) {
+                        if (content.trim()) sidebarItem.classList.add('has-note');
+                        else sidebarItem.classList.remove('has-note');
+                    }
+                });
+                
+                elements.listViewContainer.appendChild(card);
+            });
+            
+            if (matchCount === 0) {
+                elements.listViewContainer.innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px; color: var(--text-muted);">
+                        <svg width="48" height="48" fill="currentColor" viewBox="0 0 16 16" style="margin-bottom: 16px; opacity: 0.5;">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg>
+                        <p>找不到符合關鍵字「<strong>${state.searchQuery}</strong>」的投影片或筆記內容。</p>
+                    </div>
+                `;
+            }
+        }
+
+        // ==================== 側邊欄收合與滑出控制 ====================
+        function toggleSidebar() {
+            if (window.innerWidth <= 768) {
+                state.sidebarOpen = !state.sidebarOpen;
+                if (state.sidebarOpen) {
+                    elements.sidebar.classList.add('active');
+                    elements.sidebarOverlay.classList.add('active');
+                } else {
+                    closeSidebar();
+                }
+            } else {
+                const appContainer = document.querySelector('.app-container');
+                if (appContainer) {
+                    appContainer.classList.toggle('sidebar-collapsed');
+                    const isCollapsed = appContainer.classList.contains('sidebar-collapsed');
+                    localStorage.setItem('sidebar_collapsed_pref', isCollapsed ? 'true' : 'false');
+                }
+            }
+        }
+
+        function closeSidebar() {
+            state.sidebarOpen = false;
+            elements.sidebar.classList.remove('active');
+            elements.sidebarOverlay.classList.remove('active');
+        }
+
+        // ==================== PDF 列印排版與筆記匯出 ====================
+
+        function preparePrintContainer() {
+            elements.printContainer.innerHTML = '';
+            
+            slidesData.forEach(slide => {
+                const noteText = state.notes[slide.id] || '';
+                const imgPath = `./2026 READ/${slide.file}`;
+                
+                const pageEl = document.createElement('div');
+                pageEl.className = 'print-page';
+                
+                pageEl.innerHTML = `
+                    <div class="print-image-col">
+                        <img src="${imgPath}" alt="${slide.title}" class="print-slide-img">
+                    </div>
+                    <div class="print-note-col">
+                        <div class="print-slide-index">Page ${slide.id.toString().padStart(2, '0')}</div>
+                        <div class="print-slide-title">${slide.title}</div>
+                        <div class="print-note-label">📝 課堂筆記與練習記錄：</div>
+                        <div class="print-note-content ${noteText.trim() ? '' : 'empty'}">${noteText.trim() ? noteText : '請在此處記錄手寫筆記...'}</div>
+                    </div>
+                `;
+                
+                elements.printContainer.appendChild(pageEl);
+            });
+        }
+
+        function exportNotesToTxt() {
+            const notatedIds = Object.keys(state.notes).filter(id => state.notes[id].trim());
+            
+            if (notatedIds.length === 0) {
+                alert('您目前尚未填寫任何講義筆記！');
+                return;
+            }
+            
+            let text = `==================================================\n`;
+            text += `     國泰人壽《溝通引導術》互動講義 - 個人學習筆記\n`;
+            text += `     時間：${new Date().toLocaleString()}\n`;
+            text += `==================================================\n\n`;
+            
+            notatedIds.sort((a, b) => Number(a) - Number(b)).forEach(id => {
+                const slide = slidesData.find(s => s.id === Number(id));
+                text += `【Page ${id.toString().padStart(2, '0')}】${slide.title}\n`;
+                text += `單元類別: ${slide.category}\n`;
+                text += `筆記內容:\n${state.notes[id]}\n`;
+                text += `--------------------------------------------------\n\n`;
+            });
+            
+            const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `國泰人壽_溝通引導術_個人學習筆記.txt`;
+            link.click();
+            URL.revokeObjectURL(link.href);
+        }
+
+        // ==================== 事件監聽設定 ====================
+        function setupEventListeners() {
+            
+            // 模式切換按鈕事件
+            elements.modeFocusBtn.addEventListener('click', () => {
+                state.currentMode = 'focus';
+                elements.modeFocusBtn.classList.add('active');
+                elements.modeListBtn.classList.remove('active');
+                elements.focusViewContainer.style.display = 'grid';
+                elements.listViewContainer.style.display = 'none';
+                showSlide(state.currentIndex);
+            });
+
+            elements.modeListBtn.addEventListener('click', () => {
+                state.currentMode = 'list';
+                elements.modeListBtn.classList.add('active');
+                elements.modeFocusBtn.classList.remove('active');
+                elements.focusViewContainer.style.display = 'none';
+                elements.listViewContainer.style.display = 'flex';
+                renderListView();
+                
+                // 自動滾動定位到當前正在閱讀的投影片
+                setTimeout(() => {
+                    const activeSlide = slidesData[state.currentIndex];
+                    const cardEl = document.getElementById(`list-card-${activeSlide.id}`);
+                    if (cardEl) {
+                        cardEl.scrollIntoView({ block: 'center' });
+                    }
+                }, 50);
+            });
+
+            // 專注模式 - 前/後按鈕
+            elements.prevSlideBtn.addEventListener('click', () => {
+                if (state.currentIndex > 0) {
+                    state.currentIndex--;
+                    showSlide(state.currentIndex);
+                }
+            });
+
+            elements.nextSlideBtn.addEventListener('click', () => {
+                if (state.currentIndex < slidesData.length - 1) {
+                    state.currentIndex++;
+                    showSlide(state.currentIndex);
+                }
+            });
+
+            // 鍵盤左右鍵快捷切換
+            document.addEventListener('keydown', (e) => {
+                if (state.currentMode === 'focus' && document.activeElement !== elements.focusNoteInput && document.activeElement !== elements.searchBox) {
+                    if (e.key === 'ArrowLeft' && state.currentIndex > 0) {
+                        state.currentIndex--;
+                        showSlide(state.currentIndex);
+                    } else if (e.key === 'ArrowRight' && state.currentIndex < slidesData.length - 1) {
+                        state.currentIndex++;
+                        showSlide(state.currentIndex);
+                    }
+                }
+            });
+
+            // 筆記輸入事件 (Focus Mode)
+            elements.focusNoteInput.addEventListener('input', (e) => {
+                const slide = slidesData[state.currentIndex];
+                triggerAutoSave(slide.id, e.target.value);
+            });
+
+            // 搜尋框輸入事件
+            elements.searchBox.addEventListener('input', (e) => {
+                handleSearch(e.target.value);
+            });
+
+            // 燈箱控制事件
+            elements.lightboxTrigger.addEventListener('click', () => {
+                const slide = slidesData[state.currentIndex];
+                elements.lightboxImg.src = `./2026 READ/${slide.file}`;
+                elements.lightbox.classList.add('active');
+            });
+            
+            elements.lightboxCloseBtn.addEventListener('click', () => {
+                elements.lightbox.classList.remove('active');
+            });
+            
+            elements.lightbox.addEventListener('click', (e) => {
+                if (e.target === elements.lightbox) {
+                    elements.lightbox.classList.remove('active');
+                }
+            });
+
+            // 側邊欄收合與切換事件
+            elements.sidebarToggleBtn.addEventListener('click', toggleSidebar);
+            elements.sidebarOverlay.addEventListener('click', () => {
+                state.sidebarOpen = false;
+                elements.sidebar.classList.remove('active');
+                elements.sidebarOverlay.classList.remove('active');
+            });
+
+            // 功能按鈕：匯出與列印
+            elements.exportTxtBtn.addEventListener('click', exportNotesToTxt);
+            
+            elements.printPdfBtn.addEventListener('click', () => {
+                preparePrintContainer();
+                setTimeout(() => {
+                    window.print();
+                }, 300);
+            });
+        }
+
+        // 啟動應用
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

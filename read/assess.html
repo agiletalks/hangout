@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國泰人壽《溝通引導術》評估工具手冊</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #009E52; /* 國泰綠 */
+            --primary-dark: #007A3E;
+            --primary-light: rgba(0, 158, 82, 0.08);
+            --primary-glow: rgba(0, 158, 82, 0.15);
+            --accent: #FFD100; /* 大樹金 */
+            --accent-dark: #E6BC00;
+            --bg-app: #F3F7F4;
+            --bg-card: #FFFFFF;
+            --text-main: #1F2937;
+            --text-muted: #6B7280;
+            --border-color: #E5E7EB;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 8px 24px rgba(0, 158, 82, 0.06);
+            --shadow-lg: 0 16px 40px rgba(0, 158, 82, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-app);
+            color: var(--text-main);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        button, input, textarea {
+            font-family: inherit;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 158, 82, 0.2);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: #FFFFFF;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+            position: relative;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-menu-toggle {
+            background: transparent;
+            border: none;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        .btn-menu-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: #FFFFFF;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .logo-tree {
+            width: 22px;
+            height: 22px;
+            fill: var(--primary);
+        }
+
+        .header-title-group h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .header-title-group p {
+            font-size: 0.8rem;
+            opacity: 0.85;
+            margin-top: 2px;
+        }
+
+        .badge-brand {
+            background: var(--accent);
+            color: #1F2937;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: #1F2937;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(255, 209, 0, 0.3);
+        }
+        .btn-accent:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline-white {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .btn-outline-white:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: #FFFFFF;
+        }
+
+        /* Main Container */
+        .app-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 320px;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            transition: var(--transition);
+            z-index: 90;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: #FCFDFD;
+        }
+
+        .search-wrapper {
+            position: relative;
+            margin-bottom: 16px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 10px 16px 10px 38px;
+            border: 1.5px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            outline: none;
+            transition: var(--transition);
+        }
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        .progress-box {
+            background-color: var(--bg-app);
+            padding: 12px;
+            border-radius: var(--radius-sm);
+        }
+        .progress-title-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .progress-bar-bg {
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary) 0%, #00C06A 100%);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .tools-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px;
+        }
+
+        .tool-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            margin-bottom: 6px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        .tool-item:hover {
+            background-color: var(--primary-light);
+        }
+        .tool-item.active {
+            background-color: var(--primary-light);
+            border-color: var(--primary-glow);
+            font-weight: 700;
+        }
+        .tool-item-id {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background-color: #E5E7EB;
+            color: var(--text-main);
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 50%;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+        .tool-item.active .tool-item-id {
+            background-color: var(--primary);
+            color: #FFFFFF;
+        }
+        .tool-item.completed .tool-item-id {
+            background-color: var(--primary-dark);
+            color: #FFFFFF;
+        }
+        .tool-item-title {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px;
+            background-color: var(--bg-app);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* 避免拉伸卡片高度，使其能隨內容自動擴展 */
+        }
+
+        .content-card {
+            width: 100%;
+            max-width: 860px;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .tool-header {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .tool-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .tool-badge {
+            align-self: flex-start;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #FFFFFF;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 158, 82, 0.2);
+        }
+        .tool-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .tool-description {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            padding: 16px 20px;
+            background-color: #FAFBFB;
+            border-left: 5px solid var(--primary);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .text-paragraph {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4B5563;
+            margin-bottom: 12px;
+        }
+
+        /* Tables styling */
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.9rem;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+        .content-table th {
+            background-color: var(--primary-dark);
+            color: #FFFFFF;
+            text-align: left;
+            padding: 12px 16px;
+            font-weight: 700;
+        }
+        .content-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: #FFFFFF;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+        .content-table tr:nth-of-type(even) td {
+            background-color: #F9FAFB;
+        }
+
+        /* Practice area */
+        .practice-box {
+            background-color: #FCFAF2;
+            border: 1.5px solid rgba(255, 209, 0, 0.25);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            box-shadow: 0 4px 15px rgba(255, 209, 0, 0.03);
+        }
+
+        .note-wrapper {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .note-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .note-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+        .save-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+        .save-indicator-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--primary);
+        }
+        .save-indicator-spinner {
+            width: 12px;
+            height: 12px;
+            border: 2px solid #E5E7EB;
+            border-top: 2px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .note-textarea {
+            width: 100%;
+            height: 150px;
+            padding: 16px;
+            border: 1.5px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            outline: none;
+            resize: vertical;
+            transition: var(--transition);
+            background-color: #FFFFFF;
+        }
+        .note-textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+
+        /* Sidebar Overlay (Mobile) */
+        .sidebar-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 85;
+            display: none;
+            backdrop-filter: blur(2px);
+        }
+
+        /* Print container */
+        #print-container {
+            display: none;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .btn-menu-toggle {
+                display: flex;
+            }
+            .sidebar {
+                position: absolute;
+                left: -320px;
+                top: 0;
+                bottom: 0;
+                box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+            }
+            .app-container.menu-open .sidebar {
+                left: 0;
+            }
+            .app-container.menu-open .sidebar-overlay {
+                display: block;
+            }
+            main {
+                padding: 16px;
+            }
+            .content-card {
+                padding: 24px;
+                gap: 20px;
+            }
+            .tool-title {
+                font-size: 1.4rem;
+            }
+            .header-title-group h1 {
+                font-size: 1.1rem;
+            }
+            .header-title-group p {
+                font-size: 0.7rem;
+            }
+            .btn span {
+                display: none;
+            }
+            .btn {
+                padding: 8px 10px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: #FFFFFF !important;
+                color: #000000 !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+            header, .app-container, .sidebar, main, .sidebar-overlay {
+                display: none !important;
+            }
+            #print-container {
+                display: block !important;
+                padding: 20px !important;
+            }
+            .print-page {
+                page-break-after: always;
+                padding: 20px 0;
+                border-bottom: 2px solid #E5E7EB;
+                margin-bottom: 30px;
+            }
+            .print-title {
+                font-size: 1.6rem;
+                font-weight: 700;
+                margin-bottom: 12px;
+                color: #007A3E !important;
+            }
+            .print-desc {
+                font-size: 1.05rem;
+                padding: 12px;
+                background-color: #F9FAFB !important;
+                border-left: 4px solid #009E52 !important;
+                margin-bottom: 20px;
+                font-style: italic;
+            }
+            .print-h3 {
+                font-size: 1.15rem;
+                font-weight: 700;
+                margin: 16px 0 8px 0;
+                color: #374151 !important;
+            }
+            .print-note-box {
+                margin-top: 24px;
+                padding: 16px;
+                background-color: #FAFAFA !important;
+                border: 1px solid #CCCCCC !important;
+                border-radius: 6px;
+            }
+            .print-note-title {
+                font-size: 0.95rem;
+                font-weight: 700;
+                margin-bottom: 8px;
+            }
+            .print-note-content {
+                font-size: 0.95rem;
+                line-height: 1.6;
+                white-space: pre-wrap;
+            }
+            .print-note-content.empty {
+                color: #777777 !important;
+                font-style: italic;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 密碼保護驗證區 -->
+    <div id="password-lock-screen" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #F3F7F4; z-index: 999999; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: sans-serif; opacity: 1; transition: opacity 0.3s ease;">
+        <div style="background-color: #FFFFFF; padding: 40px; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,158,82,0.08); text-align: center; max-width: 400px; width: 90%; border: 1px solid #E5E7EB; box-sizing: border-box;">
+            <div style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background-color: #009E52; border-radius: 50%; margin-bottom: 20px; color: #FFFFFF;">
+                <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16" style="width: 28px; height: 28px;">
+                    <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                </svg>
+            </div>
+            <h2 style="font-size: 1.4rem; color: #1F2937; margin-bottom: 10px; font-weight: 700; margin-top: 0;">國泰人壽 敏捷種子培訓</h2>
+            <p style="font-size: 0.9rem; color: #6B7280; margin-bottom: 24px; margin-top: 0; line-height: 1.5;">本教材受密碼保護，請輸入國泰人壽統一編號以開啟內容</p>
+            <div style="position: relative; margin-bottom: 16px;">
+                <input type="password" id="lock-password-input" placeholder="請輸入 8 碼統一編號" style="width: 100%; padding: 12px 16px; border: 1.5px solid #E5E7EB; border-radius: 8px; font-size: 1rem; outline: none; box-sizing: border-box; text-align: center; letter-spacing: 2px;">
+            </div>
+            <button id="lock-submit-btn" style="width: 100%; padding: 12px; background-color: #009E52; color: #FFFFFF; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 158, 82, 0.2); box-sizing: border-box;">確定送出</button>
+            <p id="lock-error-msg" style="color: #EF4444; font-size: 0.85rem; margin-top: 12px; display: none; font-weight: 500; margin-bottom: 0;">❌ 密碼錯誤，請重新輸入！</p>
+        </div>
+    </div>
+    <script>
+        (function() {
+            const correctHash = "03374707";
+            if (sessionStorage.getItem('read_courseware_authorized') === 'true') {
+                document.write('<style>#password-lock-screen { display: none !important; }</style>');
+                return;
+            }
+            window.addEventListener('DOMContentLoaded', () => {
+                const lockScreen = document.getElementById('password-lock-screen');
+                const passwordInput = document.getElementById('lock-password-input');
+                const submitBtn = document.getElementById('lock-submit-btn');
+                const errorMsg = document.getElementById('lock-error-msg');
+                
+                function verify() {
+                    if (passwordInput.value.trim() === correctHash) {
+                        sessionStorage.setItem('read_courseware_authorized', 'true');
+                        lockScreen.style.opacity = '0';
+                        setTimeout(() => { lockScreen.style.display = 'none'; }, 300);
+                    } else {
+                        errorMsg.style.display = 'block';
+                        passwordInput.value = '';
+                        passwordInput.focus();
+                    }
+                }
+                submitBtn.addEventListener('click', verify);
+                passwordInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') verify(); });
+                passwordInput.focus();
+            });
+        })();
+    </script>
+
+
+    <!-- Header -->
+    <header>
+        <div class="header-left">
+            <button class="btn-menu-toggle" id="menu-toggle" title="切換選單">
+                <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+            </button>
+            <div class="logo-container">
+                <svg class="logo-tree" viewBox="0 0 24 24">
+                    <path d="M12 2C8.68 2 6 4.68 6 8c0 2.22 1.21 4.15 3 5.19V18c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-4.81c1.79-1.04 3-2.97 3-5.19 0-3.32-2.68-6-6-6zm2 15h-4v-1h4v1zm0-2h-4v-1h4v1zm-2-4c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" />
+                </svg>
+            </div>
+            <div class="header-title-group">
+                <h1>溝通引導術 <span class="badge-brand">評估工具手冊</span></h1>
+                <p>國泰人壽 敏捷種子培訓課程 (Percy 老師)</p>
+            </div>
+        </div>
+        
+        <div class="header-right">
+            <button class="btn btn-accent" id="export-pdf-btn" title="列印或另存 PDF">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                    <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5A.5.5 0 0 1 5 8zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+                <span>列印/匯出個人手冊</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- App Container -->
+    <div class="app-container" id="app-wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <!-- Search -->
+                <div class="search-wrapper">
+                    <svg class="search-icon" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                    <input type="text" class="search-input" id="search-box" placeholder="搜尋評估工具與個人筆記...">
+                </div>
+
+                <!-- Progress -->
+                <div class="progress-box">
+                    <div class="progress-title-row">
+                        <span>筆記填寫進度</span>
+                        <span id="progress-percent">0% (0/24)</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools list -->
+            <div class="tools-list" id="tools-list">
+                <!-- Dyn -->
+            </div>
+        </div>
+
+        <!-- Sidebar Overlay (Mobile) -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Main details -->
+        <main>
+            <div class="content-card" id="detail-card">
+                <!-- Dyn -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Print output -->
+    <div id="print-container"></div>
+
+    <script>
+        // Tools Data
+        const toolsData = [
+        {
+                "id": 1,
+                "title": "換一種問法",
+                "description": "當討論卡住，大家的回答過於一致、缺乏新觀點時，可以從不同角度重新發問，幫助團隊突破原本的思考限制。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "「怎麼在客服人力不足的情況下，應付大量的客戶問題？」這句話的結構中，隱含了幾個關鍵要素："
+                        },
+                        {
+                                "type": "text",
+                                "content": "角色／主詞：客服人員不足"
+                        },
+                        {
+                                "type": "text",
+                                "content": "條件／限制：有限上班時間"
+                        },
+                        {
+                                "type": "text",
+                                "content": "把這些要素「拆解 → 改寫 → 重組」"
+                        },
+                        {
+                                "type": "table",
+                                "content": [
+                                        [
+                                                "拆解要素",
+                                                "換一種問法的例子"
+                                        ],
+                                        [
+                                                "角色",
+                                                "怎麼讓非客服人員也能協助處理客戶問題？"
+                                        ],
+                                        [
+                                                "時間",
+                                                "怎麼讓非上班時間也能提供基本客服服務？"
+                                        ],
+                                        [
+                                                "顧客行為",
+                                                "怎麼減少客服案件集中發生的狀況？"
+                                        ],
+                                        [
+                                                "原因探究",
+                                                "有什麼方式可以降低客戶發問的頻率？"
+                                        ],
+                                        [
+                                                "假設翻轉",
+                                                "如果公司從來沒有客服部門，會怎麼設計服務？"
+                                        ]
+                                ]
+                        },
+                        {
+                                "type": "text",
+                                "content": "你也可以用這個方法，重新提問你正在處理的任何議題。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "記得：重新問問題，就是重新設計可能性。"
+                        }
+                ],
+                "exercise": []
+        },
+        {
+                "id": 2,
+                "title": "展開子議題",
+                "description": "當團隊面對的主題過於寬泛或抽象時，容易出現「大家都講自己的」、「每個人理解不同」的混亂。此時可透過拆題與子題延伸，讓討論聚焦在可處理的具體面向。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "「怎麼提升客服品質？」這是一個非常常見的模糊大題，包含許多潛在子議題，無法直接展開討論。可以從不同面向逐一拆解："
+                        },
+                        {
+                                "type": "table",
+                                "content": [
+                                        [
+                                                "面向",
+                                                "子題範例"
+                                        ],
+                                        [
+                                                "顧客體驗",
+                                                "如何讓顧客感受到被重視？"
+                                        ],
+                                        [
+                                                "處理效率",
+                                                "如何縮短等待時間與回應時間？"
+                                        ],
+                                        [
+                                                "回覆內容",
+                                                "如何讓回覆的內容更清楚易懂？"
+                                        ],
+                                        [
+                                                "客訴處理",
+                                                "如何處理顧客的抱怨與負面情緒？"
+                                        ],
+                                        [
+                                                "人員訓練",
+                                                "如何幫助客服人員掌握應對技巧？"
+                                        ],
+                                        [
+                                                "溝通工具",
+                                                "如何優化客服信件、對話框、語音系統？"
+                                        ]
+                                ]
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請試著把以下題目拆成 4～6 個子議題："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「怎麼提升產品使用者的黏著度？」"
+                        },
+                        {
+                                "type": "text",
+                                "content": "「怎麼優化跨部門專案的合作流程？」"
+                        }
+                ]
+        },
+        {
+                "id": 3,
+                "title": "給個例子吧",
+                "description": "當討論變得抽象、難以具象化時，可請與會者舉出實際例子，幫助大家理解概念、對焦討論，也利於後續行動的展開。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "在一次會議中，主管說：「我們要提升用戶體驗」，但各部門對「用戶體驗」的理解不同，有人想到操作流程，有人想到客服品質，討論開始發散。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "引導人此時可以說："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「我們每個人舉一個曾經遇到『用戶體驗很好』的實際例子，看看有哪些共通元素，再回來整理重點。」"
+                        },
+                        {
+                                "type": "text",
+                                "content": "透過這樣的方式，讓抽象詞彙變得有畫面，便於形成共識。"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請針對以下其中一個主題，舉出一個實際的經驗或觀察到的例子來說明："
+                        },
+                        {
+                                "type": "text",
+                                "content": "團隊協作很卡"
+                        },
+                        {
+                                "type": "text",
+                                "content": "功能很不好用"
+                        },
+                        {
+                                "type": "text",
+                                "content": "客戶要求很多"
+                        },
+                        {
+                                "type": "text",
+                                "content": "會議成效不好"
+                        },
+                        {
+                                "type": "text",
+                                "content": "覺得考績不合理"
+                        },
+                        {
+                                "type": "text",
+                                "content": "你覺得這個例子為什麼有代表性？它幫助你更理解什麼？"
+                        }
+                ]
+        },
+        {
+                "id": 4,
+                "title": "標出爭議點",
+                "description": "當團隊的意見明顯分歧，導致無法推進討論或做出決策時，需要先幫助大家看清楚：哪些地方已有共識？哪些地方還有歧見？這能避免雞同鴨講、各說各話。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "行銷部與產品部針對「新功能推出時機」產生歧見。討論內容包含："
+                        },
+                        {
+                                "type": "text",
+                                "content": "行銷部希望趁母親節促銷，搶先曝光新功能"
+                        },
+                        {
+                                "type": "text",
+                                "content": "產品部認為還有兩個核心 bug 未修復，不宜貿然上線"
+                        },
+                        {
+                                "type": "text",
+                                "content": "工程團隊擔心臨時趕工會影響其他模組"
+                        },
+                        {
+                                "type": "text",
+                                "content": "引導可以這樣說：「大家都同意這個功能具備市場潛力，也願意支持推廣，但目前的爭議點在於：是否要在尚未完全測試的情況下提前推出？」"
+                        },
+                        {
+                                "type": "text",
+                                "content": "接著提出明確問題：『若我們決定延期，有沒有替代方式仍能搭上母親節的行銷活動？』"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請閱讀以下片段討論內容，練習說出其中的共識與爭議點："
+                        },
+                        {
+                                "type": "text",
+                                "content": "客服部認為 AI 應用可節省大量回覆時間"
+                        },
+                        {
+                                "type": "text",
+                                "content": "人資部擔心導入 AI 將造成部分人力被取代"
+                        },
+                        {
+                                "type": "text",
+                                "content": "主管希望找到兼顧效率與員工發展的方式"
+                        },
+                        {
+                                "type": "text",
+                                "content": "你會怎麼「標出爭議點」？"
+                        }
+                ]
+        },
+        {
+                "id": 5,
+                "title": "換個角度看",
+                "description": "當討論陷入僵局，或總是從相同的角度看問題時，引導者可以協助與會者換個角色、時間點或條件，重新看待議題。透過切換視角，讓原本熟悉的問題出現新的樣貌，也可能發現被忽略的關鍵點。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "公司討論如何提升某款產品的用戶黏著度，多數人的建議都集中在推出新功能或發優惠券。這時引導人可以說："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「如果我們站在一個流失用戶的角度，會怎麼看這個產品？或是想像半年後的新團隊要接手這個產品，他們會怎麼做？」"
+                        },
+                        {
+                                "type": "text",
+                                "content": "這樣的提問，可以讓大家跳脫現有思維模式，產生新的觀點。"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請閱讀以下會議片段，試著設計一個讓大家「換個角度看」的提問句："
+                        },
+                        {
+                                "type": "text",
+                                "content": "業務部表示，近期銷售成績不佳"
+                        },
+                        {
+                                "type": "text",
+                                "content": "行銷部建議增加廣告預算"
+                        },
+                        {
+                                "type": "text",
+                                "content": "財務部擔心開支過高"
+                        },
+                        {
+                                "type": "text",
+                                "content": "你會怎麼設計提問，引導大家從不同角色或條件重新思考這個問題？"
+                        }
+                ]
+        },
+        {
+                "id": 6,
+                "title": "為何這樣說",
+                "description": "當有人提出一個強烈觀點、立場或主張時，其他人可能不明白這個說法背後的理由。這時，引導者可以幫助大家看見背後的假設、邏輯或價值觀，促進理解與進一步討論。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "某位成員在會議中說：「我覺得讓需求單位自己寫需求文件根本就不對！」"
+                        },
+                        {
+                                "type": "text",
+                                "content": "此時引導人可以用好奇且尊重的方式提問："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「你這樣覺得，是不是有過一些經驗？能分享一下是什麼讓你這麼想的嗎？」"
+                        },
+                        {
+                                "type": "text",
+                                "content": "接著引導大家一起理解他在意的點，也許是過去寫得品質不佳、內容模糊、導致後續返工，或是他認為需求應由專業角色把關品質。"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請回想你曾經聽過的某個強烈觀點，例如：「我們就照主管意思做就好」、「這種功能根本沒人會用」、「我們沒時間設計流程」。請模擬當時的情境，寫下你可以怎麼回應，讓對方進一步說出背後的理由或想法"
+                        }
+                ]
+        },
+        {
+                "id": 7,
+                "title": "回到主議題",
+                "description": "當討論開始發散、話題偏離原先主軸，或與會者各自關注不同焦點時，需要引導大家重新對焦在「這場討論最重要的主題」上，避免時間耗費在枝節議題上。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "PM 召開會議，討論「導入 CRM 系統」的進度。討論中逐漸偏向："
+                        },
+                        {
+                                "type": "text",
+                                "content": "業務部抱怨舊系統資料無法轉移"
+                        },
+                        {
+                                "type": "text",
+                                "content": "IT 部門談到近期人力吃緊，專案排程問題"
+                        },
+                        {
+                                "type": "text",
+                                "content": "行銷部詢問新系統是否能整合 EDM 功能"
+                        },
+                        {
+                                "type": "text",
+                                "content": "引導人此時可以說："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「今天我們這場討論的主議題是：決定 CRM 系統導入的時程與最低可用版本（MVP）功能。剛剛提到的技術、人力、整合問題都重要，我們可以在確定核心功能之後，再分別安排後續追蹤會議。」"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請閱讀以下片段討論內容，思考這場會議真正的主議題是什麼："
+                        },
+                        {
+                                "type": "text",
+                                "content": "設計部提到用戶抱怨流程複雜"
+                        },
+                        {
+                                "type": "text",
+                                "content": "工程師反映後台資料庫效能不足"
+                        },
+                        {
+                                "type": "text",
+                                "content": "客服希望能減少來電量"
+                        },
+                        {
+                                "type": "text",
+                                "content": "你怎麼幫大家聚焦討論？"
+                        }
+                ]
+        },
+        {
+                "id": 8,
+                "title": "連回主題線",
+                "description": "當發言者說出與主題看似無關的內容時，可先不急著打斷，而是透過提問引導，協助發言者自己說出與主題的關聯，避免忽略潛在的觀點，也幫助整體討論保持聚焦。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "行銷部門在開會討論「下一季針對學生族群的訊息主軸」。A 說：「我們以前的吉祥物有很多粉絲，應該讓它回歸。」"
+                        },
+                        {
+                                "type": "text",
+                                "content": "這時引導人可以這樣說："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「這段經驗很有意思，你覺得它和學生族群的訊息主軸之間，有什麼連結點嗎？」"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "你正在引導一場跨部門會議，討論的主題是：「下半年企業網站首頁改版的內容方向」。大家正專注討論使用者導覽與內容呈現時，突然有人這樣發言："
+                        },
+                        {
+                                "type": "text",
+                                "content": "B（業務主管）：「其實我覺得我們整體的行銷策略都太保守了，我們的品牌定位可能要全面檢討一下，不然網站改得再多也沒用。」"
+                        },
+                        {
+                                "type": "text",
+                                "content": "現場一陣沉默，大家一時之間無法接話，會議節奏也被打斷。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "問題：如果你是引導者，你會怎麼回應這位業務主管的發言，幫助他連回本次會議的主題，而不是直接否定他的意見？"
+                        }
+                ]
+        },
+        {
+                "id": 9,
+                "title": "總歸一句話",
+                "description": "當團隊討論發散過久、資訊過多無法收斂時，可透過統整重點，幫助大家聚焦目前的共同理解與觀點。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "「主管召開會議，討論「AI 導入對客服工作的影響」。會議中，大家提出大量觀察與經驗，像是："
+                        },
+                        {
+                                "type": "text",
+                                "content": "• GPT 回答雖然快，但有些資訊不準確"
+                        },
+                        {
+                                "type": "text",
+                                "content": "• 客服人員對系統改版有排斥感"
+                        },
+                        {
+                                "type": "text",
+                                "content": "• 有些問題其實不需要真人處理"
+                        },
+                        {
+                                "type": "text",
+                                "content": "• 主管擔心 AI 降低了人與人之間的連結"
+                        },
+                        {
+                                "type": "text",
+                                "content": "• 技術部門覺得還沒準備好上線"
+                        },
+                        {
+                                "type": "text",
+                                "content": "這時候引導人可以說：「我們目前已經聽到不少觀察，我想先總結目前的共識：大家都同意 AI 的導入雖然能提升效率，但也帶來品質與人際互動的顧慮。」"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請閱讀以下片段討論內容，練習總結成一句能夠代表多數觀點的陳述："
+                        },
+                        {
+                                "type": "text",
+                                "content": "• 業務部希望推行新功能，帶動銷售"
+                        },
+                        {
+                                "type": "text",
+                                "content": "• 工程師反應新功能開發工時太長"
+                        },
+                        {
+                                "type": "text",
+                                "content": "• 設計部認為現有介面結構不足以承載"
+                        },
+                        {
+                                "type": "text",
+                                "content": "• 客服部表示已經收到不少相關需求"
+                        },
+                        {
+                                "type": "text",
+                                "content": "• 總經理關心開發時程與行銷策略"
+                        },
+                        {
+                                "type": "text",
+                                "content": "你會怎麼「總歸一句話」？"
+                        }
+                ]
+        },
+        {
+                "id": 10,
+                "title": "先記下來吧",
+                "description": "當發言者提出與本次主題無關，但明顯有價值的觀點時，引導者可以先將該議題記錄下來，避免打斷對話流或讓與會者偏離主軸，同時讓貢獻不被忽略。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "產品團隊召開會議，討論使用者回饋機制。A 提到：「我覺得我們應該重新設計內部績效制度，才會有動力回應使用者需求。」"
+                        },
+                        {
+                                "type": "text",
+                                "content": "此時引導者可以這麼說："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「這是一個很重要的觀點，雖然和我們今天討論的主題不完全一致，我建議我們先把這個想法記下來，會後安排專門的時間來深入討論。」"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請回想你參與過的一次會議，有人提出與主題無關但重要的觀點。你如何引導大家不打斷當下進行，又能讓這些想法不被遺漏？"
+                        },
+                        {
+                                "type": "text",
+                                "content": "你會如何記錄？是否曾經真的回頭處理這些「先記下來」的議題？"
+                        }
+                ]
+        },
+        {
+                "id": 11,
+                "title": "一格一格說",
+                "description": "當主題包含多個子議題，或已具備明確分析架構時，與會者若同時跳躍多個議題，容易導致混亂或遺漏。透過「一格一格討論」的方式，可以先將主題依 MECE 原則切分為若干子議題，並在視覺上建立每個子議題的「討論空格」，引導團隊一次聚焦一格，逐一填入內容，確保對話結構清楚且完整。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "你正在帶領一場部門回顧會議，希望針對團隊過去三個月的合作進行討論。你先在白板上畫出三格：「值得延續」、「需要改進」、「想要嘗試」，然後引導大家一次只針對一格進行發言與紀錄。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "這樣的操作方式，就是典型的「一格一格討論」。"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請選擇一個你近期面臨的重要議題（如：提升跨部門溝通效率），"
+                        },
+                        {
+                                "type": "text",
+                                "content": "嘗試以「互不包含、毫無遺漏」原則(MECE)切分出子議題，並畫出屬於你自己的討論 Canvas，例如將主題分為「資訊傳遞流程」、「回應機制」、「決策授權」三格，逐格進行討論並記錄成果。"
+                        }
+                ]
+        },
+        {
+                "id": 12,
+                "title": "看還少什麼",
+                "description": "當大家覺得所有內容都已討論過、意見也差不多時，仍可能忽略一些沒被提出的觀點。這時可以回顧整體內容，檢視是否有「沒被說出來的那一塊」，可能是某類角色沒參與、某階段未考量、某面向完全空白。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "設計部門舉辦工作坊，討論新產品的使用流程，參與者包含產品經理、UI設計師與工程師。大家提出很多互動設計想法，也針對後端資料流設計做了補充。但在即將收尾時，有人提醒：「我們都沒提到客服端會怎麼處理使用者報錯的流程。」"
+                        },
+                        {
+                                "type": "text",
+                                "content": "這時引導人可以提醒大家："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「我們可以回顧一下目前討論過的角色與場景，看看是不是有一類情境或流程環節尚未涵蓋進來。」"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請回想你最近參與的一次討論，會議已進入收斂階段或即將結束時，有沒有哪些角色、情境、資料、風險、流程等重要面向被遺漏了？"
+                        },
+                        {
+                                "type": "text",
+                                "content": "你如何讓大家看到「還少了什麼」？"
+                        }
+                ]
+        },
+        {
+                "id": 13,
+                "title": "拉開比較軸",
+                "description": "在面對多個選項時，若每項看似都不錯、難以取捨，這時可建立兩個對照的評估軸，協助大家定位與比較每個選項，進而聚焦在優先處理的方向。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "一個跨部門小組正在評估多項 AI 導入任務，大家提出許多構想，但意見分散、無法決定優先順序。此時引導人可以說："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「我們先決定兩個重要的評估面向，例如價值高低與導入難易度，把這些任務標在坐標圖上，看看落在哪些區塊，再來決定先做哪些。」"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "公司預計在下半年推動一系列改善專案，請你協助規劃優先順序。下列是目前提出的幾項建議任務："
+                        },
+                        {
+                                "type": "text",
+                                "content": "優化內部報銷流程、增設員工健康諮詢服務、整合客服與銷售系統、推動遠距工作制度、重整企業識別（CI）設計、引進自動化庫存管理工具，以及建置主管績效回饋機制。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "請問：若要針對這些任務進行評估與排序，你會建議採用哪兩個坐標軸作為評估基準？"
+                        },
+                        {
+                                "type": "text",
+                                "content": "你預期各任務會分佈在哪些象限？是否有哪幾項應該優先進行？"
+                        }
+                ]
+        },
+        {
+                "id": 14,
+                "title": "看清楚位置",
+                "description": "當需要快速掌握與會者的意見分布、共識集中或分歧程度時，可以用視覺化的方式標示觀點位置，讓整體狀況一目了然。這樣能幫助團隊看到是否已有明顯的偏好趨勢，或是存在高度分歧，進而決定接下來的引導策略。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "某團隊正在討論「是否引進新的協作工具」。主持人請大家以 1 到 10 分表示意願，1 表示非常反對，10 表示非常贊成。每人寫下數字後貼在牆上的投票軸線上，結果顯示意見集中在 6～8 區間，表示多數人傾向接受，但仍有一兩位表態為 2 或 3。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "主持人說：「我們看到大多數人持開放態度，但也有幾位明顯保留。接下來我們想聽聽看，支持與保留的關鍵理由各是什麼？」"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請列舉三種不同的視覺化方式（例如：1-10 投票軸、情緒溫度計、滿意度分布地圖），並說明各自適合用於什麼樣的討論情境。你可以參考你曾參與的實際會議，想像如果加上這種視覺化方式，會帶來哪些討論上的幫助？"
+                        }
+                ]
+        },
+        {
+                "id": 15,
+                "title": "好壞都要看",
+                "description": "當需要全面評估某個提案、方案或選項的可行性時，不應只討論其優點，也應同時思考可能的風險與負面影響。透過「利弊分析」的方式，可以幫助團隊從多角度看待選項，降低決策盲點，避免過度樂觀或過度保守。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "某公司正在評估是否實施「讓員工自由選擇每天的上下班時間」。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "在會議中，有人指出彈性可以提升工作滿意度，也有人擔心這會導致協作困難。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "引導人可以說："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「我們把這個選項的好處與可能的問題分開來列一下，幫助我們更全面地思考。」"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請針對以下做法進行利弊分析："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「將客服系統改為 AI 應答為主，人力協助為輔」"
+                        },
+                        {
+                                "type": "text",
+                                "content": "請列出三個可能的優點與三個可能的問題點，並討論這些因素在你的團隊或部門中是否成立。"
+                        }
+                ]
+        },
+        {
+                "id": 16,
+                "title": "如果那麼就",
+                "description": "當討論中的選項彼此拉鋸、難以抉擇時，可以透過「如果⋯那麼⋯」的推演，幫助團隊預想每個選項實施後的情境，釐清其可能影響、風險與機會，進一步做出判斷。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "團隊正在討論是否將客服服務外包，正反意見交雜、難以決定。此時引導人可以說："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「我們可以用『如果那麼就』的方式，來推演每個選項的未來情境，幫助我們理解每個決定會帶來什麼後果。」"
+                        },
+                        {
+                                "type": "text",
+                                "content": "接著，大家針對「外包」與「不外包」兩個選項，分別進行以下推演："
+                        },
+                        {
+                                "type": "text",
+                                "content": "如果我們選擇將客服外包，那麼初期的訓練成本可能增加，但人力管理會更簡化；也可能出現服務品質不穩定的風險。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "如果我們選擇保留內部客服，那麼我們需持續投入人力資源與管理，但服務的一致性與用戶回饋可能會更穩定。"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請針對下列其中一項決策，進行「如果⋯那麼⋯」的雙向推演："
+                        },
+                        {
+                                "type": "text",
+                                "content": "是否取消一項舊有功能？"
+                        },
+                        {
+                                "type": "text",
+                                "content": "是否延後產品上線？"
+                        },
+                        {
+                                "type": "text",
+                                "content": "是否開放使用者自行註冊帳號？"
+                        },
+                        {
+                                "type": "text",
+                                "content": "你能否從這些推演中，發現原本沒想到的風險或契機？"
+                        }
+                ]
+        },
+        {
+                "id": 17,
+                "title": "看見利關人",
+                "description": "在進行專案規劃、決策討論或問題解決時，經常會遇到「漏邀某些重要角色」或「某些人的聲音被忽略」的情況。這時可以透過利害關係人地圖，幫助團隊釐清誰會受到影響、誰應該參與、誰應該被告知。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "某團隊即將導入一套新的內部知識管理平台，會議中大家熱烈討論使用者介面與分類方式，但會後才發現 IT 部門從頭到尾都沒參與，導致後續整合困難重重。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "引導人可以說："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「我們一起畫一下這個專案的利害關係人地圖，釐清誰應該在場、誰會受影響、誰需要決策。」"
+                        },
+                        {
+                                "type": "text",
+                                "content": "常見畫法包括："
+                        },
+                        {
+                                "type": "text",
+                                "content": "同心圓角色圖（越核心的圈層表示參與越深入）"
+                        },
+                        {
+                                "type": "text",
+                                "content": "角色距離圖（從任務核心往外畫出距離線）"
+                        },
+                        {
+                                "type": "text",
+                                "content": "利害關係人矩陣（影響力 × 參與意願的雙軸分布）"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請針對「導入內部知識管理平台」這項專案，列出可能的利害關係人，例如資訊部、使用者代表、人資、管理階層等。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "接著請畫出角色地圖，討論：誰應該被納入早期規劃、誰需要定期回報、誰只要知會？"
+                        }
+                ]
+        },
+        {
+                "id": 18,
+                "title": "對齊上下層",
+                "description": "當需要釐清任務與策略之間的邏輯、確認行動是否回應高層目標時，可使用視覺化的層級工具，建立從目標到執行之間的連結，幫助團隊上下對齊。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "某金融單位希望提升年輕用戶的黏著度，開出一系列方案，包括增加短影音頻道、推出儲蓄挑戰任務與重新設計App介面。討論過程中，大家各持己見、難以排序優先順序。引導人這時可以說："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「我們可以一起畫出從目標、策略到執行的邏輯樹，看看這些方案分別回應的是哪一層，哪些是達標的必要行動、哪些是輔助性的構想。」"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請挑選你熟悉的一個任務，試著以 Impact Map、OGSM 或 Opportunity Solution Tree 的形式，畫出從最上層目標到下層行動的關係圖。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "你有發現哪些策略與行動之間沒有連結嗎？哪些目標沒有被回應？"
+                        }
+                ]
+        },
+        {
+                "id": 19,
+                "title": "拉出關係網",
+                "description": "在進行跨部門協作、需求整合或專案溝通時，角色之間的互動與依賴常常複雜交錯。如果只靠部門職稱記憶，很容易忽略實際關鍵人或溝通斷點。透過將角色與角色之間的關係畫出來，可以讓大家更清楚地掌握這場討論牽涉了哪些人、誰和誰必須對話、誰可能正在缺席。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "某公司正準備升級其線上購物平台。在系統規劃階段，產品經理與工程師密切討論功能細節，但開發期間頻頻出現資訊落差，事後才發現並未納入客服部、倉儲物流與金流合作廠商的角色。引導人可以說："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「我們先來畫出參與這個購物平台營運與開發的所有角色，再看看誰和誰之間必須對話，誰是資訊流的樞紐。」"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請以「線上購物系統的建置與營運」為例，列出所有可能參與的角色（如顧客、客服、產品經理、工程師、設計師、倉儲、物流、金流、行銷、IT 支援等），畫出彼此的互動與依賴關係。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "請思考：哪些人是必須直接溝通的？誰是資訊傳遞的樞紐？有沒有哪些角色彼此完全沒有連結？這會造成什麼風險？"
+                        }
+                ]
+        },
+        {
+                "id": 20,
+                "title": "看得見時序",
+                "description": "當需要釐清事件發生的先後順序，或呈現一段歷程中的關鍵節點時，可以用時間軸的方式，讓討論內容具備清楚的時間結構，有助於發現邏輯關聯與變化趨勢。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "某產品團隊正在回顧一段專案歷程，希望找出專案為何延誤、哪些決策造成關鍵影響。引導人畫出一條時間軸，請團隊成員把他們記得的重要事件與決策貼上，包含用戶訪談、需求變更、技術選型等節點。貼完後，大家發現某次需求改動造成重大影響，原來當時沒有完整討論依賴問題，導致後續重工。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "引導人此時可以說："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「透過這張時間線，我們可以一起觀察，哪些轉捩點影響最大？是不是有些決策沒有回頭檢討過？」"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請以「從發現問題到推出改版」為主題，畫出一條產品演進的時間線，標上三個以上的重要事件或轉捩點。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "你能從中看見哪些因果關聯或延誤的關鍵時機？"
+                        }
+                ]
+        },
+        {
+                "id": 21,
+                "title": "用看板討論",
+                "description": "當一次會議中需要處理多個子議題時，常會出現跳躍、分心、遺漏等狀況。這時可使用簡易的「討論看板」，將所有議題視覺化列出，並規定每次只處理一個，確保每個主題都有被討論與收斂的機會。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "某專案團隊召開改善會議，預計討論多個與客服流程有關的問題，包括：客服話術更新、用戶抱怨回報機制、SLA 設定標準、內部回應流程簡化。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "會議一開始各種問題同時被提起，導致難以聚焦與收斂。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "此時引導人可以說："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「我們先把所有議題貼出來，做成簡單的看板，每次我們就把一個議題拉到『討論中』欄位，討論完再移到『已討論』，這樣可以幫助我們聚焦、也不會漏掉任何一個。」"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請你想像要召開一場「提升團隊協作效率」的內部會議，列出 5 個可能需要討論的子議題。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "請設計一張包含「待討論」「討論中」「已討論」和「擱置」的四欄看板，並規劃這些議題的討論順序與推進方式。"
+                        }
+                ]
+        },
+        {
+                "id": 22,
+                "title": "畫出因果圖",
+                "description": "當團隊討論某個問題時，若眾人只針對表面現象發言，容易產生錯誤的解法。此時可引導大家釐清造成這個現象的各種原因，並將這些原因逐層拆解，建立起因果邏輯鏈，幫助大家聚焦在問題根源上。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "某公司舉辦跨部門檢討會議，主題是「顧客退貨率上升」。與會者提出多種原因，例如「產品說明不清」、「出貨錯誤」、「客服回覆太慢」、「客戶誤會功能」等。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "這時引導人可以說："
+                        },
+                        {
+                                "type": "text",
+                                "content": "「我們可以一起來釐清這些問題背後的根源，用像魚骨圖那樣的方式，把主要原因拆解成幾個面向，例如人員、流程、系統、資訊，然後一步步往下探討更深層的原因。」"
+                        },
+                        {
+                                "type": "text",
+                                "content": "透過視覺化的方式將各種因果鏈條標示出來，團隊更容易聚焦在可行的解決方案上。"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請針對內部會議常常超過時間的現象，畫出可能的因果鏈，思考有哪些面向可能造成這個結果。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "請觀察是否有哪些根本原因，是大家原本沒想到的？"
+                        }
+                ]
+        },
+        {
+                "id": 23,
+                "title": "底下有什麼",
+                "description": "當團隊的討論停留在表面現象，例如問題事件或觀察到的結果時，可以引導大家往下探討，挖掘背後的規律、結構或價值觀。這樣的探詢方式有助於釐清問題根源，促進系統性理解與深入對話。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "一個產品團隊每次開會都在檢討交付延誤，討論內容集中在「工程師的時間不夠用」「某位成員常請假」「需求單位又改規格」。這時引導人可以說：「我們來畫張冰山圖吧。表面是交付延誤的現象，那底下的原因有哪些？是流程安排問題？需求改變太頻繁？還是大家對目標不夠一致？」"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請觀察下列情境，試著用冰山模型分析，分別寫出事件、可能的模式與底層因素："
+                        },
+                        {
+                                "type": "text",
+                                "content": "主管機關要求交付資安報告"
+                        },
+                        {
+                                "type": "text",
+                                "content": "客戶常在最後一刻才改需求"
+                        },
+                        {
+                                "type": "text",
+                                "content": "資訊人力流動率高"
+                        },
+                        {
+                                "type": "text",
+                                "content": "產品延遲交付"
+                        },
+                        {
+                                "type": "text",
+                                "content": "高層認為敏捷就是快"
+                        }
+                ]
+        },
+        {
+                "id": 24,
+                "title": "歸類圈起來",
+                "description": "當團隊討論中產生大量意見，導致焦點模糊、內容零散時，可以讓大家把意見一張張寫在便利貼上，再一起將內容相近的便利貼歸類在一起，進一步看出主要分類與共識方向。",
+                "scenario": [
+                        {
+                                "type": "text",
+                                "content": "產品開發團隊召開創意發想會議，討論新功能的可能方向。與會者寫出許多建議，包含技術面創新、用戶體驗優化、介面設計調整等內容。大家把建議貼在白板上後，透過協作將相似意見圈在一起，形成幾大類：新技術應用、流程簡化、視覺改善等，讓大家更容易聚焦討論與排序。"
+                        }
+                ],
+                "exercise": [
+                        {
+                                "type": "text",
+                                "content": "請為以下這些便利貼進行歸類："
+                        },
+                        {
+                                "type": "text",
+                                "content": "減少操作步驟、提升搜尋速度、增加提醒功能、介面改用深色模式、整合推薦演算法、簡化付款流程、提供教學影片、優化首頁設計、改善表單驗證、加入多語系支援、強化隱私設定、支援社群登入、縮短載入時間、增加客服入口、整合常見問題、設計新手引導、加入使用者評分、提升錯誤提示訊息、支援離線瀏覽、提供個人化設定。"
+                        },
+                        {
+                                "type": "text",
+                                "content": "請問你會分成哪幾類？這些分類如何幫助後續的深入討論"
+                        }
+                ]
+        }
+];
+
+        // App state
+        const state = {
+            currentIndex: 0,
+            notes: {},
+            searchQuery: '',
+            menuOpen: false
+        };
+
+        const elements = {
+            appWrapper: document.getElementById('app-wrapper'),
+            menuToggle: document.getElementById('menu-toggle'),
+            sidebarOverlay: document.getElementById('sidebar-overlay'),
+            searchBox: document.getElementById('search-box'),
+            progressPercent: document.getElementById('progress-percent'),
+            progressFill: document.getElementById('progress-fill'),
+            toolsList: document.getElementById('tools-list'),
+            detailCard: document.getElementById('detail-card'),
+            exportPdfBtn: document.getElementById('export-pdf-btn'),
+            printContainer: document.getElementById('print-container')
+        };
+
+        // Initialize App
+        function init() {
+            loadNotes();
+            renderSidebar();
+            updateProgress();
+            showTool(state.currentIndex);
+            setupEventListeners();
+        }
+
+        // Load Notes from LocalStorage
+        function loadNotes() {
+            const saved = localStorage.getItem('cathay_assess_notes');
+            if (saved) {
+                try {
+                    state.notes = JSON.parse(saved);
+                } catch (e) {
+                    console.error('Failed to parse localStorage notes:', e);
+                    state.notes = {};
+                }
+            }
+        }
+
+        // Save Notes
+        function saveNote(toolId, text) {
+            state.notes[toolId] = text;
+            localStorage.setItem('cathay_assess_notes', JSON.stringify(state.notes));
+            updateProgress();
+            
+            // Highlight item if completed
+            const itemEl = document.querySelector(`.tool-item[data-id="${toolId}"]`);
+            if (itemEl) {
+                if (text.trim()) {
+                    itemEl.classList.add('completed');
+                } else {
+                    itemEl.classList.remove('completed');
+                }
+            }
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            let completedCount = 0;
+            toolsData.forEach(t => {
+                const note = state.notes[t.id];
+                if (note && note.trim()) {
+                    completedCount++;
+                }
+            });
+
+            const percent = Math.round((completedCount / toolsData.length) * 100);
+            elements.progressPercent.textContent = `${percent}% (${completedCount}/${toolsData.length} 招)`;
+            elements.progressFill.style.width = `${percent}%`;
+        }
+
+        // Render Sidebar List
+        function renderSidebar() {
+            elements.toolsList.innerHTML = '';
+            
+            const filtered = toolsData.filter(t => {
+                const q = state.searchQuery.toLowerCase();
+                const note = state.notes[t.id] || '';
+                return t.title.toLowerCase().includes(q) || 
+                       t.description.toLowerCase().includes(q) ||
+                       note.toLowerCase().includes(q);
+            });
+
+            filtered.forEach(t => {
+                const item = document.createElement('div');
+                item.className = 'tool-item';
+                item.setAttribute('data-id', t.id);
+                if (t.id - 1 === state.currentIndex) {
+                    item.classList.add('active');
+                }
+                
+                const note = state.notes[t.id];
+                if (note && note.trim()) {
+                    item.classList.add('completed');
+                }
+
+                const idStr = t.id < 10 ? '0' + t.id : t.id;
+                item.innerHTML = `
+                    <span class="tool-item-id">${idStr}</span>
+                    <span class="tool-item-title">${t.title}</span>
+                `;
+
+                item.addEventListener('click', () => {
+                    const originalIndex = toolsData.findIndex(item => item.id === t.id);
+                    state.currentIndex = originalIndex;
+                    
+                    document.querySelectorAll('.tool-item').forEach(el => el.classList.remove('active'));
+                    item.classList.add('active');
+                    
+                    showTool(state.currentIndex);
+                    closeMenu();
+                });
+
+                elements.toolsList.appendChild(item);
+            });
+        }
+
+        // Show Tool details
+        function showTool(index) {
+            const tool = toolsData[index];
+            if (!tool) return;
+
+            const idStr = tool.id < 10 ? '0' + tool.id : tool.id;
+            const currentNote = state.notes[tool.id] || '';
+
+            // Generate learning scenario HTML
+            let scenarioHtml = '';
+            tool.scenario.forEach(node => {
+                if (node.type === 'text') {
+                    scenarioHtml += `<p class="text-paragraph">${node.content}</p>`;
+                } else if (node.type === 'table') {
+                    scenarioHtml += generateTableHtml(node.content);
+                }
+            });
+
+            // Generate exercise HTML
+            let exerciseHtml = '';
+            tool.exercise.forEach(node => {
+                if (node.type === 'text') {
+                    exerciseHtml += `<p class="text-paragraph">${node.content}</p>`;
+                } else if (node.type === 'table') {
+                    exerciseHtml += generateTableHtml(node.content);
+                }
+            });
+
+            const exerciseSection = exerciseHtml ? `
+                <div class="practice-box">
+                    <div class="section-title">延伸練習</div>
+                    ${exerciseHtml}
+                </div>
+            ` : '';
+
+            elements.detailCard.innerHTML = `
+                <div class="tool-header">
+                    <div class="tool-meta">
+                        <span class="tool-badge">引導工具 ${idStr}</span>
+                        <h2 class="tool-title">${tool.title}</h2>
+                    </div>
+                </div>
+
+                <div class="tool-description">
+                    ${tool.description}
+                </div>
+
+                <div class="scenario-section">
+                    <div class="section-title">學習情境與案例</div>
+                    ${scenarioHtml}
+                </div>
+
+                ${exerciseSection}
+
+                <div class="note-wrapper">
+                    <div class="note-header">
+                        <label for="assess-note-textarea" class="note-label">個人學習與實踐筆記</label>
+                        <span class="save-indicator" id="save-status">
+                            <span class="save-indicator-spinner" id="save-spinner"></span>
+                            <span class="save-indicator-dot" id="save-dot"></span>
+                            <span id="save-status-text">已自動存檔</span>
+                        </span>
+                    </div>
+                    <textarea class="note-textarea" id="assess-note-textarea" placeholder="在此記錄您的想法、回答延伸練習問題，或寫下工作中的實踐計畫...系統將自動同步存檔。">${currentNote}</textarea>
+                </div>
+            `;
+
+            // Bind textarea events
+            const textarea = document.getElementById('assess-note-textarea');
+            const saveText = document.getElementById('save-status-text');
+            const saveDot = document.getElementById('save-dot');
+            const saveSpinner = document.getElementById('save-spinner');
+
+            let timeoutId;
+            textarea.addEventListener('input', (e) => {
+                // Show saving spinner
+                saveText.textContent = '存檔中...';
+                saveDot.style.display = 'none';
+                saveSpinner.style.display = 'block';
+
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    saveNote(tool.id, e.target.value);
+                    
+                    // Show saved status
+                    saveText.textContent = '已自動存檔';
+                    saveDot.style.display = 'block';
+                    saveSpinner.style.display = 'none';
+                }, 500);
+            });
+        }
+
+        // Helper to generate HTML tables
+        function generateTableHtml(matrix) {
+            let html = '<table class="content-table">';
+            matrix.forEach((row, rIdx) => {
+                html += '<tr>';
+                row.forEach(cell => {
+                    if (rIdx === 0) {
+                        html += `<th>${cell}</th>`;
+                    } else {
+                        html += `<td>${cell}</td>`;
+                    }
+                });
+                html += '</tr>';
+            });
+            html += '</table>';
+            return html;
+        }
+
+        // Setup Events
+        function setupEventListeners() {
+            // Search box
+            elements.searchBox.addEventListener('input', (e) => {
+                state.searchQuery = e.target.value;
+                renderSidebar();
+            });
+
+            // Mobile menu toggle
+            elements.menuToggle.addEventListener('click', toggleMenu);
+            elements.sidebarOverlay.addEventListener('click', closeMenu);
+
+            // Export PDF
+            elements.exportPdfBtn.addEventListener('click', generatePrintView);
+        }
+
+        function toggleMenu() {
+            state.menuOpen = !state.menuOpen;
+            if (state.menuOpen) {
+                elements.appWrapper.classList.add('menu-open');
+            } else {
+                elements.appWrapper.classList.remove('menu-open');
+            }
+        }
+
+        function closeMenu() {
+            state.menuOpen = false;
+            elements.appWrapper.classList.remove('menu-open');
+        }
+
+        // Generate Print/PDF View
+        function generatePrintView() {
+            elements.printContainer.innerHTML = '';
+            
+            // Header for print
+            const docHeader = document.createElement('div');
+            docHeader.style.textAlign = 'center';
+            docHeader.style.marginBottom = '40px';
+            docHeader.innerHTML = `
+                <h1 style="font-size: 2.2rem; color: #007A3E; margin-bottom: 8px;">國泰人壽《溝通引導術》個人評估工具筆記手冊</h1>
+                <p style="font-size: 1rem; color: #4B5563;">學員專屬課後實踐指南 • 講師: Percy 老師</p>
+                <div style="margin-top: 15px; font-size: 0.9rem; color: #6B7280;">匯出時間: ${new Date().toLocaleDateString('zh-TW')}</div>
+            `;
+            elements.printContainer.appendChild(docHeader);
+
+            // Loop and add tools
+            toolsData.forEach(t => {
+                const page = document.createElement('div');
+                page.className = 'print-page';
+
+                const idStr = t.id < 10 ? '0' + t.id : t.id;
+                const note = state.notes[t.id] || '';
+                const noteHtml = note.trim() 
+                    ? `<div class="print-note-content">${note.replace(/\n/g, '<br>')}</div>` 
+                    : `<div class="print-note-content empty">（尚未填寫此招之實踐筆記，可用於課後筆記書寫）</div>`;
+
+                // Build scenario HTML
+                let scenarioHtml = '';
+                t.scenario.forEach(node => {
+                    if (node.type === 'text') {
+                        scenarioHtml += `<p style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px;">${node.content}</p>`;
+                    } else if (node.type === 'table') {
+                        scenarioHtml += generateTableHtml(node.content);
+                    }
+                });
+
+                // Build exercise HTML
+                let exerciseHtml = '';
+                t.exercise.forEach(node => {
+                    if (node.type === 'text') {
+                        exerciseHtml += `<p style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 8px;">${node.content}</p>`;
+                    } else if (node.type === 'table') {
+                        exerciseHtml += generateTableHtml(node.content);
+                    }
+                });
+
+                const exerciseBlock = exerciseHtml ? `
+                    <h4 class="print-h3">延伸練習</h4>
+                    ${exerciseHtml}
+                ` : '';
+
+                page.innerHTML = `
+                    <h2 class="print-title">引導工具 ${idStr}：${t.title}</h2>
+                    <div class="print-desc">${t.description}</div>
+                    
+                    <h3 class="print-h3">學習情境與案例</h3>
+                    ${scenarioHtml}
+                    
+                    ${exerciseBlock}
+
+                    <div class="print-note-box">
+                        <div class="print-note-title">✍️ 我的個人實踐與課後筆記：</div>
+                        ${noteHtml}
+                    </div>
+                `;
+
+                elements.printContainer.appendChild(page);
+            });
+
+            // Trigger Print
+            window.print();
+        }
+
+        // Run Init on Load
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
