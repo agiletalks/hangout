@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>國泰證券 AI 券商／阿發工作坊 Rundown</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --paper: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --brand: #006b5f;
+      --brand2: #0f766e;
+      --soft: #ecfdf5;
+      --soft2: #f0f9ff;
+      --warn: #fff7ed;
+      --warn-border: #fed7aa;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+    .page {
+      max-width: 1080px;
+      margin: 32px auto;
+      padding: 0 20px 48px;
+    }
+    .hero {
+      background: linear-gradient(135deg, #004d45, #0f766e);
+      color: #fff;
+      border-radius: 24px;
+      padding: 40px 44px;
+      box-shadow: 0 20px 50px rgba(15, 118, 110, 0.22);
+    }
+    .hero .eyebrow {
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 34px;
+      line-height: 1.25;
+      margin: 0 0 12px;
+    }
+    .subtitle {
+      font-size: 18px;
+      opacity: 0.92;
+      margin: 0;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .meta-card {
+      background: rgba(255,255,255,0.13);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 14px 16px;
+    }
+    .meta-card b { display: block; font-size: 13px; opacity: 0.78; }
+    .meta-card span { font-size: 16px; }
+    .section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      margin-top: 22px;
+      padding: 30px 34px;
+      box-shadow: 0 8px 28px rgba(31,41,55,0.05);
+    }
+    h2 {
+      color: var(--brand);
+      margin: 0 0 18px;
+      font-size: 25px;
+      border-bottom: 2px solid var(--line);
+      padding-bottom: 10px;
+    }
+    h3 {
+      font-size: 20px;
+      margin: 26px 0 10px;
+      color: #111827;
+    }
+    h4 {
+      font-size: 17px;
+      margin: 18px 0 8px;
+      color: var(--brand2);
+    }
+    p { margin: 8px 0 14px; }
+    ul, ol { padding-left: 1.4em; margin-top: 8px; }
+    li { margin: 5px 0; }
+    .callout {
+      background: var(--soft);
+      border: 1px solid #bbf7d0;
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin: 16px 0;
+    }
+    .warning {
+      background: var(--warn);
+      border: 1px solid var(--warn-border);
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 20px;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+    }
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      background: #f3f4f6;
+      color: #374151;
+      font-weight: 700;
+    }
+    tr:last-child td { border-bottom: none; }
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+    .slot {
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--brand2);
+      border-radius: 16px;
+      padding: 16px 18px;
+      background: #fff;
+    }
+    .slot .time {
+      font-weight: 800;
+      color: var(--brand);
+      margin-bottom: 4px;
+    }
+    .slot .title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .tag {
+      background: var(--soft2);
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: 13px;
+    }
+    .checklist {
+      columns: 2;
+      column-gap: 36px;
+    }
+    .footer {
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+      margin-top: 24px;
+    }
+    @media print {
+      body { background: #fff; }
+      .page { margin: 0; max-width: none; padding: 0; }
+      .section, .hero { box-shadow: none; page-break-inside: avoid; }
+      .hero { border-radius: 0; }
+    }
+    @media (max-width: 760px) {
+      .meta-grid { grid-template-columns: 1fr 1fr; }
+      .section, .hero { padding: 24px 22px; }
+      .checklist { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="eyebrow">Workshop Rundown</div>
+      <h1>國泰證券 AI 券商／阿發工作坊</h1>
+      <p class="subtitle">工作人員同步版：流程、引導重點、現場產出、材料與場地配置</p>
+      <div class="meta-grid">
+        <div class="meta-card"><b>主軸</b><span>AI 券商指引與應用場景</span></div>
+        <div class="meta-card"><b>時間</b><span>09:00–17:20</span></div>
+        <div class="meta-card"><b>形式</b><span>三組討論＋跨組共識</span></div>
+        <div class="meta-card"><b>主要產出</b><span>指引牆＋提案牆</span></div>
+      </div>
+    </header>
+
+    <section class="section">
+      <h2>一、工作坊定位</h2>
+      <p>本次工作坊聚焦在 AI 券商與阿發的方向、原則、使用邊界、優先排序與應用場景。現場不深入功能細節、畫面設計或系統規格。</p>
+      <div class="callout">
+        <strong>當天成果：</strong>上午整理「AI 券商指引牆」，下午整理「AI 應用場景提案牆」與排序結果。
+      </div>
+      <ol>
+        <li>AI 最適合投入哪些服務？</li>
+        <li>哪些情境不適合由公司負擔 AI 成本？</li>
+        <li>哪些既有服務值得透過 AI 強化？</li>
+        <li>提案應依哪些原則排序？</li>
+        <li>不同客群需要哪些 AI 服務模式？</li>
+        <li>客戶遇到問題時，如何優先想到阿發？</li>
+      </ol>
+    </section>
+
+    <section class="section">
+      <h2>二、場地與分組</h2>
+      <h3>場地配置</h3>
+      <p>建議配置三組桌，桌子方向盡量一致，方便看投影、聽引導，也方便各組移動到牆面張貼成果。牆面分為兩區：</p>
+      <table>
+        <thead><tr><th>區域</th><th>用途</th></tr></thead>
+        <tbody>
+          <tr><td>指引牆</td><td>上午產出的原則、邊界、排序準則、客群分類</td></tr>
+          <tr><td>提案牆</td><td>下午產出的應用場景、跨組補強、排序結果</td></tr>
+        </tbody>
+      </table>
+      <h3>分組原則</h3>
+      <ul>
+        <li>採三組混合編組。</li>
+        <li>高階主管可集中或分散，需留意每桌發言比例。</li>
+        <li>主管的現場角色以促進發言、補充判斷、最後收斂為主。</li>
+        <li>幕僚與專業人員可打散進各組，必要時身上貼識別標籤。</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Token／成本有事問我</span>
+        <span class="tag">IT 技術可行性有事問我</span>
+        <span class="tag">客服話務量有事問我</span>
+        <span class="tag">平台／數位流程有事問我</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>三、上午流程：AI 券商指引牆</h2>
+      <div class="timeline">
+        <div class="slot">
+          <div class="time">09:00–09:10</div>
+          <div class="title">開場與背景說明</div>
+          <p>對齊背景：AI 券商目前缺乏成熟案例，新客戶與服務量快速上升，Token 成本需要納入營運思考。今天先抓公司層級的使用原則與應用場景。</p>
+        </div>
+        <div class="slot">
+          <div class="time">09:10–09:20</div>
+          <div class="title">海外／標竿案例分享</div>
+          <p>由 Lillian 或海外案例負責人快速分享金融、券商在 AI 客服與 AI 投資服務上的作法，協助現場打開想像。</p>
+        </div>
+        <div class="slot">
+          <div class="time">09:20–09:30</div>
+          <div class="title">AI Token 成本意識小工具</div>
+          <p>用工具或簡報展示不同問題會消耗多少 Token。現場先建立成本感，後續討論才知道哪些用法值得開放，哪些用法需要設限。</p>
+        </div>
+        <div class="slot">
+          <div class="time">09:30–10:00</div>
+          <div class="title">討論一：Dos — 什麼事情最應該交給 AI？</div>
+          <p>各組討論哪些服務可從 A 變 A+、哪些跨平台或資料難找情境適合 AI、哪些場景最能代表國泰證券的策略方向。</p>
+          <strong>產出：</strong>第一張海報 Dos。
+        </div>
+        <div class="slot">
+          <div class="time">10:00–10:30</div>
+          <div class="title">討論二：Don’ts — 什麼事情不適合由公司買單？</div>
+          <p>各組討論需要限制的使用方式，例如 App 上點兩下可查到的資訊、純聊天、低價值高 Token 消耗行為。</p>
+          <strong>產出：</strong>第二張海報 Don’ts。
+        </div>
+        <div class="slot">
+          <div class="time">10:30–10:45</div>
+          <div class="title">Coffee Break</div>
+          <p>休息點依 Dos、Don’ts、A to A+ 的完成進度彈性調整。</p>
+        </div>
+        <div class="slot">
+          <div class="time">10:45–11:10</div>
+          <div class="title">討論三：A to A+ — 國泰證券現有優勢如何被 AI 放大？</div>
+          <p>盤點股票抽籤、日日扣、股息再投資、客戶推薦與提醒、藏得較深的 App 服務等既有優勢，找出可透過 AI 強化的候選場景。</p>
+          <strong>產出：</strong>第三張海報 A to A+。
+        </div>
+        <div class="slot">
+          <div class="time">11:10–11:35</div>
+          <div class="title">討論四：排序面向 — 後續提案怎麼排序？</div>
+          <p>建立下午提案排序標準，包含話務減量、客戶價值、技術可行性、實作時程、成本效益、風險控管、策略重要性。</p>
+          <strong>產出：</strong>第四張海報 排序面向。
+        </div>
+        <div class="slot">
+          <div class="time">11:35–11:50</div>
+          <div class="title">討論五：客戶分群 — 不同客戶需要哪些 AI 服務模式？</div>
+          <p>討論新手客戶、VIP、自主交易客戶、自帶 AI 工具客戶、低價值消耗型使用者等不同服務策略。</p>
+          <strong>產出：</strong>第五張海報 客戶分群。
+        </div>
+        <div class="slot">
+          <div class="time">11:50–12:00</div>
+          <div class="title">討論六：如何讓客戶優先想到阿發？</div>
+          <p>討論阿發在什麼流程、什麼問題、什麼關鍵時刻出現最自然。重點放在客戶遇到問題時會想到阿發，降低干擾式彈窗或無效提醒。</p>
+          <strong>產出：</strong>第六張海報 導向阿發。
+        </div>
+        <div class="slot">
+          <div class="time">12:00–13:00</div>
+          <div class="title">午餐</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>四、下午流程：AI 應用場景提案牆</h2>
+      <div class="timeline">
+        <div class="slot">
+          <div class="time">13:00–13:20</div>
+          <div class="title">數營／客服現況報告：高頻話務情境</div>
+          <p>用 Storyboard 呈現目前客服量最大、最痛、最值得優先處理的情境。建議每個話務情境一張 A3，放在各桌。</p>
+        </div>
+        <div class="slot">
+          <div class="time">13:20–13:35</div>
+          <div class="title">提案顆粒度說明：以應用場景為單位</div>
+          <p>今天所有提案以「應用場景」為單位討論，不往單點功能、畫面細節或技術規格延伸。</p>
+        </div>
+        <div class="slot">
+          <div class="time">13:35–14:40</div>
+          <div class="title">組內發散：產出 AI 應用場景提案</div>
+          <p>每組產出多個 AI 應用場景，來源包含既有保底提案、現場新提案、客服話務量提案、放大既有 A+ 服務的提案。</p>
+        </div>
+        <div class="slot">
+          <div class="time">14:40–15:00</div>
+          <div class="title">組內整理：完成提案卡</div>
+          <p>每個提案以 A3 完成，確認 TA、Context、Trigger、Outcome、阿發介入方式與話務減量連結。</p>
+        </div>
+        <div class="slot">
+          <div class="time">15:00–15:15</div>
+          <div class="title">Coffee Break</div>
+        </div>
+        <div class="slot">
+          <div class="time">15:15–16:00</div>
+          <div class="title">跨組交流：幫別組提案加碼話務減量連結</div>
+          <p>跨組交流採貢獻制。到別組時，協助補強該提案如何連結高頻話務問題，並用便利貼留下具體建議。</p>
+        </div>
+        <div class="slot">
+          <div class="time">16:00–16:50</div>
+          <div class="title">排序評估：共同科目與專業科目評分</div>
+          <p>依上午決定的排序面向進行評估。共同科目由全員投票，專業科目由具備專業識別的人員共同給分。</p>
+        </div>
+        <div class="slot">
+          <div class="time">16:50–17:15</div>
+          <div class="title">收斂排序結果與確認下一步</div>
+          <p>整理排序後的應用場景清單，確認優先推進、需要補資料、暫緩處理的提案。</p>
+        </div>
+        <div class="slot">
+          <div class="time">17:15–17:20</div>
+          <div class="title">收尾與拍照紀錄</div>
+          <p>拍攝指引牆與提案牆，保留現場成果，供後續輸出報告。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>五、下午提案格式</h2>
+      <h3>應用場景定義</h3>
+      <table>
+        <thead><tr><th>元素</th><th>說明</th></tr></thead>
+        <tbody>
+          <tr><td>TA</td><td>服務對象是誰</td></tr>
+          <tr><td>Context</td><td>他在什麼背景或狀態下</td></tr>
+          <tr><td>Trigger</td><td>什麼事件讓他需要阿發</td></tr>
+          <tr><td>Outcome</td><td>這個情境達標後會出現什麼結果</td></tr>
+          <tr><td>阿發角色</td><td>阿發如何介入、引導、陪跑或解決問題</td></tr>
+          <tr><td>話務減量連結</td><td>對應哪一類高頻話務，預期減少什麼負擔</td></tr>
+        </tbody>
+      </table>
+
+      <h3>提案 A3 建議欄位</h3>
+      <table>
+        <thead><tr><th>欄位</th><th>說明</th></tr></thead>
+        <tbody>
+          <tr><td>場景名稱</td><td>簡短命名</td></tr>
+          <tr><td>TA</td><td>目標客群</td></tr>
+          <tr><td>Context</td><td>客戶所處情境</td></tr>
+          <tr><td>Trigger</td><td>阿發啟動時機</td></tr>
+          <tr><td>Outcome</td><td>成功結果</td></tr>
+          <tr><td>阿發介入方式</td><td>阿發怎麼幫</td></tr>
+          <tr><td>對應話務問題</td><td>可以減少哪一類客服問題</td></tr>
+          <tr><td>風險／限制</td><td>可能的成本、法遵、技術限制</td></tr>
+        </tbody>
+      </table>
+
+      <h3>範例一：新手村 30 天</h3>
+      <div class="callout">
+        <p><strong>TA：</strong>新開戶客戶</p>
+        <p><strong>Context：</strong>剛成為國泰證券客戶</p>
+        <p><strong>Trigger：</strong>開戶後 30 天內尚未完成第一筆交易</p>
+        <p><strong>Outcome：</strong>完成入金或第一筆交易</p>
+        <p><strong>阿發角色：</strong>陪跑新手完成開戶後的關鍵任務</p>
+        <p><strong>話務連結：</strong>降低新手操作與帳務問題進線量</p>
+      </div>
+
+      <h3>範例二：台股投資人轉向美股</h3>
+      <div class="callout">
+        <p><strong>TA：</strong>已有台股交易經驗的客戶</p>
+        <p><strong>Context：</strong>尚未開始使用複委託</p>
+        <p><strong>Trigger：</strong>客戶搜尋美股、ETF 或海外市場資訊</p>
+        <p><strong>Outcome：</strong>完成複委託開通並完成第一筆美股交易</p>
+        <p><strong>阿發角色：</strong>引導開通、解釋流程、提醒風險與費用</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>六、材料清單</h2>
+      <ul class="checklist">
+        <li>全開大海報：Dos</li>
+        <li>全開大海報：Don’ts</li>
+        <li>全開大海報：A to A+</li>
+        <li>全開大海報：排序面向</li>
+        <li>全開大海報：客戶分群</li>
+        <li>全開大海報：導向阿發</li>
+        <li>指引牆標題牌</li>
+        <li>提案牆標題牌</li>
+        <li>各組 Flipchart</li>
+        <li>便利貼多色</li>
+        <li>簽字筆／粗筆</li>
+        <li>專業識別用彩色貼紙</li>
+        <li>A3 提案紙</li>
+        <li>A3 Storyboard 紙本</li>
+        <li>A4 空白紙，可供手繪 storyboard</li>
+        <li>不留殘膠膠帶或黏土</li>
+        <li>倒數計時器</li>
+        <li>拍照與錄音設備</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>七、待確認事項</h2>
+      <div class="warning">
+        <ol>
+          <li>海外／標竿案例分享負責人與簡報內容。</li>
+          <li>Token 成本小工具是否可在現場使用。</li>
+          <li>客服／數營高頻話務 Storyboard 的五個主題。</li>
+          <li>三組名單與主管分布是否需要微調。</li>
+          <li>場地牆面是否可貼海報，使用何種膠帶或黏土。</li>
+          <li>飯店 Coffee Break 與午餐時間是否可彈性配合。</li>
+          <li>既有保底提案是否事先寄送給參與者。</li>
+          <li>排序分數如何正規化為 1–100 分。</li>
+        </ol>
+      </div>
+    </section>
+
+    <div class="footer">國泰證券 AI 券商／阿發工作坊 Rundown｜工作人員同步版</div>
+  </main>
+</body>
+</html>
