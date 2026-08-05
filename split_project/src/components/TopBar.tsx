@@ -131,6 +131,21 @@ export const TopBar: React.FC<TopBarProps> = ({
 
       {/* Right Area: Mode Switches & Exports */}
       <div className="flex items-center gap-3">
+        {/* 線上白板按鈕 */}
+        <button
+          onClick={() => {
+            const baseUrl = import.meta.env.BASE_URL || "/";
+            window.open(`${baseUrl}aigile_board.html`, "_blank");
+          }}
+          className="px-3 py-1.5 bg-fubon-green hover:bg-fubon-green-dark text-slate-900 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 shadow-sm active:scale-95 shrink-0"
+          title="開啟線上白板 (在新分頁中開啟)"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
+          </svg>
+          線上白板
+        </button>
+
         {/* View Mode Toggle */}
         <div className="bg-black/15 p-0.5 rounded-xl flex items-center border border-white/5 shadow-inner">
           <button

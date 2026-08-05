@@ -329,13 +329,14 @@ function App() {
             {topBar}
             <div className="flex-1 flex overflow-hidden">
               {sidebar}
-              <div className="flex-1 flex overflow-hidden h-full">
-                {/* Left Column (SlideViewer): Fitted for vertical slide cards */}
-                <div className="w-full md:w-[40%] lg:w-[35%] xl:w-[30%] shrink-0 h-full overflow-hidden flex flex-col bg-slate-100 relative">
+              {/* Responsive Layout: Vertical split on mobile, Horizontal split on desktop */}
+              <div className="flex-1 flex flex-col md:flex-row overflow-hidden h-full">
+                {/* SlideViewer: Fixed/Percentage height on mobile, full height on desktop */}
+                <div className="w-full h-[38vh] min-h-[220px] max-h-[300px] md:h-full md:max-h-none md:w-[40%] lg:w-[35%] xl:w-[30%] shrink-0 overflow-hidden flex flex-col bg-slate-100 relative">
                   {slideViewer}
                 </div>
-                {/* Right Column (WorkbookPanel): Expanded for interactive canvas & notes */}
-                <div className="flex-1 border-l border-slate-200 bg-white h-full overflow-hidden hidden md:flex flex-col">
+                {/* WorkbookPanel: Takes remaining space, scrolls internally */}
+                <div className="flex-1 border-t md:border-t-0 md:border-l border-slate-200 bg-white h-full overflow-hidden flex flex-col">
                   {workbookPanel}
                 </div>
               </div>
