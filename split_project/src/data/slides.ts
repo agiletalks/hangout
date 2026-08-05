@@ -1,52 +1,8 @@
-import type { ModuleId } from "./modules";
-
-export type SlideType =
-  | "cover"
-  | "overview"
-  | "divider"
-  | "concept"
-  | "core"
-  | "comparison"
-  | "conclusion"
-  | "resource";
-
-export interface Slide {
-  id: string;
-  page: number;
-  moduleId: ModuleId;
-  title: string;
-  subtitle?: string;
-  image: string; // Filename like "投影片1.PNG" or ""
-  type: SlideType;
-
-  keywords?: string[];
-  toolName?: string;
-  learningPurpose?: string;
-
-  notePrompt?: string;
-  notePlaceholder?: string;
-
-  caseEnabled: boolean;
-  casePrompt?: string;
-  casePlaceholder?: string;
-
-  artifactName?: string;
-  artifactEnabled?: boolean;
-
-  showInProgress: boolean;
-  allowNote: boolean;
-
-  // 跨頁與互動支援
-  groupId?: string;           // 跨頁群組 ID (例如 "wbs", "story-map")
-  interactionType?: string;   // 互動型態 (例如 "table-fill", "sticky-board", "options-select")
-  interactionConfig?: any;    // 互動元件配置
-}
-
 export interface SlideResponse {
   slideId: string;
   personalNote: string;
   caseResponse: string;
-  interactionData?: any;      // 互動元件填寫的自訂資料
+  interactionData?: any;
   updatedAt: string;
   completed: boolean;
 }
@@ -58,6 +14,31 @@ export interface LearnerWorkbook {
   activeSlideId: string;
   viewMode: "focus" | "overview";
   updatedAt: string;
+}
+
+export interface Slide {
+  id: string;
+  page: number;
+  moduleId: "E" | "S" | "P" | "L" | "I" | "T";
+  title: string;
+  subtitle?: string;
+  image: string;
+  type: "cover" | "overview" | "concept" | "core" | "comparison" | "divider" | "conclusion" | "resource";
+  keywords?: string[];
+  toolName?: string;
+  learningPurpose?: string;
+  notePrompt?: string;
+  notePlaceholder?: string;
+  caseEnabled: boolean;
+  casePrompt?: string;
+  casePlaceholder?: string;
+  artifactName?: string;
+  artifactEnabled?: boolean;
+  showInProgress: boolean;
+  allowNote: boolean;
+  groupId?: string;
+  interactionType?: string;
+  interactionConfig?: any;
 }
 
 export const slides: Slide[] = [
@@ -77,7 +58,7 @@ export const slides: Slide[] = [
     id: "slide-2",
     page: 2,
     moduleId: "E",
-    title: "課程大綱與學習地圖",
+    title: "目錄",
     subtitle: "大綱",
     image: "投影片2.PNG",
     type: "overview",
@@ -135,25 +116,10 @@ export const slides: Slide[] = [
   {
     id: "slide-5",
     page: 5,
-    moduleId: "E",
-    title: "Vertical Slice",
-    subtitle: "垂直切片",
-    image: "投影片5.PNG",
-    type: "concept",
-    keywords: ["Vertical Slice", "Horizontal Split", "端到端價值"],
-    learningPurpose: "理解如何垂直切分需求，確保每一次增量都能交付完整價值。",
-    notePrompt: "記錄什麼是垂直切片、以及它與水平切（架構切）的差異。",
-    caseEnabled: false,
-    showInProgress: true,
-    allowNote: true
-  },
-  {
-    id: "slide-6",
-    page: 6,
-    moduleId: "E",
-    title: "Product Epic Feature Story",
+    moduleId: "S",
+    title: "需求的階層",
     subtitle: "需求層級",
-    image: "投影片6.PNG",
+    image: "投影片5.PNG",
     type: "concept",
     keywords: ["Theme", "Epic", "Feature", "User Story"],
     learningPurpose: "理清敏捷需求的層級結構，從大願景逐步拆解至可執行故事。",
@@ -163,24 +129,24 @@ export const slides: Slide[] = [
     allowNote: true
   },
   {
-    id: "slide-7",
-    page: 7,
+    id: "slide-6",
+    page: 6,
     moduleId: "S",
     title: "Structure",
     subtitle: "單元分隔頁",
-    image: "投影片7.PNG",
+    image: "投影片6.PNG",
     type: "divider",
     showInProgress: false,
     allowNote: false,
     caseEnabled: false
   },
   {
-    id: "slide-8",
-    page: 8,
+    id: "slide-7",
+    page: 7,
     moduleId: "S",
     title: "WBS",
     subtitle: "WBS 拆解",
-    image: "投影片8.PNG",
+    image: "投影片7.PNG",
     type: "comparison",
     groupId: "wbs",
     keywords: ["WBS", "Backlog", "結構化"],
@@ -199,28 +165,12 @@ export const slides: Slide[] = [
     }
   },
   {
-    id: "slide-9",
-    page: 9,
-    moduleId: "S",
-    title: "WBS",
-    subtitle: "WBS 拆解實務",
-    image: "投影片9.PNG",
-    type: "comparison",
-    groupId: "wbs",
-    keywords: ["WBS", "Task", "價值導向"],
-    learningPurpose: "深入了解如何將工作任務轉換為能交付使用者價值的 Backlog 項。",
-    notePrompt: "記錄將任務轉為故事時，最重要的關鍵心態轉變。",
-    caseEnabled: false,
-    showInProgress: true,
-    allowNote: true
-  },
-  {
-    id: "slide-10",
-    page: 10,
+    id: "slide-8",
+    page: 8,
     moduleId: "S",
     title: "Impact Map",
     subtitle: "核心工具",
-    image: "投影片10.PNG",
+    image: "投影片8.PNG",
     type: "core",
     keywords: ["Impact Map", "WHY", "WHO", "HOW", "WHAT", "Outcome"],
     toolName: "Impact Map",
@@ -233,12 +183,12 @@ export const slides: Slide[] = [
     allowNote: true
   },
   {
-    id: "slide-11",
-    page: 11,
+    id: "slide-9",
+    page: 9,
     moduleId: "S",
     title: "Story Map",
     subtitle: "核心工具",
-    image: "投影片11.PNG",
+    image: "投影片9.PNG",
     type: "core",
     groupId: "story-map",
     keywords: ["User Story Map", "Backbone", "Walking Skeleton", "Release Slice"],
@@ -262,40 +212,24 @@ export const slides: Slide[] = [
     }
   },
   {
-    id: "slide-12",
-    page: 12,
-    moduleId: "S",
-    title: "Story Map",
-    subtitle: "核心工具實務",
-    image: "投影片12.PNG",
-    type: "core",
-    groupId: "story-map",
-    keywords: ["Story Mapping", "Release Planning"],
-    learningPurpose: "實踐故事地圖，切分出第一代 Walking Skeleton 與後續的 Release 計畫。",
-    notePrompt: "記錄切分 Release 藍線時，團隊容易爭執的點與解決方式。",
-    caseEnabled: false,
-    showInProgress: true,
-    allowNote: true
-  },
-  {
-    id: "slide-13",
-    page: 13,
+    id: "slide-10",
+    page: 10,
     moduleId: "P",
     title: "Process",
     subtitle: "單元分隔頁",
-    image: "投影片13.PNG",
+    image: "投影片10.PNG",
     type: "divider",
     showInProgress: false,
     allowNote: false,
     caseEnabled: false
   },
   {
-    id: "slide-14",
-    page: 14,
+    id: "slide-11",
+    page: 11,
     moduleId: "P",
     title: "Road Map",
     subtitle: "路線圖比較",
-    image: "投影片14.PNG",
+    image: "投影片11.PNG",
     type: "comparison",
     keywords: ["Road Map", "Gantt Chart", "Outcome-driven"],
     learningPurpose: "理解以價值產出 (Outcome) 驅動的路線圖，與傳統時程進度表的差異。",
@@ -305,12 +239,12 @@ export const slides: Slide[] = [
     allowNote: true
   },
   {
-    id: "slide-15",
-    page: 15,
+    id: "slide-12",
+    page: 12,
     moduleId: "P",
     title: "Value Stream",
     subtitle: "價值流對齊",
-    image: "投影片15.PNG",
+    image: "投影片12.PNG",
     type: "concept",
     keywords: ["Value Stream Map", "Lead Time", "Process Time", "Waste"],
     learningPurpose: "從使用者提出需求到拿到價值的完整流程中，找出瓶頸與浪費。",
@@ -320,12 +254,12 @@ export const slides: Slide[] = [
     allowNote: true
   },
   {
-    id: "slide-16",
-    page: 16,
+    id: "slide-13",
+    page: 13,
     moduleId: "P",
     title: "Kanban Board",
     subtitle: "看板管理",
-    image: "投影片16.PNG",
+    image: "投影片13.PNG",
     type: "concept",
     keywords: ["Kanban", "WIP Limit", "Pull System", "Flow"],
     learningPurpose: "利用視覺化看板限制在製品數量 (WIP Limit)，優化需求的流動速度。",
@@ -335,12 +269,12 @@ export const slides: Slide[] = [
     allowNote: true
   },
   {
-    id: "slide-17",
-    page: 17,
+    id: "slide-14",
+    page: 14,
     moduleId: "P",
     title: "Scenario",
     subtitle: "核心工具",
-    image: "投影片17.PNG",
+    image: "投影片14.PNG",
     type: "core",
     keywords: ["Scenario", "BDD", "Given-When-Then", "Behavioral Spec"],
     toolName: "情境描述與 BDD 畫布",
@@ -353,39 +287,24 @@ export const slides: Slide[] = [
     allowNote: true
   },
   {
-    id: "slide-18",
-    page: 18,
+    id: "slide-15",
+    page: 15,
     moduleId: "L",
     title: "Learn",
     subtitle: "單元分隔頁",
-    image: "投影片18.PNG",
+    image: "投影片15.PNG",
     type: "divider",
     showInProgress: false,
     allowNote: false,
     caseEnabled: false
   },
   {
-    id: "slide-19",
-    page: 19,
-    moduleId: "L",
-    title: "Cone of Uncertainty",
-    subtitle: "不確定性分析",
-    image: "投影片19.PNG",
-    type: "concept",
-    keywords: ["Cone of Uncertainty", "Feedback Loop", "Risk Management"],
-    learningPurpose: "理解專案早期不確定性最高，需要透過持續交付與反饋來收斂風險。",
-    notePrompt: "記錄如何利用小步快跑（短迭代）來快速降低專案估算風險。",
-    caseEnabled: false,
-    showInProgress: true,
-    allowNote: true
-  },
-  {
-    id: "slide-20",
-    page: 20,
+    id: "slide-16",
+    page: 16,
     moduleId: "L",
     title: "MVP",
     subtitle: "最小可行性產品",
-    image: "投影片20.PNG",
+    image: "投影片16.PNG",
     type: "core",
     keywords: ["MVP", "Validation", "Learning Hypothesis", "Riskest Assumption"],
     toolName: "MVP 假設定義",
@@ -398,30 +317,12 @@ export const slides: Slide[] = [
     allowNote: true
   },
   {
-    id: "slide-21",
-    page: 21,
-    moduleId: "L",
-    title: "Build-Measure-Learn",
-    subtitle: "核心工具",
-    image: "投影片21.PNG",
-    type: "core",
-    keywords: ["Build-Measure-Learn", "Lean Startup", "Pivot or Persevere"],
-    toolName: "BML 驗證循環",
-    learningPurpose: "建立建構-衡量-學習的快速閉環，確保團隊不盲目開發沒人要的功能。",
-    notePrompt: "記錄如何設計一個衡量的『指標』以驗證開發出的功能是否達標。",
-    caseEnabled: false,
-    artifactName: "BML 驗證機制設計",
-    artifactEnabled: true,
-    showInProgress: true,
-    allowNote: true
-  },
-  {
-    id: "slide-22",
-    page: 22,
+    id: "slide-17",
+    page: 17,
     moduleId: "L",
     title: "Spike",
     subtitle: "核心工具",
-    image: "投影片22.PNG",
+    image: "投影片17.PNG",
     type: "core",
     keywords: ["Spike", "Timebox", "Technical Spike", "Functional Spike"],
     toolName: "Spike 實驗設計",
@@ -434,24 +335,24 @@ export const slides: Slide[] = [
     allowNote: true
   },
   {
-    id: "slide-23",
-    page: 23,
+    id: "slide-18",
+    page: 18,
     moduleId: "I",
     title: "Increment",
     subtitle: "單元分隔頁",
-    image: "投影片23.PNG",
+    image: "投影片18.PNG",
     type: "divider",
     showInProgress: false,
     allowNote: false,
     caseEnabled: false
   },
   {
-    id: "slide-24",
-    page: 24,
+    id: "slide-19",
+    page: 19,
     moduleId: "I",
-    title: "A&B",
+    title: "A and B",
     subtitle: "增量交付模式",
-    image: "投影片24.PNG",
+    image: "投影片19.PNG",
     type: "concept",
     keywords: ["Increment", "Iterative vs Incremental", "Big Bang"],
     learningPurpose: "對比漸進式與一次性交付的風險，掌握逐步堆疊價值的要領。",
@@ -461,12 +362,12 @@ export const slides: Slide[] = [
     allowNote: true
   },
   {
-    id: "slide-25",
-    page: 25,
+    id: "slide-20",
+    page: 20,
     moduleId: "I",
     title: "Dependency",
     subtitle: "依賴關係處理",
-    image: "投影片25.PNG",
+    image: "投影片20.PNG",
     type: "concept",
     keywords: ["Dependency", "Story Splitting", "Decoupling"],
     learningPurpose: "識別外部依賴、技術依賴與業務依賴，並透過故事解耦進行優化。",
@@ -476,12 +377,12 @@ export const slides: Slide[] = [
     allowNote: true
   },
   {
-    id: "slide-26",
-    page: 26,
+    id: "slide-21",
+    page: 21,
     moduleId: "I",
     title: "Discount",
     subtitle: "切分折扣",
-    image: "投影片26.PNG",
+    image: "投影片21.PNG",
     type: "concept",
     keywords: ["Scope Management", "Friction", "Good Enough"],
     learningPurpose: "學習『做夠用就好』的藝術，主動放棄低價值細節以加快上線速度。",
@@ -491,12 +392,12 @@ export const slides: Slide[] = [
     allowNote: true
   },
   {
-    id: "slide-27",
-    page: 27,
+    id: "slide-22",
+    page: 22,
     moduleId: "I",
     title: "Decision Table",
     subtitle: "核心工具",
-    image: "投影片27.PNG",
+    image: "投影片22.PNG",
     type: "core",
     keywords: ["Decision Table", "Business Rules", "Rule Splitting"],
     toolName: "決策表工具",
@@ -517,29 +418,25 @@ export const slides: Slide[] = [
       ]
     }
   },
-  
-  // ----------------------------------------
-  // 以下為第 28 到 33 頁 (無投影片圖片，但結構保留並顯示說明)
-  // ----------------------------------------
   {
-    id: "slide-28",
-    page: 28,
+    id: "slide-23",
+    page: 23,
     moduleId: "T",
     title: "Task",
     subtitle: "單元分隔頁",
-    image: "", // 無圖片
+    image: "投影片23.PNG",
     type: "divider",
     showInProgress: false,
     allowNote: false,
     caseEnabled: false
   },
   {
-    id: "slide-29",
-    page: 29,
+    id: "slide-24",
+    page: 24,
     moduleId: "T",
     title: "Spider",
     subtitle: "工作拆解概念",
-    image: "", // 無圖片
+    image: "投影片24.PNG",
     type: "concept",
     keywords: ["Spider Method", "Task Breakdown", "Spaghetti Connection"],
     learningPurpose: "學習如何以視覺化蜘蛛網的方式，將故事節點發散拆解為細部 Task。",
@@ -549,12 +446,12 @@ export const slides: Slide[] = [
     allowNote: true
   },
   {
-    id: "slide-30",
-    page: 30,
+    id: "slide-25",
+    page: 25,
     moduleId: "T",
     title: "Timetable",
     subtitle: "時程排程比較",
-    image: "", // 無圖片
+    image: "投影片25.PNG",
     type: "comparison",
     keywords: ["Timetable", "Iteration Planning", "Commitment"],
     learningPurpose: "對比固定時間盒 (Timebox) 與彈性時程的優缺點，學會敏捷承諾。",
@@ -564,12 +461,12 @@ export const slides: Slide[] = [
     allowNote: true
   },
   {
-    id: "slide-31",
-    page: 31,
+    id: "slide-26",
+    page: 26,
     moduleId: "T",
-    title: "Gantt",
+    title: "Gannt",
     subtitle: "甘特圖比較",
-    image: "", // 無圖片
+    image: "投影片26.PNG",
     type: "comparison",
     keywords: ["Gantt Chart", "Burn-down Chart", "Progress Tracking"],
     learningPurpose: "釐清敏捷燃盡圖與甘特圖的定位差異，不用甘特圖來追蹤每日微觀進度。",
@@ -579,30 +476,17 @@ export const slides: Slide[] = [
     allowNote: true
   },
   {
-    id: "slide-32",
-    page: 32,
+    id: "slide-27",
+    page: 27,
     moduleId: "T",
-    title: "Ready to Start",
+    title: "Are You Ready",
     subtitle: "課程總結",
-    image: "", // 無圖片
+    image: "投影片27.PNG",
     type: "conclusion",
     learningPurpose: "回顧整天課程的 SPLIT 技術，準備將這些工具帶回工作現場落實。",
     notePrompt: "請寫下你明天上班能立刻運用的一個需求分解觀念或工具。",
     caseEnabled: false,
     showInProgress: false,
     allowNote: true
-  },
-  {
-    id: "slide-33",
-    page: 33,
-    moduleId: "T",
-    title: "下載與學習資源",
-    subtitle: "資源下載",
-    image: "", // 無圖片
-    type: "resource",
-    learningPurpose: "匯出今天課程的完整隨堂筆記 (Markdown/JSON) 與下載學習參考資源。",
-    showInProgress: false,
-    allowNote: false,
-    caseEnabled: false
   }
 ];
